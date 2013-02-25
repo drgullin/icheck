@@ -81,8 +81,11 @@ Note: don't forget to include jQuery and `jquery.icheck.js` (or `jquery.icheck.m
 ## Callbacks
 
 `this.clicked` event fires when user clicks on customized input (not used when you change it's state programatically)
+
 `this.checked` fires when input goes to `checked` state
+
 `this.unchecked` fires when `checked` state is removed
+
 `this.created` fires when input is created
 
 Use `bind` (also `live/delegate`) or `on` (modern jQuery versions) to attach them:
