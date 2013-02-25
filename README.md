@@ -1,6 +1,6 @@
 # iCheck
 
-#### A lightweight jQuery plugin for checkboxes and radio buttons custom styling
+#### Powerful jQuery plugin for checkboxes and radio buttons custom styling
 #### [Demo](http://damirfoy.com/projects/icheck/)
 
 ## Features:
