@@ -74,7 +74,7 @@ Example:
         });
     });
 
-Note: don't forget to include jQuery (version 1.6 or newer) and jquery.icheck.js (or jquery.icheck.min.js) in your HTML.
+Note: don't forget to include jQuery and `jquery.icheck.js` (or `jquery.icheck.min.js`) in your HTML.
 
 ## Callbacks
 
