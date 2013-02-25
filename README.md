@@ -3,7 +3,7 @@
 #### Powerful jQuery plugin for checkboxes and radio buttons custom styling
 #### [Demo](http://damirfoy.com/projects/icheck/)
 
-![Skins](http://damirfoy.com/projects/icheck/skins.png)
+![Skins](http://damirfoy.com/projects/icheck/demo.png)
 
 ## Features:
 
