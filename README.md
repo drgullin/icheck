@@ -92,9 +92,9 @@ Use `bind` (also `live/delegate`) or `on` (modern jQuery versions) to attach the
 Note: `this.created` callback should be binded before plugin init:
 
     $('input').bind('this.created', function(){
-            console.log('input is created');
+        console.log('input is created');
     }).icheck({
-            // options
+        // options
     });
 
 ## Methods
