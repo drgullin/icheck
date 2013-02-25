@@ -1,0 +1,63 @@
+/* iCheck.js Default skin, pink
+----------------------------------- */
+.icheckbox-pink,
+.iradio-pink {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    background: url(pink.png) no-repeat;
+    border: none;
+}
+
+.icheckbox-pink,
+.icheckbox-pink.static:hover {
+    background-position: 0 0;
+}
+    .icheckbox-pink.hover,
+    .icheckbox-pink:hover {
+        background-position: -20px 0;
+    }
+    .icheckbox-pink.checked {
+        background-position: -40px 0;
+    }
+    .icheckbox-pink.disabled {
+        background-position: -60px 0;
+    }
+    .icheckbox-pink.checked.disabled {
+        background-position: -80px 0;
+    }
+
+.iradio-pink,
+.iradio-pink.static:hover {
+    background-position: -100px 0;
+}
+    .iradio-pink.hover,
+    .iradio-pink:hover {
+        background-position: -120px 0;
+    }
+    .iradio-pink.checked {
+        background-position: -140px 0;
+    }
+    .iradio-pink.disabled {
+        background-position: -160px 0;
+    }
+    .iradio-pink.checked.disabled {
+        background-position: -180px 0;
+    }
+
+/* Retina support */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (-moz-min-device-pixel-ratio: 1.5),
+       only screen and (-o-min-device-pixel-ratio: 1.5),
+       only screen and (min-device-pixel-ratio: 1.5) {
+    .icheckbox-pink,
+    .iradio-pink {
+        background-image: url(pink@2x.png);
+        -webkit-background-size: 200px 20px;
+        -moz-background-size: 200px 20px;
+        -o-background-size: 200px 20px;
+        background-size: 200px 20px;
+    }
+}

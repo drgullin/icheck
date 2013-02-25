@@ -1,0 +1,63 @@
+/* iCheck.js Default skin, black
+----------------------------------- */
+.icheckbox,
+.iradio {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    background: url(default.png) no-repeat;
+    border: none;
+}
+
+.icheckbox,
+.icheckbox.static:hover {
+    background-position: 0 0;
+}
+    .icheckbox.hover,
+    .icheckbox:hover {
+        background-position: -20px 0;
+    }
+    .icheckbox.checked {
+        background-position: -40px 0;
+    }
+    .icheckbox.disabled {
+        background-position: -60px 0;
+    }
+    .icheckbox.checked.disabled {
+        background-position: -80px 0;
+    }
+
+.iradio,
+.iradio.static:hover {
+    background-position: -100px 0;
+}
+    .iradio.hover,
+    .iradio:hover {
+        background-position: -120px 0;
+    }
+    .iradio.checked {
+        background-position: -140px 0;
+    }
+    .iradio.disabled {
+        background-position: -160px 0;
+    }
+    .iradio.checked.disabled {
+        background-position: -180px 0;
+    }
+
+/* Retina support */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (-moz-min-device-pixel-ratio: 1.5),
+       only screen and (-o-min-device-pixel-ratio: 3/2),
+       only screen and (min-device-pixel-ratio: 1.5) {
+    .icheckbox,
+    .iradio {
+        background-image: url(default@2x.png);
+        -webkit-background-size: 200px 20px;
+        -moz-background-size: 200px 20px;
+        -o-background-size: 200px 20px;
+        background-size: 200px 20px;
+    }
+}

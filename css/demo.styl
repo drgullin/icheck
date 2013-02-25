@@ -1,0 +1,732 @@
+/* Reset
+----------------------------------- */
+@import url("normalize.css")
+
+
+/* Demo
+----------------------------------- */
+$webfont = 'Montserrat'
+$stack = $webfont, Helvetica, Arial, sans-serif
+
+input:focus
+	border 1px dotted #000 !important
+
+body
+	font 400 14px/20px $stack
+	color #222
+	background #ebe7df url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAD/CAIAAAC2BIvNAAADtElEQVR4Xn1WUa4TQQxbD3NafvjgkpwAxBdCSIhbGDX22N0WsU+vu5nZSZzEcYsf377wunBdvB7X1u2xNPYa0wYpW8YsL8ymFqD3fcH+apJ5/yzv68IjGMBxsA4YZj/nITsXjecZ/zLSvM+5axG4ViLr4L7QFeOHDfuD/XPsEwjJD6daoOJ3xfViICg/HPc4+PO5lQkvGn+LN3+r8OjzRGN4f/aUD+fZXtMf8uDJYcVLv43I+Bj8bvNE8YPB2WaLR+0zLhv/qZ7AfOpB8XiqyPEPEBfQ81Q+AGTn4tJOUi6fFC/77QeGGMDjBNq/8g9v/GhNtp5bP4yj+RefJzCVrvfl0ee103z97H3bTujkA/LwvaPH2B0ALLUG+Nf81GbxALd45Vb4ASCUVT2TAW7+wzdDRux4WSxZKP4vkf+ON/VTWYcV6Y+SFR/mwVfxdn4nTDjKPXecFBD+KSYd3yiB6odOLUVUU93vi+o3MyhNcJXw8Hy2+8ofWYHxzCUfwu9N0noT9+anFqu/TAG3ApOU5LpeMrTfftZfUth42rRes+2ovvq2PQqmofyD0TT7N8tgPaYghc+t4IfPnz7G7n5EzOSx/+47Cs3XLHqeArnxyQvgKtcgPWH9IfNCB4X8uxrIvJptr3hkO97c96EaNbH7eIL4tAGEwMb/LNnlvyRiv9XDYuiQwuNid96q55pEGfZn8MIL7ZAqSPTQMbduR/8oPtZF+M47/2hI27hhlpUvCH4nY76janXXH+uvDab+SDGkX0gI4wklXvgYPaEhVW+6r2qHn3sUAfnpsiCKYICIvwGT7x9kCb9/fv0X/+/6e8eTlk+9aCTmg7hJnvxCFttkcs+8Anlr6fC9PiikDeWZ+YIyCf/Lz/bzYj53naX/7/m3RO+/F7Xz//rAIcXHLBkfDRnDd8if29741Z8AMB4e+gCKz0r2vZ7iX13Meb7gbbJMv/o+7dwAlvBGgvDn13ft/vf3tVHf/eNWf4Qf2km/kG3m/frXLZRYdCa0P1hwhdh68z5/mc/lyLzzKXiErPyK4XoLWfdf8m8/7N9S3/osEBTk1/MANp8HIvolw/Vlj7j+zJk3PNE2LWo+WXzQNajVr84nySVYVnUov7veOZOLnu+DD9XPwIP64wvGS8HLPML/6X+v9N8StJKZUEQ/DGgpGZSvaHHCV7QerZ/qzzyTcD9dDFB6mC8rZN7GAJ/7VX3oiKb/5Z8snY8NlF+CclZXoZaPaA4+7/j5vVv+y9Afxj9XR4B/AYlMKkBULArbAAAAAElFTkSuQmCC") repeat-x
+	*background-image url(ie/header-line.png)
+
+a
+	color #222
+	text-decoration none
+	border-bottom 1px solid #bbb
+
+	&:hover
+		color #000
+
+	&.self
+		border-bottom 1px dotted #aaa
+
+strong
+	font-weight 700
+
+p
+	margin 0 0 8px
+
+label
+	cursor pointer
+
+h1
+h2
+h3
+h4
+	margin 0
+	font bold 20px/60px $stack
+
+h2
+	height 60px
+	text-align center
+	text-transform uppercase
+
+h4
+	font-size 18px
+	line-height 24px
+
+ul
+	margin 0
+	padding 0
+	list-style none
+
+.clear
+	position relative
+
+	&:before
+	&:after
+		content ''
+		display table
+		clear both
+
+.layout
+	width 930px
+	min-height 100%
+	margin 0 auto -80px
+	padding 0 15px
+
+.header
+	color #fff
+	text-align center
+
+	h3
+		padding 133px 0 33px
+		font-size 120px
+		line-height 140px
+		letter-spacing -5px
+
+	h1
+		position relative
+		padding 28px 0 73px
+		font-size 22px
+		line-height 28px
+		letter-spacing -1px
+		text-transform uppercase
+
+		&:before
+			content ''
+			position absolute
+			top 0
+			left 50%
+			width 100px
+			height 3px
+			margin-left -50px
+			overflow hidden
+			background #fff
+
+.features
+	position relative
+	font-size 16px
+	color #555
+	background #fff
+
+	a
+		color #555
+
+		&:hover
+			color #333
+
+		&.self
+			border-bottom-color #bbb
+
+	.arrows
+		top 0
+
+	&:hover .arrows .top
+	&:hover .arrows .bottom
+		left 0
+
+	h2
+		color #fff
+		background #2489c5
+
+	ul
+		padding 44px 60px 36px
+
+	li
+		padding 0 0 9px 36px
+		background url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABI0lEQVR4XpXSP0vDUBjF4ZtLkIr4EYzduogdXJTWWV2FLMVNoQrdAhlUUFAEcejo1q13svgFBAUdxA/g30kcdQoIIlL9DWcKuZEeeOCl99w3gTSI49h4MoFb/KCJz6KShS/rOh/TbEZZECLBiSQIR1nQQgAnAVr/LZjEnIq76OJbutjRGR26isUB3pDhBikucWoUzVdI1cl05zBk2MI5jvCKIfL5QluzxTS20bY6WENdl0ujTl13Ni3DABtwWEFp1HG6M7Aq9NHBGRbgy7w6HfTzX6GHCyyXPV2dnu9/MIUX+PIMOkRsbq7hHkZmxciDOrZoQRUVPCGCw504RDobR7VoQQ0f2Mejls1IRb/t4R10CcLc6/2igSVcw8gqFnEMOnSVPxQqQaPw2y7fAAAAAElFTkSuQmCC") 0 1px no-repeat
+		*background-image url(ie/icon-star.png)
+
+		&.offset
+			margin-top 20px
+
+.features li span
+.mark
+	padding 0 2px
+	color lighten(#555, 20%)
+	background lighten(#d7d4cc, 40%)
+
+.skin-polaris .mark
+	background darken(#2C323C, 20%)
+
+.skin-futurico .mark
+	background darken(#2E3035, 20%)
+
+.actions li
+	float left
+	width 310px
+	height 43px
+	text-align center
+
+	a
+		display block
+		height 40px
+		line-height 38px
+		color #fff
+		border none
+		background #E76B66
+
+		&:hover
+			border-bottom 3px solid darken(#E76B66, 10%)
+
+	&.fork a
+		background #579AA9
+
+		&:hover
+			border-bottom-color darken(#579AA9, 10%)
+
+	&.follow a
+		background #1D8BC6
+
+		&:hover
+			border-bottom-color darken(#1D8BC6, 10%)
+
+.actions-large li
+	height 63px
+
+	a
+		height 60px
+		font-size 18px
+		line-height 58px
+
+.examples
+	padding-top 56px
+
+	h2
+		margin-bottom -2px
+		font-size 24px
+
+.arrows
+	position absolute
+	top 3px
+	left -60px
+	width 60px
+	overflow hidden
+
+	.top
+	.bottom
+		position relative
+		left 60px
+		width 60px
+		height 60px
+		cursor pointer
+		-webkit-transition left .2s ease-in-out
+		-moz-transition left .2s ease-in-out
+		-ms-transition left .2s ease-in-out
+		-o-transition left .2s ease-in-out
+		transition left .2s ease-in-out
+
+	.top
+		background lighten(#5a9aa8, 50%) url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAALCAYAAACZIGYHAAAAdklEQVR4Xo3MuwmFQBiE0b0FmAuutnRBsAARLMTYRzvWItiEYLq/s6CYyMwGXzTDcWbG8mhEf/ZjQIV2ZCigjiASMAVJIAVKAQ4FKWBDJVoYpAB/7z8GRaAQgBNQG8dZA28f0BmHBgUCKGh9hhpNKH8BWY8GlF2OH3hCC1zmdAAAAABJRU5ErkJggg==") 50% no-repeat
+		*background-image url(ie/arrow-top.png)
+
+		&:hover
+			background-color lighten(#5a9aa8, 30%)
+
+		.skin-polaris &
+		.skin-futurico &
+			background-color lighten(#5a9aa8, 20%)
+
+			&:hover
+				background-color lighten(#5a9aa8, 10%)
+
+	.bottom
+		background lighten(#dba571, 40%) url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAALCAYAAACZIGYHAAAAf0lEQVR4Xo3MzQmEQBCE0TGAvQuOpiQIBiCCgXj2J52NRTAJwev0Vh+WOgjlNHyHguYFM/M6tKLSd2YTmtHHR48S8jtQzAB2430d2bgJvQLsdqRCZwZUPAFLaPjrjYAUMKLgwBtUK4CIhi4BEFGQBohISANEJKQBIqqIFtSqvx/0bXhCCUrgiAAAAABJRU5ErkJggg==") 50% no-repeat
+		*background-image url(ie/arrow-bottom.png)
+
+		&:hover
+			background-color lighten(#dba571, 20%)
+
+		.skin-polaris &
+		.skin-futurico &
+			background-color lighten(#dba571, 10%)
+
+			&:hover
+				background-color #dba571
+
+@media screen and (max-width:1049px)
+	.arrows
+		display none
+
+.example
+	position relative
+	margin-bottom 40px
+
+	&:hover .arrows .top
+	&:hover .arrows .bottom
+		left 0
+
+	h3
+		position relative
+		z-index 20
+		float left
+		height 60px
+		padding 0 57px
+		line-height 58px
+		background #fff
+		border 3px solid #ddd8ce
+		border-bottom none
+
+		&:before
+			content ''
+			position absolute
+			top 100%
+			left 0
+			width 100%
+			height 2px
+			margin-top -1px
+			background #fff
+
+	&.skin-polaris h3
+		color lighten(#7a828b, 60%)
+		background #2c323c
+
+		&:before
+			background #2c323c
+
+	&.skin-futurico h3
+		color lighten(#888, 50%)
+		background #2e3035
+
+		&:before
+			background #2e3035
+
+	dl
+		z-index 10
+		width 100%
+		margin 0
+
+	dt
+		position relative
+		top -53px
+		right -3px
+		float right
+		height 47px
+		margin-right -3px
+		padding 0 57px
+		line-height 47px
+		border 3px solid #ddd8ce
+		cursor pointer
+
+		&:hover
+			background #f0ede7
+			border-bottom 3px solid #ddd8ce
+
+		&.selected
+			height 50px
+			background #fff
+			border-bottom none
+			cursor default
+
+			&:before
+				content ''
+				position absolute
+				top 100%
+				left 0
+				width 100%
+				height 2px
+				margin-top -1px
+				background #fff
+
+	&.skin-polaris dt
+		color lighten(#7a828b, 60%)
+		background lighten(#30363f, 30%)
+
+		&:hover
+			background lighten(#30363f, 15%)
+
+		&.selected
+			background #2c323c
+
+			&:before
+				background #2c323c
+
+	&.skin-futurico dt
+		color lighten(#888, 50%)
+		background lighten(#2e3035, 30%)
+
+		&:hover
+			background lighten(#2e3035, 15%)
+
+		&.selected
+			background #2e3035
+
+			&:before
+				background #2e3035
+
+	dd
+		position relative
+		display none
+		float left
+		width 100%
+		margin -3px -100% 0 0
+		overflow hidden
+		color #444
+		background #fff
+		border 3px solid #ddd8ce
+
+		&.selected
+			display block
+
+	&.skin-polaris dd
+		color #7a828b
+		background #2c323c
+
+	&.skin-futurico dd
+		color #888
+		background #2e3035
+
+.example-section
+	float left
+	padding 42px 0 31px 57px
+	line-height 18px
+
+	h4
+		padding-bottom 18px
+
+		.skin-polaris &
+			color lighten(#7a828b, 20%)
+
+		.skin-futurico &
+			color lighten(#888, 20%)
+
+	.list
+		float left
+		padding-right 60px
+
+		li
+			position relative
+			padding-bottom 15px
+
+	.skin-default & .list li
+		padding-left 38px
+
+	.skin-default & .icheckbox
+	.skin-default & .icheckbox-red
+	.skin-default & .icheckbox-green
+	.skin-default & .icheckbox-blue
+	.skin-default & .icheckbox-aero
+	.skin-default & .icheckbox-grey
+	.skin-default & .icheckbox-orange
+	.skin-default & .icheckbox-yellow
+	.skin-default & .icheckbox-pink
+	.skin-default & .icheckbox-purple
+	.skin-default & .iradio
+	.skin-default & .iradio-red
+	.skin-default & .iradio-green
+	.skin-default & .iradio-blue
+	.skin-default & .iradio-aero
+	.skin-default & .iradio-grey
+	.skin-default & .iradio-orange
+	.skin-default & .iradio-yellow
+	.skin-default & .iradio-pink
+	.skin-default & .iradio-purple
+		position absolute
+		top 1px
+		left 0
+
+	.skin-square & .list li
+		padding-left 42px
+
+	.skin-square & .icheckbox_square
+	.skin-square & .icheckbox_square-red
+	.skin-square & .icheckbox_square-green
+	.skin-square & .icheckbox_square-blue
+	.skin-square & .icheckbox_square-aero
+	.skin-square & .icheckbox_square-grey
+	.skin-square & .icheckbox_square-orange
+	.skin-square & .icheckbox_square-yellow
+	.skin-square & .icheckbox_square-pink
+	.skin-square & .icheckbox_square-purple
+	.skin-square & .iradio_square
+	.skin-square & .iradio_square-red
+	.skin-square & .iradio_square-green
+	.skin-square & .iradio_square-blue
+	.skin-square & .iradio_square-aero
+	.skin-square & .iradio_square-grey
+	.skin-square & .iradio_square-orange
+	.skin-square & .iradio_square-yellow
+	.skin-square & .iradio_square-pink
+	.skin-square & .iradio_square-purple
+		position absolute
+		top -1px
+		left 0
+
+	.skin-line & h4
+		padding-bottom 24px
+
+	.skin-line & .list
+		padding-right 40px
+
+		li
+			padding-bottom 10px
+
+	.skin-polaris & .list li
+		padding-left 37px
+
+	.skin-polaris & .icheckbox_polaris
+	.skin-polaris & .iradio_polaris
+		position absolute
+		top -4px
+		left -6px
+
+	.skin-futurico & .list li
+		padding-left 36px
+
+	.skin-futurico & .icheckbox_futurico
+	.skin-futurico & .iradio_futurico
+		position absolute
+		top 2px
+		left 0
+
+.example-states
+	float right
+	padding-right 57px
+	padding-left 0
+
+	.list
+		padding-right 0
+
+	.skin-default & .list li
+		padding-left 71px
+
+	.skin-default & .iradio
+	.skin-default & .iradio-red
+	.skin-default & .iradio-green
+	.skin-default & .iradio-blue
+	.skin-default & .iradio-aero
+	.skin-default & .iradio-grey
+	.skin-default & .iradio-orange
+	.skin-default & .iradio-yellow
+	.skin-default & .iradio-pink
+	.skin-default & .iradio-purple
+		left 33px
+
+	.skin-square & .list li
+		padding-left 79px
+
+	.skin-square & .iradio_square
+	.skin-square & .iradio_square-red
+	.skin-square & .iradio_square-green
+	.skin-square & .iradio_square-blue
+	.skin-square & .iradio_square-aero
+	.skin-square & .iradio_square-grey
+	.skin-square & .iradio_square-orange
+	.skin-square & .iradio_square-yellow
+	.skin-square & .iradio_square-pink
+	.skin-square & .iradio_square-purple
+		left 37px
+
+	.skin-line & .list
+		padding-right 0
+
+	.skin-polaris & .list li
+		padding-left 69px
+
+	.skin-polaris & .iradio_polaris
+		left 26px
+
+	.skin-futurico & .list li
+		padding-left 67px
+
+	.skin-futurico & .iradio_futurico
+		left 31px
+
+.colors
+	clear both
+	padding 24px 0 9px
+
+	.skin-line &
+		padding-top 28px
+
+	strong
+		float left
+		line-height 20px
+		margin-right 20px
+
+	li
+		position relative
+		float left
+		width 16px
+		height 16px
+		margin 2px 1px 0 0
+		background #000
+		cursor pointer
+		opacity .5
+
+		&:hover
+			opacity 1
+
+		&.active
+			height 20px
+			margin-top 0
+			opacity .75
+
+		&.red
+			background #d54e21
+
+		&.green
+			background #78a300
+
+		&.blue
+			background #0e76a8
+
+		&.aero
+			background #9cc2cb
+
+		&.grey
+			background #73716e
+
+		&.orange
+			background #f70
+
+		&.yellow
+			background #fc0
+
+		&.pink
+			background #ff66b5
+
+		&.purple
+			background #6a5a8c
+
+		.skin-square &.red
+			background #e56c69
+
+		.skin-square &.green
+			background #1b7e5a
+
+		.skin-square &.blue
+			background #2489c5
+
+		.skin-square &.aero
+			background #9cc2cb
+
+		.skin-square &.grey
+			background #73716e
+
+		.skin-square &.orange
+			background #de8650
+
+		.skin-square &.yellow
+			background #fc3
+
+		.skin-square &.pink
+			background #a77a94
+
+		.skin-square &.purple
+			background #6a5a8c
+
+		.skin-square &.orange
+			background #f70
+
+		.skin-line &.yellow
+			background #FFC414
+
+.examples-info
+	padding 13px 0 57px
+	font-size 16px
+	line-height 22px
+	text-align center
+
+	p
+		margin-bottom 17px
+
+.example-usage
+	padding 43px 60px 22px
+	list-style decimal outside
+
+	li
+		margin-bottom 23px
+
+	.schemes
+		margin-bottom -3px
+		padding 13px 0 0 20px
+		color #888
+
+		ul
+			float left
+			padding-right 60px
+
+		li
+			margin 0
+			padding-bottom 3px
+
+.usage
+	position relative
+	margin-bottom 60px
+	background #fff
+
+	&.self
+		border-bottom-color #bbb
+
+	.arrows
+		top 0
+
+	&:hover .arrows .top
+	&:hover .arrows .bottom
+		left 0
+
+	h2
+		color #fff
+		background #1F7E5C
+
+	h4
+		margin 26px 0 10px
+
+	p
+		margin-bottom 5px
+
+		&.offset
+			margin-top 10px
+
+	.markup
+		margin 9px 0 16px
+
+	.usage-inner
+		font-size 15px
+		line-height 23px
+		padding 41px 60px 39px
+
+.markup
+	margin 10px 0 18px
+	padding 8px 0 10px 17px
+	font 400 14px/20px $stack
+	color lighten(#555, 20%)
+	background lighten(#d7d4cc, 40%)
+	border-left 3px solid darken(#ebeae5, 10%)
+
+	.skin-polaris &
+		background darken(#2C323C, 20%)
+		border-left-color darken(#2C323C, 30%)
+
+	.skin-futurico &
+		background darken(#2E3035, 20%)
+		border-left-color darken(#2E3035, 30%)
+
+.license
+	color #444
+	text-align center
+	padding 30px 0 155px
+
+.footer
+	position relative
+	height 100px
+	color #666
+	line-height 78px
+	background #e2dfd8
+
+	.inner
+		width 930px
+		margin 0 auto
+		overflow hidden
+
+	.design
+		float left
+
+	.code
+		float right
+
+	a
+		color #444
+
+		&:hover
+			color #222

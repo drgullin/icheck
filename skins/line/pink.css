@@ -1,0 +1,65 @@
+/* iCheck.js Line skin, pink
+----------------------------------- */
+.icheck_line-pink {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 5px 15px 5px 38px;
+    font-size: 13px;
+    line-height: 17px;
+    color: #fff;
+    background: #a77a94;
+    border: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+    .icheck_line-pink .icheck_line-icon {
+        position: absolute;
+        top: 50%;
+        left: 13px;
+        width: 13px;
+        height: 11px;
+        margin: -5px 0 0 0;
+        padding: 0;
+        overflow: hidden;
+        background: url(line.png) no-repeat;
+        border: none;
+    }
+    .icheck_line-pink.hover,
+    .icheck_line-pink:hover {
+        background: #B995A9;
+    }
+    .icheck_line-pink.static:hover,
+    .icheck_line-pink.checked {
+        background: #a77a94;
+    }
+        .icheck_line-pink.checked .icheck_line-icon {
+            background-position: -15px 0;
+        }
+    .icheck_line-pink.disabled {
+        background: #E0D0DA;
+    }
+        .icheck_line-pink.disabled .icheck_line-icon {
+            background-position: -30px 0;
+        }
+    .icheck_line-pink.checked.disabled {
+        background: #E0D0DA;
+    }
+        .icheck_line-pink.checked.disabled .icheck_line-icon {
+            background-position: -45px 0;
+        }
+
+/* Retina support */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (-moz-min-device-pixel-ratio: 1.5),
+       only screen and (-o-min-device-pixel-ratio: 3/2),
+       only screen and (min-device-pixel-ratio: 1.5) {
+    .icheck_line-pink .icheck_line-icon {
+        background-image: url(line@2x.png);
+        -webkit-background-size: 60px 13px;
+        -moz-background-size: 60px 13px;
+        -o-background-size: 60px 13px;
+        background-size: 60px 13px;
+    }
+}

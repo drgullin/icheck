@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>iCheck - customizable checkboxes and radio buttons</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat:400,700">
+		<link rel="stylesheet" href="./css/demo.css">
+		<link rel="stylesheet" href="./skins/all.css">
+		<script src="./js/jquery.js"></script>
+		<script src="./js/jquery.icheck.js"></script>
+	</head>
+	<body>
+		<div class="layout">
+			<div class="header">
+				<h3>iCheck.js</h3>
+				<h1>jQuery plugin for checkboxes and radio buttons custom styling</h1>
+			</div>
+			<div class="features">
+				<div class="arrows">
+					<div class="bottom" data-to="skin-default"></div>
+				</div>
+				<h2>Features</h2>
+				<ul>
+					<li>Highly customizable</li>
+					<li>Focused on performance</li>
+					<li>Runs on IE7+, Firefox2+, Opera9+, Google Chrome, Safari and other browsers, including mobile</li>
+					<li>Touch devices support</li>
+					<li>jQuery version 1.6 and newer support</li>
+					<li><a class="self" href="#" data-to="skin-default"><strong>5 Retina-ready skins</strong></a> &mdash; <span>/skins/</span> folder</li>
+					<li>Lightweight size &mdash; core is 1.1 kb gzipped</li>
+
+					<li class="offset">Keeps original inputs in your code</li>
+					<li>Works with checkboxes and radio buttons only, but handles any jQuery selectors</li>
+					<li>In friendship with your CSS reset</li>
+					<li>Keyboard shortcuts support (e.g. <span>Tab</span>, <span>Spacebar</span>, <span>Arrow up/down</span>)</li>
+					<li>jQuery chaining support on any action</li>
+					<li>Ability to change plugin options on selected inputs after they are customized</li>
+					<li>Styling ajax loaded inputs</li>
+
+					<li class="offset">Separate checkboxes and radio buttons class names</li>
+					<li>State classes: <span>.checked</span>, <span>.disabled</span>, <span>.focus</span> and <span>.active</span> (<span>:hover</span> is native)</li>
+					<li><a class="self" href="#" data-to="options">Option</a> to append custom HTML code or text inside customized inputs</li>
+					<li>Global and per element <a class="self" href="#" data-to="callbacks"><strong>callbacks</strong></a> when input is <span>created</span>, <span>clicked</span>, <span>checked</span> and <span>unchecked</span></li>
+					<li><a class="self" href="#" data-to="methods"><strong>Methods</strong></a> to add or remove <span>checked</span> state on selected inputs programatically</li>
+					<li>Option to handle only checkboxes or radio buttons, both by default</li>
+					<li>Adds hand cursor over input if you set up</li>
+					<li>Option to inherit original input's class name or id</li>
+					<li>Increasing or decreasing clickable area around input</li>
+				</ul>
+			</div>
+			<ul class="actions clear">
+				<li class="download">
+					<a href="#">Download plugin</a>
+				</li>
+				<li class="fork">
+					<a href="http://github.com/damirfoy/icheck/" target="blank">Fork on Github</a>
+				</li>
+				<li class="follow">
+					<a href="http://twitter.com/damirfoy/" target="blank">Follow for updates</a>
+				</li>
+			</ul>
+			<div class="examples">
+				<h2>Examples</h2>
+				<div class="example skin-default">
+					<div class="arrows">
+						<div class="top" data-to="features"></div>
+						<div class="bottom" data-to="skin-square"></div>
+					</div>
+					<h3>Default skin</h3>
+					<dl class="clear">
+						<dd class="selected">
+							<div class="example-section">
+								<h4>Live</h4>
+								<ul class="list">
+									<li>
+										<input tabindex="1" type="checkbox" id="default-checkbox-1">
+										<label for="default-checkbox-1">Checkbox 1</label>
+									</li>
+									<li>
+										<input tabindex="2" type="checkbox" id="default-checkbox-2" checked>
+										<label for="default-checkbox-2">Checkbox 2</label>
+									</li>
+									<li>
+										<input type="checkbox" id="default-checkbox-disabled" disabled>
+										<label for="default-checkbox-disabled">Disabled</label>
+									</li>
+									<li>
+										<input type="checkbox" id="default-checkbox-disabled-checked" checked disabled>
+										<label for="default-checkbox-disabled-checked">Disabled &amp; checked</label>
+									</li>
+								</ul>
+								<ul class="list">
+									<li>
+										<input tabindex="3" type="radio" id="default-radio-1" name="default-radio">
+										<label for="default-radio-1">Radio button 1</label>
+									</li>
+									<li>
+										<input tabindex="4" type="radio" id="default-radio-2" name="default-radio" checked>
+										<label for="default-radio-2">Radio button 2</label>
+									</li>
+									<li>
+										<input type="radio" id="default-radio-disabled" disabled>
+										<label for="default-radio-disabled">Disabled</label>
+									</li>
+									<li>
+										<input type="radio" id="default-radio-disabled-checked" checked disabled>
+										<label for="default-radio-disabled-checked">Disabled &amp; checked</label>
+									</li>
+								</ul>
+								<div class="colors clear">
+									<strong>Color schemes</strong>
+									<ul>
+										<li class="active" title="Black"></li>
+										<li class="red" title="Red"></li>
+										<li class="green" title="Green"></li>
+										<li class="blue" title="Blue"></li>
+										<li class="aero" title="Aero"></li>
+										<li class="grey" title="Grey"></li>
+										<li class="orange" title="Orange"></li>
+										<li class="yellow" title="Yellow"></li>
+										<li class="pink" title="Pink"></li>
+										<li class="purple" title="Purple"></li>
+									</ul>
+								</div>
+							</div>
+							<div class="example-section example-states">
+								<h4>States</h4>
+								<ul class="list">
+									<li>
+										<div class="state icheckbox static"></div>
+										<div class="state iradio static"></div>
+										Normal
+									</li>
+									<li>
+										<div class="state icheckbox hover"></div>
+										<div class="state iradio hover"></div>
+										Hover
+									</li>
+									<li>
+										<div class="state icheckbox checked"></div>
+										<div class="state iradio checked"></div>
+										Checked
+									</li>
+									<li>
+										<div class="state icheckbox disabled"></div>
+										<div class="state iradio disabled"></div>
+										Disabled
+									</li>
+									<li>
+										<div class="state icheckbox checked disabled"></div>
+										<div class="state iradio checked disabled"></div>
+										Disabled &amp; checked
+									</li>
+								</ul>
+							</div>
+							<script>
+								$(document).ready(function(){
+									$('.skin-default input').icheck({
+										increaseArea: '20%',
+										cursor: true
+									});
+								});
+							</script>
+						</dd>
+						<dt class="selected">Demo</dt>
+						<dd>
+							<ul class="example-usage">
+								<li>
+									Choose a color scheme, there are 10 different styles available:
+									<div class="schemes clear">
+										<ul>
+											<li><strong>Black</strong> &mdash; default.css</li>
+											<li><strong>Red</strong> &mdash; red.css</li>
+											<li><strong>Green</strong> &mdash; green.css</li>
+											<li><strong>Blue</strong> &mdash; blue.css</li>
+											<li><strong>Aero</strong> &mdash; aero.css</li>
+										</ul>
+										<ul>
+											<li><strong>Grey</strong> &mdash; grey.css</li>
+											<li><strong>Orange</strong> &mdash; orange.css</li>
+											<li><strong>Yellow</strong> &mdash; yellow.css</li>
+											<li><strong>Pink</strong> &mdash; pink.css</li>
+											<li><strong>Purple</strong> &mdash; purple.css</li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									Copy <span class="mark">/skins/default/</span> folder and <span class="mark">/js/jquery.icheck.js</span> file to your site.
+								</li>
+								<li>
+									<p>Insert before <span class="mark">&lt;/head></span> in your HTML:</p>
+<pre class="markup">
+&lt;link rel="stylesheet" href="your-path/skins/default/skinname.css">
+&lt;script src="your-path/js/jquery.icheck.js">&lt;/script>
+</pre>
+									<p>Example for a <strong>Red</strong> skin:</p>
+<pre class="markup">
+&lt;link rel="stylesheet" href="your-path/skins/default/red.css">
+&lt;script src="your-path/js/jquery.icheck.js">&lt;/script>
+</pre>
+								</li>
+								<li>
+									<p>Add some checkboxes and radio buttons to your HTML:</p>
+<pre class="markup">
+&lt;input type="checkbox">
+&lt;input type="checkbox" checked>
+&lt;input type="radio">
+&lt;input type="radio" checked>
+</pre>
+								</li>
+								<li>
+									<p>Add JavaScript to your HTML to launch iCheck plugin:</p>
+<pre class="markup">
+&lt;script>
+$(document).ready(function(){
+	$('input').icheck({
+		increaseArea: '20%',
+		cursor: true
+	});
+});
+&lt;/script>
+</pre>
+									<p>For different from black color schemes use this code (example for <strong>Red</strong>):</p>
+<pre class="markup">
+&lt;script>
+$(document).ready(function(){
+	$('input').icheck({
+		checkboxClass: 'icheckbox-red',
+		radioClass: 'iradio-red',
+		increaseArea: '20%',
+		cursor: true
+	});
+});
+&lt;/script>
+</pre>
+								</li>
+								<li>Done.</li>
+							</ul>
+						</dd>
+						<dt>Usage</dt>
+					</dl>
+				</div>
+				<div class="example skin-square">
+					<div class="arrows">
+						<div class="top" data-to="skin-default"></div>
+						<div class="bottom" data-to="skin-line"></div>
+					</div>
+					<h3>Square skin</h3>
+					<dl class="clear">
+						<dd class="selected">
+							<div class="example-section">
+								<h4>Live</h4>
+								<ul class="list">
+									<li>
+										<input tabindex="5" type="checkbox" id="square-checkbox-1">
+										<label for="square-checkbox-1">Checkbox 1</label>
+									</li>
+									<li>
+										<input tabindex="6" type="checkbox" id="square-checkbox-2" checked>
+										<label for="square-checkbox-2">Checkbox 2</label>
+									</li>
+									<li>
+										<input type="checkbox" id="square-checkbox-disabled" disabled>
+										<label for="square-checkbox-disabled">Disabled</label>
+									</li>
+									<li>
+										<input type="checkbox" id="square-checkbox-disabled-checked" checked disabled>
+										<label for="square-checkbox-disabled-checked">Disabled &amp; checked</label>
+									</li>
+								</ul>
+								<ul class="list">
+									<li>
+										<input tabindex="7" type="radio" id="square-radio-1" name="square-radio">
+										<label for="square-radio-1">Radio button 1</label>
+									</li>
+									<li>
+										<input tabindex="8" type="radio" id="square-radio-2" name="square-radio" checked>
+										<label for="square-radio-2">Radio button 2</label>
+									</li>
+									<li>
+										<input type="radio" id="square-radio-disabled" disabled>
+										<label for="square-radio-disabled">Disabled</label>
+									</li>
+									<li>
+										<input type="radio" id="square-radio-disabled-checked" checked disabled>
+										<label for="square-radio-disabled-checked">Disabled &amp; checked</label>
+									</li>
+								</ul>
+								<div class="colors clear">
+									<strong>Color schemes</strong>
+									<ul>
+										<li title="Black"></li>
+										<li class="red" title="Red"></li>
+										<li class="green active" title="Green"></li>
+										<li class="blue" title="Blue"></li>
+										<li class="aero" title="Aero"></li>
+										<li class="grey" title="Grey"></li>
+										<li class="orange" title="Orange"></li>
+										<li class="yellow" title="Yellow"></li>
+										<li class="pink" title="Pink"></li>
+										<li class="purple" title="Purple"></li>
+									</ul>
+								</div>
+							</div>
+							<div class="example-section example-states">
+								<h4>States</h4>
+								<ul class="list">
+									<li>
+										<div class="state icheckbox_square-green static"></div>
+										<div class="state iradio_square-green static"></div>
+										Normal
+									</li>
+									<li>
+										<div class="state icheckbox_square-green hover"></div>
+										<div class="state iradio_square-green hover"></div>
+										Hover
+									</li>
+									<li>
+										<div class="state icheckbox_square-green checked"></div>
+										<div class="state iradio_square-green checked"></div>
+										Checked
+									</li>
+									<li>
+										<div class="state icheckbox_square-green disabled"></div>
+										<div class="state iradio_square-green disabled"></div>
+										Disabled
+									</li>
+									<li>
+										<div class="state icheckbox_square-green checked disabled"></div>
+										<div class="state iradio_square-green checked disabled"></div>
+										Disabled &amp; checked
+									</li>
+								</ul>
+							</div>
+							<script>
+								$(document).ready(function(){
+									$('.skin-square input').icheck({
+										checkboxClass: 'icheckbox_square-green',
+										radioClass: 'iradio_square-green',
+										increaseArea: '20%',
+										cursor: true
+									});
+								});
+							</script>
+						</dd>
+						<dt class="selected">Demo</dt>
+						<dd>
+							<ul class="example-usage">
+								<li>
+									Choose a color scheme, there are 10 different styles available:
+									<div class="schemes clear">
+										<ul>
+											<li><strong>Black</strong> &mdash; square.css</li>
+											<li><strong>Red</strong> &mdash; red.css</li>
+											<li><strong>Green</strong> &mdash; green.css</li>
+											<li><strong>Blue</strong> &mdash; blue.css</li>
+											<li><strong>Aero</strong> &mdash; aero.css</li>
+										</ul>
+										<ul>
+											<li><strong>Grey</strong> &mdash; grey.css</li>
+											<li><strong>Orange</strong> &mdash; orange.css</li>
+											<li><strong>Yellow</strong> &mdash; yellow.css</li>
+											<li><strong>Pink</strong> &mdash; pink.css</li>
+											<li><strong>Purple</strong> &mdash; purple.css</li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									Copy <span class="mark">/skins/square/</span> folder and <span class="mark">/js/jquery.icheck.js</span> file to your site.
+								</li>
+								<li>
+									<p>Insert before <span class="mark">&lt;/head></span> in your HTML:</p>
+<pre class="markup">
+&lt;link rel="stylesheet" href="your-path/skins/square/skinname.css">
+&lt;script src="your-path/js/jquery.icheck.js">&lt;/script>
+</pre>
+									<p>Example for a <strong>Red</strong> skin:</p>
+<pre class="markup">
+&lt;link rel="stylesheet" href="your-path/skins/square/red.css">
+&lt;script src="your-path/js/jquery.icheck.js">&lt;/script>
+</pre>
+								</li>
+								<li>
+									<p>Add some checkboxes and radio buttons to your HTML:</p>
+<pre class="markup">
+&lt;input type="checkbox">
+&lt;input type="checkbox" checked>
+&lt;input type="radio">
+&lt;input type="radio" checked>
+</pre>
+								</li>
+								<li>
+									<p>Add JavaScript to your HTML to launch iCheck plugin:</p>
+<pre class="markup">
+&lt;script>
+$(document).ready(function(){
+	$('input').icheck({
+		checkboxClass: 'icheckbox_square',
+		radioClass: 'iradio_square',
+		increaseArea: '20%',
+		cursor: true
+	});
+});
+&lt;/script>
+</pre>
+									<p>For different from black color schemes use this code (example for <strong>Red</strong>):</p>
+<pre class="markup">
+&lt;script>
+$(document).ready(function(){
+	$('input').icheck({
+		checkboxClass: 'icheckbox_square-red',
+		radioClass: 'iradio_square-red',
+		increaseArea: '20%',
+		cursor: true
+	});
+});
+&lt;/script>
+</pre>
+								</li>
+								<li>Done.</li>
+							</ul>
+						</dd>
+						<dt>Usage</dt
+>					</dl>
+				</div>
+				<div class="example skin-line">
+					<div class="arrows">
+						<div class="top" data-to="skin-square"></div>
+						<div class="bottom" data-to="skin-polaris"></div>
+					</div>
+					<h3>Line skin</h3>
+					<dl class="clear">
+						<dd class="selected">
+							<div class="example-section">
+								<h4>Live</h4>
+								<ul class="list">
+									<li>
+										<input tabindex="9" type="checkbox" id="line-checkbox-1">
+										<label for="line-checkbox-1">Checkbox 1</label>
+									</li>
+									<li>
+										<input tabindex="10" type="checkbox" id="line-checkbox-2" checked>
+										<label for="line-checkbox-2">Checkbox 2</label>
+									</li>
+									<li>
+										<input type="checkbox" id="line-checkbox-disabled" disabled>
+										<label for="line-checkbox-disabled">Disabled</label>
+									</li>
+									<li>
+										<input type="checkbox" id="line-checkbox-disabled-checked" checked disabled>
+										<label for="line-checkbox-disabled-checked">Disabled &amp; checked</label>
+									</li>
+								</ul>
+								<ul class="list">
+									<li>
+										<input tabindex="11" type="radio" id="line-radio-1" name="line-radio">
+										<label for="line-radio-1">Radio button 1</label>
+									</li>
+									<li>
+										<input tabindex="12" type="radio" id="line-radio-2" name="line-radio" checked>
+										<label for="line-radio-2">Radio button 2</label>
+									</li>
+									<li>
+										<input type="radio" id="line-radio-disabled" disabled>
+										<label for="line-radio-disabled">Disabled</label>
+									</li>
+									<li>
+										<input type="radio" id="line-radio-disabled-checked" checked disabled>
+										<label for="line-radio-disabled-checked">Disabled &amp; checked</label>
+									</li>
+								</ul>
+								<div class="colors clear">
+									<strong>Color schemes</strong>
+									<ul>
+										<li title="Black"></li>
+										<li class="red" title="Red"></li>
+										<li class="green" title="Green"></li>
+										<li class="blue active" title="Blue"></li>
+										<li class="aero" title="Aero"></li>
+										<li class="grey" title="Grey"></li>
+										<li class="orange" title="Orange"></li>
+										<li class="yellow" title="Yellow"></li>
+										<li class="pink" title="Pink"></li>
+										<li class="purple" title="Purple"></li>
+									</ul>
+								</div>
+							</div>
+							<div class="example-section example-states">
+								<h4>States</h4>
+								<ul class="list">
+									<li>
+										<div class="state icheck_line-blue static">
+											<div class="icheck_line-icon"></div>
+											Normal
+										</div>
+									</li>
+									<li>
+										<div class="state icheck_line-blue hover">
+											<div class="icheck_line-icon"></div>
+											Hover
+										</div>
+									</li>
+									<li>
+										<div class="state icheck_line-blue checked">
+											<div class="icheck_line-icon"></div>
+											Checked
+										</div>
+									</li>
+									<li>
+										<div class="state icheck_line-blue disabled">
+											<div class="icheck_line-icon"></div>
+											Disabled
+										</div>
+									</li>
+									<li>
+										<div class="state icheck_line-blue checked disabled">
+											<div class="icheck_line-icon"></div>
+											Disabled &amp; checked
+										</div>
+									</li>
+								</ul>
+							</div>
+							<script>
+								$(document).ready(function(){
+									$('.skin-line input').each(function(){
+										var self = $(this),
+											label = self.next(),
+											label_text = label.text();
+
+										label.remove();
+										self.icheck({
+											checkboxClass: 'icheck_line-blue',
+											radioClass: 'icheck_line-blue',
+											cursor: true,
+											insert: '<div class="icheck_line-icon"></div>' + label_text
+										});
+									});
+								});
+							</script>
+						</dd>
+						<dt class="selected">Demo</dt>
+						<dd>
+							<ul class="example-usage">
+								<li>
+									Choose a color scheme, there are 10 different styles available:
+									<div class="schemes clear">
+										<ul>
+											<li><strong>Black</strong> &mdash; line.css</li>
+											<li><strong>Red</strong> &mdash; red.css</li>
+											<li><strong>Green</strong> &mdash; green.css</li>
+											<li><strong>Blue</strong> &mdash; blue.css</li>
+											<li><strong>Aero</strong> &mdash; aero.css</li>
+										</ul>
+										<ul>
+											<li><strong>Grey</strong> &mdash; grey.css</li>
+											<li><strong>Orange</strong> &mdash; orange.css</li>
+											<li><strong>Yellow</strong> &mdash; yellow.css</li>
+											<li><strong>Pink</strong> &mdash; pink.css</li>
+											<li><strong>Purple</strong> &mdash; purple.css</li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									Copy <span class="mark">/skins/line/</span> folder and <span class="mark">/js/jquery.icheck.js</span> file to your site.
+								</li>
+								<li>
+									<p>Insert before <span class="mark">&lt;/head></span> in your HTML:</p>
+<pre class="markup">
+&lt;link rel="stylesheet" href="your-path/skins/line/skinname.css">
+&lt;script src="your-path/js/jquery.icheck.js">&lt;/script>
+</pre>
+									<p>Example for a <strong>Red</strong> skin:</p>
+<pre class="markup">
+&lt;link rel="stylesheet" href="your-path/skins/line/red.css">
+&lt;script src="your-path/js/jquery.icheck.js">&lt;/script>
+</pre>
+								</li>
+								<li>
+									<p>Add some checkboxes, radio buttons and label after each of them to your HTML:</p>
+<pre class="markup">
+&lt;input type="checkbox">
+&lt;label>Checkbox 1&lt;/label>
+
+&lt;input type="checkbox" checked>
+&lt;label>Checkbox 2&lt;/label>
+
+&lt;input type="radio">
+&lt;label>Radio button 1&lt;/label>
+
+&lt;input type="radio" checked>
+&lt;label>Radio button 2&lt;/label>
+</pre>
+								</li>
+								<li>
+									<p>Add JavaScript to your HTML to launch iCheck plugin:</p>
+<pre class="markup">
+&lt;script>
+$(document).ready(function(){
+	$('input').each(function(){
+		var self = $(this),
+			label = self.next(),
+			label_text = label.text();
+
+		label.remove();
+		self.icheck({
+			checkboxClass: 'icheck_line',
+			radioClass: 'icheck_line',
+			cursor: true,
+			insert: '&lt;div class="icheck_line-icon">&lt;/div>' + label_text
+		});
+	});
+});
+&lt;/script>
+</pre>
+									<p>For different from black color schemes use this code (example for <strong>Red</strong>):</p>
+<pre class="markup">
+&lt;script>
+$(document).ready(function(){
+	$('input').each(function(){
+		var self = $(this),
+			label = self.next(),
+			label_text = label.text();
+
+		label.remove();
+		self.icheck({
+			checkboxClass: 'icheck_line-red',
+			radioClass: 'icheck_line-red',
+			cursor: true,
+			insert: '&lt;div class="icheck_line-icon">&lt;/div>' + label_text
+		});
+	});
+});
+&lt;/script>
+</pre>
+								</li>
+								<li>Done.</li>
+							</ul>
+						</dd>
+						<dt>Usage</dt>
+					</dl>
+				</div>
+				<div class="example skin-polaris">
+					<div class="arrows">
+						<div class="top" data-to="skin-line"></div>
+						<div class="bottom" data-to="skin-futurico"></div>
+					</div>
+					<h3>Polaris skin</h3>
+					<dl class="clear">
+						<dd class="selected">
+							<div class="example-section">
+								<h4>Live</h4>
+								<ul class="list">
+									<li>
+										<input tabindex="13" type="checkbox" id="polaris-checkbox-1">
+										<label for="polaris-checkbox-1">Checkbox 1</label>
+									</li>
+									<li>
+										<input tabindex="14" type="checkbox" id="polaris-checkbox-2" checked>
+										<label for="polaris-checkbox-2">Checkbox 2</label>
+									</li>
+									<li>
+										<input type="checkbox" id="polaris-checkbox-disabled" disabled>
+										<label for="polaris-checkbox-disabled">Disabled</label>
+									</li>
+									<li>
+										<input type="checkbox" id="polaris-checkbox-disabled-checked" checked disabled>
+										<label for="polaris-checkbox-disabled-checked">Disabled &amp; checked</label>
+									</li>
+								</ul>
+								<ul class="list">
+									<li>
+										<input tabindex="15" type="radio" id="polaris-radio-1" name="polaris-radio">
+										<label for="polaris-radio-1">Radio button 1</label>
+									</li>
+									<li>
+										<input tabindex="16" type="radio" id="polaris-radio-2" name="polaris-radio" checked>
+										<label for="polaris-radio-2">Radio button 2</label>
+									</li>
+									<li>
+										<input type="radio" id="polaris-radio-disabled" disabled>
+										<label for="polaris-radio-disabled">Disabled</label>
+									</li>
+									<li>
+										<input type="radio" id="polaris-radio-disabled-checked" checked disabled>
+										<label for="polaris-radio-disabled-checked">Disabled &amp; checked</label>
+									</li>
+								</ul>
+							</div>
+							<div class="example-section example-states">
+								<h4>States</h4>
+								<ul class="list">
+									<li>
+										<div class="state icheckbox_polaris static"></div>
+										<div class="state iradio_polaris static"></div>
+										Normal
+									</li>
+									<li>
+										<div class="state icheckbox_polaris hover"></div>
+										<div class="state iradio_polaris hover"></div>
+										Hover
+									</li>
+									<li>
+										<div class="state icheckbox_polaris checked"></div>
+										<div class="state iradio_polaris checked"></div>
+										Checked
+									</li>
+									<li>
+										<div class="state icheckbox_polaris disabled"></div>
+										<div class="state iradio_polaris disabled"></div>
+										Disabled
+									</li>
+									<li>
+										<div class="state icheckbox_polaris checked disabled"></div>
+										<div class="state iradio_polaris checked disabled"></div>
+										Disabled &amp; checked
+									</li>
+								</ul>
+							</div>
+							<script>
+								$(document).ready(function(){
+									$('.skin-polaris input').icheck({
+										checkboxClass: 'icheckbox_polaris',
+										radioClass: 'iradio_polaris',
+										increaseArea: '-10',
+										cursor: true
+									});
+								});
+							</script>
+						</dd>
+						<dt class="selected">Demo</dt>
+						<dd>
+							<ul class="example-usage">
+								<li>
+									Copy <span class="mark">/skins/polaris/</span> folder and <span class="mark">/js/jquery.icheck.js</span> file to your site.
+								</li>
+								<li>
+									<p>Insert before <span class="mark">&lt;/head></span> in your HTML:</p>
+<pre class="markup">
+&lt;link rel="stylesheet" href="your-path/skins/polaris/polaris.css">
+&lt;script src="your-path/js/jquery.icheck.js">&lt;/script>
+</pre>
+								</li>
+								<li>
+									<p>Add some checkboxes and radio buttons to your HTML:</p>
+<pre class="markup">
+&lt;input type="checkbox">
+&lt;input type="checkbox" checked>
+&lt;input type="radio">
+&lt;input type="radio" checked>
+</pre>
+								</li>
+								<li>
+									<p>Add JavaScript to your HTML to launch iCheck plugin:</p>
+<pre class="markup">
+&lt;script>
+$(document).ready(function(){
+	$('input').icheck({
+		checkboxClass: 'icheckbox_polaris',
+		radioClass: 'iradio_polaris',
+		increaseArea: '-10',
+		cursor: true
+	});
+});
+&lt;/script>
+</pre>
+								</li>
+								<li>Done.</li>
+							</ul>
+						</dd>
+						<dt>Usage</dt>
+					</dl>
+				</div>
+				<div class="example skin-futurico">
+					<div class="arrows">
+						<div class="top" data-to="skin-polaris"></div>
+						<div class="bottom" data-to="usage"></div>
+					</div>
+					<h3>Futurico skin</h3>
+					<dl class="clear">
+						<dd class="selected">
+							<div class="example-section">
+								<h4>Live</h4>
+								<ul class="list">
+									<li>
+										<input tabindex="17" type="checkbox" id="futurico-checkbox-1">
+										<label for="futurico-checkbox-1">Checkbox 1</label>
+									</li>
+									<li>
+										<input tabindex="18" type="checkbox" id="futurico-checkbox-2" checked>
+										<label for="futurico-checkbox-2">Checkbox 2</label>
+									</li>
+									<li>
+										<input type="checkbox" id="futurico-checkbox-disabled" disabled>
+										<label for="futurico-checkbox-disabled">Disabled</label>
+									</li>
+									<li>
+										<input type="checkbox" id="futurico-checkbox-disabled-checked" checked disabled>
+										<label for="futurico-checkbox-disabled-checked">Disabled &amp; checked</label>
+									</li>
+								</ul>
+								<ul class="list">
+									<li>
+										<input tabindex="19" type="radio" id="futurico-radio-1" name="futurico-radio">
+										<label for="futurico-radio-1">Radio button 1</label>
+									</li>
+									<li>
+										<input tabindex="20" type="radio" id="futurico-radio-2" name="futurico-radio" checked>
+										<label for="futurico-radio-2">Radio button 2</label>
+									</li>
+									<li>
+										<input type="radio" id="futurico-radio-disabled" disabled>
+										<label for="futurico-radio-disabled">Disabled</label>
+									</li>
+									<li>
+										<input type="radio" id="futurico-radio-disabled-checked" checked disabled>
+										<label for="futurico-radio-disabled-checked">Disabled &amp; checked</label>
+									</li>
+								</ul>
+							</div>
+							<div class="example-section example-states">
+								<h4>States</h4>
+								<ul class="list">
+									<li>
+										<div class="state icheckbox_futurico static"></div>
+										<div class="state iradio_futurico static"></div>
+										Normal
+									</li>
+									<li>
+										<div class="state icheckbox_futurico checked"></div>
+										<div class="state iradio_futurico checked"></div>
+										Checked
+									</li>
+									<li>
+										<div class="state icheckbox_futurico disabled"></div>
+										<div class="state iradio_futurico disabled"></div>
+										Disabled
+									</li>
+									<li>
+										<div class="state icheckbox_futurico checked disabled"></div>
+										<div class="state iradio_futurico checked disabled"></div>
+										Disabled &amp; checked
+									</li>
+								</ul>
+							</div>
+							<script>
+								$(document).ready(function(){
+									$('.skin-futurico input').icheck({
+										checkboxClass: 'icheckbox_futurico',
+										radioClass: 'iradio_futurico',
+										increaseArea: '10%',
+										cursor: true
+									});
+								});
+							</script>
+						</dd>
+						<dt class="selected">Demo</dt>
+						<dd>
+							<ul class="example-usage">
+								<li>
+									Copy <span class="mark">/skins/futurico/</span> folder and <span class="mark">/js/jquery.icheck.js</span> file to your site.
+								</li>
+								<li>
+									<p>Insert before <span class="mark">&lt;/head></span> in your HTML:</p>
+<pre class="markup">
+&lt;link rel="stylesheet" href="your-path/skins/futurico/futurico.css">
+&lt;script src="your-path/js/jquery.icheck.js">&lt;/script>
+</pre>
+								</li>
+								<li>
+									<p>Add some checkboxes and radio buttons to your HTML:</p>
+<pre class="markup">
+&lt;input type="checkbox">
+&lt;input type="checkbox" checked>
+&lt;input type="radio">
+&lt;input type="radio" checked>
+</pre>
+								</li>
+								<li>
+									<p>Add JavaScript to your HTML to launch iCheck plugin:</p>
+<pre class="markup">
+&lt;script>
+$(document).ready(function(){
+	$('input').icheck({
+		checkboxClass: 'icheckbox_futurico',
+		radioClass: 'iradio_futurico',
+		increaseArea: '10%',
+		cursor: true
+	});
+});
+&lt;/script>
+</pre>
+								</li>
+								<li>Done.</li>
+							</ul>
+						</dd>
+						<dt>Usage</dt>
+					</dl>
+				</div>
+				<div class="examples-info">
+					<p>All skins (except Line) are transparent, you may use them on any background.</p>
+					<p>Square, Polaris and Futurico skins are based on <a href="http://designmodo.com/freebies/" target="blank">Designmodo's UI kits</a>.</p>
+					<p><strong>Everything is included into <a class="self" href="#" data-to="download-large">download package</a>.</strong></p>
+				</div>
+			</div>
+			<div class="usage">
+				<div class="arrows">
+					<div class="top" data-to="skin-futurico"></div>
+					<div class="bottom" data-to="actions-large"></div>
+				</div>
+				<h2>Usage</h2>
+				<div class="usage-inner">
+					<p>
+						iCheck plugin works with checkboxes and radio buttons like a constructor.
+						<br>It wraps each input with a div, which you may customize yourself or use one of the available skins.
+						<br>You may also place inside that div some HTML code or text using <span class="mark">insert</span> option.
+					</p>
+					<h4 class="options">Options</h4>
+					<p>These options are default:</p>
+<pre class="markup">
+{
+	handle: '', // 'checkbox' or 'radio' to style only checkboxes or radio buttons, both by default
+	checkboxClass: 'icheckbox', // checkboxes class name
+	radioClass: 'iradio', // radio buttons class
+	checkedClass: 'checked', // checked state class
+	disabledClass: 'disabled', // disabled state class
+	focusClass: 'focus', // focus state class
+	increaseArea: '', // increase clickable area by given % (negative to decrease)
+	cursor: false, // true to set hand cursor over input
+	inheritClass: false, // set true to inherit input's class name
+	inheritID: false, // if set to true, input's id is prefixed with "icheck-" and attached
+	insert: '' // add custom HTML code or text inside customized input
+}
+</pre>
+					<p>Note: you can choose any class names and slyle them as you want.</p>
+					<h4>Initialize</h4>
+					<p>iCheck supports direct and parent selectors, handles only checkboxes and radio buttons:</p>
+<pre class="markup">
+$('body').icheck(); // customize all inputs on the page
+$('.block input').icheck(); // styling inputs only inside $('.block')
+$('input.vote').icheck(); // styling all inputs with the .vote class
+</pre>
+					<p>Example:</p>
+<pre class="markup">
+&lt;script>
+$(document).ready(function(){
+	$('input').icheck({
+		// options
+	});
+
+	// you can also change options after inputs are customized
+	$('input.some').icheck({
+		// different options (skin e.g.)
+	});
+});
+&lt;/script>
+</pre>
+					<p>Note: don't forget to include jQuery (version 1.6 or newer) and <span class="mark">jquery.icheck.js</span> (or <span class="mark">jquery.icheck.min.js</span>) in your HTML.</p>
+					<h4 class="callbacks">Callbacks</h4>
+					<p><span class="mark">this.clicked</span> event fires when user clicks on customized input (not used when you change it's state programatically),</p>
+					<p><span class="mark">this.checked</span> fires when input goes to <span class="mark">checked</span> state,</p>
+					<p><span class="mark">this.unchecked</span> fires when <span class="mark">checked</span> state is removed,</p>
+					<p><span class="mark">this.created</span> fires when input is created.</p>
+					<p class="offset">Use <span class="mark">bind</span> (also <span class="mark">live/delegate</span>) or <span class="mark">on</span> (modern jQuery versions) to attach them:<p>
+<pre class="markup">
+&lt;script>
+$('input').bind('this.clicked', function(){
+	console.log('input is clicked');
+});
+&lt;/script>
+</pre>
+					<p>Note: <span class="mark">this.created</span> callback should be binded before plugin init:</p>
+<pre class="markup">
+&lt;script>
+$('input').bind('this.created', function(){
+	console.log('input is created');
+}).icheck({
+	// options
+});
+&lt;/script>
+</pre>
+					<h4 class="methods">Methods</h4>
+					<p><span class="mark">$('input').icheck('check');</span> &mdash; change input's state to <span class="mark">checked</span></p>
+					<p><span class="mark">$('input').icheck('uncheck');</span> &mdash; remove <span class="mark">checked</span> state.</p>
+					<p><span class="mark">$('input').icheck('update');</span> &mdash; apply input changes, which were done outside the plugin.</p>
+					<h4>Skins</h4>
+					<p><a class="self" href="#" data-to="skin-default">5 pre-coded skins available</a>, check <strong>Usage</strong> tab on the right side of each skin.</p>
+				</div>
+			</div>
+			<ul class="actions actions-large clear">
+				<li class="download download-large">
+					<a href="#">Download plugin</a>
+				</li>
+				<li class="fork">
+					<a href="http://github.com/damirfoy/icheck/" target="blank">Fork on Github</a>
+				</li>
+				<li class="follow">
+					<a href="http://twitter.com/damirfoy/" target="blank">Follow for updates</a>
+				</li>
+			</ul>
+			<div class="license">iCheck jQuery plugin is released under <a href="http://en.wikipedia.org/wiki/MIT_License" target="blank">MIT License</a>, you are allowed to use it anywhere you want for free.</div>
+		</div>
+		<div class="footer">
+			<div class="inner">
+				<div class="design">Design is based on <a href="http://designmodo.com/square-free/" target="blank">Square UI kit</a></div>
+				<div class="code">Crafted by <a href="http://twitter.com/damirfoy/" target="blank">Damir Foy</a></div>
+			</div>
+		</div>
+		<script>
+			// Demo
+			$(document).ready(function(){
+				$('.example dt').click(function(){
+					$(this).siblings().removeClass('selected').end().prev('dd').andSelf().addClass('selected');
+				});
+
+				$('.arrows .top, .arrows .bottom, .self').click(function(event){
+					event.preventDefault();
+
+					var window_offset = $(window).scrollTop(),
+						target = $(this).data('to'),
+						target_offset = $('.' + target).offset().top;
+
+					$('html, body').stop().animate({scrollTop: target_offset - 40}, 600);
+				});
+
+				$('.colors li').click(function(){
+					var self = $(this);
+
+					if (!self.hasClass('active')){
+						self.siblings().removeClass('active');
+
+						var example = self.closest('.example'),
+							color = self.attr('class'),
+							checkbox = example.data('icheckbox'),
+							radio = example.data('iradio'),
+							checkbox_default = 'icheckbox',
+							radio_default = 'iradio';
+
+						color ? (color =  '-' + color) : (color = '');
+
+						if (example.hasClass('skin-square')){
+							checkbox_default = 'icheckbox_square', radio_default = 'iradio_square';
+							checkbox == undefined && (checkbox = 'icheckbox_square-green', radio = 'iradio_square-green');
+						}
+
+						if (example.hasClass('skin-line')){
+							checkbox_default = 'icheck_line', radio_default = null;
+							checkbox == undefined && (checkbox = 'icheck_line-blue', radio = null);
+						}
+
+						checkbox == undefined && (checkbox = checkbox_default, radio = radio_default);
+
+						example.find('input').each(function(){
+							var parent = $(this).parent(),
+								parent_class = parent.attr('class').replace(checkbox, checkbox_default + color).replace(radio, radio_default + color);
+
+							parent.attr('class', parent_class);
+						});
+
+						example.find('.example-states .state').each(function(){
+							var self = $(this),
+								self_class = self.attr('class').replace(checkbox, checkbox_default + color).replace(radio, radio_default + color);
+
+							self.attr('class', self_class);
+						});
+
+						example.data('icheckbox', checkbox_default + color);
+						example.data('iradio', radio_default + color);
+
+						self.addClass('active');
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
