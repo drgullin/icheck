@@ -104,10 +104,10 @@
                     var elements = $(this).is(filter) ? $(this) : $(this).find(filter);
 
                     elements.each(function(){
-                        $(this).data('state') && ($(this).parent().html($(this)), $(this).unwrap());
+                        var self = $(this);
+                        self.data('state') && (self.parent().html(self), self.unwrap());
 
-                        var self = $(this),
-                            className = (this.type == 'checkbox') ? settings.checkboxClass : settings.radioClass,
+                        var className = (this.type == 'checkbox') ? settings.checkboxClass : settings.radioClass,
                             parent = self.css({
                                 position: 'absolute',
                                 top: -area + '%',
