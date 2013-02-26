@@ -3,6 +3,9 @@
 @import url("normalize.css");
 /* Demo
 ----------------------------------- */
+.focus {
+    outline: 1px dotted rgba(0,0,0,0.5) !important;
+}
 body {
     font: 400 14px/20px 'Montserrat', Helvetica, Arial, sans-serif;
     color: #222;
