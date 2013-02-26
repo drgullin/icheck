@@ -3,9 +3,6 @@
 @import url("normalize.css");
 /* Demo
 ----------------------------------- */
-input:focus {
-    border: 1px dotted #000 !important;
-}
 body {
     font: 400 14px/20px 'Montserrat', Helvetica, Arial, sans-serif;
     color: #222;

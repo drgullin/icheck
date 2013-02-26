@@ -1,5 +1,5 @@
 /*
-    iCheck v1.0
+    iCheck v1.1
     ===========
     http://github.com/damirfoy/icheck
     ---------------------------------
@@ -104,11 +104,10 @@
                     var elements = $(this).is(filter) ? $(this) : $(this).find(filter);
 
                     elements.each(function(){
-                        var self = $(this);
+                        $(this).data('state') && ($(this).parent().html($(this)), $(this).unwrap());
 
-                        self.data('state') && (self.parent().html(self), self.unwrap());
-
-                        var className = (this.type == 'checkbox') ? settings.checkboxClass : settings.radioClass,
+                        var self = $(this),
+                            className = (this.type == 'checkbox') ? settings.checkboxClass : settings.radioClass,
                             parent = self.css({
                                 position: 'absolute',
                                 top: -area + '%',
@@ -119,28 +118,24 @@
                                 padding: 0,
                                 border: 0,
                                 opacity: 0
-                            }).wrap('<div class="' + className + '"/>').parent().prepend(settings.insert);
+                            }).data('state', settings).wrap('<div class="' + className + '"/>').parent().prepend(settings.insert);
 
                         settings.cursor == true && !this.disabled && self.css('cursor', 'pointer');
                         settings.inheritClass == true && parent.addClass(this.className);
                         settings.inheritID == true && this.id && parent.attr('id', 'icheck-' + this.id);
                         parent.css('position') == 'static' && parent.css('position', 'relative');
 
-                        this.checked ? parent.data('checked', true).addClass(settings.checkedClass) : parent.data('checked', false);
+                        this.checked ? check(self, 'init') : uncheck(self, 'init');
                         this.disabled && parent.addClass(settings.disabledClass);
 
-                        self.data('state', {
-                            checked: settings.checkedClass,
-                            focus: settings.focusClass,
-                            active: settings.activeClass
-                        }).trigger('this.created').click(change).bind('focus blur mousedown mouseout touchbegin touchend', function(event){
+                        self.trigger('this.created').click(change).bind('focus blur mousedown mouseup mouseout touchbegin touchend', function(event){
                             var states = get_state(self, false), state, type = event.type;
 
-                            type == 'focus' && (state = states.focus);
-                            type == 'blur' && (state = states.focus + ' ' + states.active);
+                            type == 'focus' && (state = states.focusClass);
+                            type == 'blur' && (state = states.focusClass + ' ' + states.activeClass);
 
-                            (/^mousedown|mouseout|touchbegin|touchend$/i).test(type) && (state = states.active);
-                            (/^blur|mouseout|touchend$/i).test(type) ? parent.removeClass(state) : parent.addClass(state);
+                            (/^mousedown|mouseup|mouseout|touchbegin|touchend$/i).test(type) && (state = states.activeClass);
+                            (/^blur|mouseup|mouseout|touchend$/i).test(type) ? parent.removeClass(state) : parent.addClass(state);
                         });
                     });
                 });
@@ -189,16 +184,16 @@
     function check(input, state){
         var parent = input.parent();
 
-        state && (input[0].checked = true);
+        state == true && (input[0].checked = true);
 
         if (parent.data('checked') !== true){
-            if (input[0].type == 'radio'){
+            if (input[0].type == 'radio' && input[0].name){
                 $('input[name=' + input[0].name + ']').each(function(){
                     this !== input[0] && uncheck($(this));
                 });
             }
 
-            input.trigger('this.checked');
+            state !== 'init' && input.trigger('this.checked');
             parent.data('checked', true).addClass(get_state(input, 'checked'));
         }
     }
@@ -206,16 +201,16 @@
     function uncheck(input, state){
         var parent = input.parent();
 
-        state && (input[0].checked = false);
+        state == true && (input[0].checked = false);
 
         if (parent.data('checked') !== false){
-            input.trigger('this.unchecked');
+            state !== 'init' && input.trigger('this.unchecked');
             parent.data('checked', false).removeClass(get_state(input, 'checked'));
         }
     }
 
     function get_state(input, state){
-        return state == false ? input.data('state') : input.data('state')[state];
+        return state == false ? input.data('state') : input.data('state')[state + 'Class'];
     }
 
     function get_number(value){
