@@ -58,8 +58,6 @@
     .icheck_line .icheck_line-icon {
         background-image: url(line@2x.png);
         -webkit-background-size: 60px 13px;
-        -moz-background-size: 60px 13px;
-        -o-background-size: 60px 13px;
         background-size: 60px 13px;
     }
 }

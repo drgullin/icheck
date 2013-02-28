@@ -56,8 +56,6 @@
     .iradio_square-blue {
         background-image: url(blue@2x.png);
         -webkit-background-size: 240px 24px;
-        -moz-background-size: 240px 24px;
-        -o-background-size: 240px 24px;
         background-size: 240px 24px;
     }
 }

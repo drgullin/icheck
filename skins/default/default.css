@@ -56,8 +56,6 @@
     .iradio {
         background-image: url(default@2x.png);
         -webkit-background-size: 200px 20px;
-        -moz-background-size: 200px 20px;
-        -o-background-size: 200px 20px;
         background-size: 200px 20px;
     }
 }

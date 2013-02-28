@@ -56,8 +56,6 @@
     .iradio_square {
         background-image: url(square@2x.png);
         -webkit-background-size: 240px 24px;
-        -moz-background-size: 240px 24px;
-        -o-background-size: 240px 24px;
         background-size: 240px 24px;
     }
 }
@@ -119,8 +117,6 @@
     .iradio_square-red {
         background-image: url(red@2x.png);
         -webkit-background-size: 240px 24px;
-        -moz-background-size: 240px 24px;
-        -o-background-size: 240px 24px;
         background-size: 240px 24px;
     }
 }
@@ -182,8 +178,6 @@
     .iradio_square-green {
         background-image: url(green@2x.png);
         -webkit-background-size: 240px 24px;
-        -moz-background-size: 240px 24px;
-        -o-background-size: 240px 24px;
         background-size: 240px 24px;
     }
 }
@@ -245,8 +239,6 @@
     .iradio_square-blue {
         background-image: url(blue@2x.png);
         -webkit-background-size: 240px 24px;
-        -moz-background-size: 240px 24px;
-        -o-background-size: 240px 24px;
         background-size: 240px 24px;
     }
 }
@@ -308,8 +300,6 @@
     .iradio_square-aero {
         background-image: url(aero@2x.png);
         -webkit-background-size: 240px 24px;
-        -moz-background-size: 240px 24px;
-        -o-background-size: 240px 24px;
         background-size: 240px 24px;
     }
 }
@@ -371,8 +361,6 @@
     .iradio_square-grey {
         background-image: url(grey@2x.png);
         -webkit-background-size: 240px 24px;
-        -moz-background-size: 240px 24px;
-        -o-background-size: 240px 24px;
         background-size: 240px 24px;
     }
 }
@@ -434,8 +422,6 @@
     .iradio_square-orange {
         background-image: url(orange@2x.png);
         -webkit-background-size: 240px 24px;
-        -moz-background-size: 240px 24px;
-        -o-background-size: 240px 24px;
         background-size: 240px 24px;
     }
 }
@@ -497,8 +483,6 @@
     .iradio_square-yellow {
         background-image: url(yellow@2x.png);
         -webkit-background-size: 240px 24px;
-        -moz-background-size: 240px 24px;
-        -o-background-size: 240px 24px;
         background-size: 240px 24px;
     }
 }
@@ -560,8 +544,6 @@
     .iradio_square-pink {
         background-image: url(pink@2x.png);
         -webkit-background-size: 240px 24px;
-        -moz-background-size: 240px 24px;
-        -o-background-size: 240px 24px;
         background-size: 240px 24px;
     }
 }
@@ -623,8 +605,6 @@
     .iradio_square-purple {
         background-image: url(purple@2x.png);
         -webkit-background-size: 240px 24px;
-        -moz-background-size: 240px 24px;
-        -o-background-size: 240px 24px;
         background-size: 240px 24px;
     }
 }

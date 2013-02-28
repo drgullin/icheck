@@ -46,8 +46,6 @@
     .iradio_futurico {
         background-image: url(futurico@2x.png);
         -webkit-background-size: 144px 19px;
-        -moz-background-size: 144px 19px;
-        -o-background-size: 144px 19px;
         background-size: 144px 19px;
     }
 }

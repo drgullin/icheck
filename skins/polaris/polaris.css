@@ -56,8 +56,6 @@
     .iradio_polaris {
         background-image: url(polaris@2x.png);
         -webkit-background-size: 310px 31px;
-        -moz-background-size: 310px 31px;
-        -o-background-size: 310px 31px;
         background-size: 310px 31px;
     }
 }
