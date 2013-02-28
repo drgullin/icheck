@@ -1,8 +1,6 @@
 /*
-    iCheck v1.4
-    ===========
-    http://github.com/damirfoy/icheck
-    ---------------------------------
+    iCheck v1.4, http://git.io/uhUPMA
+    =================================
     Highly customizable jQuery plugin for checkboxes and radio buttons custom styling
     =========================
     Copyright 2013, Damir Foy
