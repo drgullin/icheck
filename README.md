@@ -7,10 +7,11 @@
 
 ## Features
 
-* Runs on modern and ancient browsers, including mobile
-* Touch devices support
+* **13 options, 6 callbacks, 5 methods** to use
+* **Runs on modern and ancient browsers**, including mobile
+* **Touch devices support**
 * **5 Retina-ready skins** — `/skins/` folder
-* Lightweight size — core is 1 kb gzipped
+* **Lightweight size** — 1 kb gzipped
 
 ---
 
