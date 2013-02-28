@@ -1,18 +1,21 @@
 ## Changelog
 
+#### 1.4
+
+* `hover` state fixed
+
 #### 1.3
 
-* `this.disabled` and `this.enabled` callbacks
-* `disable` and `enable` methods
+* `this.disabled` and `this.enabled` callbacks added
+* `disable` and `enable` methods added
 
 #### 1.2
 
-* `update` method
+* `update` method added
 
 #### 1.1
 
-* `hover` state
-* `active` state
+* `active` state fixed
 
 #### 1.0
 
