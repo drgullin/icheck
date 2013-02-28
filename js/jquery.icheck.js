@@ -23,9 +23,9 @@
             handle = ':checkbox, :radio',
             elements = this.is(handle) ? this : this.find(handle);
 
-        if (/^Opera Mini$/i.test(navigator.userAgent)) {
+        if (/^Opera Mini$/i.test(navigator.userAgent))
             return elements;
-        } else if (/^(check|uncheck|disable|enable|update)$/i.test(options)) {
+        else if (/^(check|uncheck|disable|enable|update)$/i.test(options)) {
             return elements.each(function() {
                 change($(this), true, options.toLowerCase());
             });
