@@ -11,6 +11,7 @@
 
 #### 1.1
 
+* `hover` state
 * `active` state
 
 #### 1.0

@@ -1,5 +1,5 @@
 /*
-    iCheck v1.3
+    iCheck v1.4
     ===========
     http://github.com/damirfoy/icheck
     ---------------------------------
@@ -17,6 +17,7 @@
                 radioClass: 'iradio',
                 checkedClass: 'checked',
                 disabledClass: 'disabled',
+                hoverClass: 'hover',
                 focusClass: 'focus',
                 activeClass: 'active'
             },
@@ -60,14 +61,15 @@
                 parent.css('position') == 'static' && parent.css('position', 'relative');
                 change(self, true, 'update');
 
-                self.trigger('this.created').click(change).bind('focus blur mousedown mouseup mouseout touchbegin touchend', function(event) {
+                self.trigger('this.created').click(change).bind('focus blur mousedown mouseup mouseout mouseenter mouseleave touchbegin touchend', function(event) {
                     var states = get_state(self, false), state, type = event.type;
 
                     type == 'focus' && (state = states.focusClass);
                     type == 'blur' && (state = states.focusClass + ' ' + states.activeClass);
 
-                    /^mousedown|mouseup|mouseout|touchbegin|touchend$/i.test(type) && (state = states.activeClass);
-                    /^blur|mouseup|mouseout|touchend$/i.test(type) ? parent.removeClass(state) : parent.addClass(state);
+                    /^mouseenter|mouseleave|touchbegin|touchend$/i.test(type) && (state = states.hoverClass);
+                    /^mousedown|mouseup|mouseout$/i.test(type) && (state = states.activeClass);
+                    /^blur|mouseup|mouseout|mouseleave|touchend$/i.test(type) ? parent.removeClass(state) : parent.addClass(state);
                 });
             });
         } else

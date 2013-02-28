@@ -21,7 +21,7 @@
 ---
 
 * Separate checkboxes and radio buttons class names
-* State classes: `.checked`, `.disabled`, `.focus` and `.active` (`:hover` is native)
+* State classes: `.checked`, `.disabled`, `.hover`, `.focus` and `.active`
 * Option to append custom HTML code or text inside customized inputs
 * **Callbacks** when input is `created`, `clicked`, `checked`, `unchecked`, `disabled` and `enabled`
 * **Methods** to add or remove `checked` and `disabled` states on selected inputs
@@ -37,7 +37,9 @@
         radioClass: 'iradio', // radio buttons class
         checkedClass: 'checked', // checked state class
         disabledClass: 'disabled', // disabled state class
+        hoverClass: 'hover', // hover state class
         focusClass: 'focus', // focus state class
+        activeClass: 'active', // active state class
         increaseArea: '', // increase clickable area by given % (negative to decrease)
         cursor: false, // true to set hand cursor over input
         inheritClass: false, // set true to inherit input's class name
@@ -153,6 +155,7 @@ Tested on mobile devices.
 
 ##### 1.1
 
+* `hover` state
 * `active` state
 
 ##### 1.0

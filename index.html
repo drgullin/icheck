@@ -5,10 +5,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat:400,700">
-		<link rel="stylesheet" href="./css/demo.css?v=1.3">
+		<link rel="stylesheet" href="./css/demo.css?v=1.4">
 		<link rel="stylesheet" href="./skins/all.css">
 		<script src="./js/jquery.js"></script>
-		<script src="./js/jquery.icheck.js?v=1.3"></script>
+		<script src="./js/jquery.icheck.js?v=1.4"></script>
 	</head>
 	<body>
 		<div class="layout">
@@ -33,7 +33,7 @@
 					<li>Keyboard shortcuts support (e.g. <span>Tab</span>, <span>Spacebar</span>, <span>Arrow up/down</span>)</li>
 
 					<li class="offset">Separate checkboxes and radio buttons class names</li>
-					<li>State classes: <span>.checked</span>, <span>.disabled</span>, <span>.focus</span> and <span>.active</span> (<span>:hover</span> is native)</li>
+					<li>State classes: <span>.checked</span>, <span>.disabled</span>, <span>.hover</span>, <span>.focus</span> and <span>.active</span></li>
 					<li><a class="self" href="#" data-to="options">Option</a> to append custom HTML code or text inside customized inputs</li>
 					<li><a class="self" href="#" data-to="callbacks"><strong>Callbacks</strong></a> when input is <span>created</span>, <span>clicked</span>, <span>checked</span>, <span>unchecked</span>, <span>disabled</span> and <span>enabled</span></li>
 					<li><a class="self" href="#" data-to="methods"><strong>Methods</strong></a> to add or remove <span>checked</span> and <span>disabled</span> states on selected inputs</li>
@@ -917,7 +917,9 @@ $(document).ready(function(){
 	radioClass: 'iradio', // radio buttons class
 	checkedClass: 'checked', // checked state class
 	disabledClass: 'disabled', // disabled state class
+	hoverClass: 'hover', // hover state class
 	focusClass: 'focus', // focus state class
+	activeClass: 'active', // active state class
 	increaseArea: '', // increase clickable area by given % (negative to decrease)
 	cursor: false, // true to set hand cursor over input
 	inheritClass: false, // set true to inherit input's class name
