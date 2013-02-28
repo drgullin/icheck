@@ -1,8 +1,13 @@
 ## Changelog
 
-### 1.1
+#### 1.2
 
-* `active` state fix
+* `this.disabled` and `this.enabled` callbacks
+* `disable` and `enable` methods
+
+#### 1.1
+
+* `active` state
 
 #### 1.0
 
