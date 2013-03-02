@@ -1,5 +1,5 @@
 /*
-    iCheck v1.4, http://git.io/uhUPMA
+    iCheck v1.5, http://git.io/uhUPMA
     =================================
     Highly customizable jQuery plugin for checkboxes and radio buttons custom styling
     =========================
@@ -24,9 +24,9 @@
 
         if (/^Opera Mini$/i.test(navigator.userAgent))
             return elements;
-        else if (/^(check|uncheck|disable|enable|update)$/i.test(options)) {
+        else if (/^(check|uncheck|disable|enable|update|destroy)$/i.test(options)) {
             return elements.each(function() {
-                change($(this), true, options.toLowerCase());
+                /^destroy$/i.test(options) ? destroy($(this), 'this.destroyed') : change($(this), true, options.toLowerCase());
             });
         } else if (typeof options == 'object' || !options) {
             settings = $.extend({}, defaults, options);
@@ -37,11 +37,11 @@
             /^(checkbox|radio)$/i.test(settings.handle) && (elements = elements.filter(':' + settings.handle.toLowerCase()));
 
             return elements.each(function() {
-                $(this).data('state') && ($(this).parent().html($(this)), $(this).unwrap());
+                destroy($(this));
 
                 var self = $(this),
                     className = (this.type == 'checkbox') ? settings.checkboxClass : settings.radioClass,
-                    parent = self.css({
+                    parent = self.data('style', self.attr('style')).css({
                         position: 'absolute',
                         top: -area + '%',
                         left: -area + '%',
@@ -86,13 +86,10 @@
         else if ((method == 'uncheck' || method == 'enable') && active)
             off(input, true, parent, state);
         else if (method == 'update' || !direct) {
-            if (!direct) {
-                input.trigger('this.clicked');
-                active ? on(input, true, parent, state) : off(input, true, parent, state);
-            } else {
-                for (var state in active)
-                    active[state] ? on(input, false, parent, state) : off(input, false, parent, state);
-            }
+            if (!direct)
+                input.trigger('this.clicked'), active ? on(input, true, parent, state) : off(input, true, parent, state);
+            else
+                for(var state in active) active[state] ? on(input, false, parent, state) : off(input, false, parent, state);
         }
     }
 
@@ -120,6 +117,10 @@
             toggle && input.trigger('this.' + callback);
             parent.data(state, false).removeClass(get_state(input, state));
         }
+    }
+
+    function destroy(input, callback) {
+        input.data('state') && (input.attr('style', input.data('style') || '').parent().html(input.trigger(callback)), input.unwrap());
     }
 
     function get_state(input, state) {

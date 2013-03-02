@@ -1,60 +1,60 @@
-/* iCheck.js Default skin, purple
+/* iCheck.js Minimal skin, blue
 ----------------------------------- */
-.icheckbox-purple,
-.iradio-purple {
+.icheckbox_minimal-blue,
+.iradio_minimal-blue {
     display: block;
     margin: 0;
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(purple.png) no-repeat;
+    background: url(blue.png) no-repeat;
     border: none;
 }
 
-.icheckbox-purple,
-.icheckbox-purple.static:hover {
+.icheckbox_minimal-blue,
+.icheckbox_minimal-blue.static:hover {
     background-position: 0 0;
 }
-    .icheckbox-purple.hover,
-    .icheckbox-purple:hover {
+    .icheckbox_minimal-blue.hover,
+    .icheckbox_minimal-blue:hover {
         background-position: -20px 0;
     }
-    .icheckbox-purple.checked {
+    .icheckbox_minimal-blue.checked {
         background-position: -40px 0;
     }
-    .icheckbox-purple.disabled {
+    .icheckbox_minimal-blue.disabled {
         background-position: -60px 0;
     }
-    .icheckbox-purple.checked.disabled {
+    .icheckbox_minimal-blue.checked.disabled {
         background-position: -80px 0;
     }
 
-.iradio-purple,
-.iradio-purple.static:hover {
+.iradio_minimal-blue,
+.iradio_minimal-blue.static:hover {
     background-position: -100px 0;
 }
-    .iradio-purple.hover,
-    .iradio-purple:hover {
+    .iradio_minimal-blue.hover,
+    .iradio_minimal-blue:hover {
         background-position: -120px 0;
     }
-    .iradio-purple.checked {
+    .iradio_minimal-blue.checked {
         background-position: -140px 0;
     }
-    .iradio-purple.disabled {
+    .iradio_minimal-blue.disabled {
         background-position: -160px 0;
     }
-    .iradio-purple.checked.disabled {
+    .iradio_minimal-blue.checked.disabled {
         background-position: -180px 0;
     }
 
 /* Retina support */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (-moz-min-device-pixel-ratio: 1.5),
-       only screen and (-o-min-device-pixel-ratio: 1.5),
+       only screen and (-o-min-device-pixel-ratio: 3/2),
        only screen and (min-device-pixel-ratio: 1.5) {
-    .icheckbox-purple,
-    .iradio-purple {
-        background-image: url(purple@2x.png);
+    .icheckbox_minimal-blue,
+    .iradio_minimal-blue {
+        background-image: url(blue@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }

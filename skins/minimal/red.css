@@ -1,49 +1,49 @@
-/* iCheck.js Default skin, green
+/* iCheck.js Minimal skin, red
 ----------------------------------- */
-.icheckbox-green,
-.iradio-green {
+.icheckbox_minimal-red,
+.iradio_minimal-red {
     display: block;
     margin: 0;
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(green.png) no-repeat;
+    background: url(red.png) no-repeat;
     border: none;
 }
 
-.icheckbox-green,
-.icheckbox-green.static:hover {
+.icheckbox_minimal-red,
+.icheckbox_minimal-red.static:hover {
     background-position: 0 0;
 }
-    .icheckbox-green.hover,
-    .icheckbox-green:hover {
+    .icheckbox_minimal-red.hover,
+    .icheckbox_minimal-red:hover {
         background-position: -20px 0;
     }
-    .icheckbox-green.checked {
+    .icheckbox_minimal-red.checked {
         background-position: -40px 0;
     }
-    .icheckbox-green.disabled {
+    .icheckbox_minimal-red.disabled {
         background-position: -60px 0;
     }
-    .icheckbox-green.checked.disabled {
+    .icheckbox_minimal-red.checked.disabled {
         background-position: -80px 0;
     }
 
-.iradio-green,
-.iradio-green.static:hover {
+.iradio_minimal-red,
+.iradio_minimal-red.static:hover {
     background-position: -100px 0;
 }
-    .iradio-green.hover,
-    .iradio-green:hover {
+    .iradio_minimal-red.hover,
+    .iradio_minimal-red:hover {
         background-position: -120px 0;
     }
-    .iradio-green.checked {
+    .iradio_minimal-red.checked {
         background-position: -140px 0;
     }
-    .iradio-green.disabled {
+    .iradio_minimal-red.disabled {
         background-position: -160px 0;
     }
-    .iradio-green.checked.disabled {
+    .iradio_minimal-red.checked.disabled {
         background-position: -180px 0;
     }
 
@@ -52,9 +52,9 @@
        only screen and (-moz-min-device-pixel-ratio: 1.5),
        only screen and (-o-min-device-pixel-ratio: 1.5),
        only screen and (min-device-pixel-ratio: 1.5) {
-    .icheckbox-green,
-    .iradio-green {
-        background-image: url(green@2x.png);
+    .icheckbox_minimal-red,
+    .iradio_minimal-red {
+        background-image: url(red@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }

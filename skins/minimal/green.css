@@ -1,49 +1,49 @@
-/* iCheck.js Default skin, yellow
+/* iCheck.js Minimal skin, green
 ----------------------------------- */
-.icheckbox-yellow,
-.iradio-yellow {
+.icheckbox_minimal-green,
+.iradio_minimal-green {
     display: block;
     margin: 0;
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(yellow.png) no-repeat;
+    background: url(green.png) no-repeat;
     border: none;
 }
 
-.icheckbox-yellow,
-.icheckbox-yellow.static:hover {
+.icheckbox_minimal-green,
+.icheckbox_minimal-green.static:hover {
     background-position: 0 0;
 }
-    .icheckbox-yellow.hover,
-    .icheckbox-yellow:hover {
+    .icheckbox_minimal-green.hover,
+    .icheckbox_minimal-green:hover {
         background-position: -20px 0;
     }
-    .icheckbox-yellow.checked {
+    .icheckbox_minimal-green.checked {
         background-position: -40px 0;
     }
-    .icheckbox-yellow.disabled {
+    .icheckbox_minimal-green.disabled {
         background-position: -60px 0;
     }
-    .icheckbox-yellow.checked.disabled {
+    .icheckbox_minimal-green.checked.disabled {
         background-position: -80px 0;
     }
 
-.iradio-yellow,
-.iradio-yellow.static:hover {
+.iradio_minimal-green,
+.iradio_minimal-green.static:hover {
     background-position: -100px 0;
 }
-    .iradio-yellow.hover,
-    .iradio-yellow:hover {
+    .iradio_minimal-green.hover,
+    .iradio_minimal-green:hover {
         background-position: -120px 0;
     }
-    .iradio-yellow.checked {
+    .iradio_minimal-green.checked {
         background-position: -140px 0;
     }
-    .iradio-yellow.disabled {
+    .iradio_minimal-green.disabled {
         background-position: -160px 0;
     }
-    .iradio-yellow.checked.disabled {
+    .iradio_minimal-green.checked.disabled {
         background-position: -180px 0;
     }
 
@@ -52,9 +52,9 @@
        only screen and (-moz-min-device-pixel-ratio: 1.5),
        only screen and (-o-min-device-pixel-ratio: 1.5),
        only screen and (min-device-pixel-ratio: 1.5) {
-    .icheckbox-yellow,
-    .iradio-yellow {
-        background-image: url(yellow@2x.png);
+    .icheckbox_minimal-green,
+    .iradio_minimal-green {
+        background-image: url(green@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }

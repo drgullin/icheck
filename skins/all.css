@@ -1,16 +1,16 @@
 /* iCheck.js skins
 ----------------------------------- */
-/*@import url("default/default.css");
-@import url("default/red.css");
-@import url("default/green.css");
-@import url("default/blue.css");
-@import url("default/aero.css");
-@import url("default/grey.css");
-@import url("default/orange.css");
-@import url("default/yellow.css");
-@import url("default/pink.css");
-@import url("default/purple.css");*/
-@import url("default/_all.css");
+/*@import url("minimal/minimal.css");
+@import url("minimal/red.css");
+@import url("minimal/green.css");
+@import url("minimal/blue.css");
+@import url("minimal/aero.css");
+@import url("minimal/grey.css");
+@import url("minimal/orange.css");
+@import url("minimal/yellow.css");
+@import url("minimal/pink.css");
+@import url("minimal/purple.css");*/
+@import url("minimal/_all.css");
 
 @import url("square/_all.css");
 /*@import url("square/square.css");

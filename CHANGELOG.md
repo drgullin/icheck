@@ -1,5 +1,10 @@
 ## Changelog
 
+#### 1.5
+
+* `this.destoyed` callback added
+* `destoy` method added
+
 #### 1.4
 
 * `hover` state fixed
