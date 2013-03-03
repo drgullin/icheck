@@ -40,7 +40,7 @@
                 destroy($(this));
 
                 var self = $(this),
-                    className = (this.type == 'checkbox') ? settings.checkboxClass : settings.radioClass,
+                    className = this.type == 'checkbox' ? settings.checkboxClass : settings.radioClass,
                     parent = self.data('style', self.attr('style')).css({
                         position: 'absolute',
                         top: -area + '%',
