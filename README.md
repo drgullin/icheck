@@ -55,9 +55,9 @@ Note: you can choose any class names and slyle them as you want.
 
 iCheck supports any selectors, but handles only checkboxes and radio buttons:
 
-    $('input').icheck(); // customize all inputs on the page
+    $('input').icheck(); // customize all inputs (that are checkboxes or radio buttons)
     $('.block input').icheck(); // handle inputs only inside $('.block')
-    $('.vote').icheck(); // handle elements with the .vote class - will search inside, if element is not an input
+    $('.vote').icheck(); // handle elements with the .vote class - will search inside, if elements are not inputs
 
 Example:
 
@@ -72,7 +72,7 @@ Example:
         });
     });
 
-Note: don't forget to include jQuery (1.6 or newer) and `jquery.icheck.js` (or `jquery.icheck.min.js`) in your HTML.
+Don't forget to include jQuery (1.6 or newer) and `jquery.icheck.js` (or `jquery.icheck.min.js`) in your HTML.
 
 ## Callbacks
 

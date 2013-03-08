@@ -910,9 +910,24 @@ $(document).ready(function(){
 				<div class="usage-inner">
 					<p>
 						iCheck plugin works with checkboxes and radio buttons like a constructor.
-						<br><strong>It just wraps each input with a div</strong>, which you may customize yourself or use one of the available <a class="self" href="#" data-to="skin-minimal">skins</a>.
+						<br><strong>It wraps each input with a div</strong>, which you may customize yourself or use one of the available <a class="self" href="#" data-to="skin-minimal">skins</a>.
 						<br>You may also place inside that div some HTML code or text using <span class="mark">insert</span> option.
 					</p>
+					<p class="offset">For example, you have:</p>
+<pre class="markup">
+&lt;input type="checkbox" checked>
+&lt;input type="radio">
+</pre
+					<p class="offset">With default options you'll get this:</p>
+<pre class="markup">
+&lt;div class="icheckbox">
+	&lt;input type="checkbox" checked>
+&lt;/div>
+&lt;div class="iradio">
+	&lt;input type="radio">
+&lt;/div>
+</pre>
+					<p>Note: by default, iCheck doesn't provide any CSS styles for wrapper divs (if you don't use <a class="self" href="#" data-to="skin-minimal">skins</a>).</p>
 					<h4 class="options">Options</h4>
 					<p>These options are default:</p>
 <pre class="markup">
@@ -936,9 +951,9 @@ $(document).ready(function(){
 					<h4>Initialize</h4>
 					<p>iCheck supports any selectors, but handles only checkboxes and radio buttons:</p>
 <pre class="markup">
-$('input').icheck(); <span class="comment">// customize all inputs on the page</span>
+$('input').icheck(); <span class="comment">// customize all inputs (that are checkboxes or radio buttons)</span>
 $('.block input').icheck(); <span class="comment">// handle inputs only inside $('.block')</span>
-$('.vote').icheck(); <span class="comment">// handle elements with the .vote class - will search inside, if element is not an input</span>
+$('.vote').icheck(); <span class="comment">// handle elements with the .vote class - will search inside, if elements are not inputs</span>
 </pre>
 					<p>Example:</p>
 <pre class="markup">
@@ -955,7 +970,7 @@ $(document).ready(function(){
 });
 &lt;/script>
 </pre>
-					<p>Note: don't forget to include jQuery (1.6 or newer) and <span class="mark">jquery.icheck.js</span> (or <span class="mark">jquery.icheck.min.js</span>) in your HTML.</p>
+					<p>Don't forget to include jQuery (1.6 or newer) and <span class="mark">jquery.icheck.js</span> (or <span class="mark">jquery.icheck.min.js</span>) in your HTML.</p>
 					<h4 class="callbacks">Callbacks</h4>
 					<table>
 						<thead>
@@ -1004,11 +1019,11 @@ $('input').bind('this.clicked', function(){
 					<p>Note: <span class="mark">this.created</span> callback should be binded before plugin init.</p>
 					<h4 class="methods">Methods</h4>
 					<p><span class="mark">$('input').icheck('check');</span> &mdash; change input's state to <span class="mark">checked</span></p>
-					<p><span class="mark">$('input').icheck('uncheck');</span> &mdash; remove <span class="mark">checked</span> state.</p>
+					<p><span class="mark">$('input').icheck('uncheck');</span> &mdash; remove <span class="mark">checked</span> state</p>
 					<p><span class="mark">$('input').icheck('disable');</span> &mdash; change input's state to <span class="mark">disabled</span></p>
-					<p><span class="mark">$('input').icheck('enable');</span> &mdash; remove <span class="mark">disabled</span> state.</p>
-					<p><span class="mark">$('input').icheck('update');</span> &mdash; apply input changes, which were done outside the plugin.</p>
-					<p><span class="mark">$('input').icheck('destroy');</span> &mdash; remove all traces of iCheck.</p>
+					<p><span class="mark">$('input').icheck('enable');</span> &mdash; remove <span class="mark">disabled</span> state</p>
+					<p><span class="mark">$('input').icheck('update');</span> &mdash; apply input changes, which were done outside the plugin</p>
+					<p><span class="mark">$('input').icheck('destroy');</span> &mdash; remove all traces of iCheck</p>
 					<h4>Skins</h4>
 					<p><a class="self" href="#" data-to="skin-minimal">5 pre-coded skins available</a>, check <strong>Usage</strong> tab on the right side of each skin.</p>
 				</div>

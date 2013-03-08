@@ -53,20 +53,18 @@
                         opacity: 0
                     }).data('state', settings).wrap('<div class="' + className + '"/>').parent().prepend(settings.insert);
 
-                settings.cursor == true && !this.disabled && self.css('cursor', 'pointer');
+                settings.cursor == true && self.css('cursor', 'pointer');
                 settings.inheritClass == true && parent.addClass(this.className);
                 settings.inheritID == true && this.id && parent.attr('id', 'icheck-' + this.id);
                 parent.css('position') == 'static' && parent.css('position', 'relative');
                 change(self, true, 'update');
 
                 self.trigger('this.created').click(change).bind('focus blur mousedown mouseup mouseout mouseenter mouseleave touchbegin touchend', function(event) {
-                    var states = get_state(self, false), state, type = event.type;
+                    var states = get_state(self, false), state = '', type = event.type;
 
-                    type == 'focus' && (state = states.focusClass);
-                    type == 'blur' && (state = states.focusClass + ' ' + states.activeClass);
-
+                    /^focus|blur$/i.test(type) && (state = states.focusClass + ' ');
                     /^mouseenter|mouseleave|touchbegin|touchend$/i.test(type) && (state = states.hoverClass);
-                    /^mousedown|mouseup|mouseout$/i.test(type) && (state = states.activeClass);
+                    /^blur|mousedown|mouseup|mouseout$/i.test(type) && (state += states.activeClass);
                     /^blur|mouseup|mouseout|mouseleave|touchend$/i.test(type) ? parent.removeClass(state) : parent.addClass(state);
                 });
             });
