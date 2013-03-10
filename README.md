@@ -7,7 +7,7 @@
 
 ## Features
 
-* **13 options, 6 callbacks, 5 methods** to use
+* **13 options, 7 callbacks, 6 methods** to use
 * **5 Retina-ready skins** — `/skins/` folder
 * **Lightweight size** — 1 kb gzipped
 
