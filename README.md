@@ -23,11 +23,11 @@
 * Separate checkboxes and radio buttons class names
 * Configurable state classes: `.checked`, `.disabled`, `.hover`, `.focus`, `.active`
 * Option to append custom HTML code or text inside customized inputs
-* **Callbacks** when input is `created`, `clicked`, `checked`, `unchecked`, `disabled`, `enabled`, 'destroyed'.
+* **Callbacks** when input is `created`, `clicked`, `checked`, `unchecked`, `disabled`, `enabled`, `destroyed`.
 * **Methods** to add or remove `checked` and `disabled` states on selected inputs
 * `destroy` method to remove all traces of iCheck
 * Option to handle only checkboxes or radio buttons, both by default
-* Increasing or decreasing clickable area around input
+* Increasing or decreasing clickable area around customized input
 * Option to inherit original input's class or id
 * Adds hand cursor over inputs if you set up
 
