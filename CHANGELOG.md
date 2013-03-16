@@ -1,27 +1,24 @@
 ## Changelog
 
-#### 1.5
+#### 1.6
+* Options and callbacks improvement
 
-* `this.destoyed` callback added
-* `destoy` method added
+#### 1.5
+* `isDestoyed` callback
+* `destoy` method
 
 #### 1.4
-
-* `hover` state fixed
+* `hover` state
 
 #### 1.3
-
-* `this.disabled` and `this.enabled` callbacks added
-* `disable` and `enable` methods added
+* `isDisabled` and `isEnabled` callbacks
+* `disable` and `enable` methods
 
 #### 1.2
-
-* `update` method added
+* `update` method
 
 #### 1.1
-
-* `active` state fixed
+* `active` state
 
 #### 1.0
-
 * Initial release.

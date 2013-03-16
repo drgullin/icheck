@@ -8,6 +8,13 @@
 $webfont = 'Montserrat'
 $stack = $webfont, Helvetica, Arial, sans-serif
 
+html
+body
+	height 100%
+
+html
+	overflow-y scroll
+
 body
 	font 14px/20px $stack
 	color #222
@@ -22,8 +29,8 @@ a
 	&:hover
 		color #000
 
-	&.self
-		border-bottom 1px dotted #aaa
+.self
+	border-bottom 1px dotted #aaa
 
 strong
 	font-weight 700
@@ -91,16 +98,19 @@ td
 
 .layout
 	width 930px
-	min-height 100%
-	margin 0 auto -80px
+	margin 0 auto
 	padding 0 15px
 
+	.reveal &
+		display none
+
 .header
+	padding 115px 0 73px
 	color #fff
 	text-align center
 
 	h1
-		padding 115px 0 23px
+		padding-bottom 23px
 		font-size 22px
 		line-height 28px
 		letter-spacing -1px
@@ -108,7 +118,7 @@ td
 
 	h3
 		position relative
-		padding 36px 0 73px
+		padding 35px 0 17px
 		font-size 120px
 		line-height 140px
 		letter-spacing -5px
@@ -123,6 +133,18 @@ td
 			margin-left -50px
 			overflow hidden
 			background #fff
+
+	strong
+		font 24px/30px $stack
+		letter-spacing -1px
+		text-transform uppercase
+
+		a
+			color #fff
+			border-bottom-color #fff
+
+			&:hover
+				border-top 1px solid #fff
 
 .features
 	position relative
@@ -174,15 +196,17 @@ td
 	background darken(#2E3035, 20%)
 
 .actions li
+.actions-small li
 	float left
 	width 310px
-	height 43px
+	height 63px
 	text-align center
 
 	a
 		display block
-		height 40px
-		line-height 38px
+		height 60px
+		font-size 18px
+		line-height 58px
 		color #fff
 		border none
 		background #E76B66
@@ -202,20 +226,20 @@ td
 		&:hover
 			border-bottom-color darken(#1D8BC6, 10%)
 
-.actions-large li
-	height 63px
+.actions-small
+	padding-bottom 56px
 
-	a
-		height 60px
-		font-size 18px
-		line-height 58px
+	li
+		height 43px
 
-.examples
-	padding-top 56px
+		a
+			height 40px
+			font-size 14px
+			line-height 38px
 
-	h2
-		margin-bottom -2px
-		font-size 24px
+.examples	h2
+	margin-bottom -2px
+	font-size 24px
 
 .arrows
 	position absolute
@@ -697,14 +721,17 @@ td
 	h4
 		margin 26px 0 10px
 
-		&.callbacks
-			margin-bottom 19px
-
 	p
 		margin-bottom 5px
 
 		&.offset
 			margin-top 10px
+
+		&.callbacks-demo
+			margin-bottom 14px
+
+		&.methods-demo
+			margin-bottom 10px
 
 	.markup
 		margin 9px 0 16px
@@ -742,14 +769,180 @@ td
 .license
 	color #444
 	text-align center
-	padding 30px 0 155px
+	padding 30px 0 75px
+
+.overlay
+	position absolute
+	top 0
+	right 0
+	bottom 0
+	left 0
+	background #EBE7DF
+
+.extended
+	position relative
+	display none
+	width 930px
+	min-height 100%
+	margin 0 auto
+	padding 0 15px
+
+	.reveal &
+		display block
+
+.extended-title
+	padding 79px 0 54px
+	font-size 22px
+
+.extended-inputs
+	margin 0 357px 0 -3px
+	padding 33px 60px 20px
+	color #444
+	background #fff
+	border 3px solid #ddd8ce
+
+	ul
+		float right
+		white-space nowrap
+
+		&:first-child
+			float left
+
+		li
+			position relative
+			padding 0 0 15px 42px
+
+		input
+			position absolute
+			top 4px
+			left 0
+
+		.icheckbox_square-grey
+		.iradio_square-grey
+		.icheckbox_square-blue
+		.iradio_square-blue
+			position absolute
+			top -1px
+			left 0
+
+		span
+			color #bbb
+
+.extended-methods
+	margin 0 0 0 -3px
+	padding 35px 357px 80px 0
+
+	.mark
+		background darken(#e7e5e0, 10%)
+
+	dt
+		position relative
+		padding 17px 150px 18px 3px
+		font 16px/24px $stack
+		color #444
+		border-bottom 3px solid #ddd8ce
+
+		.self
+			cursor pointer
+
+			&:hover
+				color #222
+
+		.code
+			position absolute
+			right 0
+			bottom 18px
+			color #777
+
+			.self:hover
+				color #444
+
+	dd
+		position relative
+		display none
+		margin 0
+		background #fff
+		border 3px solid #ddd8ce
+		border-top none
+
+		&:before
+			content ''
+			position absolute
+			top -13px
+			left -3px
+			width 0
+			height 0
+			border 5px solid transparent
+			border-bottom-color #ddd8ce
+			border-left-color #ddd8ce
+
+		.markup
+			margin 0
+			color #888
+			background lighten(#ebe7df, 50%)
+			border none
+
+			.comment
+				color #aaa
+
+.extended-callbacks
+	position absolute
+	top 193px
+	bottom 80px
+	left 50%
+	display none
+	width 300px
+	margin-left 162px
+	color #aaa
+	background #232323
+	border 3px solid #ddd8ce
+
+	.reveal &
+		display block
+
+	&.fixed
+		position fixed
+
+	h2
+		color #fff
+		background #6a5a8c
+
+	ul
+		position absolute
+		top 60px
+		width 100%
+		bottom 0
+		overflow auto
+
+		li
+			margin-top -1px
+			padding 13px 20px 15px
+			border-top 1px solid #2e2e2e
+
+			span
+				color #888
+
+.extend-close
+	position absolute
+	top 40px
+	right 15px
+	height 24px
+	padding-right 39px
+	font-size 16px
+	line-height 24px
+	color #fff
+	text-align right
+	background url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAP9JREFUeNqklssKwjAQRYOPfq8gvhpNn/oLgoqiuBDx19z4WMcZaBaWNDNJLtxNMj0H0kIqtNYCOoSeoR/otFkLaQp9Q4/QPq7hYgJ96P+oAHjZYtyhA9y4aHtUBNzkhJtf3R0VAce8cGCh3VGBcMzEDCpiMLPAK+IZaV5yiIQFbws4ktwHbhNwJGx4lyBUktpYrs9PxcIpAXYVA8f2hDuJoOOecdgrjyPKfY+oDnjJBVdQR3ymBSVYE4A5dOkj8YWbWUnMlm3BxgPOlVRGkAXAuRJJXTgzxoUjqQvnEAGnJHvR3P63CHiX5Ipss4mSHfQJHUX8towbxtb8tvwEGAApRpaSGE17KgAAAABJRU5ErkJggg==") 100% no-repeat
+	*background-image url(ie/icon-close.png)
+	cursor pointer
 
 .footer
-	position relative
-	height 100px
+	padding 28px 0 45px
 	color #666
-	line-height 78px
 	background #e2dfd8
+
+	.reveal &
+		display none
 
 	.inner
 		width 930px

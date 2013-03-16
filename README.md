@@ -2,11 +2,11 @@
 
 #### Highly customizable jQuery plugin for checkboxes and radio buttons styling
 #### [Demo](http://damirfoy.com/projects/icheck/)
+#### [Extended demo](http://damirfoy.com/projects/icheck/#extended)
 
 ![Skins](http://damirfoy.com/projects/icheck/example.png)
 
 ## Features
-
 * **13 options, 7 callbacks, 6 methods** to use
 * **5 Retina-ready skins** — `/skins/` folder
 * **Lightweight size** — 1 kb gzipped
@@ -16,6 +16,7 @@
 * Keeps original inputs in your code
 * Works with checkboxes and radio buttons only, but handles any jQuery selectors
 * Keyboard shortcuts support (`Tab`, `Spacebar`, `Arrow up/down`, etc)
+* Touch devices support (iPad, iPhone, etc)
 * Customization freedom &mdash; use any HTML and CSS to style inputs
 
 ---
@@ -32,49 +33,75 @@
 * Adds hand cursor over inputs if you set up
 
 ## Options
-
     {
-        handle: '', // 'checkbox' or 'radio' to style only checkboxes or radio buttons, both by default
-        checkboxClass: 'icheckbox', // class added to checkboxes
-        radioClass: 'iradio', // class added to radio buttons
-        checkedClass: 'checked', // class on checked state
-        disabledClass: 'disabled', // class on disabled state
-        hoverClass: 'hover', // class on hover state
-        focusClass: 'focus', // class on focus state
-        activeClass: 'active', // class on active state
-        increaseArea: '', // increase clickable area by given % (negative to decrease)
-        cursor: false, // true to set hand cursor over input
-        inheritClass: false, // set true to inherit input's class name
-        inheritID: false, // if set to true, input's id prefixed with 'icheck-' and attached
-        insert: '' // add custom HTML code or text inside customized input
+      // 'checkbox' or 'radio' to style only checkboxes or radio buttons, both by default
+      handle: '',
+
+      // class added to checkboxes
+      checkboxClass: 'icheckbox',
+
+      // class added to radio buttons
+      radioClass: 'iradio',
+
+      // class on checked state
+      checkedClass: 'checked',
+
+      // class on disabled state
+      disabledClass: 'disabled',
+
+      // class on hover state
+      hoverClass: 'hover',
+
+      // class on focus state
+      focusClass: 'focus',
+
+      // class on active state
+      activeClass: 'active',
+
+      // increase clickable area by given % (negative to decrease)
+      increaseArea: '',
+
+      // true to set hand cursor over input
+      cursor: false,
+
+      // set true to inherit input's class name
+      inheritClass: false,
+
+      // if set to true, input's id prefixed with 'icheck-' and attached
+      inheritID: false,
+
+      // add custom HTML code or text inside customized input
+      insert: ''
     }
 
-Note: you can choose any class names and slyle them as you want.
+Note: you can **choose any class names and slyle them as you want**.
 
 ## Usage
-
 iCheck supports any selectors, but handles only checkboxes and radio buttons:
 
-    $('input').icheck(); // customize all inputs (that are checkboxes or radio buttons)
-    $('.block input').icheck(); // handle inputs only inside $('.block')
-    $('.vote').icheck(); // handle elements with the .vote class - will search inside, if elements are not inputs
+    // customize all inputs (will search for checkboxes and radio buttons)
+    $('input').iCheck();
 
-Example:
+    // handle inputs only inside $('.block')
+    $('.block input').iCheck();
 
-    $(document).ready(function(){
-        $('input').icheck({
-            // options
-        });
-
-        // you can also change options after inputs are customized
-        $('input.some').icheck({
-            // different options
-        });
+    // handle only checkboxes inside $('.test')
+    $('.test input').iCheck({
+      handle: 'checkbox'
     });
 
-Don't forget to include jQuery (1.6 or newer) and `jquery.icheck.js` (or `jquery.icheck.min.js`) in your HTML.
+    // handle elements with the .vote class (will search inside the element, if it's not an input)
+    $('.vote').iCheck();
+
+    // you can also change options after inputs are customized
+    $('input.some').iCheck({
+      // different options
+    });
+
+Don't forget to include jQuery (1.6 or newer) and `jquery.icheck.js` (`jquery.icheck.min.js` is minified) in your HTML.
 
 ## Callbacks
+[Callbacks usage demo](http://damirfoy.com/projects/icheck/#extended)
 
 <table>
   <thead>
@@ -85,31 +112,31 @@ Don't forget to include jQuery (1.6 or newer) and `jquery.icheck.js` (or `jquery
   </thead>
   <tbody>
     <tr>
-      <td>this.clicked</td>
+      <td>isClicked</td>
       <td>user clicked on customized input (not used when you change it's state programatically)</td>
     </tr>
     <tr>
-      <td>this.checked</td>
-      <td>input's state changed to 'checked'</td>
+      <td>isChecked</td>
+      <td>input's state is changed to 'checked'</td>
     </tr>
     <tr>
-      <td>this.unchecked</td>
+      <td>isUnchecked</td>
       <td>'checked' state is removed</td>
     </tr>
     <tr>
-      <td>this.disabled</td>
-      <td>input's state changed to 'disabled'</td>
+      <td>isDisabled</td>
+      <td>input's state is changed to 'disabled'</td>
     </tr>
     <tr>
-      <td>this.enabled</td>
+      <td>isEnabled</td>
       <td>'disabled' state is removed</td>
     </tr>
     <tr>
-      <td>this.created</td>
+      <td>isCreated</td>
       <td>input is just customized</td>
     </tr>
     <tr>
-      <td>this.destroyed</td>
+      <td>isDestroyed</td>
       <td>customization is just removed</td>
     </tr>
   </tbody>
@@ -117,13 +144,14 @@ Don't forget to include jQuery (1.6 or newer) and `jquery.icheck.js` (or `jquery
 
 Use `bind` or `on` to attach them:
 
-    $('input').bind('this.clicked', function(){
-        console.log('input is clicked');
+    $('input').bind('isClicked', function(){
+      console.log('input is clicked');
     });
 
-Note: `this.created` callback should be binded before plugin init.
+Note: `isCreated` callback should be binded before plugin init.
 
 ## Methods
+[Methods usage demo](http://damirfoy.com/projects/icheck/#extended)
 
     $('input').icheck('check'); // change input's state to 'checked'
     $('input').icheck('uncheck'); // remove 'checked' state
@@ -133,7 +161,6 @@ Note: `this.created` callback should be binded before plugin init.
     $('input').icheck('destroy'); // remove all traces of iCheck
 
 ## Browser support
-
 * Internet Explorer 7+ (works in IE6 if you don't use CSS class chaining)
 * Firefox 2+
 * Opera 9+
@@ -144,33 +171,28 @@ Note: `this.created` callback should be binded before plugin init.
 Tested on mobile devices.
 
 ## Changelog
+##### 1.6
+* Options and callbacks improvement
 
 ##### 1.5
-
-* `this.destoyed` callback added
-* `destoy` method added
+* `isDestoyed` callback
+* `destoy` method
 
 ##### 1.4
-
-* `hover` state fixed
+* `hover` state
 
 ##### 1.3
-
-* `this.disabled` and `this.enabled` callbacks added
-* `disable` and `enable` methods added
+* `isDisabled` and `isEnabled` callbacks
+* `disable` and `enable` methods
 
 ##### 1.2
-
-* `update` method added
+* `update` method
 
 ##### 1.1
-
-* `active` state fixed
+* `active` state
 
 ##### 1.0
-
 * Initial release.
 
 ## License
-
 iCheck is released under [MIT License](http://en.wikipedia.org/wiki/MIT_License). Feel free to use it in personal and commercial projects.
