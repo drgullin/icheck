@@ -1,6 +1,6 @@
 # iCheck
 
-#### Powerful jQuery plugin for checkboxes and radio buttons customization
+#### Powerful jQuery plugin for checkboxes and radio buttons customization.
 #### [Demo](http://damirfoy.com/projects/icheck/)
 #### [Extended demo](http://damirfoy.com/projects/icheck/#extended)
 
@@ -117,19 +117,19 @@ Don't forget to include jQuery (1.6 or newer) and `jquery.icheck.js` (`jquery.ic
     </tr>
     <tr>
       <td>isChecked</td>
-      <td>input's state is changed to 'checked'</td>
+      <td>input's state is changed to "checked"</td>
     </tr>
     <tr>
       <td>isUnchecked</td>
-      <td>'checked' state is removed</td>
+      <td>"checked" state is removed</td>
     </tr>
     <tr>
       <td>isDisabled</td>
-      <td>input's state is changed to 'disabled'</td>
+      <td>input's state is changed to "disabled"</td>
     </tr>
     <tr>
       <td>isEnabled</td>
-      <td>'disabled' state is removed</td>
+      <td>"disabled" state is removed</td>
     </tr>
     <tr>
       <td>isCreated</td>
