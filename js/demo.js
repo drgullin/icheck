@@ -101,7 +101,7 @@ $(document).ready(function() {
   }).resize();
 
   $(window).scroll(function() {
-    window_offset = $(window).scrollTop();
+    window_offset = window.scrollY || window.pageYOffset || $(window).scrollTop();
     !ie && callbacks_align();
   });
 
