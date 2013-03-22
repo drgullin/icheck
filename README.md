@@ -208,7 +208,7 @@ Benefits
 
 iCheck is created to avoid routine of reinventing the wheel when working with checkboxes and radio buttons. It provides an expected identical result for the huge number of browsers, devices and their versions. Callbacks and methods can be used to easily handle and make changes at customized inputs.
 
-**There are some CSS3 ways available to style checkboxes and radio buttons, like [this one](http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-easy-css3-checkboxes-and-radio-buttons/)**. **You have to know about some disadvantages of similar methods**:
+**There are some CSS3 ways available** to style checkboxes and radio buttons, **like [this one](http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-easy-css3-checkboxes-and-radio-buttons/)**. You have to know about **some disadvantages of similar methods**:
 
 * inputs are keyboard inaccessible, since `display: none` or `visibility: hidden` used to hide them
 * poor browser support
