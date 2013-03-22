@@ -210,11 +210,11 @@ iCheck is created to avoid routine of reinventing the wheel when working with ch
 
 There are some CSS3 ways available to style checkboxes and radio buttons, like [this one](http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-easy-css3-checkboxes-and-radio-buttons/). You have to know about some disadvantages of similar methods:
 
-— inputs are keyboard inaccessible, since `display: none` or `visibility: hidden` used to hide them
-— poor browser support
-— multiple bugs on mobile devices
-— tricky, harder to maintain CSS code
-— JavaScript is still needed to fix specific issues
+* inputs are keyboard inaccessible, since `display: none` or `visibility: hidden` used to hide them
+* poor browser support
+* multiple bugs on mobile devices
+* tricky, harder to maintain CSS code
+* JavaScript is still needed to fix specific issues
 
 While CSS3 method is quite limited solution, iCheck is made to be an everyday replacement covering most of the tasks.
 
