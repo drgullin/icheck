@@ -9,6 +9,7 @@
     height: 17px;
     background: url(futurico.png) no-repeat;
     border: none;
+    cursor: pointer;
 }
 
 .icheckbox_futurico {
@@ -19,6 +20,7 @@
     }
     .icheckbox_futurico.disabled {
         background-position: -36px 0;
+        cursor: default;
     }
     .icheckbox_futurico.checked.disabled {
         background-position: -54px 0;
@@ -32,6 +34,7 @@
     }
     .iradio_futurico.disabled {
         background-position: -108px 0;
+        cursor: default;
     }
     .iradio_futurico.checked.disabled {
         background-position: -126px 0;

@@ -1,6 +1,6 @@
 /*
-  iCheck v1.6, http://git.io/uhUPMA
-  =================================
+  iCheck v0.7, http://git.io/uhUPMA
+  ===================================
   Powerful jQuery plugin for checkboxes and radio buttons customization
 
   (c) 2013 by Damir Foy, http://damirfoy.com
@@ -9,25 +9,26 @@
 
 (function($) {
   $.fn.iCheck = function(options) {
-    if (/^Opera Mini$/i.test(navigator.userAgent))
-      return this;
-    else if (/^(check|uncheck|disable|enable|update|destroy)$/i.test(options)) {
+    if (/^(check|uncheck|disable|enable|update|destroy)$/.test(options)) {
       return this.each(function() {
-        /^destroy$/i.test(options) ? destroy($(this), 'isDestroyed') : change($(this), true, options.toLowerCase());
+        /destroy/.test(options) ? destroy($(this), 'is.Destroyed') : change($(this), true, options);
       });
     } else if (typeof options == 'object' || !options) {
-      var defaults = {
-            checkboxClass: 'icheckbox',
-            radioClass: 'iradio',
-            checkedClass: 'checked',
-            disabledClass: 'disabled',
-            hoverClass: 'hover',
-            focusClass: 'focus',
-            activeClass: 'active'
-          },
-          settings = $.extend({}, defaults, options),
-          handle = /^(checkbox|radio)$/i.test(settings.handle) ? ':' + settings.handle.toLowerCase() : ':checkbox, :radio',
-          area = ('' + settings.increaseArea).replace('%', '') | 0;
+      var ua = navigator.userAgent,
+        defaults = {
+          checkboxClass: 'icheckbox',
+          radioClass: 'iradio',
+          checkedClass: 'checked',
+          disabledClass: 'disabled',
+          hoverClass: 'hover',
+          focusClass: 'focus',
+          activeClass: 'active',
+          labelHover: true,
+          labelHoverClass: 'hover'
+        },
+        settings = $.extend({}, defaults, options),
+        handle = /^(checkbox|radio)$/.test(settings.handle) ? ':' + settings.handle : ':checkbox, :radio',
+        area = ('' + settings.increaseArea).replace('%', '') | 0;
 
       area < -50 && (area = -50);
 
@@ -37,92 +38,133 @@
         tree.each(function() {
           destroy($(this));
 
-          var self = $(this),
-              className = this.type == 'checkbox' ? settings.checkboxClass : settings.radioClass,
-              parent = self.data('style', self.attr('style')).css({
-                position: 'absolute',
-                top: -area + '%',
-                left: -area + '%',
-                width: 100 + (area * 2) + '%',
-                height: 100 + (area * 2) + '%',
-                margin: 0,
-                padding: 0,
-                border: 0,
-                opacity: 0
-              }).data('state', settings).wrap('<div class="' + className + '"/>').parent().prepend(settings.insert);
+          var node = this,
+            id = node.id,
+            layer = {
+              position: 'absolute',
+              top: -area + '%',
+              left: -area + '%',
+              display: 'block',
+              width: 100 + (area * 2) + '%',
+              height: 100 + (area * 2) + '%',
+              margin: 0,
+              padding: 0,
+              background: '#fff',
+              border: 0,
+              opacity: 0
+            },
+            hide = /ipad|iphone|ipod|android|blackberry|windows phone|opera mini/i.test(ua) ? {position: 'absolute', visibility: 'hidden'} : area | 0 ? layer : {position: 'absolute', opacity: 0},
+            className = node.type == 'checkbox' ? settings.checkboxClass : settings.radioClass,
+            self = $(this).data('icheck', {style: $(this).attr('style'), options: settings}).css(hide),
+            label = $('label[for=' + id + ']'),
+            parent = self.wrap('<div class="' + className + '"/>').trigger('is.Created').parent().append(settings.insert),
+            helper = $('<ins/>').css(layer).appendTo(parent).click(function() {
+              self.click(), change(self, false, true);
+            }),
+            hover = settings.hoverClass,
+            labelHover = settings.labelHoverClass,
+            keyCache;
 
-          settings.cursor == true && self.css('cursor', 'pointer');
-          settings.inheritClass == true && parent.addClass(this.className);
-          settings.inheritID == true && this.id && parent.attr('id', 'icheck-' + this.id);
+          settings.cursor == true && helper.css('cursor', 'pointer');
+          settings.inheritClass == true && parent.addClass(node.className);
+          settings.inheritID == true && id && parent.attr('id', 'icheck-' + id);
           parent.css('position') == 'static' && parent.css('position', 'relative');
           change(self, true, 'update');
 
-          self.trigger('isCreated').click(change).bind('focus blur mousedown mouseup mouseout mouseenter mouseleave touchbegin touchend', function(event) {
-            var states = get_state(self, false), state = '', type = event.type;
+          id && label.length && label.bind('click.df mouseenter.df mouseleave.df touchbegin.df touchend.df', function(event) {
+            var type = event.type, item = $(this);
 
-            /^focus|blur$/i.test(type) && (state = states.focusClass + ' ');
-            /^mouseenter|mouseleave|touchbegin|touchend$/i.test(type) && (state = states.hoverClass);
-            /^blur|mousedown|mouseup|mouseout$/i.test(type) && (state += states.activeClass);
-            /^blur|mouseup|mouseout|mouseleave|touchend$/i.test(type) ? parent.removeClass(state) : parent.addClass(state);
+            if (type == 'click')
+              event.preventDefault(), self.click(), change(self, false, true);
+            else if (settings.labelHover == true && !node.disabled)
+              /mouseenter|touchbegin/.test(type) ? (parent.addClass(hover), item.addClass(labelHover)) : (parent.removeClass(hover), item.removeClass(labelHover));
+          });
+
+          self.bind('focus.df blur.df keyup.df keydown.df keypress.df', function(event) {
+            var type = event.type,
+              key = event.keyCode || event.charCode || event.which,
+              fallback = /MSIE [5-8]/.test(ua) ? type == 'keyup' && keyCache !== 'keypress' : type == 'keyup',
+              condition = type == 'keypress' && key == 32;
+
+            if (/focus|blur/.test(type))
+              type == 'focus' ? parent.addClass(settings.focusClass) : parent.removeClass(settings.focusClass);
+            else if (node.type == 'radio')
+              (fallback ? change(self, true, 'update', true) : condition && !node.checked && on(self, false, parent, 'checked', true), keyCache = type);
+            else if (node.type == 'checkbox' && condition)
+              node.checked ? off(self, false, parent, 'checked', true) : on(self, false, parent, 'checked', true);
+          });
+
+          helper.bind('mousedown mouseup mouseout mouseenter mouseleave touchbegin touchend', function(event) {
+            var type = event.type, toggle = /mousedown|mouseup|mouseout/.test(type) ? settings.activeClass : hover;
+
+            if (node.disabled) return;
+            /mousedown|mouseenter|touchbegin/.test(type) ? parent.addClass(toggle) : parent.removeClass(toggle);
+
+            if (id && label.length && settings.labelHover == true && toggle == hover)
+              /mouseleave|touchend/.test(type) ? label.removeClass(labelHover) : label.addClass(labelHover);
           });
         });
       });
-    } else
-      return this;
+    } else return this;
   };
 
-  function change(input, direct, method) {
-    !direct && (input = $(this));
+  function change(input, direct, method, keyboard) {
+    var node = input[0],
+      parent = input.parent(),
+      state = /disable|enable/.test(method) ? 'disabled' : 'checked',
+      active = method == 'update' ? {checked: node.checked, disabled: node.disabled} : node[state];
 
-    var parent = input.parent(),
-        state = method == 'disable' || method == 'enable' ? 'disabled' : 'checked',
-        active = method == 'update' ? {checked: input[0].checked, disabled: input[0].disabled} : input[0][state];
-
-    if ((method == 'check' || method == 'disable') && !active)
+    if (/^check|disable/.test(method) && !active)
       on(input, true, parent, state);
-    else if ((method == 'uncheck' || method == 'enable') && active)
+    else if (/uncheck|enable/.test(method) && active)
       off(input, true, parent, state);
-    else if (method == 'update' || !direct) {
-      if (!direct)
-        input.trigger('isClicked'), active ? on(input, true, parent, state) : off(input, true, parent, state);
-      else
-        for(var state in active) active[state] ? on(input, false, parent, state) : off(input, false, parent, state);
+    else if (method == 'update')
+      for(var state in active) active[state] ? on(input, false, parent, state, keyboard) : off(input, false, parent, state, keyboard);
+    else if (!direct) {
+      method == true && !node.disabled && input.trigger('is.Clicked');
+      active ? on(input, true, parent, state) : off(input, true, parent, state);
     }
   }
 
-  function on(input, toggle, parent, state) {
+  function on(input, toggle, parent, state, keyboard) {
     toggle && (input[0][state] = true);
 
     if (parent.data(state) !== true) {
       if (state == 'checked' && input[0].type == 'radio' && input[0].name) {
         $('input[name=' + input[0].name + ']').each(function() {
-          this !== input[0] && $(this).data('state') && off($(this), true, $(this).parent(), state);
+          this !== input[0] && $(this).data('icheck') && off($(this), true, $(this).parent(), state);
         });
       }
 
-      toggle && input.trigger('is' + state.replace('di', 'Di').replace('ch', 'Ch'));
-      parent.data(state, true).addClass(get_state(input, state));
+      (toggle || keyboard) && input.trigger('is.Changed');
+      toggle && input.trigger('is.' + state.replace('di', 'Di').replace('ch', 'Ch'));
+      parent.data(state, true).addClass(getOption(input, state));
     }
   }
 
-  function off(input, toggle, parent, state) {
+  function off(input, toggle, parent, state, keyboard) {
     var callback = state == 'disabled' ? 'Enabled' : 'Unchecked';
 
     toggle && (input[0][state] = false);
 
     if (parent.data(state) !== false) {
-      toggle && input.trigger('is' + callback);
-      parent.data(state, false).removeClass(get_state(input, state));
+      (toggle || keyboard) && input.trigger('is.Changed');
+      toggle && input.trigger('is.' + callback);
+      parent.data(state, false).removeClass(getOption(input, state));
     }
   }
 
   function destroy(input, callback) {
-    if (input.data('state'))
-      input.attr('style', input.data('style') || '').parent().html(input.trigger(callback || '')), input.removeData('state').unwrap();
+    if (input.data('icheck')) {
+      var id = input[0].id, label = $('label[for=' + id + ']');
+
+      input.parent().html(input.attr('style', input.data('icheck').style || '').trigger(callback || ''));
+      input.removeData('icheck').unbind('.df').unwrap();
+      id && label.length && label.unbind('.df');
+    }
   }
 
-  function get_state(input, state) {
-    if (input.data('state'))
-      return state == false ? input.data('state') : input.data('state')[state + 'Class'];
+  function getOption(input, state) {
+    if (input.data('icheck')) return input.data('icheck').options[state + 'Class'];
   }
 })(jQuery);

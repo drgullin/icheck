@@ -9,6 +9,7 @@
     height: 29px;
     background: url(polaris.png) no-repeat;
     border: none;
+    cursor: pointer;
 }
 
 .icheckbox_polaris,
@@ -24,6 +25,7 @@
     }
     .icheckbox_polaris.disabled {
         background-position: -93px 0;
+        cursor: default;
     }
     .icheckbox_polaris.checked.disabled {
         background-position: -124px 0;
@@ -42,6 +44,7 @@
     }
     .iradio_polaris.disabled {
         background-position: -248px 0;
+        cursor: default;
     }
     .iradio_polaris.checked.disabled {
         background-position: -279px 0;

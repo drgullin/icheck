@@ -9,6 +9,7 @@
     height: 18px;
     background: url(aero.png) no-repeat;
     border: none;
+    cursor: pointer;
 }
 
 .icheckbox_minimal-aero,
@@ -24,6 +25,7 @@
     }
     .icheckbox_minimal-aero.disabled {
         background-position: -60px 0;
+        cursor: default;
     }
     .icheckbox_minimal-aero.checked.disabled {
         background-position: -80px 0;
@@ -42,6 +44,7 @@
     }
     .iradio_minimal-aero.disabled {
         background-position: -160px 0;
+        cursor: default;
     }
     .iradio_minimal-aero.checked.disabled {
         background-position: -180px 0;

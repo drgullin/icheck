@@ -13,6 +13,7 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    cursor: pointer;
 }
     .icheck_line .icheck_line-icon {
         position: absolute;
@@ -39,6 +40,7 @@
         }
     .icheck_line.disabled {
         background: #ccc;
+        cursor: default;
     }
         .icheck_line.disabled .icheck_line-icon {
             background-position: -30px 0;
@@ -76,6 +78,7 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    cursor: pointer;
 }
     .icheck_line-red .icheck_line-icon {
         position: absolute;
@@ -102,6 +105,7 @@
         }
     .icheck_line-red.disabled {
         background: #F7D3D2;
+        cursor: default;
     }
         .icheck_line-red.disabled .icheck_line-icon {
             background-position: -30px 0;
@@ -139,6 +143,7 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    cursor: pointer;
 }
     .icheck_line-green .icheck_line-icon {
         position: absolute;
@@ -165,6 +170,7 @@
         }
     .icheck_line-green.disabled {
         background: #89E6C4;
+        cursor: default;
     }
         .icheck_line-green.disabled .icheck_line-icon {
             background-position: -30px 0;
@@ -202,6 +208,7 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    cursor: pointer;
 }
     .icheck_line-blue .icheck_line-icon {
         position: absolute;
@@ -228,6 +235,7 @@
         }
     .icheck_line-blue.disabled {
         background: #ADD7F0;
+        cursor: default;
     }
         .icheck_line-blue.disabled .icheck_line-icon {
             background-position: -30px 0;
@@ -265,6 +273,7 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    cursor: pointer;
 }
     .icheck_line-aero .icheck_line-icon {
         position: absolute;
@@ -291,6 +300,7 @@
         }
     .icheck_line-aero.disabled {
         background: #D2E4E8;
+        cursor: default;
     }
         .icheck_line-aero.disabled .icheck_line-icon {
             background-position: -30px 0;
@@ -328,6 +338,7 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    cursor: pointer;
 }
     .icheck_line-grey .icheck_line-icon {
         position: absolute;
@@ -354,6 +365,7 @@
         }
     .icheck_line-grey.disabled {
         background: #D5D4D3;
+        cursor: default;
     }
         .icheck_line-grey.disabled .icheck_line-icon {
             background-position: -30px 0;
@@ -391,6 +403,7 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    cursor: pointer;
 }
     .icheck_line-orange .icheck_line-icon {
         position: absolute;
@@ -417,6 +430,7 @@
         }
     .icheck_line-orange.disabled {
         background: #FFD6B3;
+        cursor: default;
     }
         .icheck_line-orange.disabled .icheck_line-icon {
             background-position: -30px 0;
@@ -454,6 +468,7 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    cursor: pointer;
 }
     .icheck_line-yellow .icheck_line-icon {
         position: absolute;
@@ -480,6 +495,7 @@
         }
     .icheck_line-yellow.disabled {
         background: #FFE495;
+        cursor: default;
     }
         .icheck_line-yellow.disabled .icheck_line-icon {
             background-position: -30px 0;
@@ -517,6 +533,7 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    cursor: pointer;
 }
     .icheck_line-pink .icheck_line-icon {
         position: absolute;
@@ -543,6 +560,7 @@
         }
     .icheck_line-pink.disabled {
         background: #E0D0DA;
+        cursor: default;
     }
         .icheck_line-pink.disabled .icheck_line-icon {
             background-position: -30px 0;
@@ -580,6 +598,7 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    cursor: pointer;
 }
     .icheck_line-purple .icheck_line-icon {
         position: absolute;
@@ -606,6 +625,7 @@
         }
     .icheck_line-purple.disabled {
         background: #D2CCDE;
+        cursor: default;
     }
         .icheck_line-purple.disabled .icheck_line-icon {
             background-position: -30px 0;

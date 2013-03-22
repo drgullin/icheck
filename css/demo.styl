@@ -12,9 +12,6 @@ html
 body
 	height 100%
 
-html
-	overflow-y scroll
-
 body
 	font 14px/20px $stack
 	color #222
@@ -22,7 +19,7 @@ body
 	*background-image url(ie/header-line.png)
 
 a
-	color #222
+	color #333
 	text-decoration none
 	border-bottom 1px solid #bbb
 
@@ -30,7 +27,12 @@ a
 		color #000
 
 .self
+	color #333
 	border-bottom 1px dotted #aaa
+	cursor pointer
+
+	&:hover
+		color #000
 
 strong
 	font-weight 700
@@ -101,20 +103,20 @@ td
 	margin 0 auto
 	padding 0 15px
 
-	.reveal &
-		display none
-
 .header
 	padding 115px 0 73px
 	color #fff
 	text-align center
 
 	h1
+	strong
+		letter-spacing -1px
+		text-transform uppercase
+
+	h1
 		padding-bottom 23px
 		font-size 22px
 		line-height 28px
-		letter-spacing -1px
-		text-transform uppercase
 
 	h3
 		position relative
@@ -125,19 +127,24 @@ td
 
 		&:before
 			content ''
+			display inline-block
+			width 72px
+			height 64px
+			margin-right 32px
+			vertical-align middle
+			background url(icheck.png)
+
+		&:after
+			content ''
 			position absolute
 			top 0
 			left 50%
 			width 100px
-			height 3px
 			margin-left -50px
-			overflow hidden
-			background #fff
+			border-top 3px solid #fff
 
 	strong
 		font 24px/30px $stack
-		letter-spacing -1px
-		text-transform uppercase
 
 		a
 			color #fff
@@ -146,25 +153,65 @@ td
 			&:hover
 				border-top 1px solid #fff
 
+.button-star
+	position relative
+	display block
+	height 18px
+	padding 0 3px 0 21px
+	overflow hidden
+	font 700 11px/18px 'Helvetica Neue', Arial, sans-serif
+	color #333 !important
+	text-shadow 0 1px 0 rgba(255,255,255,.5)
+	background-color #f8f8f8
+	background-image -webkit-gradient(linear,left top,left bottom,from(#fff),to(#dedede))
+	background-image -moz-linear-gradient(top,#fff,#dedede)
+	background-image -o-linear-gradient(top,#fff,#dedede)
+	background-image -ms-linear-gradient(top,#fff,#dedede)
+	background-image linear-gradient(top,#fff,#dedede)
+	border #ccc solid 1px !important
+	-moz-border-radius 3px
+	-webkit-border-radius 3px
+	border-radius 3px
+	cursor pointer
+	-webkit-user-select none
+	-moz-user-select none
+	-o-user-select none
+	user-select none
+
+	&:hover
+		background-color #f8f8f8
+		background-image -webkit-gradient(linear,left top,left bottom,from(#f8f8f8),to(#d9d9d9))
+		background-image -moz-linear-gradient(top,#f8f8f8,#d9d9d9)
+		background-image -o-linear-gradient(top,#f8f8f8,#d9d9d9)
+		background-image -ms-linear-gradient(top,#f8f8f8,#d9d9d9)
+		background-image linear-gradient(top,#f8f8f8,#d9d9d9)
+		border-color #bbb !important
+
+	i
+		position absolute
+		top 2px
+		left 4px
+		width 14px
+		height 15px
+		background url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAPCAYAAADUFP50AAACQUlEQVR4Xn2SX2hSURzH772TEIYIWmZYIIGa+FJDIR+CoPakkUT+a+r2IOqT+BCIf/aqJCgy+jOKFfgSqASBCK6HgrIyWau0QMsVkQ/bFMTIu6Fy+x5IGGPrCx9+9/zO93vPOfdcmtojs9l8FMUPjOAM4EADFMBSLpfrUPuF0HWLxdJ3u90bmUzmVaVSeUcgz6SHud/wWPaHLNBuNputjUajZY7jTODsP0ykl8/na/DswHtjEjputVr/FAqFT4lE4g7GbbAIEmAZ3AKbsVjsfqlU+gAvi/EpyuVyJUOh0DZWmI3H43fR5A4iEok8gediNBrdWlhYuMfweDyrTqd7Q9P0s0ajYaAOUavVMmCrVa1W+xLDa8xgMDgxPT2dJQY8nzwsOB6Pj8hkstMikegxfMcY0lxbW+uRswoEgiH1H8nlcsnq6upgamqKY8RiMdvr9c7p9XqJwWCoMQzDHRSamZnZxM5olmUvCIVCllGpVBv9fv+KVCod1+v19WQy+dpoNH7HmSkitVrdDYfD68Fg8Dbus4ngrFKp/Ek1m82bdrt91+PxeHEdDx0ORxGGb3NzcyNUNhAI/MBdagCN45hsNtsQCyzyFArFI5gc+EOW8IVX5ufnu+VyedzpdAZ8Pp8lYPXP5OJRV5xO5xeNRvOAIsLbLheLxY/kchF87/f7v2K1Pmrb5/P9QqiKuR3iIV5qr9C41G63n6dSqarX693G9ocEBLvpdHodcy+IZ+Kn94UlKFfBeSADRG3wFjzFVrcm3r8xLTc0GmEycwAAAABJRU5ErkJggg==") no-repeat
+		*background-image url(ie/icon-github.png)
+
 .features
 	position relative
 	font-size 16px
 	color #555
 	background #fff
 
-	a
+	.self
 		color #555
+		border-bottom-color #bbb
 
 		&:hover
-			color #333
-
-		&.self
-			border-bottom-color #bbb
+			color #222
 
 	.arrows
 		top 0
 
-	&:hover .arrows .top
 	&:hover .arrows .bottom
 		left 0
 
@@ -183,63 +230,199 @@ td
 		&.offset
 			margin-top 20px
 
-.features li span
 .mark
 	padding 0 2px
 	color lighten(#555, 20%)
 	background lighten(#d7d4cc, 40%)
 
-.skin-polaris .mark
-	background darken(#2C323C, 20%)
+	.skin-polaris &
+		background darken(#2C323C, 20%)
 
-.skin-futurico .mark
-	background darken(#2E3035, 20%)
+	.skin-futurico &
+		background darken(#2E3035, 20%)
 
-.actions li
-.actions-small li
-	float left
-	width 310px
-	height 63px
-	text-align center
+.social
+	height 60px
+	margin-bottom 60px
+	padding 0 60px
+	font-size 16px
+	color #555
+	background lighten(#EBE7DF, 50%)
 
 	a
-		display block
-		height 60px
-		font-size 18px
-		line-height 58px
+		color #777
+		border-bottom-color #ccc
+
+		&:hover
+			color #444
+
+	.left
+		float left
+		padding-top 19px
+
+		li
+			float left
+			padding-right 30px
+
+			a
+				position relative
+
+	.right
+		float right
+		padding-top 20px
+
+		li
+			float right
+			padding-left 25px
+
+			a
+				font 700 11px/18px 'Helvetica Neue', Arial, sans-serif
+				color #333
+
+.demo-holder
+	margin-bottom 97px
+
+.demo-title
+	padding-bottom 36px
+	font-size 26px
+	letter-spacing -1px
+
+.demo
+	position relative
+
+	&:hover .arrows .top
+	&:hover .arrows .bottom
+		left 0
+
+.demo-list
+	position relative
+	margin-right 360px
+	padding 33px 57px 17px
+	color #555
+	background #fff
+	border 3px solid #ddd8ce
+
+	ul
+		float right
+		white-space nowrap
+
+		&:first-child
+			float left
+
+		li
+			position relative
+			padding 0 0 18px 42px
+
+		input
+			position absolute
+			top 4px
+			left 0
+
+		.icheckbox_square-blue
+		.iradio_square-blue
+			position absolute
+			top -1px
+			left 0
+
+		span
+			color #bbb
+
+.demo-methods
+	padding 21px 360px 0 0
+
+	.mark
+		background darken(#e7e5e0, 10%)
+
+	dt
+		position relative
+		padding 17px 150px 18px 0
+		font 16px/24px $stack
+		color #444
+		border-bottom 3px solid #ddd8ce
+
+		.self
+			cursor pointer
+
+			&:hover
+				color #222
+
+		.code
+			position absolute
+			right 0
+			bottom 18px
+			color #777
+
+			.self:hover
+				color #444
+
+	dd
+		position relative
+		display none
+		margin 0
+		background #fff
+		border 3px solid #ddd8ce
+		border-top none
+
+		&:before
+			content ''
+			position absolute
+			top -13px
+			left 0
+			width 0
+			height 0
+			border 5px solid transparent
+			border-bottom-color #ddd8ce
+			border-left-color #ddd8ce
+
+		.markup
+			margin 0
+			color #888
+			background lighten(#ebe7df, 50%)
+			border none
+
+			.comment
+				color #aaa
+
+.demo-callbacks
+	position absolute
+	top 0
+	right 0
+	bottom 0
+	width 300px
+	color #aaa
+	background #232323
+	border 3px solid #ddd8ce
+
+	h2
 		color #fff
-		border none
-		background #E76B66
+		background #6a5a8c
 
-		&:hover
-			border-bottom 3px solid darken(#E76B66, 10%)
+	ul
+		position absolute
+		top 60px
+		width 100%
+		bottom 0
+		overflow auto
 
-	&.fork a
-		background #579AA9
+		li
+			margin-top -1px
+			padding 13px 20px 15px
+			border-top 1px solid #2e2e2e
 
-		&:hover
-			border-bottom-color darken(#579AA9, 10%)
+			span
+				color #888
 
-	&.follow a
-		background #1D8BC6
+.skins
+	position relative
+	*zoom 1
 
-		&:hover
-			border-bottom-color darken(#1D8BC6, 10%)
-
-.actions-small
-	padding-bottom 56px
-
-	li
-		height 43px
-
-		a
-			height 40px
-			font-size 14px
-			line-height 38px
-
-.examples	h2
-	margin-bottom -2px
-	font-size 24px
+	h2
+		position absolute
+		top -38px
+		right 0
+		left 0
+		font-size 24px
+		text-align center
 
 .arrows
 	position absolute
@@ -262,38 +445,24 @@ td
 		transition left .2s ease-in-out
 
 	.top
-		background lighten(#5a9aa8, 50%) url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAALCAYAAACZIGYHAAAAdklEQVR4Xo3MuwmFQBiE0b0FmAuutnRBsAARLMTYRzvWItiEYLq/s6CYyMwGXzTDcWbG8mhEf/ZjQIV2ZCigjiASMAVJIAVKAQ4FKWBDJVoYpAB/7z8GRaAQgBNQG8dZA28f0BmHBgUCKGh9hhpNKH8BWY8GlF2OH3hCC1zmdAAAAABJRU5ErkJggg==") 50% no-repeat
+		background lighten(#5a9aa8, 20%) url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAALCAYAAACZIGYHAAAAdklEQVR4Xo3MuwmFQBiE0b0FmAuutnRBsAARLMTYRzvWItiEYLq/s6CYyMwGXzTDcWbG8mhEf/ZjQIV2ZCigjiASMAVJIAVKAQ4FKWBDJVoYpAB/7z8GRaAQgBNQG8dZA28f0BmHBgUCKGh9hhpNKH8BWY8GlF2OH3hCC1zmdAAAAABJRU5ErkJggg==") 50% no-repeat
 		*background-image url(ie/arrow-top.png)
 
 		&:hover
-			background-color lighten(#5a9aa8, 30%)
-
-		.skin-polaris &
-		.skin-futurico &
-			background-color lighten(#5a9aa8, 20%)
-
-			&:hover
-				background-color lighten(#5a9aa8, 10%)
+			background-color lighten(#5a9aa8, 10%)
 
 	.bottom
-		background lighten(#dba571, 40%) url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAALCAYAAACZIGYHAAAAf0lEQVR4Xo3MzQmEQBCE0TGAvQuOpiQIBiCCgXj2J52NRTAJwev0Vh+WOgjlNHyHguYFM/M6tKLSd2YTmtHHR48S8jtQzAB2430d2bgJvQLsdqRCZwZUPAFLaPjrjYAUMKLgwBtUK4CIhi4BEFGQBohISANEJKQBIqqIFtSqvx/0bXhCCUrgiAAAAABJRU5ErkJggg==") 50% no-repeat
+		background lighten(#dba571, 20%) url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAALCAYAAACZIGYHAAAAf0lEQVR4Xo3MzQmEQBCE0TGAvQuOpiQIBiCCgXj2J52NRTAJwev0Vh+WOgjlNHyHguYFM/M6tKLSd2YTmtHHR48S8jtQzAB2430d2bgJvQLsdqRCZwZUPAFLaPjrjYAUMKLgwBtUK4CIhi4BEFGQBohISANEJKQBIqqIFtSqvx/0bXhCCUrgiAAAAABJRU5ErkJggg==") 50% no-repeat
 		*background-image url(ie/arrow-bottom.png)
 
 		&:hover
-			background-color lighten(#dba571, 20%)
-
-		.skin-polaris &
-		.skin-futurico &
-			background-color lighten(#dba571, 10%)
-
-			&:hover
-				background-color #dba571
+			background-color #dba571
 
 @media screen and (max-width:1049px)
 	.arrows
 		display none
 
-.example
+.skin
 	position relative
 	margin-bottom 40px
 
@@ -421,7 +590,7 @@ td
 		color #888
 		background #2e3035
 
-.example-section
+.skin-section
 	float left
 	padding 42px 0 31px 57px
 	line-height 18px
@@ -446,56 +615,11 @@ td
 	.skin-minimal & .list li
 		padding-left 38px
 
-	.skin-minimal & .icheckbox_minimal
-	.skin-minimal & .icheckbox_minimal-red
-	.skin-minimal & .icheckbox_minimal-green
-	.skin-minimal & .icheckbox_minimal-blue
-	.skin-minimal & .icheckbox_minimal-aero
-	.skin-minimal & .icheckbox_minimal-grey
-	.skin-minimal & .icheckbox_minimal-orange
-	.skin-minimal & .icheckbox_minimal-yellow
-	.skin-minimal & .icheckbox_minimal-pink
-	.skin-minimal & .icheckbox_minimal-purple
-	.skin-minimal & .iradio_minimal
-	.skin-minimal & .iradio_minimal-red
-	.skin-minimal & .iradio_minimal-green
-	.skin-minimal & .iradio_minimal-blue
-	.skin-minimal & .iradio_minimal-aero
-	.skin-minimal & .iradio_minimal-grey
-	.skin-minimal & .iradio_minimal-orange
-	.skin-minimal & .iradio_minimal-yellow
-	.skin-minimal & .iradio_minimal-pink
-	.skin-minimal & .iradio_minimal-purple
-		position absolute
-		top 1px
-		left 0
-
 	.skin-square & .list li
 		padding-left 42px
 
-	.skin-square & .icheckbox_square
-	.skin-square & .icheckbox_square-red
-	.skin-square & .icheckbox_square-green
-	.skin-square & .icheckbox_square-blue
-	.skin-square & .icheckbox_square-aero
-	.skin-square & .icheckbox_square-grey
-	.skin-square & .icheckbox_square-orange
-	.skin-square & .icheckbox_square-yellow
-	.skin-square & .icheckbox_square-pink
-	.skin-square & .icheckbox_square-purple
-	.skin-square & .iradio_square
-	.skin-square & .iradio_square-red
-	.skin-square & .iradio_square-green
-	.skin-square & .iradio_square-blue
-	.skin-square & .iradio_square-aero
-	.skin-square & .iradio_square-grey
-	.skin-square & .iradio_square-orange
-	.skin-square & .iradio_square-yellow
-	.skin-square & .iradio_square-pink
-	.skin-square & .iradio_square-purple
-		position absolute
-		top -1px
-		left 0
+	.skin-flat & .list li
+		padding-left 40px
 
 	.skin-line & h4
 		padding-bottom 24px
@@ -509,22 +633,94 @@ td
 	.skin-polaris & .list li
 		padding-left 37px
 
-	.skin-polaris & .icheckbox_polaris
-	.skin-polaris & .iradio_polaris
-		position absolute
-		top -4px
-		left -6px
-
 	.skin-futurico & .list li
 		padding-left 36px
 
-	.skin-futurico & .icheckbox_futurico
-	.skin-futurico & .iradio_futurico
-		position absolute
-		top 2px
-		left 0
+.icheckbox_minimal
+.icheckbox_minimal-red
+.icheckbox_minimal-green
+.icheckbox_minimal-blue
+.icheckbox_minimal-aero
+.icheckbox_minimal-grey
+.icheckbox_minimal-orange
+.icheckbox_minimal-yellow
+.icheckbox_minimal-pink
+.icheckbox_minimal-purple
+.iradio_minimal
+.iradio_minimal-red
+.iradio_minimal-green
+.iradio_minimal-blue
+.iradio_minimal-aero
+.iradio_minimal-grey
+.iradio_minimal-orange
+.iradio_minimal-yellow
+.iradio_minimal-pink
+.iradio_minimal-purple
+	position absolute
+	top 1px
+	left 0
 
-.example-states
+.icheckbox_square
+.icheckbox_square-red
+.icheckbox_square-green
+.icheckbox_square-blue
+.icheckbox_square-aero
+.icheckbox_square-grey
+.icheckbox_square-orange
+.icheckbox_square-yellow
+.icheckbox_square-pink
+.icheckbox_square-purple
+.iradio_square
+.iradio_square-red
+.iradio_square-green
+.iradio_square-blue
+.iradio_square-aero
+.iradio_square-grey
+.iradio_square-orange
+.iradio_square-yellow
+.iradio_square-pink
+.iradio_square-purple
+	position absolute
+	top -1px
+	left 0
+
+.icheckbox_flat
+.icheckbox_flat-red
+.icheckbox_flat-green
+.icheckbox_flat-blue
+.icheckbox_flat-aero
+.icheckbox_flat-grey
+.icheckbox_flat-orange
+.icheckbox_flat-yellow
+.icheckbox_flat-pink
+.icheckbox_flat-purple
+.iradio_flat
+.iradio_flat-red
+.iradio_flat-green
+.iradio_flat-blue
+.iradio_flat-aero
+.iradio_flat-grey
+.iradio_flat-orange
+.iradio_flat-yellow
+.iradio_flat-pink
+.iradio_flat-purple
+	position absolute
+	top 0
+	left 0
+
+.icheckbox_polaris
+.iradio_polaris
+	position absolute
+	top -4px
+	left -6px
+
+.icheckbox_futurico
+.iradio_futurico
+	position absolute
+	top 2px
+	left 0
+
+.skin-states
 	float right
 	padding-right 57px
 	padding-left 0
@@ -535,32 +731,11 @@ td
 	.skin-minimal & .list li
 		padding-left 71px
 
-	.skin-minimal & .iradio_minimal
-	.skin-minimal & .iradio_minimal-red
-	.skin-minimal & .iradio_minimal-green
-	.skin-minimal & .iradio_minimal-blue
-	.skin-minimal & .iradio_minimal-aero
-	.skin-minimal & .iradio_minimal-grey
-	.skin-minimal & .iradio_minimal-orange
-	.skin-minimal & .iradio_minimal-yellow
-	.skin-minimal & .iradio_minimal-pink
-	.skin-minimal & .iradio_minimal-purple
-		left 33px
-
 	.skin-square & .list li
 		padding-left 79px
 
-	.skin-square & .iradio_square
-	.skin-square & .iradio_square-red
-	.skin-square & .iradio_square-green
-	.skin-square & .iradio_square-blue
-	.skin-square & .iradio_square-aero
-	.skin-square & .iradio_square-grey
-	.skin-square & .iradio_square-orange
-	.skin-square & .iradio_square-yellow
-	.skin-square & .iradio_square-pink
-	.skin-square & .iradio_square-purple
-		left 37px
+	.skin-flat & .list li
+		padding-left 75px
 
 	.skin-line & .list
 		padding-right 0
@@ -568,13 +743,49 @@ td
 	.skin-polaris & .list li
 		padding-left 69px
 
-	.skin-polaris & .iradio_polaris
-		left 26px
-
 	.skin-futurico & .list li
 		padding-left 67px
 
-	.skin-futurico & .iradio_futurico
+	.iradio_minimal
+	.iradio_minimal-red
+	.iradio_minimal-green
+	.iradio_minimal-blue
+	.iradio_minimal-aero
+	.iradio_minimal-grey
+	.iradio_minimal-orange
+	.iradio_minimal-yellow
+	.iradio_minimal-pink
+	.iradio_minimal-purple
+		left 33px
+
+	.iradio_square
+	.iradio_square-red
+	.iradio_square-green
+	.iradio_square-blue
+	.iradio_square-aero
+	.iradio_square-grey
+	.iradio_square-orange
+	.iradio_square-yellow
+	.iradio_square-pink
+	.iradio_square-purple
+		left 37px
+
+	.iradio_flat
+	.iradio_flat-red
+	.iradio_flat-green
+	.iradio_flat-blue
+	.iradio_flat-aero
+	.iradio_flat-grey
+	.iradio_flat-orange
+	.iradio_flat-yellow
+	.iradio_flat-pink
+	.iradio_flat-purple
+		left 35px
+
+	.iradio_polaris
+		left 26px
+
+	.iradio_futurico
 		left 31px
 
 .colors
@@ -652,9 +863,6 @@ td
 		.skin-square &.grey
 			background #73716e
 
-		.skin-square &.orange
-			background #de8650
-
 		.skin-square &.yellow
 			background #fc3
 
@@ -667,10 +875,34 @@ td
 		.skin-square &.orange
 			background #f70
 
+		.skin-flat &.red
+			background #ec7063
+
+		.skin-flat &.green
+			background #1abc9c
+
+		.skin-flat &.blue
+			background #3498db
+
+		.skin-flat &.grey
+			background #95a5a6
+
+		.skin-flat &.orange
+			background #f39c12
+
+		.skin-flat &.yellow
+			background #f1c40f
+
+		.skin-flat &.pink
+			background #af7ac5
+
+		.skin-flat &.purple
+			background #8677a7
+
 		.skin-line &.yellow
 			background #FFC414
 
-.examples-info
+.skins-info
 	padding 13px 0 57px
 	font-size 16px
 	line-height 22px
@@ -679,7 +911,7 @@ td
 	p
 		margin-bottom 17px
 
-.example-usage
+.skin-usage
 	padding 43px 60px 22px
 	list-style decimal outside
 
@@ -701,7 +933,7 @@ td
 
 .usage
 	position relative
-	margin-bottom 60px
+	margin-bottom 80px
 	background #fff
 
 	&.self
@@ -716,22 +948,19 @@ td
 
 	h2
 		color #fff
-		background #1F7E5C
+		background #1f7f5c
 
 	h4
 		margin 26px 0 10px
+
+		&.callbacks
+			margin-bottom 19px
 
 	p
 		margin-bottom 5px
 
 		&.offset
 			margin-top 10px
-
-		&.callbacks-demo
-			margin-bottom 14px
-
-		&.methods-demo
-			margin-bottom 10px
 
 	.markup
 		margin 9px 0 16px
@@ -766,191 +995,117 @@ td
 		.comment
 			color #555
 
+.browsers
+	margin-bottom 74px
+
+	h2
+		margin-bottom 29px
+		font-size 24px
+
+.browsers-inner
+	font-size 15px
+	line-height 23px
+
+	p
+		margin-bottom 15px
+
+.benefits
+	position relative
+	margin-bottom 59px
+	color #888
+	background #232323
+
+	.arrows
+		top 0
+
+	&:hover .arrows .top
+	&:hover .arrows .bottom
+		left 0
+
+	h2
+		color #fff
+		background #6a5b8c
+
+	a
+		color #888
+		border-bottom-color #666
+
+		&:hover
+			color #aaa
+
+	.mark
+		color #777
+		background lighten(#232323, 10%)
+
+.benefits-inner
+	padding 41px 60px 29px
+	font-size 15px
+	line-height 23px
+
+	p
+		margin-bottom 15px
+
+	ul
+		margin -10px 0 15px
+
+.actions li
+	float left
+	width 465px
+	height 63px
+	text-align center
+
+	a
+		display block
+		height 60px
+		font-size 18px
+		line-height 58px
+		color #fff
+		border none
+		background #E76B66
+
+		&:before
+			content ''
+			display inline-block
+			width 26px
+			height 26px
+			margin-right 12px
+			background url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAACYUlEQVR4Xr3VPWhTURjH4VOt0ES7ZRJbEJpsNsaimx9E0GpRCdgU/NhsRAdNBYcK0RirQcSkIIK2cRBRiragVayDhqBDLVWatFvsIKK2UMEp4KBcf8N/KNdwvcHWAw8c/rzvebk5yU2dZVnmf6wVNdb70Ca+5Rrkx0e8E/ZkyzCoAyuxBZu17/jXQV34jjwCytowjUk90Ywyo5q8errcDoriPgpoRhEj6MQrGHmpbARF1RbUG3Uz6Bae4iBacQNNSKEPRi4pa1JNq3pGcds+qNrXu4B1CKKCWtZqlPAZO/72RDGsRdKWh5ATIdOSpHpjbu6ojBfYBiPdOIQeHJMeZd0wsh1jKDsNakEc97AHo8o3IYCz2I1nGMYuZQHVGPXs1RlxtNgH+TCFtBpvIqua40ghqkGdOIp27VOqMcigX8PTKIKzWXwZDDbAQhDG5o6yx2iAkQY80T4HYxOEpbP/uCOnN+wq1Nlq6x3qrWp3NIcKJvAWV+FVzU804i6uwyNZZY34BaOeyzpjQmfOLR70DSGcwyxOIa7mAZzHQ+QxLHllCdUYnMYZzOqsjeBsPbp8QFZ7Lw7gCt4jhGu4qCEGa5SVVWPUM4Yjbn5HfrTjNYzk8AAZ5CSjbBBG3qjXr0CqX+YAviJpy6cQg9NKIoJBN6+gIGbwA16kMY5eeGDEo2xcNV71TCPo5qM7iX14hJIueB4XkICRhLJ51ZTUsx8n3AwawmGE8QUhRDR4J4yElUUQUm1YvUPOfxPO4khj66KL70W/m+Z6uF3P0YdJBRVlZqkHlbEezQo+YWHJB8mC1Lx+Ayeq7nRIoewwAAAAAElFTkSuQmCC")
+			*background-image url(ie/icon-options.png)
+			vertical-align middle
+
+		&:hover
+			border-bottom 3px solid darken(#E76B66, 10%)
+
+	&.fork a
+		background #579AA9
+
+		&:before
+			background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAACcklEQVR4XrXQS0hUYRiH8TGnodIaITEoqIwgaBGFJUGrIssUaVC7eBmmqNFSw6xFDAlBhIpFSoUypF0WUoHlBUlbWIzRQlBMCIKIUbuQi4RoEcLUTM/ivzgcjk0e8YUfH7OZ57xvQiwWcyzS7EctpnBhySJFVqMORehD80JC2+FD6hyhb/Ia6+yG/BjFA4xjiyn0AT/QpY0a7YTyEcQYSpGCVxYxHwI4iAE7oUp8RxY6cAhui1gCZjEDh53QT6TiiMJDc8QKEEb6fEJuVOAtPIgiD6v+EXuhj5mEwxknkIkyHEcSvuIq2vEJjCiGfsX24ikY643cOIsxDOMkQjiMDbhiiphjOdrsJdZYhTLRhi9oQRp6MAEXsnS+fVgO86zQG9IF1qLEGErDG8PXD8GD9Xo3w4tO/EKuTtOFXYZQE8qRiAIwfKTGiXrsRgNaDWdx4ZZCAYTEITtwXSe+hmL4tfU23EO3caNN+Ixa0+3zMYtq1CmQgn68QyUOYEaxZIwgSWE/YsaN+nAD7TiFPwp9RBWihhPU4DEe4g6ydQkvprEHEWhEGzVpTZ/+IFGhEW0zrNdqEpCBrbhvGREnojitTfyKe/V7VBzSjA6cwzieo1Vb38Wc49QbQ7liZxQrxW9DZCOmkGMIJ6MEg9B5YXk6jWIVaMExPMJSRdIRRiGMU6RYEEyckClWhdsoVMyFSRzFgClUhmn0gol/OnOsWmc8jyfasNMUycBO1CMyn43MsRrchEcRlynkRxRtYOyEIBfRiDw8M8SSUYxBhBcckktoQC56sAxerERQgYWHJIA6ZGMCzdqk10Yorss4gffoVjTyv6G/ACqnKZp2IHMAAAAASUVORK5CYII=")
+			*background-image url(icon-lab.png)
+
+		&:hover
+			border-bottom-color darken(#579AA9, 15%)
+
 .license
 	color #444
 	text-align center
 	padding 30px 0 75px
 
-.overlay
-	position absolute
-	top 0
-	right 0
-	bottom 0
-	left 0
-	background #EBE7DF
-
-.extended
-	position relative
-	display none
-	width 930px
-	min-height 100%
-	margin 0 auto
-	padding 0 15px
-
-	.reveal &
-		display block
-
-.extended-title
-	padding 79px 0 54px
-	font-size 22px
-
-.extended-inputs
-	margin 0 357px 0 -3px
-	padding 33px 60px 20px
-	color #444
-	background #fff
-	border 3px solid #ddd8ce
-
-	ul
-		float right
-		white-space nowrap
-
-		&:first-child
-			float left
-
-		li
-			position relative
-			padding 0 0 15px 42px
-
-		input
-			position absolute
-			top 4px
-			left 0
-
-		.icheckbox_square-grey
-		.iradio_square-grey
-		.icheckbox_square-blue
-		.iradio_square-blue
-			position absolute
-			top -1px
-			left 0
-
-		span
-			color #bbb
-
-.extended-methods
-	margin 0 0 0 -3px
-	padding 35px 357px 80px 0
-
-	.mark
-		background darken(#e7e5e0, 10%)
-
-	dt
-		position relative
-		padding 17px 150px 18px 3px
-		font 16px/24px $stack
-		color #444
-		border-bottom 3px solid #ddd8ce
-
-		.self
-			cursor pointer
-
-			&:hover
-				color #222
-
-		.code
-			position absolute
-			right 0
-			bottom 18px
-			color #777
-
-			.self:hover
-				color #444
-
-	dd
-		position relative
-		display none
-		margin 0
-		background #fff
-		border 3px solid #ddd8ce
-		border-top none
-
-		&:before
-			content ''
-			position absolute
-			top -13px
-			left -3px
-			width 0
-			height 0
-			border 5px solid transparent
-			border-bottom-color #ddd8ce
-			border-left-color #ddd8ce
-
-		.markup
-			margin 0
-			color #888
-			background lighten(#ebe7df, 50%)
-			border none
-
-			.comment
-				color #aaa
-
-.extended-callbacks
-	position absolute
-	top 193px
-	bottom 80px
-	left 50%
-	display none
-	width 300px
-	margin-left 162px
-	color #aaa
-	background #232323
-	border 3px solid #ddd8ce
-
-	.reveal &
-		display block
-
-	&.fixed
-		position fixed
-
-	h2
-		color #fff
-		background #6a5a8c
-
-	ul
-		position absolute
-		top 60px
-		width 100%
-		bottom 0
-		overflow auto
-
-		li
-			margin-top -1px
-			padding 13px 20px 15px
-			border-top 1px solid #2e2e2e
-
-			span
-				color #888
-
-.extend-close
-	position absolute
-	top 40px
-	right 15px
-	height 24px
-	padding-right 39px
-	font-size 16px
-	line-height 24px
-	color #fff
-	text-align right
-	background url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAP9JREFUeNqklssKwjAQRYOPfq8gvhpNn/oLgoqiuBDx19z4WMcZaBaWNDNJLtxNMj0H0kIqtNYCOoSeoR/otFkLaQp9Q4/QPq7hYgJ96P+oAHjZYtyhA9y4aHtUBNzkhJtf3R0VAce8cGCh3VGBcMzEDCpiMLPAK+IZaV5yiIQFbws4ktwHbhNwJGx4lyBUktpYrs9PxcIpAXYVA8f2hDuJoOOecdgrjyPKfY+oDnjJBVdQR3ymBSVYE4A5dOkj8YWbWUnMlm3BxgPOlVRGkAXAuRJJXTgzxoUjqQvnEAGnJHvR3P63CHiX5Ipss4mSHfQJHUX8towbxtb8tvwEGAApRpaSGE17KgAAAABJRU5ErkJggg==") 100% no-repeat
-	*background-image url(ie/icon-close.png)
-	cursor pointer
-
 .footer
-	padding 28px 0 45px
+	padding 28px 0 35px
 	color #666
 	background #e2dfd8
 
-	.reveal &
-		display none
+	ul
+		float left
 
-	.inner
-		width 930px
-		margin 0 auto
-		overflow hidden
+		li
+			float left
+			padding 2px 20px 0 0
 
 	.design
 		float left
+		padding-right 120px
 
 	.code
 		float right
@@ -960,3 +1115,9 @@ td
 
 		&:hover
 			color #222
+
+.footer-inner
+	width 930px
+	margin 0 auto
+	overflow hidden
+

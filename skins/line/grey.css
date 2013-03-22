@@ -13,6 +13,7 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    cursor: pointer;
 }
     .icheck_line-grey .icheck_line-icon {
         position: absolute;
@@ -39,6 +40,7 @@
         }
     .icheck_line-grey.disabled {
         background: #D5D4D3;
+        cursor: default;
     }
         .icheck_line-grey.disabled .icheck_line-icon {
             background-position: -30px 0;

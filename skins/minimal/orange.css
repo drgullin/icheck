@@ -9,6 +9,7 @@
     height: 18px;
     background: url(orange.png) no-repeat;
     border: none;
+    cursor: pointer;
 }
 
 .icheckbox_minimal-orange,
@@ -24,6 +25,7 @@
     }
     .icheckbox_minimal-orange.disabled {
         background-position: -60px 0;
+        cursor: default;
     }
     .icheckbox_minimal-orange.checked.disabled {
         background-position: -80px 0;
@@ -42,6 +44,7 @@
     }
     .iradio_minimal-orange.disabled {
         background-position: -160px 0;
+        cursor: default;
     }
     .iradio_minimal-orange.checked.disabled {
         background-position: -180px 0;
