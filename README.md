@@ -20,7 +20,7 @@ Features
 * [15 options](#options) to customize checkboxes and radio buttons
 * [8 callbacks](#callbacks) to handle changes
 * [6 methods](#methods) to make changes programmatically
-* Saves changes to original inputs, works [carefully](#initialize) with any jQuery selector
+* Saves changes to original inputs, [works carefully](#initialize) with any jQuery selector
 
 
 How it works
