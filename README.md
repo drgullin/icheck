@@ -203,8 +203,8 @@ $('input').icheck('destroy'); // remove all traces of iCheck
 ```
 
 
-Benefits
---------
+Comparison
+----------
 
 iCheck is created to avoid routine of reinventing the wheel when working with checkboxes and radio buttons. It provides an expected identical result for the huge number of browsers, devices and their versions. Callbacks and methods can be used to easily handle and make changes at customized inputs.
 
