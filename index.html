@@ -16,7 +16,7 @@
     <div class="header">
       <h1>super customized checkboxes and radio buttons with jQuery</h1>
       <h3>iCheck</h3>
-      <strong>by <a href="http://damirfoy.com/">Damir Foy</a></strong>
+      <strong>@<a href="http://twitter.com/damirfoy/">Damir Foy</a></strong>
     </div>
     <div class="features">
       <div class="arrows">
@@ -106,7 +106,7 @@
           $(document).ready(function(){
             var callbacks_list = $('.demo-callbacks ul');
             function callback_log(id, type) {
-              $('.demo-callbacks ul').prepend('<li><span>#' + id + '</span> ' + type.toLowerCase() + '</li>');
+              $('.demo-callbacks ul').prepend('<li><span>#' + id + '</span> is ' + type.toLowerCase() + '</li>');
             };
             $('.demo-list input').bind('is.Created is.Clicked is.Changed is.Checked is.Unchecked is.Disabled is.Enabled is.Destroyed', function(event){
               callback_log(this.id, event.namespace);
