@@ -146,9 +146,6 @@ td {
   color: #fff;
   border-bottom-color: #fff;
 }
-.header strong a:hover {
-  border-top: 1px solid #fff;
-}
 .button-star {
   position: relative;
   display: block;
