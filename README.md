@@ -229,4 +229,4 @@ Mobile browsers (like Opera mini, Chrome mobile, Safari mobile and others) are a
 
 License
 -------
-iCheck jQuery plugin is released under [MIT License](http://en.wikipedia.org/wiki/MIT_License). Feel free to use it in personal and commercial projects. Feel free to use it in personal and commercial projects.
+iCheck jQuery plugin is released under [MIT License](http://en.wikipedia.org/wiki/MIT_License). Feel free to use it in personal and commercial projects.
