@@ -95,7 +95,7 @@ Options
   // set true to inherit input's class name
   inheritClass: false,
 
-  // if set to true, input's id prefixed with "icheck-" and attached
+  // if set to true, input's id is prefixed with "icheck-" and attached
   inheritID: false,
 
   // add custom HTML code or text inside customized input
