@@ -131,7 +131,8 @@
 
     if (parent.data(state) !== true) {
       if (state == 'checked' && input[0].type == 'radio' && input[0].name) {
-        $('input[name=' + input[0].name + ']').each(function() {
+        var safeName = input[0].name.replace(/([ #;?&,.+*~\':"!^$[\]()=>|\/@])/g,'\\$1');
+        $('input[name=' + safeName + ']').each(function() {
           this !== input[0] && $(this).data('icheck') && off($(this), true, $(this).parent(), state);
         });
       }
