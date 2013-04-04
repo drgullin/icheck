@@ -266,11 +266,14 @@ td {
 }
 .social .right li {
   float: right;
-  padding-left: 25px;
+  padding-left: 10px;
 }
 .social .right li a {
-  font: 700 11px/18px 'Helvetica Neue', Arial, sans-serif;
   color: #333;
+}
+.social .right.local li {
+  padding-left: 30px;
+  font-size: 14px;
 }
 .demo-holder {
   margin-bottom: 97px;
@@ -1095,11 +1098,10 @@ td {
 }
 .footer ul li {
   float: left;
-  padding: 2px 20px 0 0;
+  padding: 2px 10px 0 0;
 }
-.footer .design {
-  float: left;
-  padding-right: 120px;
+.footer ul.local li {
+  padding-right: 30px;
 }
 .footer .code {
   float: right;
