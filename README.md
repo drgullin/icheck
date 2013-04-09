@@ -79,30 +79,30 @@ Options
   // class added on checked state (input.checked = true)
   checkedClass: 'checked',
 
-  // if not empty, used instead of 'checkedClass' option (input type specific)
-  checkedCheckboxClass: '',
-  checkedRadioClass: '',
+    // if not empty, used instead of 'checkedClass' option (input type specific)
+    checkedCheckboxClass: '',
+    checkedRadioClass: '',
 
   // if not empty, added as class name on unchecked state (input.checked = false)
   uncheckedClass: '',
 
-  // if not empty, used instead of 'uncheckedClass' option (input type specific)
-  uncheckedCheckboxClass: '',
-  uncheckedRadioClass: '',
+    // if not empty, used instead of 'uncheckedClass' option (input type specific)
+    uncheckedCheckboxClass: '',
+    uncheckedRadioClass: '',
 
   // class added on disabled state (input.disabled = true)
   disabledClass: 'disabled',
 
-  // if not empty, used instead of 'disabledClass' option (input type specific)
-  disabledCheckboxClass: '',
-  disabledRadioClass: '',
+    // if not empty, used instead of 'disabledClass' option (input type specific)
+    disabledCheckboxClass: '',
+    disabledRadioClass: '',
 
   // if not empty, added as class name on enabled state (input.disabled = false)
   enabledClass: '',
 
-  // if not empty, used instead of 'enabledClass' option (input type specific)
-  enabledCheckboxClass: '',
-  enabledRadioClass: '',
+    // if not empty, used instead of 'enabledClass' option (input type specific)
+    enabledCheckboxClass: '',
+    enabledRadioClass: '',
 
   // class added on hover state (hovered or touched)
   hoverClass: 'hover',
