@@ -1,8 +1,15 @@
 $(document).ready(function() {
   var hash = window.location.hash.replace('#', '');
 
-  if (hash && $('.' + hash).length)
-    $(window).scrollTop($('.' + hash).offset().top - 40);
+  if (hash && $('.' + hash).length) {
+    var point = $('.' + hash).offset().top - 40;
+
+    if (window.Zepto) {
+      window.scrollTo(0, point);
+    } else {
+      $(window).scrollTop($('.' + hash).offset().top - 40);
+    };
+  };
 
   $('.skin dt').click(function() {
     $(this).siblings().removeClass('selected').end().prev('dd').andSelf().addClass('selected');
@@ -14,7 +21,12 @@ $(document).ready(function() {
 
     event.preventDefault();
     window.location.hash = target;
-    $('html, body').stop().animate({scrollTop: target_offset - 40}, 600);
+
+    if (window.Zepto) {
+      window.scrollTo(0, target_offset - 40);
+    } else {
+      $('html, body').stop().animate({scrollTop: target_offset - 40}, 600);
+    };
   });
 
   $('.colors li').click(function() {
@@ -33,17 +45,17 @@ $(document).ready(function() {
       if (skin.hasClass('skin-square')) {
         checkbox_default = 'icheckbox_square', radio_default = 'iradio_square';
         checkbox == undefined && (checkbox = 'icheckbox_square-green', radio = 'iradio_square-green');
-      }
+      };
 
       if (skin.hasClass('skin-flat')) {
         checkbox_default = 'icheckbox_flat', radio_default = 'iradio_flat';
         checkbox == undefined && (checkbox = 'icheckbox_flat-red', radio = 'iradio_flat-red');
-      }
+      };
 
       if (skin.hasClass('skin-line')) {
         checkbox_default = 'icheck_line', radio_default = null;
         checkbox == undefined && (checkbox = 'icheck_line-blue', radio = null);
-      }
+      };
 
       checkbox == undefined && (checkbox = checkbox_default, radio = radio_default);
 
@@ -57,10 +69,10 @@ $(document).ready(function() {
       skin.data('icheckbox', checkbox_default + color);
       skin.data('iradio', radio_default + color);
       self.addClass('active');
-    }
+    };
   });
 
-  $('.demo-methods dt .self').bind('click', function() {
+  $('.demo-methods dt .self').click(function() {
     var self = $(this),
       self_class = self.attr('class').replace('self ', '');
 
@@ -84,8 +96,14 @@ $(document).ready(function() {
         var text = self.hasClass('active') ? 'show code' : 'hide code';
 
         self.toggleClass('active').text(text);
-        $(this).closest('dt').next().slideToggle(200);
+
+        if (window.Zepto) {
+          $(this).closest('dt').next().toggle();
+        } else {
+          $(this).closest('dt').next().slideToggle(200);
+        };
+
         break;
-    }
+    };
   });
 });

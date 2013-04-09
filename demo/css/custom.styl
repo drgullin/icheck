@@ -3,11 +3,36 @@
 @import url("normalize.css")
 
 
+/* Fonts
+----------------------------------- */
+$font = 'MontserratRegular'
+$fontBold = 'MontserratBold'
+$stack = $font, Helvetica, Arial, sans-serif
+$stackBold = $fontBold, Helvetica, Arial, sans-serif
+
+@font-face
+	font-family $font
+	src url('./montserrat-regular.eot')
+	src url('./montserrat-regular.eot?#iefix') format('embedded-opentype'),
+	    url('./montserrat-regular.woff') format('woff'),
+	    url('./montserrat-regular.ttf') format('truetype'),
+	    url('./montserrat-regular.svg#' + $font + '') format('svg')
+	font-style normal
+	font-weight normal
+
+@font-face
+	font-family $fontBold
+	src url('./montserrat-bold.eot')
+	src url('./montserrat-bold.eot?#iefix') format('embedded-opentype'),
+	    url('./montserrat-bold.woff') format('woff'),
+	    url('./montserrat-bold.ttf') format('truetype'),
+	    url('./montserrat-bold.svg#' + $fontBold + '') format('svg')
+	font-style normal
+	font-weight bold
+
+
 /* Demo
 ----------------------------------- */
-$webfont = 'Montserrat'
-$stack = $webfont, Helvetica, Arial, sans-serif
-
 html
 body
 	height 100%
@@ -35,6 +60,7 @@ a
 		color #000
 
 strong
+	font-family $stackBold
 	font-weight 700
 
 p
@@ -48,7 +74,7 @@ h2
 h3
 h4
 	margin 0
-	font bold 20px/60px $stack
+	font bold 20px/60px $stackBold
 
 h2
 	height 60px
@@ -150,49 +176,6 @@ td
 			color #fff
 			border-bottom-color #fff
 
-.button-star
-	position relative
-	display block
-	height 18px
-	padding 0 3px 0 21px
-	overflow hidden
-	font 700 11px/18px 'Helvetica Neue', Arial, sans-serif
-	color #333 !important
-	text-shadow 0 1px 0 rgba(255,255,255,.5)
-	background-color #f8f8f8
-	background-image -webkit-gradient(linear,left top,left bottom,from(#fff),to(#dedede))
-	background-image -moz-linear-gradient(top,#fff,#dedede)
-	background-image -o-linear-gradient(top,#fff,#dedede)
-	background-image -ms-linear-gradient(top,#fff,#dedede)
-	background-image linear-gradient(top,#fff,#dedede)
-	border #ccc solid 1px !important
-	-moz-border-radius 3px
-	-webkit-border-radius 3px
-	border-radius 3px
-	cursor pointer
-	-webkit-user-select none
-	-moz-user-select none
-	-o-user-select none
-	user-select none
-
-	&:hover
-		background-color #f8f8f8
-		background-image -webkit-gradient(linear,left top,left bottom,from(#f8f8f8),to(#d9d9d9))
-		background-image -moz-linear-gradient(top,#f8f8f8,#d9d9d9)
-		background-image -o-linear-gradient(top,#f8f8f8,#d9d9d9)
-		background-image -ms-linear-gradient(top,#f8f8f8,#d9d9d9)
-		background-image linear-gradient(top,#f8f8f8,#d9d9d9)
-		border-color #bbb !important
-
-	i
-		position absolute
-		top 2px
-		left 4px
-		width 14px
-		height 15px
-		background url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAPCAYAAADUFP50AAACQUlEQVR4Xn2SX2hSURzH772TEIYIWmZYIIGa+FJDIR+CoPakkUT+a+r2IOqT+BCIf/aqJCgy+jOKFfgSqASBCK6HgrIyWau0QMsVkQ/bFMTIu6Fy+x5IGGPrCx9+9/zO93vPOfdcmtojs9l8FMUPjOAM4EADFMBSLpfrUPuF0HWLxdJ3u90bmUzmVaVSeUcgz6SHud/wWPaHLNBuNputjUajZY7jTODsP0ykl8/na/DswHtjEjputVr/FAqFT4lE4g7GbbAIEmAZ3AKbsVjsfqlU+gAvi/EpyuVyJUOh0DZWmI3H43fR5A4iEok8gediNBrdWlhYuMfweDyrTqd7Q9P0s0ajYaAOUavVMmCrVa1W+xLDa8xgMDgxPT2dJQY8nzwsOB6Pj8hkstMikegxfMcY0lxbW+uRswoEgiH1H8nlcsnq6upgamqKY8RiMdvr9c7p9XqJwWCoMQzDHRSamZnZxM5olmUvCIVCllGpVBv9fv+KVCod1+v19WQy+dpoNH7HmSkitVrdDYfD68Fg8Dbus4ngrFKp/Ek1m82bdrt91+PxeHEdDx0ORxGGb3NzcyNUNhAI/MBdagCN45hsNtsQCyzyFArFI5gc+EOW8IVX5ufnu+VyedzpdAZ8Pp8lYPXP5OJRV5xO5xeNRvOAIsLbLheLxY/kchF87/f7v2K1Pmrb5/P9QqiKuR3iIV5qr9C41G63n6dSqarX693G9ocEBLvpdHodcy+IZ+Kn94UlKFfBeSADRG3wFjzFVrcm3r8xLTc0GmEycwAAAABJRU5ErkJggg==") no-repeat
-		*background-image url(ie/icon-github.png)
-
 .features
 	position relative
 	font-size 16px
@@ -272,12 +255,12 @@ td
 			float right
 			padding-left 10px
 
-			a
-				color #333
+		&.local
+			padding-top 19px
 
-		&.local li
-			padding-left 30px
-			font-size 14px
+			li
+				padding-left 30px
+				font-size 14px
 
 .demo-holder
 	margin-bottom 97px
@@ -438,14 +421,14 @@ td
 		width 60px
 		height 60px
 		cursor pointer
-		-webkit-transition left .2s ease-in-out
-		-moz-transition left .2s ease-in-out
-		-ms-transition left .2s ease-in-out
-		-o-transition left .2s ease-in-out
-		transition left .2s ease-in-out
+		-webkit-transition left .3s, background-color .2s
+		-moz-transition left .3s, background-color .2s
+		-ms-transition left .3s, background-color .2s
+		-o-transition left .3s, background-color .2s
+		transition left .3s, background-color .2s
 
 	.top
-		background lighten(#5a9aa8, 20%) url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAALCAYAAACZIGYHAAAAdklEQVR4Xo3MuwmFQBiE0b0FmAuutnRBsAARLMTYRzvWItiEYLq/s6CYyMwGXzTDcWbG8mhEf/ZjQIV2ZCigjiASMAVJIAVKAQ4FKWBDJVoYpAB/7z8GRaAQgBNQG8dZA28f0BmHBgUCKGh9hhpNKH8BWY8GlF2OH3hCC1zmdAAAAABJRU5ErkJggg==") 50% no-repeat
+		background lighten(#5a9aa8, 25%) url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAALCAYAAACZIGYHAAAAdklEQVR4Xo3MuwmFQBiE0b0FmAuutnRBsAARLMTYRzvWItiEYLq/s6CYyMwGXzTDcWbG8mhEf/ZjQIV2ZCigjiASMAVJIAVKAQ4FKWBDJVoYpAB/7z8GRaAQgBNQG8dZA28f0BmHBgUCKGh9hhpNKH8BWY8GlF2OH3hCC1zmdAAAAABJRU5ErkJggg==") 50% no-repeat
 		*background-image url(ie/arrow-top.png)
 
 		&:hover
@@ -460,6 +443,7 @@ td
 
 @media screen and (max-width:1049px)
 	.arrows
+	.fork-me
 		display none
 
 .skin
@@ -810,6 +794,11 @@ td
 		cursor pointer
 		filter unquote('alpha(opacity=50)')
 		opacity .5
+		-webkit-transition opacity .2s
+		-moz-transition opacity .2s
+		-ms-transition opacity .2s
+		-o-transition opacity .2s
+		transition opacity .2s
 
 		&:hover
 			filter unquote('alpha(opacity=100)')
@@ -911,8 +900,11 @@ td
 	p
 		margin-bottom 17px
 
+.skin-pre
+	padding 43px 60px 0
+
 .skin-usage
-	padding 43px 60px 22px
+	padding 25px 60px 22px
 	list-style decimal outside
 
 	li
@@ -936,7 +928,10 @@ td
 	margin-bottom 80px
 	background #fff
 
-	&.self
+	a
+		border-bottom-color #ddd
+
+	.self
 		border-bottom-color #bbb
 
 	.arrows
@@ -953,14 +948,17 @@ td
 	h4
 		margin 26px 0 10px
 
-		&.callbacks
-			margin-bottom 19px
-
 	p
 		margin-bottom 5px
 
 		&.offset
 			margin-top 10px
+
+		&.callbacks-info
+			margin-bottom 19px
+
+		&.methods-info
+			margin-bottom 10px
 
 	.markup
 		margin 9px 0 16px
@@ -1028,7 +1026,7 @@ td
 
 	a
 		color #888
-		border-bottom-color #666
+		border-bottom-color #444
 
 		&:hover
 			color #aaa
@@ -1060,8 +1058,13 @@ td
 		font-size 18px
 		line-height 58px
 		color #fff
-		border none
+		border-bottom 0 solid darken(#E76B66, 10%)
 		background #E76B66
+		-webkit-transition border-bottom .2s
+		-moz-transition border-bottom .2s
+		-ms-transition border-bottom .2s
+		-o-transition border-bottom .2s
+		transition border-bottom .2s
 
 		&:before
 			content ''
@@ -1074,17 +1077,15 @@ td
 			vertical-align middle
 
 		&:hover
-			border-bottom 3px solid darken(#E76B66, 10%)
+			border-bottom-width 3px
 
 	&.fork a
 		background #579AA9
+		border-bottom-color darken(#579AA9, 15%)
 
 		&:before
 			background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAACcklEQVR4XrXQS0hUYRiH8TGnodIaITEoqIwgaBGFJUGrIssUaVC7eBmmqNFSw6xFDAlBhIpFSoUypF0WUoHlBUlbWIzRQlBMCIKIUbuQi4RoEcLUTM/ivzgcjk0e8YUfH7OZ57xvQiwWcyzS7EctpnBhySJFVqMORehD80JC2+FD6hyhb/Ia6+yG/BjFA4xjiyn0AT/QpY0a7YTyEcQYSpGCVxYxHwI4iAE7oUp8RxY6cAhui1gCZjEDh53QT6TiiMJDc8QKEEb6fEJuVOAtPIgiD6v+EXuhj5mEwxknkIkyHEcSvuIq2vEJjCiGfsX24ikY643cOIsxDOMkQjiMDbhiiphjOdrsJdZYhTLRhi9oQRp6MAEXsnS+fVgO86zQG9IF1qLEGErDG8PXD8GD9Xo3w4tO/EKuTtOFXYZQE8qRiAIwfKTGiXrsRgNaDWdx4ZZCAYTEITtwXSe+hmL4tfU23EO3caNN+Ixa0+3zMYtq1CmQgn68QyUOYEaxZIwgSWE/YsaN+nAD7TiFPwp9RBWihhPU4DEe4g6ydQkvprEHEWhEGzVpTZ/+IFGhEW0zrNdqEpCBrbhvGREnojitTfyKe/V7VBzSjA6cwzieo1Vb38Wc49QbQ7liZxQrxW9DZCOmkGMIJ6MEg9B5YXk6jWIVaMExPMJSRdIRRiGMU6RYEEyckClWhdsoVMyFSRzFgClUhmn0gol/OnOsWmc8jyfasNMUycBO1CMyn43MsRrchEcRlynkRxRtYOyEIBfRiDw8M8SSUYxBhBcckktoQC56sAxerERQgYWHJIA6ZGMCzdqk10Yorss4gffoVjTyv6G/ACqnKZp2IHMAAAAASUVORK5CYII=")
 			*background-image url(icon-lab.png)
-
-		&:hover
-			border-bottom-color darken(#579AA9, 15%)
 
 .license
 	color #444
@@ -1092,7 +1093,8 @@ td
 	padding 30px 0 75px
 
 .footer
-	padding 28px 0 35px
+	padding-top 28px
+	height 60px
 	color #666
 	background #e2dfd8
 
@@ -1104,7 +1106,7 @@ td
 			padding 2px 10px 0 0
 
 		&.local li
-			padding-right 30px
+			padding 0 30px 0 0
 
 	.code
 		float right
@@ -1120,3 +1122,26 @@ td
 	margin 0 auto
 	overflow hidden
 
+.fork-me
+	position fixed
+	*position absolute
+	top 0
+	right 0
+	width 40px
+	height 40px
+	overflow hidden
+	text-indent 100%
+	white-space nowrap
+	background #28545b url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAnElEQVR4XqVSgQmEMAyszw/gCI7wK7iBblBHcISfxG6gG/gjuIGO0A3ygaYQCCG2HhweF+6aShsAcDcBJBpuvlwFagqGJwUf5EL6kgV2eEe2yIgc9QI73CMPs8AOywI7nHDSzCxYxcnJ6+hrFnQkJrb2nGclP3Fj+vf0IUV1AgCZHiS86lOObxD4qqSD5mtXmAq1e2fB3vqXact3f/JmXumJlVq1AAAAAElFTkSuQmCC") 50% no-repeat
+	*background-image url(ie/icon-fork.png)
+
+	&:hover
+		background-color #1f7f5c
+
+.skin dt
+.fork-me
+	-webkit-transition background-color .2s
+	-moz-transition background-color .2s
+	-ms-transition background-color .2s
+	-o-transition background-color .2s
+	transition background-color .2s

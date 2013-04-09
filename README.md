@@ -1,5 +1,5 @@
-# [iCheck plugin](http://damirfoy.com/iCheck/)
-#### Super customized checkboxes and radio buttons with jQuery
+# [iCheck plugin](http://damirfoy.com/iCheck/) ![v0.8](http://damirfoy.com/iCheck/0.8.png)
+#### Highly customizable checkboxes and radio buttons with jQuery and Zepto
 
 Refer to the [iCheck website](http://damirfoy.com/iCheck/) for examples.
 
@@ -13,14 +13,15 @@ Features
 * **Touch devices support** — iOS, Android, BlackBerry, Windows Phone
 * **Keyboard accessible inputs** — `Tab`, `Spacebar`, `Arrow up/down` and other shortcuts
 * **Customization freedom** — use any HTML and CSS to style inputs (try [6 Retina-ready skins](http://damirfoy.com/iCheck/))
+* **jQuery and Zepto** JavaScript libraries support
 * **Lightweight size** — 1 kb gzipped
 
 -----
 
-* [15 options](#options) to customize checkboxes and radio buttons
+* [25 options](#options) to customize checkboxes and radio buttons
 * [8 callbacks](#callbacks) to handle changes
 * [6 methods](#methods) to make changes programmatically
-* Saves changes to original inputs, [works carefully](#initialize) with any jQuery selector
+* Saves changes to original inputs, [works carefully](#initialize) with any selectors
 
 
 How it works
@@ -31,23 +32,33 @@ iCheck works with checkboxes and radio buttons like a constructor. **It wraps ea
 For this HTML:
 
 ```html
-<input type="checkbox" checked>
-<input type="radio" name="some" checked>
-<input type="radio" name="some">
+<label>
+  <input type="checkbox" name="quux[1]" disabled>
+  Foo
+</label>
+
+<label for="baz[1]">Bar</label>
+<input type="radio" name="quux[2]" id="baz[1]" checked>
+
+<label for="baz[2]">Bar</label>
+<input type="radio" name="quux[2]" id="baz[2]">
 ```
+
 With default options you'll get nearly this:
 
 ```html
-<div class="icheckbox">
-  <input type="checkbox" checked>
-</div>
-<div class="iradio">
-  <input type="radio" name="some" checked>
-</div>
-<div class="iradio">
-  <input type="radio" name="some">
-</div>
+<label>
+  <div class="icheckbox disabled"><input type="checkbox" name="quux[1]" disabled></div>
+  Foo
+</label>
+
+<label for="baz[1]">Bar</label>
+<div class="iradio checked"><input type="radio" name="quux[2]" id="baz[1]" checked></div>
+
+<label for="baz[2]">Bar</label>
+<div class="iradio"><input type="radio" name="quux[2]" id="baz[2]"></div>
 ```
+
 By default, iCheck doesn't provide any CSS styles for wrapper divs (if you don't use skins).
 
 
@@ -59,25 +70,47 @@ Options
   // 'checkbox' or 'radio' to style only checkboxes or radio buttons, both by default
   handle: '',
 
-  // class added to customized checkboxes
+  // base class added to customized checkboxes
   checkboxClass: 'icheckbox',
 
-  // class added to customized radio buttons
+  // base class added to customized radio buttons
   radioClass: 'iradio',
 
-  // class on checked state
+  // class added on checked state (input.checked = true)
   checkedClass: 'checked',
 
-  // class on disabled state
+  // if not empty, used instead of 'checkedClass' option (input type specific)
+  checkedCheckboxClass: '',
+  checkedRadioClass: '',
+
+  // if not empty, added as class name on unchecked state (input.checked = false)
+  uncheckedClass: '',
+
+  // if not empty, used instead of 'uncheckedClass' option (input type specific)
+  uncheckedCheckboxClass: '',
+  uncheckedRadioClass: '',
+
+  // class added on disabled state (input.disabled = true)
   disabledClass: 'disabled',
 
-  // class on hover state
+  // if not empty, used instead of 'disabledClass' option (input type specific)
+  disabledCheckboxClass: '',
+  disabledRadioClass: '',
+
+  // if not empty, added as class name on enabled state (input.disabled = false)
+  enabledClass: '',
+
+  // if not empty, used instead of 'enabledClass' option (input type specific)
+  enabledCheckboxClass: '',
+  enabledRadioClass: '',
+
+  // class added on hover state (hovered or touched)
   hoverClass: 'hover',
 
-  // class on focus state
+  // class added on focus state (mostly when keyboard is used)
   focusClass: 'focus',
 
-  // class on active state
+  // class added on active state (likely when clicked)
   activeClass: 'active',
 
   // add hoverClass to customized input on label hover and labelHoverClass to label on input hover
@@ -89,19 +122,29 @@ Options
   // increase clickable area by given % (negative to decrease)
   increaseArea: '',
 
-  // true to set hand cursor over input
+  // true to set 'pointer' cursor over active inputs and 'default' over disabled
   cursor: false,
 
-  // set true to inherit input's class name
+  // set true to inherit original input's class name
   inheritClass: false,
 
-  // if set to true, input's id is prefixed with "icheck-" and attached
+  // if set to true, input's id is prefixed with "iCheck-" and attached
   inheritID: false,
 
-  // add custom HTML code or text inside customized input
+  // add HTML code or text inside customized input
   insert: ''
 }
 ```
+
+There's no need to copy and paste all of them, you can just mention the ones you need:
+
+```js
+$('input').iCheck({
+  labelHover: false,
+  cursor: true
+});
+```
+
 You can choose any class names and slyle them as you want.
 
 
@@ -130,11 +173,13 @@ $('input.some').iCheck({
   // different options
 });
 ```
-jQuery v1.6 or newer and `jquery.icheck.js` (`jquery.icheck.min.js` is minified) should be included in your HTML.
+[jQuery v1.7+](http://jquery.com) or [Zepto](http://zeptojs.com) library should be included in your HTML.
 
 
 Callbacks
 ---------
+
+iCheck provides plenty callbacks, which may be used to handle changes.
 
 <table>
   <thead>
@@ -145,53 +190,57 @@ Callbacks
   </thead>
   <tbody>
     <tr>
-      <td>is.Clicked</td>
-      <td>user clicked on customized input or label</td>
+      <td>ifClicked</td>
+      <td>user clicked on a customized input or an assigned label</td>
     </tr>
     <tr>
-      <td>is.Changed</td>
+      <td>ifChanged</td>
       <td>input's "checked" or "disabled" state is changed</td>
     </tr>
     <tr>
-      <td>is.Checked</td>
+      <td>ifChecked</td>
       <td>input's state is changed to "checked"</td>
     </tr>
     <tr>
-      <td>is.Unchecked</td>
+      <td>ifUnchecked</td>
       <td>"checked" state is removed</td>
     </tr>
     <tr>
-      <td>is.Disabled</td>
+      <td>ifDisabled</td>
       <td>input's state is changed to "disabled"</td>
     </tr>
     <tr>
-      <td>is.Enabled</td>
+      <td>ifEnabled</td>
       <td>"disabled" state is removed</td>
     </tr>
     <tr>
-      <td>is.Created</td>
+      <td>ifCreated</td>
       <td>input is just customized</td>
     </tr>
     <tr>
-      <td>is.Destroyed</td>
+      <td>ifDestroyed</td>
       <td>customization is just removed</td>
     </tr>
   </tbody>
 </table>
 
-Use `bind` to attach them:
+Use `on()` method to bind them:
 
 ```js
-$('input').bind('is.Clicked', function(){
-  console.log('input is clicked');
+$('input').on('ifChecked', function(event){
+  alert(event.type + ' callback');
 });
 ```
 
-`is.Created` callback should be binded before plugin init.
+`ifCreated` callback should be binded before plugin init.
 
 
 Methods
 -------
+
+These methods can be used to make changes programmatically. All return original inputs in `$(this)`.
+
+You may use any selectors, iCheck will find checkboxes and radio buttons itself.
 
 ```js
 $('input').icheck('check'); // change input's state to 'checked'
@@ -222,11 +271,11 @@ While CSS3 method is quite limited solution, iCheck is made to be an everyday re
 Browser support
 ---------------
 
-iCheck is verified to work in Internet Explorer 7+ (works in IE6 if you don't use CSS class chaining), Firefox 2+, Google Chrome, Safari 3+ and Opera 9+ browsers. Should also work in many others.
+iCheck is verified to work in Internet Explorer 6+, Firefox 2+, Opera 9+, Google Chrome and Safari browsers. Should also work in many others.
 
 Mobile browsers (like Opera mini, Chrome mobile, Safari mobile and others) are also supported. Tested on iOS, Android, BlackBerry and Windows Phone devices.
 
 
 License
 -------
-iCheck jQuery plugin is released under [MIT License](http://en.wikipedia.org/wiki/MIT_License). Feel free to use it in personal and commercial projects.
+iCheck plugin is released under the [MIT License](http://en.wikipedia.org/wiki/MIT_License). Feel free to use it in personal and commercial projects.
