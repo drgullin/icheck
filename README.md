@@ -116,8 +116,8 @@ Options
   // add hoverClass to customized input on label hover and labelHoverClass to label on input hover
   labelHover: true,
 
-  // class added to label if labelHover set to true
-  labelHoverClass: 'hover',
+    // class added to label if labelHover set to true
+    labelHoverClass: 'hover',
 
   // increase clickable area by given % (negative to decrease)
   increaseArea: '',
