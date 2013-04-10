@@ -65,6 +65,8 @@ By default, iCheck doesn't provide any CSS styles for wrapper divs (if you don't
 Options
 -------
 
+These options are default:
+
 ```js
 {
   // 'checkbox' or 'radio' to style only checkboxes or radio buttons, both by default
@@ -113,16 +115,16 @@ Options
   // class added on active state (likely when clicked)
   activeClass: 'active',
 
-  // add hoverClass to customized input on label hover and labelHoverClass to label on input hover
+  // adds hoverClass to customized input on label hover and labelHoverClass to label on input hover
   labelHover: true,
 
     // class added to label if labelHover set to true
     labelHoverClass: 'hover',
 
-  // increase clickable area by given % (negative to decrease)
+  // increase clickable area by given % (negative number to decrease)
   increaseArea: '',
 
-  // true to set 'pointer' cursor over active inputs and 'default' over disabled
+  // true to set 'pointer' cursor over enabled inputs and 'default' over disabled
   cursor: false,
 
   // set true to inherit original input's class name
