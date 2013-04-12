@@ -245,12 +245,12 @@ These methods can be used to make changes programmatically. All return original 
 You may use any selectors, iCheck will find checkboxes and radio buttons itself.
 
 ```js
-$('input').icheck('check'); // change input's state to 'checked'
-$('input').icheck('uncheck'); // remove 'checked' state
-$('input').icheck('disable'); // change input's state to 'disabled'
-$('input').icheck('enable'); // remove 'disabled' state
-$('input').icheck('update'); // apply input changes, which were done outside the plugin
-$('input').icheck('destroy'); // remove all traces of iCheck
+$('input').iCheck('check'); // change input's state to 'checked'
+$('input').iCheck('uncheck'); // remove 'checked' state
+$('input').iCheck('disable'); // change input's state to 'disabled'
+$('input').iCheck('enable'); // remove 'disabled' state
+$('input').iCheck('update'); // apply input changes, which were done outside the plugin
+$('input').iCheck('destroy'); // remove all traces of iCheck
 ```
 
 
