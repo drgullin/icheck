@@ -26,6 +26,8 @@
         overflow: hidden;
         background: url(line.png) no-repeat;
         border: none;
+        background-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
     }
     .icheck_line.hover,
     .icheck_line:hover {
@@ -91,6 +93,8 @@
         overflow: hidden;
         background: url(line.png) no-repeat;
         border: none;
+        background-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
     }
     .icheck_line-red.hover,
     .icheck_line-red:hover {
@@ -156,6 +160,8 @@
         overflow: hidden;
         background: url(line.png) no-repeat;
         border: none;
+        background-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
     }
     .icheck_line-green.hover,
     .icheck_line-green:hover {
@@ -221,6 +227,8 @@
         overflow: hidden;
         background: url(line.png) no-repeat;
         border: none;
+        background-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
     }
     .icheck_line-blue.hover,
     .icheck_line-blue:hover {
@@ -286,6 +294,8 @@
         overflow: hidden;
         background: url(line.png) no-repeat;
         border: none;
+        background-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
     }
     .icheck_line-aero.hover,
     .icheck_line-aero:hover {
@@ -351,6 +361,8 @@
         overflow: hidden;
         background: url(line.png) no-repeat;
         border: none;
+        background-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
     }
     .icheck_line-grey.hover,
     .icheck_line-grey:hover {
@@ -416,6 +428,8 @@
         overflow: hidden;
         background: url(line.png) no-repeat;
         border: none;
+        background-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
     }
     .icheck_line-orange.hover,
     .icheck_line-orange:hover {
@@ -481,6 +495,8 @@
         overflow: hidden;
         background: url(line.png) no-repeat;
         border: none;
+        background-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
     }
     .icheck_line-yellow.hover,
     .icheck_line-yellow:hover {
@@ -546,6 +562,8 @@
         overflow: hidden;
         background: url(line.png) no-repeat;
         border: none;
+        background-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
     }
     .icheck_line-pink.hover,
     .icheck_line-pink:hover {
@@ -611,6 +629,8 @@
         overflow: hidden;
         background: url(line.png) no-repeat;
         border: none;
+        background-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
     }
     .icheck_line-purple.hover,
     .icheck_line-purple:hover {
