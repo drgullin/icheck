@@ -697,6 +697,9 @@ td {
   padding-right: 57px;
   padding-left: 0;
 }
+.skin-states .state {
+  cursor: default !important;
+}
 .skin-states .list {
   padding-right: 0;
 }

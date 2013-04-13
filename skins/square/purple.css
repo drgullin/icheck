@@ -12,12 +12,10 @@
     cursor: pointer;
 }
 
-.icheckbox_square-purple,
-.icheckbox_square-purple.static:hover {
+.icheckbox_square-purple {
     background-position: 0 0;
 }
-    .icheckbox_square-purple.hover,
-    .icheckbox_square-purple:hover {
+    .icheckbox_square-purple.hover {
         background-position: -24px 0;
     }
     .icheckbox_square-purple.checked {
@@ -31,12 +29,10 @@
         background-position: -96px 0;
     }
 
-.iradio_square-purple,
-.iradio_square-purple.static:hover {
+.iradio_square-purple {
     background-position: -120px 0;
 }
-    .iradio_square-purple.hover,
-    .iradio_square-purple:hover {
+    .iradio_square-purple.hover {
         background-position: -144px 0;
     }
     .iradio_square-purple.checked {

@@ -7,17 +7,18 @@
  * MIT Licensed
  */
 
-(function($, _iCheck, _checkbox, _radio, _checked, _disabled, _type, _cursor) {
+(function($, _iCheck, _checkbox, _radio, _checked, _disabled, _type, _click, _touch, _cursor, _absolute) {
 
   // Create a plugin
   $.fn[_iCheck] = function(options) {
 
     // Cached vars
     var user = navigator.userAgent,
+      ios = /ipad|iphone|ipod/i.test(user),
       handle = 'input[type="' + _checkbox + '"], input[type="' + _radio + '"]';
 
     // Check if we should operate with some method
-    if (/^(check|uncheck|disable|enable|update|destroy)$/.test(options)) {
+    if (/^(check|uncheck|toggle|disable|enable|update|destroy)$/.test(options)) {
 
       // Find checkboxes and radio buttons
       return this.each(function() {
@@ -92,7 +93,7 @@
             offset = -area + '%',
             size = 100 + (area * 2) + '%',
             layer = {
-              position: 'absolute',
+              position: _absolute,
               top: offset,
               left: offset,
               display: 'block',
@@ -106,11 +107,11 @@
             },
 
             // Choose how to hide input
-            hide = /ipad|iphone|ipod|android|blackberry|windows phone|opera mini/i.test(user) ? {
-              position: 'absolute',
+            hide = ios || /android|blackberry|windows phone|opera mini/i.test(user) ? {
+              position: _absolute,
               visibility: 'hidden'
             } : area ? layer : {
-              position: 'absolute',
+              position: _absolute,
               opacity: 0
             },
 
@@ -135,7 +136,7 @@
 
           // Label events
           if (label.length) {
-            label.on('click.i mouseover.i mouseout.i touchbegin.i touchend.i', function(event) {
+            label.on(_click + '.i mouseover.i mouseout.i ' + _touch, function(event) {
               var type = event[_type],
                 item = $(this);
 
@@ -143,10 +144,8 @@
               if (!node[_disabled]) {
 
                 // Click
-                if (type == 'click') {
-                  if (!(node[_type] == _radio && node[_checked])) {
-                    operate(self, false, true);
-                  };
+                if (type == _click) {
+                  operate(self, false, true);
 
                 // Hover state
                 } else if (labelHover) {
@@ -160,18 +159,22 @@
                   };
                 };
 
-                event.stopPropagation();
+                if (ios) {
+                  event.stopPropagation();
+                } else {
+                  return false;
+                };
               };
             });
           };
 
           // Input events
-          self.on('click.i focus.i blur.i keyup.i keydown.i keypress.i', function(event) {
+          self.on(_click + '.i focus.i blur.i keyup.i keydown.i keypress.i', function(event) {
             var type = event[_type],
               key = event.keyCode;
 
             // Click
-            if (type == 'click') {
+            if (type == _click) {
               return false;
 
             // Keydown
@@ -203,7 +206,7 @@
           });
 
           // Helper events
-          helper.on('click mousedown mouseup mouseover mouseout touchbegin touchend', function(event) {
+          helper.on(_click + ' mousedown mouseup mouseover mouseout ' + _touch, function(event) {
             var type = event[_type],
 
               // mousedown|mouseup
@@ -213,10 +216,8 @@
             if (!node[_disabled]) {
 
               // Click
-              if (type == 'click') {
-                if (!(node[_type] == _radio && node[_checked])) {
-                  operate(self, false, true);
-                };
+              if (type == _click) {
+                operate(self, false, true);
 
               // Active and hover states
               } else {
@@ -242,7 +243,11 @@
                 };
               };
 
-              return false;
+              if (ios) {
+                event.stopPropagation();
+              } else {
+                return false;
+              };
             };
           });
         });
@@ -257,7 +262,7 @@
     var node = input[0];
 
       // disable|enable
-      state = /le/.test(method) ? _disabled : _checked,
+      state = /ble/.test(method) ? _disabled : _checked,
       active = method == 'update' ? {checked: node[_checked], disabled: node[_disabled]} : node[state];
 
     // Check and disable
@@ -280,14 +285,18 @@
         };
       };
 
-    } else if (!direct) {
+    } else if (!direct || method == 'toggle') {
 
       // Helper or label was clicked
-      input.trigger('ifClicked');
+      if (!direct) {
+        input.trigger('ifClicked');
+      };
 
       // Toggle checked state
       if (active) {
-        off(input, state);
+        if (node[_type] !== _radio) {
+          off(input, state);
+        };
       } else {
         on(input, state);
       };
@@ -387,4 +396,4 @@
   function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
-})(Zepto, 'iCheck', 'checkbox', 'radio', 'checked', 'disabled', 'type', 'cursor');
+})(Zepto, 'iCheck', 'checkbox', 'radio', 'checked', 'disabled', 'type', 'click', 'touchbegin.i touchend.i', 'cursor', 'absolute');

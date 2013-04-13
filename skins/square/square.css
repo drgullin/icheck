@@ -12,12 +12,10 @@
     cursor: pointer;
 }
 
-.icheckbox_square,
-.icheckbox_square.static:hover {
+.icheckbox_square {
     background-position: 0 0;
 }
-    .icheckbox_square.hover,
-    .icheckbox_square:hover {
+    .icheckbox_square.hover {
         background-position: -24px 0;
     }
     .icheckbox_square.checked {
@@ -31,12 +29,10 @@
         background-position: -96px 0;
     }
 
-.iradio_square,
-.iradio_square.static:hover {
+.iradio_square {
     background-position: -120px 0;
 }
-    .iradio_square.hover,
-    .iradio_square:hover {
+    .iradio_square.hover {
         background-position: -144px 0;
     }
     .iradio_square.checked {

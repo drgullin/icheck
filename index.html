@@ -4,10 +4,10 @@
   <title>Customize checkboxes and radio buttons with iCheck (jQuery and Zepto) plugin</title>
   <meta charset="utf-8">
   <meta content="width=device-width" name="viewport">
-  <link href="./demo/css/custom.css?v=0.8" rel="stylesheet">
-  <link href="./skins/all.css?v=0.8" rel="stylesheet">
+  <link href="./demo/css/custom.css?v=0.8.0.1" rel="stylesheet">
+  <link href="./skins/all.css?v=0.8.0.1" rel="stylesheet">
   <script src="./demo/js/jquery.js"></script>
-  <script src="./jquery.icheck.min.js?v=0.8"></script>
+  <script src="./jquery.icheck.min.js?v=0.8.0.1"></script>
 </head>
 <body>
   <div class="layout clear">
@@ -47,7 +47,7 @@
           <strong class="self" data-to="callbacks">8 callbacks</strong> to handle changes
         </li>
         <li>
-          <strong class="self" data-to="methods">6 methods</strong> to make changes programmatically
+          <strong class="self" data-to="methods">7 methods</strong> to make changes programmatically
         </li>
         <li>
           Saves changes to original inputs, <span class="self" data-to="init">works carefully</span> with any selectors
@@ -250,8 +250,8 @@ $('input').iCheck('destroy');
               <h4>States</h4>
               <ul class="list">
                 <li>
-                  <div class="state icheckbox_minimal static"></div>
-                  <div class="state iradio_minimal static"></div>
+                  <div class="state icheckbox_minimal"></div>
+                  <div class="state iradio_minimal"></div>
                   Normal
                 </li>
                 <li>
@@ -317,7 +317,7 @@ $('input').iCheck('destroy');
                 </div>
               </li>
               <li>
-                Copy <span class="mark">/skins/minimal/</span> folder and <span class="mark">/js/jquery.icheck.js</span>  file to your site.
+                Copy <span class="mark">/skins/minimal/</span> folder and <span class="mark">jquery.icheck.js</span>  file to your site.
               </li>
               <li>
                 <p>Insert before <span class="mark">&lt;/head></span> in your HTML (replace <span class="mark">your-path</span> and <span class="mark">color-scheme</span>):</p>
@@ -325,7 +325,7 @@ $('input').iCheck('destroy');
 &lt;link href="your-path/minimal/color-scheme.css" rel="stylesheet">
 &lt;script src="your-path/jquery.icheck.js">&lt;/script>
 </pre>
-                <p>Example for a <strong>Red</strong> skin:</p>
+                <p>Example for a <strong>Red</strong> color scheme:</p>
 <pre class="markup">
 &lt;link href="your-path/minimal/red.css" rel="stylesheet">
 &lt;script src="your-path/jquery.icheck.js">&lt;/script>
@@ -438,8 +438,8 @@ $(document).ready(function(){
               <h4>States</h4>
               <ul class="list">
                 <li>
-                  <div class="state icheckbox_square-green static"></div>
-                  <div class="state iradio_square-green static"></div>
+                  <div class="state icheckbox_square-green"></div>
+                  <div class="state iradio_square-green"></div>
                   Normal
                 </li>
                 <li>
@@ -505,7 +505,7 @@ $(document).ready(function(){
                 </div>
               </li>
               <li>
-                Copy <span class="mark">/skins/square/</span> folder and <span class="mark">/js/jquery.icheck.js</span> file to your site.
+                Copy <span class="mark">/skins/square/</span> folder and <span class="mark">jquery.icheck.js</span> file to your site.
               </li>
               <li>
                 <p>Insert before <span class="mark">&lt;/head></span> in your HTML (replace <span class="mark">your-path</span> and <span class="mark">color-scheme</span>):</p>
@@ -513,7 +513,7 @@ $(document).ready(function(){
 &lt;link href="your-path/square/color-scheme.css" rel="stylesheet">
 &lt;script src="your-path/jquery.icheck.js">&lt;/script>
 </pre>
-                <p>Example for a <strong>Red</strong> skin:</p>
+                <p>Example for a <strong>Red</strong> color scheme:</p>
 <pre class="markup">
 &lt;link href="your-path/square/red.css" rel="stylesheet">
 &lt;script src="your-path/jquery.icheck.js">&lt;/script>
@@ -626,8 +626,8 @@ $(document).ready(function(){
               <h4>States</h4>
               <ul class="list">
                 <li>
-                  <div class="state icheckbox_flat-red static"></div>
-                  <div class="state iradio_flat-red static"></div>
+                  <div class="state icheckbox_flat-red"></div>
+                  <div class="state iradio_flat-red"></div>
                   Normal
                 </li>
                 <li>
@@ -687,7 +687,7 @@ $(document).ready(function(){
                 </div>
               </li>
               <li>
-                Copy <span class="mark">/skins/flat/</span> folder and <span class="mark">/js/jquery.icheck.js</span> file to your site.
+                Copy <span class="mark">/skins/flat/</span> folder and <span class="mark">jquery.icheck.js</span> file to your site.
               </li>
               <li>
                 <p>Insert before <span class="mark">&lt;/head></span> in your HTML (replace <span class="mark">your-path</span> and <span class="mark">color-scheme</span>):</p>
@@ -695,7 +695,7 @@ $(document).ready(function(){
 &lt;link href="your-path/flat/color-scheme.css" rel="stylesheet">
 &lt;script src="your-path/jquery.icheck.js">&lt;/script>
 </pre>
-                <p>Example for a <strong>Red</strong> skin:</p>
+                <p>Example for a <strong>Red</strong> color scheme:</p>
 <pre class="markup">
 &lt;link href="your-path/flat/red.css" rel="stylesheet">
 &lt;script src="your-path/jquery.icheck.js">&lt;/script>
@@ -806,31 +806,31 @@ $(document).ready(function(){
               <h4>States</h4>
               <ul class="list">
                 <li>
-                  <div class="state icheck_line-blue static">
+                  <div class="state icheckbox_line-blue">
                     <div class="icheck_line-icon"></div>
                     Normal
                   </div>
                 </li>
                 <li>
-                  <div class="state icheck_line-blue hover">
+                  <div class="state icheckbox_line-blue hover">
                     <div class="icheck_line-icon"></div>
                     Hover
                   </div>
                 </li>
                 <li>
-                  <div class="state icheck_line-blue checked">
+                  <div class="state icheckbox_line-blue checked">
                     <div class="icheck_line-icon"></div>
                     Checked
                   </div>
                 </li>
                 <li>
-                  <div class="state icheck_line-blue disabled">
+                  <div class="state icheckbox_line-blue disabled">
                     <div class="icheck_line-icon"></div>
                     Disabled
                   </div>
                 </li>
                 <li>
-                  <div class="state icheck_line-blue checked disabled">
+                  <div class="state icheckbox_line-blue checked disabled">
                     <div class="icheck_line-icon"></div>
                     Disabled &amp; checked
                   </div>
@@ -846,8 +846,8 @@ $(document).ready(function(){
 
                 label.remove();
                 self.iCheck({
-                  checkboxClass: 'icheck_line-blue',
-                  radioClass: 'icheck_line-blue',
+                  checkboxClass: 'icheckbox_line-blue',
+                  radioClass: 'iradio_line-blue',
                   insert: '<div class="icheck_line-icon"></div>' + label_text
                 });
               });
@@ -885,7 +885,7 @@ $(document).ready(function(){
                 </div>
               </li>
               <li>
-                Copy <span class="mark">/skins/line/</span> folder and <span class="mark">/js/jquery.icheck.js</span> file to your site.
+                Copy <span class="mark">/skins/line/</span> folder and <span class="mark">jquery.icheck.js</span> file to your site.
               </li>
               <li>
                 <p>Insert before <span class="mark">&lt;/head></span> in your HTML (replace <span class="mark">your-path</span> and <span class="mark">color-scheme</span>):</p>
@@ -893,7 +893,7 @@ $(document).ready(function(){
 &lt;link href="your-path/line/color-scheme.css" rel="stylesheet">
 &lt;script src="your-path/jquery.icheck.js">&lt;/script>
 </pre>
-                  <p>Example for a <strong>Red</strong> skin:</p>
+                  <p>Example for a <strong>Red</strong> color scheme:</p>
 <pre class="markup">
 &lt;link href="your-path/line/red.css" rel="stylesheet">
 &lt;script src="your-path/jquery.icheck.js">&lt;/script>
@@ -927,8 +927,8 @@ $(document).ready(function(){
 
     label.remove();
     self.iCheck({
-      checkboxClass: 'icheck_line',
-      radioClass: 'icheck_line',
+      checkboxClass: 'icheckbox_line',
+      radioClass: 'iradio_line',
       insert: '&lt;div class="icheck_line-icon">&lt;/div>' + label_text
     });
   });
@@ -946,8 +946,8 @@ $(document).ready(function(){
 
     label.remove();
     self.iCheck({
-      checkboxClass: 'icheck_line-red',
-      radioClass: 'icheck_line-red',
+      checkboxClass: 'icheckbox_line-red',
+      radioClass: 'iradio_line-red',
       insert: '&lt;div class="icheck_line-icon">&lt;/div>' + label_text
     });
   });
@@ -1012,8 +1012,8 @@ $(document).ready(function(){
               <h4>States</h4>
               <ul class="list">
                 <li>
-                  <div class="state icheckbox_polaris static"></div>
-                  <div class="state iradio_polaris static"></div>
+                  <div class="state icheckbox_polaris"></div>
+                  <div class="state iradio_polaris"></div>
                   Normal
                 </li>
                 <li>
@@ -1060,7 +1060,7 @@ $(document).ready(function(){
             </div>
             <ul class="skin-usage">
               <li>
-                Copy <span class="mark">/skins/polaris/</span> folder and <span class="mark">/js/jquery.icheck.js</span> file to your site.
+                Copy <span class="mark">/skins/polaris/</span> folder and <span class="mark">jquery.icheck.js</span> file to your site.
               </li>
               <li>
                 <p>Insert before <span class="mark">&lt;/head></span> in your HTML (replace <span class="mark">your-path</span> and <span class="mark">color-scheme</span>):</p>
@@ -1149,8 +1149,8 @@ $(document).ready(function(){
               <h4>States</h4>
               <ul class="list">
                 <li>
-                  <div class="state icheckbox_futurico static"></div>
-                  <div class="state iradio_futurico static"></div>
+                  <div class="state icheckbox_futurico"></div>
+                  <div class="state iradio_futurico"></div>
                   Normal
                 </li>
                 <li>
@@ -1192,7 +1192,7 @@ $(document).ready(function(){
             </div>
             <ul class="skin-usage">
               <li>
-                Copy <span class="mark">/skins/futurico/</span> folder and <span class="mark">/js/jquery.icheck.js</span> file to your site.
+                Copy <span class="mark">/skins/futurico/</span> folder and <span class="mark">jquery.icheck.js</span> file to your site.
               </li>
               <li>
                 <p>Insert before <span class="mark">&lt;/head></span> in your HTML (replace <span class="mark">your-path</span> and <span class="mark">color-scheme</span>):</p>
@@ -1340,7 +1340,7 @@ $(document).ready(function(){
   <span class="comment">// set true to inherit original input's class name</span>
   inheritClass: false,
 
-  <span class="comment">// if set to true, input's id is prefixed with "iCheck-" and attached</span>
+  <span class="comment">// if set to true, input's id is prefixed with 'iCheck-' and attached</span>
   inheritID: false,
 
   <span class="comment">// add HTML code or text inside customized input</span>
@@ -1434,6 +1434,7 @@ $('input').on('ifChecked', function(event){
         <p class="methods-info">You may use any selectors, iCheck will find checkboxes and radio buttons itself.</p>
         <p><span class="mark">$('input').iCheck('check');</span> &mdash; change input's state to <span class="mark">checked</span></p>
         <p><span class="mark">$('input').iCheck('uncheck');</span> &mdash; remove <span class="mark">checked</span> state</p>
+        <p><span class="mark">$('input').iCheck('toggle');</span> &mdash; toggle <span class="mark">checked</span> state</p>
         <p><span class="mark">$('input').iCheck('disable');</span> &mdash; change input's state to <span class="mark">disabled</span></p>
         <p><span class="mark">$('input').iCheck('enable');</span> &mdash; remove <span class="mark">disabled</span> state</p>
         <p><span class="mark">$('input').iCheck('update');</span> &mdash; apply input changes, which were done outside the plugin</p>
@@ -1473,7 +1474,7 @@ $('input').on('ifChecked', function(event){
       <h2>Browser support</h2>
       <div class="browsers-inner">
         <p>iCheck is verified to work in Internet Explorer 6+, Firefox 2+, Opera 9+, Google Chrome and Safari browsers. Should also work in many others.</p>
-        <p>Mobile browsers (like Opera mini, Chrome mobile, Safari mobile and others) are also supported. Tested on iOS, Android, BlackBerry and Windows Phone devices.</p>
+        <p>Mobile browsers (like Opera mini, Chrome mobile, Safari mobile and others) are also supported. Tested on iOS (iPad, iPhone, iPod), Android, BlackBerry and Windows Phone devices.</p>
       </div>
     </div>
     <ul class="actions clear">
@@ -1505,6 +1506,6 @@ $('input').on('ifChecked', function(event){
     </div>
   </div>
   <a href="http://github.com/damirfoy/iCheck/" class="fork-me">Fork me on GitHub</a>
-  <script src="./demo/js/custom.js?v=0.8"></script>
+  <script src="./demo/js/custom.js?v=0.8.0.1"></script>
 </body>
 </html>

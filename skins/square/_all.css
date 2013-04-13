@@ -12,12 +12,10 @@
     cursor: pointer;
 }
 
-.icheckbox_square,
-.icheckbox_square.static:hover {
+.icheckbox_square {
     background-position: 0 0;
 }
-    .icheckbox_square.hover,
-    .icheckbox_square:hover {
+    .icheckbox_square.hover {
         background-position: -24px 0;
     }
     .icheckbox_square.checked {
@@ -31,12 +29,10 @@
         background-position: -96px 0;
     }
 
-.iradio_square,
-.iradio_square.static:hover {
+.iradio_square {
     background-position: -120px 0;
 }
-    .iradio_square.hover,
-    .iradio_square:hover {
+    .iradio_square.hover {
         background-position: -144px 0;
     }
     .iradio_square.checked {
@@ -76,12 +72,10 @@
     cursor: pointer;
 }
 
-.icheckbox_square-red,
-.icheckbox_square-red.static:hover {
+.icheckbox_square-red {
     background-position: 0 0;
 }
-    .icheckbox_square-red.hover,
-    .icheckbox_square-red:hover {
+    .icheckbox_square-red.hover {
         background-position: -24px 0;
     }
     .icheckbox_square-red.checked {
@@ -95,12 +89,10 @@
         background-position: -96px 0;
     }
 
-.iradio_square-red,
-.iradio_square-red.static:hover {
+.iradio_square-red {
     background-position: -120px 0;
 }
-    .iradio_square-red.hover,
-    .iradio_square-red:hover {
+    .iradio_square-red.hover {
         background-position: -144px 0;
     }
     .iradio_square-red.checked {
@@ -140,12 +132,10 @@
     cursor: pointer;
 }
 
-.icheckbox_square-green,
-.icheckbox_square-green.static:hover {
+.icheckbox_square-green {
     background-position: 0 0;
 }
-    .icheckbox_square-green.hover,
-    .icheckbox_square-green:hover {
+    .icheckbox_square-green.hover {
         background-position: -24px 0;
     }
     .icheckbox_square-green.checked {
@@ -159,12 +149,10 @@
         background-position: -96px 0;
     }
 
-.iradio_square-green,
-.iradio_square-green.static:hover {
+.iradio_square-green {
     background-position: -120px 0;
 }
-    .iradio_square-green.hover,
-    .iradio_square-green:hover {
+    .iradio_square-green.hover {
         background-position: -144px 0;
     }
     .iradio_square-green.checked {
@@ -204,12 +192,10 @@
     cursor: pointer;
 }
 
-.icheckbox_square-blue,
-.icheckbox_square-blue.static:hover {
+.icheckbox_square-blue {
     background-position: 0 0;
 }
-    .icheckbox_square-blue.hover,
-    .icheckbox_square-blue:hover {
+    .icheckbox_square-blue.hover {
         background-position: -24px 0;
     }
     .icheckbox_square-blue.checked {
@@ -223,12 +209,10 @@
         background-position: -96px 0;
     }
 
-.iradio_square-blue,
-.iradio_square-blue.static:hover {
+.iradio_square-blue {
     background-position: -120px 0;
 }
-    .iradio_square-blue.hover,
-    .iradio_square-blue:hover {
+    .iradio_square-blue.hover {
         background-position: -144px 0;
     }
     .iradio_square-blue.checked {
@@ -268,12 +252,10 @@
     cursor: pointer;
 }
 
-.icheckbox_square-aero,
-.icheckbox_square-aero.static:hover {
+.icheckbox_square-aero {
     background-position: 0 0;
 }
-    .icheckbox_square-aero.hover,
-    .icheckbox_square-aero:hover {
+    .icheckbox_square-aero.hover {
         background-position: -24px 0;
     }
     .icheckbox_square-aero.checked {
@@ -287,12 +269,10 @@
         background-position: -96px 0;
     }
 
-.iradio_square-aero,
-.iradio_square-aero.static:hover {
+.iradio_square-aero {
     background-position: -120px 0;
 }
-    .iradio_square-aero.hover,
-    .iradio_square-aero:hover {
+    .iradio_square-aero.hover {
         background-position: -144px 0;
     }
     .iradio_square-aero.checked {
@@ -332,12 +312,10 @@
     cursor: pointer;
 }
 
-.icheckbox_square-grey,
-.icheckbox_square-grey.static:hover {
+.icheckbox_square-grey {
     background-position: 0 0;
 }
-    .icheckbox_square-grey.hover,
-    .icheckbox_square-grey:hover {
+    .icheckbox_square-grey.hover {
         background-position: -24px 0;
     }
     .icheckbox_square-grey.checked {
@@ -351,12 +329,10 @@
         background-position: -96px 0;
     }
 
-.iradio_square-grey,
-.iradio_square-grey.static:hover {
+.iradio_square-grey {
     background-position: -120px 0;
 }
-    .iradio_square-grey.hover,
-    .iradio_square-grey:hover {
+    .iradio_square-grey.hover {
         background-position: -144px 0;
     }
     .iradio_square-grey.checked {
@@ -396,12 +372,10 @@
     cursor: pointer;
 }
 
-.icheckbox_square-orange,
-.icheckbox_square-orange.static:hover {
+.icheckbox_square-orange {
     background-position: 0 0;
 }
-    .icheckbox_square-orange.hover,
-    .icheckbox_square-orange:hover {
+    .icheckbox_square-orange.hover {
         background-position: -24px 0;
     }
     .icheckbox_square-orange.checked {
@@ -415,12 +389,10 @@
         background-position: -96px 0;
     }
 
-.iradio_square-orange,
-.iradio_square-orange.static:hover {
+.iradio_square-orange {
     background-position: -120px 0;
 }
-    .iradio_square-orange.hover,
-    .iradio_square-orange:hover {
+    .iradio_square-orange.hover {
         background-position: -144px 0;
     }
     .iradio_square-orange.checked {
@@ -460,12 +432,10 @@
     cursor: pointer;
 }
 
-.icheckbox_square-yellow,
-.icheckbox_square-yellow.static:hover {
+.icheckbox_square-yellow {
     background-position: 0 0;
 }
-    .icheckbox_square-yellow.hover,
-    .icheckbox_square-yellow:hover {
+    .icheckbox_square-yellow.hover {
         background-position: -24px 0;
     }
     .icheckbox_square-yellow.checked {
@@ -479,12 +449,10 @@
         background-position: -96px 0;
     }
 
-.iradio_square-yellow,
-.iradio_square-yellow.static:hover {
+.iradio_square-yellow {
     background-position: -120px 0;
 }
-    .iradio_square-yellow.hover,
-    .iradio_square-yellow:hover {
+    .iradio_square-yellow.hover {
         background-position: -144px 0;
     }
     .iradio_square-yellow.checked {
@@ -524,12 +492,10 @@
     cursor: pointer;
 }
 
-.icheckbox_square-pink,
-.icheckbox_square-pink.static:hover {
+.icheckbox_square-pink {
     background-position: 0 0;
 }
-    .icheckbox_square-pink.hover,
-    .icheckbox_square-pink:hover {
+    .icheckbox_square-pink.hover {
         background-position: -24px 0;
     }
     .icheckbox_square-pink.checked {
@@ -543,12 +509,10 @@
         background-position: -96px 0;
     }
 
-.iradio_square-pink,
-.iradio_square-pink.static:hover {
+.iradio_square-pink {
     background-position: -120px 0;
 }
-    .iradio_square-pink.hover,
-    .iradio_square-pink:hover {
+    .iradio_square-pink.hover {
         background-position: -144px 0;
     }
     .iradio_square-pink.checked {
@@ -588,12 +552,10 @@
     cursor: pointer;
 }
 
-.icheckbox_square-purple,
-.icheckbox_square-purple.static:hover {
+.icheckbox_square-purple {
     background-position: 0 0;
 }
-    .icheckbox_square-purple.hover,
-    .icheckbox_square-purple:hover {
+    .icheckbox_square-purple.hover {
         background-position: -24px 0;
     }
     .icheckbox_square-purple.checked {
@@ -607,12 +569,10 @@
         background-position: -96px 0;
     }
 
-.iradio_square-purple,
-.iradio_square-purple.static:hover {
+.iradio_square-purple {
     background-position: -120px 0;
 }
-    .iradio_square-purple.hover,
-    .iradio_square-purple:hover {
+    .iradio_square-purple.hover {
         background-position: -144px 0;
     }
     .iradio_square-purple.checked {

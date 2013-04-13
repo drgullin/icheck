@@ -53,8 +53,8 @@ $(document).ready(function() {
       };
 
       if (skin.hasClass('skin-line')) {
-        checkbox_default = 'icheck_line', radio_default = null;
-        checkbox == undefined && (checkbox = 'icheck_line-blue', radio = null);
+        checkbox_default = 'icheckbox_line', radio_default = 'iradio_line';
+        checkbox == undefined && (checkbox = 'icheckbox_line-blue', radio = 'iradio_line-blue');
       };
 
       checkbox == undefined && (checkbox = checkbox_default, radio = radio_default);

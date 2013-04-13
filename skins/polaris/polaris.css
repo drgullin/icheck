@@ -12,12 +12,10 @@
     cursor: pointer;
 }
 
-.icheckbox_polaris,
-.icheckbox_polaris.static:hover {
+.icheckbox_polaris {
     background-position: 0 0;
 }
-    .icheckbox_polaris.hover,
-    .icheckbox_polaris:hover {
+    .icheckbox_polaris.hover {
         background-position: -31px 0;
     }
     .icheckbox_polaris.checked {
@@ -31,12 +29,10 @@
         background-position: -124px 0;
     }
 
-.iradio_polaris,
-.iradio_polaris.static:hover {
+.iradio_polaris {
     background-position: -155px 0;
 }
-    .iradio_polaris.hover,
-    .iradio_polaris:hover {
+    .iradio_polaris.hover {
         background-position: -186px 0;
     }
     .iradio_polaris.checked {

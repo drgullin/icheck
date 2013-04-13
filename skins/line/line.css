@@ -1,6 +1,7 @@
 /* iCheck plugin Line skin, black
 ----------------------------------- */
-.icheck_line {
+.icheckbox_line,
+.iradio_line {
     position: relative;
     display: block;
     margin: 0;
@@ -15,7 +16,8 @@
     border-radius: 3px;
     cursor: pointer;
 }
-    .icheck_line .icheck_line-icon {
+    .icheckbox_line .icheck_line-icon,
+    .iradio_line .icheck_line-icon {
         position: absolute;
         top: 50%;
         left: 13px;
@@ -27,28 +29,34 @@
         background: url(line.png) no-repeat;
         border: none;
     }
-    .icheck_line.hover,
-    .icheck_line:hover {
+    .icheckbox_line.hover,
+    .icheckbox_line.checked.hover,
+    .iradio_line.hover {
         background: #444;
     }
-    .icheck_line.static:hover,
-    .icheck_line.checked {
+    .icheckbox_line.checked,
+    .iradio_line.checked {
         background: #000;
     }
-        .icheck_line.checked .icheck_line-icon {
+        .icheckbox_line.checked .icheck_line-icon,
+        .iradio_line.checked .icheck_line-icon {
             background-position: -15px 0;
         }
-    .icheck_line.disabled {
+    .icheckbox_line.disabled,
+    .iradio_line.disabled {
         background: #ccc;
         cursor: default;
     }
-        .icheck_line.disabled .icheck_line-icon {
+        .icheckbox_line.disabled .icheck_line-icon,
+        .iradio_line.disabled .icheck_line-icon {
             background-position: -30px 0;
         }
-    .icheck_line.checked.disabled {
+    .icheckbox_line.checked.disabled,
+    .iradio_line.checked.disabled {
         background: #ccc;
     }
-        .icheck_line.checked.disabled .icheck_line-icon {
+        .icheckbox_line.checked.disabled .icheck_line-icon,
+        .iradio_line.checked.disabled .icheck_line-icon {
             background-position: -45px 0;
         }
 
@@ -57,7 +65,8 @@
        only screen and (-moz-min-device-pixel-ratio: 1.5),
        only screen and (-o-min-device-pixel-ratio: 3/2),
        only screen and (min-device-pixel-ratio: 1.5) {
-    .icheck_line .icheck_line-icon {
+    .icheckbox_line .icheck_line-icon,
+    .iradio_line .icheck_line-icon {
         background-image: url(line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;

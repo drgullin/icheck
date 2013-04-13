@@ -1,5 +1,5 @@
 # [iCheck plugin](http://damirfoy.com/iCheck/) ![v0.8](http://damirfoy.com/iCheck/0.8.png)
-#### Highly customizable checkboxes and radio buttons with jQuery and Zepto
+#### Highly customizable checkboxes and radio buttons with jQuery and Zepto.
 
 Refer to the [iCheck website](http://damirfoy.com/iCheck/) for examples.
 
@@ -20,7 +20,7 @@ Features
 
 * [25 options](#options) to customize checkboxes and radio buttons
 * [8 callbacks](#callbacks) to handle changes
-* [6 methods](#methods) to make changes programmatically
+* [7 methods](#methods) to make changes programmatically
 * Saves changes to original inputs, [works carefully](#initialize) with any selectors
 
 
@@ -130,7 +130,7 @@ These options are default:
   // set true to inherit original input's class name
   inheritClass: false,
 
-  // if set to true, input's id is prefixed with "iCheck-" and attached
+  // if set to true, input's id is prefixed with 'iCheck-' and attached
   inheritID: false,
 
   // add HTML code or text inside customized input
@@ -247,6 +247,7 @@ You may use any selectors, iCheck will find checkboxes and radio buttons itself.
 ```js
 $('input').iCheck('check'); // change input's state to 'checked'
 $('input').iCheck('uncheck'); // remove 'checked' state
+$('input').iCheck('toggle'); // toggle 'checked' state
 $('input').iCheck('disable'); // change input's state to 'disabled'
 $('input').iCheck('enable'); // remove 'disabled' state
 $('input').iCheck('update'); // apply input changes, which were done outside the plugin
@@ -275,7 +276,7 @@ Browser support
 
 iCheck is verified to work in Internet Explorer 6+, Firefox 2+, Opera 9+, Google Chrome and Safari browsers. Should also work in many others.
 
-Mobile browsers (like Opera mini, Chrome mobile, Safari mobile and others) are also supported. Tested on iOS, Android, BlackBerry and Windows Phone devices.
+Mobile browsers (like Opera mini, Chrome mobile, Safari mobile and others) are also supported. Tested on iOS (iPad, iPhone, iPod), Android, BlackBerry and Windows Phone devices.
 
 
 License
