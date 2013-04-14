@@ -39,28 +39,19 @@
     // Customization
     } else if (typeof options == 'object' || !options) {
 
-      //  Set some default options
-      var defaults = {
-          checkboxClass: 'i' + _checkbox,
-          radioClass: 'i' + _radio,
+      //  Check if any options were passed
+      var settings = $.extend({
           checkedClass: _checked,
           disabledClass: _disabled,
-          hoverClass: 'hover',
-          focusClass: 'focus',
-          activeClass: 'active',
-          labelHover: true,
-          labelHoverClass: 'hover'
-        },
-
-        //  Check if any options were passed
-        settings = $.extend(defaults, options),
+          labelHover: true
+        }, options),
 
         selector = settings.handle,
-        hoverClass = settings.hoverClass,
-        focusClass = settings.focusClass,
-        activeClass = settings.activeClass,
+        hoverClass = settings.hoverClass || 'hover',
+        focusClass = settings.focusClass || 'focus',
+        activeClass = settings.activeClass || 'active',
         labelHover = !!settings.labelHover,
-        labelHoverClass = settings.labelHoverClass,
+        labelHoverClass = settings.labelHoverClass || 'hover',
 
         // Setup clickable area
         area = ('' + settings.increaseArea).replace('%', '') | 0;
@@ -116,7 +107,7 @@
             },
 
             // Get proper class
-            className = node[_type] == _checkbox ? settings.checkboxClass : settings.radioClass,
+            className = node[_type] == _checkbox ? settings.checkboxClass || 'i' + _checkbox : settings.radioClass || 'i' + _radio,
 
             // Find assigned labels
             label = $('label[for="' + id + '"]').add(self.closest('label')),
