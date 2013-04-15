@@ -1312,13 +1312,13 @@ $(document).ready(function(){
     enabledCheckboxClass: '',
     enabledRadioClass: '',
 
-  <span class="comment">// class added on hover state (hovered or touched)</span>
+  <span class="comment">// class added on hover state (pointer is moved onto an input)</span>
   hoverClass: 'hover',
 
-  <span class="comment">// class added on focus state (mostly when keyboard is used)</span>
+  <span class="comment">// class added on focus state (input has gained focus)</span>
   focusClass: 'focus',
 
-  <span class="comment">// class added on active state (likely when clicked)</span>
+  <span class="comment">// class added on active state (mouse button is pressed on an input)</span>
   activeClass: 'active',
 
   <span class="comment">// adds hoverClass to customized input on label hover and labelHoverClass to label on input hover</span>
@@ -1330,7 +1330,7 @@ $(document).ready(function(){
   <span class="comment">// increase clickable area by given % (negative number to decrease)</span>
   increaseArea: '',
 
-  <span class="comment">// true to set 'pointer' cursor over enabled inputs and 'default' over disabled</span>
+  <span class="comment">// true to set 'pointer' CSS cursor over enabled inputs and 'default' over disabled</span>
   cursor: false,
 
   <span class="comment">// set true to inherit original input's class name</span>
@@ -1426,8 +1426,7 @@ $('input').on('ifChecked', function(event){
 </pre>
         <p><span class="mark">ifCreated</span> callback should be binded before plugin init.</p>
         <h4 class="methods">Methods</h4>
-        <p>These methods can be used to make changes programmatically. All return original inputs in <span class="mark">$(this)</span>.</p>
-        <p class="methods-info">You may use any selectors, iCheck will find checkboxes and radio buttons itself.</p>
+        <p class="methods-info">These methods can be used to make changes programmatically.</p>
         <p><span class="mark">$('input').iCheck('check');</span> &mdash; change input's state to <span class="mark">checked</span></p>
         <p><span class="mark">$('input').iCheck('uncheck');</span> &mdash; remove <span class="mark">checked</span> state</p>
         <p><span class="mark">$('input').iCheck('toggle');</span> &mdash; toggle <span class="mark">checked</span> state</p>

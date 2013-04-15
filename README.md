@@ -106,13 +106,13 @@ These options are default:
     enabledCheckboxClass: '',
     enabledRadioClass: '',
 
-  // class added on hover state (hovered or touched)
+  // class added on hover state (pointer is moved onto an input)
   hoverClass: 'hover',
 
-  // class added on focus state (mostly when keyboard is used)
+  // class added on focus state (input has gained focus)
   focusClass: 'focus',
 
-  // class added on active state (likely when clicked)
+  // class added on active state (mouse button is pressed on an input)
   activeClass: 'active',
 
   // adds hoverClass to customized input on label hover and labelHoverClass to label on input hover
@@ -124,7 +124,7 @@ These options are default:
   // increase clickable area by given % (negative number to decrease)
   increaseArea: '',
 
-  // true to set 'pointer' cursor over enabled inputs and 'default' over disabled
+  // true to set 'pointer' CSS cursor over enabled inputs and 'default' over disabled
   cursor: false,
 
   // set true to inherit original input's class name
