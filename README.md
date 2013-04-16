@@ -240,9 +240,7 @@ $('input').on('ifChecked', function(event){
 Methods
 -------
 
-These methods can be used to make changes programmatically. All return original inputs in `$(this)`.
-
-You may use any selectors, iCheck will find checkboxes and radio buttons itself.
+These methods can be used to make changes programmatically.
 
 ```js
 $('input').iCheck('check'); // change input's state to 'checked'
