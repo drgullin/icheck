@@ -181,7 +181,7 @@
               return false;
 
             // Keyup
-            } else if (node[_type] == _radio) {
+            } else if (type == 'keyup' && node[_type] == _radio) {
               !node[_checked] && on(self, _checked);
 
             // Focus state
