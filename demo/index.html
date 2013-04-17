@@ -4,10 +4,10 @@
   <title>Customize checkboxes and radio buttons with iCheck (jQuery and Zepto) plugin</title>
   <meta charset="utf-8">
   <meta content="width=device-width" name="viewport">
-  <link href="./demo/css/custom.css?v=0.8.0.2" rel="stylesheet">
-  <link href="./skins/all.css?v=0.8.0.2" rel="stylesheet">
-  <script src="./demo/js/jquery.js"></script>
-  <script src="./jquery.icheck.min.js?v=0.8.0.2"></script>
+  <link href="./css/custom.css?v=0.8.0.3" rel="stylesheet">
+  <link href="../skins/all.css?v=0.8.0.3" rel="stylesheet">
+  <script src="./js/jquery.js"></script>
+  <script src="../jquery.icheck.min.js?v=0.8.0.3"></script>
 </head>
 <body>
   <div class="layout clear">
@@ -293,7 +293,7 @@ $('input').iCheck('destroy');
                 If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
               </p>
             </div>
-            <ul class="skin-usage">
+            <ol class="skin-usage">
               <li>
                 Choose a color scheme, there are 10 different styles available:
                 <div class="schemes clear">
@@ -364,7 +364,7 @@ $(document).ready(function(){
 </pre>
               </li>
               <li>Done.</li>
-            </ul>
+            </ol>
           </dd>
           <dt>Usage</dt>
         </dl>
@@ -481,7 +481,7 @@ $(document).ready(function(){
                 If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
               </p>
             </div>
-            <ul class="skin-usage">
+            <ol class="skin-usage">
               <li>
                 Choose a color scheme, there are 10 different styles available:
                 <div class="schemes clear">
@@ -552,7 +552,7 @@ $(document).ready(function(){
 </pre>
               </li>
               <li>Done.</li>
-            </ul>
+            </ol>
           </dd>
           <dt>Usage</dt>
         </dl>
@@ -663,7 +663,7 @@ $(document).ready(function(){
                 If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
               </p>
             </div>
-            <ul class="skin-usage">
+            <ol class="skin-usage">
               <li>
                 Choose a color scheme, there are 10 different styles available:
                 <div class="schemes clear">
@@ -732,7 +732,7 @@ $(document).ready(function(){
 </pre>
               </li>
               <li>Done.</li>
-            </ul>
+            </ol>
           </dd>
           <dt>Usage</dt>
         </dl>
@@ -861,7 +861,7 @@ $(document).ready(function(){
                 If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
               </p>
             </div>
-            <ul class="skin-usage">
+            <ol class="skin-usage">
               <li>
                 Choose a color scheme, there are 10 different styles available:
                 <div class="schemes clear">
@@ -953,7 +953,7 @@ $(document).ready(function(){
 </pre>
               </li>
               <li>Done.</li>
-            </ul>
+            </ol>
           </dd>
           <dt>Usage</dt>
         </dl>
@@ -1055,7 +1055,7 @@ $(document).ready(function(){
                 If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
               </p>
             </div>
-            <ul class="skin-usage">
+            <ol class="skin-usage">
               <li>
                 Copy <span class="mark">/skins/polaris/</span> folder and <span class="mark">jquery.icheck.js</span> file to your site.
               </li>
@@ -1090,7 +1090,7 @@ $(document).ready(function(){
 </pre>
               </li>
               <li>Done.</li>
-            </ul>
+            </ol>
           </dd>
           <dt>Usage</dt>
         </dl>
@@ -1187,7 +1187,7 @@ $(document).ready(function(){
                 If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
               </p>
             </div>
-            <ul class="skin-usage">
+            <ol class="skin-usage">
               <li>
                 Copy <span class="mark">/skins/futurico/</span> folder and <span class="mark">jquery.icheck.js</span> file to your site.
               </li>
@@ -1222,7 +1222,7 @@ $(document).ready(function(){
 </pre>
               </li>
               <li>Done.</li>
-            </ul>
+            </ol>
           </dd>
           <dt>Usage</dt>
         </dl>
@@ -1352,6 +1352,7 @@ $('input').iCheck({
 </pre>
         <p>You can choose any class names and slyle them as you want.</p>
         <h4 class="init">Initialize</h4>
+        <p>Just include <span class="mark">jquery.icheck.js</span> (or <span class="mark">zepto.icheck.js</span>) after <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://zeptojs.com" target="blank">Zepto</a>).</p>
         <p>iCheck supports any selectors, but handles only checkboxes and radio buttons:</p>
 <pre class="markup">
 <span class="comment">// customize all inputs (will search for checkboxes and radio buttons)</span>
@@ -1373,7 +1374,6 @@ $('input.some').iCheck({
   <span class="comment">// different options</span>
 });
 </pre>
-        <p><a href="http://jquery.com" target="blank">jQuery v1.7+</a> or <a href="http://zeptojs.com" target="blank">Zepto</a> library should be included in your HTML.</p>
         <h4 class="callbacks">Callbacks</h4>
         <p class="callbacks-info">iCheck provides plenty callbacks, which may be used to handle changes.</p>
         <table>
@@ -1426,7 +1426,7 @@ $('input').on('ifChecked', function(event){
 </pre>
         <p><span class="mark">ifCreated</span> callback should be binded before plugin init.</p>
         <h4 class="methods">Methods</h4>
-        <p class="methods-info">These methods can be used to make changes programmatically.</p>
+        <p class="methods-info">These methods can be used to make changes programmatically (any selectors can be used):</p>
         <p><span class="mark">$('input').iCheck('check');</span> &mdash; change input's state to <span class="mark">checked</span></p>
         <p><span class="mark">$('input').iCheck('uncheck');</span> &mdash; remove <span class="mark">checked</span> state</p>
         <p><span class="mark">$('input').iCheck('toggle');</span> &mdash; toggle <span class="mark">checked</span> state</p>
@@ -1496,6 +1496,6 @@ $('input').on('ifChecked', function(event){
     </div>
   </div>
   <a href="http://github.com/damirfoy/iCheck/" class="fork-me">Fork me on GitHub</a>
-  <script src="./demo/js/custom.js?v=0.8.0.2"></script>
+  <script src="./js/custom.js?v=0.8.0.3"></script>
 </body>
 </html>

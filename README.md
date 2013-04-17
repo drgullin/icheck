@@ -153,6 +153,8 @@ You can choose any class names and slyle them as you want.
 Initialize
 ----------
 
+Just include `jquery.icheck.js` (or `zepto.icheck.js`) after [jQuery v1.7+](http://jquery.com) (or [Zepto](http://zeptojs.com)).
+
 iCheck supports any selectors, but handles only checkboxes and radio buttons:
 
 ```js
@@ -175,8 +177,6 @@ $('input.some').iCheck({
   // different options
 });
 ```
-[jQuery v1.7+](http://jquery.com) or [Zepto](http://zeptojs.com) library should be included in your HTML.
-
 
 Callbacks
 ---------
