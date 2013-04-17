@@ -243,13 +243,26 @@ Methods
 These methods can be used to make changes programmatically.
 
 ```js
-$('input').iCheck('check'); // change input's state to 'checked'
-$('input').iCheck('uncheck'); // remove 'checked' state
-$('input').iCheck('toggle'); // toggle 'checked' state
-$('input').iCheck('disable'); // change input's state to 'disabled'
-$('input').iCheck('enable'); // remove 'disabled' state
-$('input').iCheck('update'); // apply input changes, which were done outside the plugin
-$('input').iCheck('destroy'); // remove all traces of iCheck
+// change input's state to 'checked'
+$('input').iCheck('check');
+
+// remove 'checked' state
+$('input').iCheck('uncheck');
+
+// toggle 'checked' state
+$('input').iCheck('toggle');
+
+// change input's state to 'disabled'
+$('input').iCheck('disable');
+
+// remove 'disabled' state
+$('input').iCheck('enable');
+
+// apply input changes, which were done outside the plugin
+$('input').iCheck('update');
+
+// remove all traces of iCheck
+$('input').iCheck('destroy');
 ```
 
 
