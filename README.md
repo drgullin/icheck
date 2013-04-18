@@ -59,7 +59,7 @@ With default options you'll get nearly this:
 <div class="iradio"><input type="radio" name="quux[2]" id="baz[2]"></div>
 ```
 
-By default, iCheck doesn't provide any CSS styles for wrapper divs (if you don't use skins).
+**By default, iCheck doesn't provide any CSS styles for wrapper divs (if you don't use skins).**
 
 
 Options
