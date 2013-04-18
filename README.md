@@ -240,7 +240,7 @@ $('input').on('ifChecked', function(event){
 Methods
 -------
 
-These methods can be used to make changes programmatically.
+These methods can be used to make changes programmatically (any selectors can be used):
 
 ```js
 // change input's state to 'checked'
