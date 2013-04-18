@@ -184,15 +184,9 @@
             } else if (type == 'keyup' && node[_type] == _radio) {
               !node[_checked] && on(self, _checked);
 
-            // Focus state
+            // Focus/blur
             } else if (/us|ur/.test(type)) {
-              // focus|blur
-
-              if (type == 'blur') {
-                parent[_remove](focusClass);
-              } else {
-                parent[_add](focusClass);
-              };
+              parent[type == 'blur' ? _remove : _add](focusClass);
             };
           });
 
@@ -225,12 +219,9 @@
 
                 // Label hover
                 if (label.length && labelHover && toggle == hoverClass) {
-                  if (/ut|nd/.test(type)) {
-                    // mouseout|touchend
-                    label[_remove](labelHoverClass);
-                  } else {
-                    label[_add](labelHoverClass);
-                  };
+
+                  // mouseout|touchend
+                  label[/ut|nd/.test(type) ? _remove : _add](labelHoverClass);
                 };
               };
 
