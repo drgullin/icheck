@@ -1,13 +1,13 @@
 /*!
  * iCheck v0.8, http://git.io/uhUPMA
  * =================================
- * Powerful jQuery plugin for checkboxes and radio buttons customization.
+ * Powerful jQuery plugin for checkboxes and radio buttons customization
  *
  * (c) 2013 Damir Foy, http://damirfoy.com
  * MIT Licensed
  */
 
-(function($, _iCheck, _checkbox, _radio, _checked, _disabled, _type, _click, _touch, _cursor, _absolute) {
+(function($, _iCheck, _checkbox, _radio, _checked, _disabled, _type, _click, _touch, _add, _remove, _callback, _cursor, _absolute) {
 
   // Create a plugin
   $.fn[_iCheck] = function(options) {
@@ -113,14 +113,14 @@
             label = $('label[for="' + id + '"]').add(self.closest('label')),
 
             // Wrap input
-            parent = self.wrap('<div class="' + className + '"/>').trigger('ifCreated').parent().append(settings.insert),
+            parent = self.wrap('<div class="' + className + '"/>')[_callback]('ifCreated').parent().append(settings.insert),
 
             // Layer addition
             helper = $('<ins class="' + _iCheck + '-helper"/>').css(layer).appendTo(parent);
 
           // Finalize customization
           self.data(_iCheck, {o: settings, s: self.attr('style')}).css(hide);
-          !!settings.inheritClass && parent.addClass(node.className);
+          !!settings.inheritClass && parent[_add](node.className);
           !!settings.inheritID && id && parent.attr('id', _iCheck + '-' + id);
           parent.css('position') == 'static' && parent.css('position', 'relative');
           operate(self, true, 'update');
@@ -142,11 +142,11 @@
                 } else if (labelHover) {
                   if (/ve|nd/.test(type)) {
                     // mouseleave|touchend
-                    parent.removeClass(hoverClass);
-                    item.removeClass(labelHoverClass);
+                    parent[_remove](hoverClass);
+                    item[_remove](labelHoverClass);
                   } else {
-                    parent.addClass(hoverClass);
-                    item.addClass(labelHoverClass);
+                    parent[_add](hoverClass);
+                    item[_add](labelHoverClass);
                   };
                 };
 
@@ -189,9 +189,9 @@
               // focus|blur
 
               if (type == 'blur') {
-                parent.removeClass(focusClass);
+                parent[_remove](focusClass);
               } else {
-                parent.addClass(focusClass);
+                parent[_add](focusClass);
               };
             };
           });
@@ -216,20 +216,20 @@
                 // State is on
                 if (/wn|er|in/.test(type)) {
                   // mousedown|mouseover|touchbegin
-                  parent.addClass(toggle);
+                  parent[_add](toggle);
 
                 // State is off
                 } else {
-                  parent.removeClass(toggle + ' ' + activeClass);
+                  parent[_remove](toggle + ' ' + activeClass);
                 };
 
                 // Label hover
                 if (label.length && labelHover && toggle == hoverClass) {
                   if (/ut|nd/.test(type)) {
                     // mouseout|touchend
-                    label.removeClass(labelHoverClass);
+                    label[_remove](labelHoverClass);
                   } else {
-                    label.addClass(labelHoverClass);
+                    label[_add](labelHoverClass);
                   };
                 };
               };
@@ -280,7 +280,7 @@
 
       // Helper or label was clicked
       if (!direct) {
-        input.trigger('ifClicked');
+        input[_callback]('ifClicked');
       };
 
       // Toggle checked state
@@ -309,7 +309,7 @@
       node[state] = true;
 
       // Trigger callbacks
-      input.trigger('ifChanged').trigger('if' + capitalize(state));
+      input[_callback]('ifChanged')[_callback]('if' + capitalize(state));
 
       // Toggle assigned radio buttons
       if (state == _checked && node[_type] == _radio && node.name) {
@@ -327,10 +327,10 @@
     };
 
     // Add state class
-    parent.addClass(specific || option(input, state));
+    parent[_add](specific || option(input, state));
 
     // Remove regular state class
-    parent.removeClass(regular || option(input, remove) || '');
+    parent[_remove](regular || option(input, remove) || '');
   };
 
   // Remove checked or disabled state
@@ -348,7 +348,7 @@
       node[state] = false;
 
       // Trigger callbacks
-      input.trigger('ifChanged').trigger('if' + capitalize(callback));
+      input[_callback]('ifChanged')[_callback]('if' + capitalize(callback));
     };
 
     // Add proper cursor
@@ -357,10 +357,10 @@
     };
 
     // Remove state class
-    parent.removeClass(specific || option(input, state) || '');
+    parent[_remove](specific || option(input, state) || '');
 
     // Add regular state class
-    parent.addClass(regular || option(input, callback));
+    parent[_add](regular || option(input, callback));
   };
 
   // Remove all traces of iCheck
@@ -368,7 +368,7 @@
     if (input.data(_iCheck)) {
 
       // Remove everything except input
-      input.parent().html(input.attr('style', input.data(_iCheck).s || '').trigger(callback || ''));
+      input.parent().html(input.attr('style', input.data(_iCheck).s || '')[_callback](callback || ''));
 
       // Unbind events
       input.off('.i').unwrap();
@@ -387,4 +387,4 @@
   function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
-})(jQuery, 'iCheck', 'checkbox', 'radio', 'checked', 'disabled', 'type', 'click', 'touchbegin.i touchend.i', 'cursor', 'absolute');
+})(jQuery, 'iCheck', 'checkbox', 'radio', 'checked', 'disabled', 'type', 'click', 'touchbegin.i touchend.i', 'addClass', 'removeClass', 'trigger', 'cursor', 'absolute');
