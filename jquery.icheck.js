@@ -309,7 +309,7 @@
 
       // Toggle assigned radio buttons
       if (state == _checked && node[_type] == _radio && node.name) {
-        $('input[name="' + node.name + '"]').each(function() {
+        $('input[name="' + node.name + '"]', parent.parent()).each(function() {
           if (this !== node && $(this).data(_iCheck)) {
             off($(this), state);
           };
