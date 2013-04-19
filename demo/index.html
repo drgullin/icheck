@@ -4,10 +4,10 @@
   <title>Customize checkboxes and radio buttons with iCheck (jQuery and Zepto) plugin</title>
   <meta charset="utf-8">
   <meta content="width=device-width" name="viewport">
-  <link href="./css/custom.css?v=0.8.0.3" rel="stylesheet">
-  <link href="../skins/all.css?v=0.8.0.3" rel="stylesheet">
+  <link href="./css/custom.css?v=0.8.0.4" rel="stylesheet">
+  <link href="../skins/all.css?v=0.8.0.4" rel="stylesheet">
   <script src="./js/jquery.js"></script>
-  <script src="../jquery.icheck.min.js?v=0.8.0.3"></script>
+  <script src="../jquery.icheck.min.js?v=0.8.0.4"></script>
 </head>
 <body>
   <div class="layout clear">
@@ -1434,6 +1434,12 @@ $('input').on('ifChecked', function(event){
         <p><span class="mark">$('input').iCheck('enable');</span> &mdash; remove <span class="mark">disabled</span> state</p>
         <p><span class="mark">$('input').iCheck('update');</span> &mdash; apply input changes, which were done outside the plugin</p>
         <p><span class="mark">$('input').iCheck('destroy');</span> &mdash; remove all traces of iCheck</p>
+        <p class="methods-callback">You may also specify some function, that will be executed on each method call:</p>
+<pre class="markup">
+$('input').iCheck('check', function(){
+  alert('Well done, Sir');
+});
+</pre>
       </div>
     </div>
     <div class="benefits comparison">
@@ -1496,6 +1502,6 @@ $('input').on('ifChecked', function(event){
     </div>
   </div>
   <a href="http://github.com/damirfoy/iCheck/" class="fork-me">Fork me on GitHub</a>
-  <script src="./js/custom.js?v=0.8.0.3"></script>
+  <script src="./js/custom.js?v=0.8.0.4"></script>
 </body>
 </html>

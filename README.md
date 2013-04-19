@@ -265,6 +265,14 @@ $('input').iCheck('update');
 $('input').iCheck('destroy');
 ```
 
+You may also specify some function, that will be executed on each method call:
+
+```js
+$('input').iCheck('check', function(){
+  alert('Well done, Sir');
+});
+```
+
 
 Comparison
 ----------

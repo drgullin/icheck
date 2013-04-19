@@ -7,10 +7,10 @@
  * MIT Licensed
  */
 
-(function($, _iCheck, _checkbox, _radio, _checked, _disabled, _type, _click, _touch, _add, _remove, _callback, _cursor, _absolute) {
+(function($, _iCheck, _checkbox, _radio, _checked, _disabled, _type, _click, _touch, _add, _remove, _cursor) {
 
   // Create a plugin
-  $.fn[_iCheck] = function(options) {
+  $.fn[_iCheck] = function(options, fire) {
 
     // Cached vars
     var user = navigator.userAgent,
@@ -32,6 +32,11 @@
             tidy(self, 'ifDestroyed');
           } else {
             operate(self, true, options);
+          };
+
+          // Fire method's callback
+          if ($.isFunction(fire)) {
+            fire();
           };
         });
       });
@@ -84,7 +89,7 @@
             offset = -area + '%',
             size = 100 + (area * 2) + '%',
             layer = {
-              position: _absolute,
+              position: 'absolute',
               top: offset,
               left: offset,
               display: 'block',
@@ -99,10 +104,10 @@
 
             // Choose how to hide input
             hide = ios || /android|blackberry|windows phone|opera mini/i.test(user) ? {
-              position: _absolute,
+              position: 'absolute',
               visibility: 'hidden'
             } : area ? layer : {
-              position: _absolute,
+              position: 'absolute',
               opacity: 0
             },
 
@@ -113,7 +118,7 @@
             label = $('label[for="' + id + '"]').add(self.closest('label')),
 
             // Wrap input
-            parent = self.wrap('<div class="' + className + '"/>')[_callback]('ifCreated').parent().append(settings.insert),
+            parent = self.wrap('<div class="' + className + '"/>').trigger('ifCreated').parent().append(settings.insert),
 
             // Layer addition
             helper = $('<ins class="' + _iCheck + '-helper"/>').css(layer).appendTo(parent);
@@ -240,7 +245,7 @@
   };
 
   // Do something with inputs
-  function operate(input, direct, method, keyboard) {
+  function operate(input, direct, method) {
     var node = input[0];
 
       // disable|enable
@@ -271,7 +276,7 @@
 
       // Helper or label was clicked
       if (!direct) {
-        input[_callback]('ifClicked');
+        input.trigger('ifClicked');
       };
 
       // Toggle checked state
@@ -300,7 +305,7 @@
       node[state] = true;
 
       // Trigger callbacks
-      input[_callback]('ifChanged')[_callback]('if' + capitalize(state));
+      input.trigger('ifChanged').trigger('if' + capitalize(state));
 
       // Toggle assigned radio buttons
       if (state == _checked && node[_type] == _radio && node.name) {
@@ -339,7 +344,7 @@
       node[state] = false;
 
       // Trigger callbacks
-      input[_callback]('ifChanged')[_callback]('if' + capitalize(callback));
+      input.trigger('ifChanged').trigger('if' + capitalize(callback));
     };
 
     // Add proper cursor
@@ -359,7 +364,7 @@
     if (input.data(_iCheck)) {
 
       // Remove everything except input
-      input.parent().html(input.attr('style', input.data(_iCheck).s || '')[_callback](callback || ''));
+      input.parent().html(input.attr('style', input.data(_iCheck).s || '').trigger(callback || ''));
 
       // Unbind events
       input.off('.i').unwrap();
@@ -378,4 +383,4 @@
   function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
-})(Zepto, 'iCheck', 'checkbox', 'radio', 'checked', 'disabled', 'type', 'click', 'touchbegin.i touchend.i', 'addClass', 'removeClass', 'trigger', 'cursor', 'absolute');
+})(Zepto, 'iCheck', 'checkbox', 'radio', 'checked', 'disabled', 'type', 'click', 'touchbegin.i touchend.i', 'addClass', 'removeClass', 'cursor');
