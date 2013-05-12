@@ -1,5 +1,5 @@
 /*!
- * iCheck v0.8, http://git.io/uhUPMA
+ * iCheck v0.8.5, http://git.io/uhUPMA
  * =================================
  * Powerful Zepto plugin for checkboxes and radio buttons customization
  *
@@ -15,30 +15,39 @@
     // Cached vars
     var user = navigator.userAgent,
       ios = /ipad|iphone|ipod/i.test(user),
-      handle = 'input[type="' + _checkbox + '"], input[type="' + _radio + '"]';
+      handle = 'input[type="' + _checkbox + '"], input[type="' + _radio + '"]',
+      stack = $(),
+      walker = function(object) {
+        object.each(function() {
+          var self = $(this);
+
+          if (self.is(handle)) {
+            stack = stack.add(self);
+          } else {
+            stack = stack.add(self.find(handle));
+          };
+        });
+      };
 
     // Check if we should operate with some method
     if (/^(check|uncheck|toggle|disable|enable|update|destroy)$/.test(options)) {
 
       // Find checkboxes and radio buttons
-      return this.each(function() {
-        var self = $(this),
-          tree = self.is(handle) ? self : self.find(handle);
+      walker(this);
 
-        tree.each(function() {
-          self = $(this);
+      return stack.each(function() {
+        var self = $(this);
 
-          if (options == 'destroy') {
-            tidy(self, 'ifDestroyed');
-          } else {
-            operate(self, true, options);
-          };
+        if (options == 'destroy') {
+          tidy(self, 'ifDestroyed');
+        } else {
+          operate(self, true, options);
+        };
 
-          // Fire method's callback
-          if ($.isFunction(fire)) {
-            fire();
-          };
-        });
+        // Fire method's callback
+        if ($.isFunction(fire)) {
+          fire();
+        };
       });
 
     // Customization
@@ -72,135 +81,67 @@
       };
 
       // Walk around the selector
-      return this.each(function() {
-        var self = $(this),
-          tree = self.is(handle) ? self : self.find(handle);
+      walker(this);
 
-        tree.each(function() {
-          self = $(this);
+      return stack.each(function() {
+        var self = $(this);
 
-          // If already customized
-          tidy(self);
+        // If already customized
+        tidy(self);
 
-          var node = this,
-            id = node.id,
+        var node = this,
+          id = node.id,
 
-            // Layer styles
-            offset = -area + '%',
-            size = 100 + (area * 2) + '%',
-            layer = {
-              position: 'absolute',
-              top: offset,
-              left: offset,
-              display: 'block',
-              width: size,
-              height: size,
-              margin: 0,
-              padding: 0,
-              background: '#fff',
-              border: 0,
-              opacity: 0
-            },
+          // Layer styles
+          offset = -area + '%',
+          size = 100 + (area * 2) + '%',
+          layer = {
+            position: 'absolute',
+            top: offset,
+            left: offset,
+            display: 'block',
+            width: size,
+            height: size,
+            margin: 0,
+            padding: 0,
+            background: '#fff',
+            border: 0,
+            opacity: 0
+          },
 
-            // Choose how to hide input
-            hide = ios || /android|blackberry|windows phone|opera mini/i.test(user) ? {
-              position: 'absolute',
-              visibility: 'hidden'
-            } : area ? layer : {
-              position: 'absolute',
-              opacity: 0
-            },
+          // Choose how to hide input
+          hide = ios || /android|blackberry|windows phone|opera mini/i.test(user) ? {
+            position: 'absolute',
+            visibility: 'hidden'
+          } : area ? layer : {
+            position: 'absolute',
+            opacity: 0
+          },
 
-            // Get proper class
-            className = node[_type] == _checkbox ? settings.checkboxClass || 'i' + _checkbox : settings.radioClass || 'i' + _radio,
+          // Get proper class
+          className = node[_type] == _checkbox ? settings.checkboxClass || 'i' + _checkbox : settings.radioClass || 'i' + _radio,
 
-            // Find assigned labels
-            label = $('label[for="' + id + '"]').add(self.closest('label')),
+          // Find assigned labels
+          label = $('label[for="' + id + '"]').add(self.closest('label')),
 
-            // Wrap input
-            parent = self.wrap('<div class="' + className + '"/>').trigger('ifCreated').parent().append(settings.insert),
+          // Wrap input
+          parent = self.wrap('<div class="' + className + '"/>').trigger('ifCreated').parent().append(settings.insert),
 
-            // Layer addition
-            helper = $('<ins class="' + _iCheck + '-helper"/>').css(layer).appendTo(parent);
+          // Layer addition
+          helper = $('<ins class="' + _iCheck + '-helper"/>').css(layer).appendTo(parent);
 
-          // Finalize customization
-          self.data(_iCheck, {o: settings, s: self.attr('style')}).css(hide);
-          !!settings.inheritClass && parent[_add](node.className || '');
-          !!settings.inheritID && id && parent.attr('id', _iCheck + '-' + id);
-          parent.css('position') == 'static' && parent.css('position', 'relative');
-          operate(self, true, 'update');
+        // Finalize customization
+        self.data(_iCheck, {o: settings, s: self.attr('style')}).css(hide);
+        !!settings.inheritClass && parent[_add](node.className || '');
+        !!settings.inheritID && id && parent.attr('id', _iCheck + '-' + id);
+        parent.css('position') == 'static' && parent.css('position', 'relative');
+        operate(self, true, 'update');
 
-          // Label events
-          if (label.length) {
-            label.on(_click + '.i mouseover.i mouseout.i ' + _touch, function(event) {
-              var type = event[_type],
-                item = $(this);
-
-              // Do nothing if input is disabled
-              if (!node[_disabled]) {
-
-                // Click
-                if (type == _click) {
-                  operate(self, false, true);
-
-                // Hover state
-                } else if (labelHover) {
-                  if (/ut|nd/.test(type)) {
-                    // mouseout|touchend
-                    parent[_remove](hoverClass);
-                    item[_remove](labelHoverClass);
-                  } else {
-                    parent[_add](hoverClass);
-                    item[_add](labelHoverClass);
-                  };
-                };
-
-                if (ios) {
-                  event.stopPropagation();
-                } else {
-                  return false;
-                };
-              };
-            });
-          };
-
-          // Input events
-          self.on(_click + '.i focus.i blur.i keyup.i keydown.i keypress.i', function(event) {
+        // Label events
+        if (label.length) {
+          label.on(_click + '.i mouseover.i mouseout.i ' + _touch, function(event) {
             var type = event[_type],
-              key = event.keyCode;
-
-            // Click
-            if (type == _click) {
-              return false;
-
-            // Keydown
-            } else if (type == 'keydown' && key == 32) {
-              if (!(node[_type] == _radio && node[_checked])) {
-                if (node[_checked]) {
-                  off(self, _checked);
-                } else {
-                  on(self, _checked);
-                };
-              };
-
-              return false;
-
-            // Keyup
-            } else if (type == 'keyup' && node[_type] == _radio) {
-              !node[_checked] && on(self, _checked);
-
-            // Focus/blur
-            } else if (/us|ur/.test(type)) {
-              parent[type == 'blur' ? _remove : _add](focusClass);
-            };
-          });
-
-          // Helper events
-          helper.on(_click + ' mousedown mouseup mouseover mouseout ' + _touch, function(event) {
-            var type = event[_type],
-
-              // mousedown|mouseup
-              toggle = /wn|up/.test(type) ? activeClass : hoverClass;
+              item = $(this);
 
             // Do nothing if input is disabled
             if (!node[_disabled]) {
@@ -209,24 +150,15 @@
               if (type == _click) {
                 operate(self, false, true);
 
-              // Active and hover states
-              } else {
-
-                // State is on
-                if (/wn|er|in/.test(type)) {
-                  // mousedown|mouseover|touchbegin
-                  parent[_add](toggle);
-
-                // State is off
-                } else {
-                  parent[_remove](toggle + ' ' + activeClass);
-                };
-
-                // Label hover
-                if (label.length && labelHover && toggle == hoverClass) {
-
+              // Hover state
+              } else if (labelHover) {
+                if (/ut|nd/.test(type)) {
                   // mouseout|touchend
-                  label[/ut|nd/.test(type) ? _remove : _add](labelHoverClass);
+                  parent[_remove](hoverClass);
+                  item[_remove](labelHoverClass);
+                } else {
+                  parent[_add](hoverClass);
+                  item[_add](labelHoverClass);
                 };
               };
 
@@ -237,6 +169,80 @@
               };
             };
           });
+        };
+
+        // Input events
+        self.on(_click + '.i focus.i blur.i keyup.i keydown.i keypress.i', function(event) {
+          var type = event[_type],
+            key = event.keyCode;
+
+          // Click
+          if (type == _click) {
+            return false;
+
+          // Keydown
+          } else if (type == 'keydown' && key == 32) {
+            if (!(node[_type] == _radio && node[_checked])) {
+              if (node[_checked]) {
+                off(self, _checked);
+              } else {
+                on(self, _checked);
+              };
+            };
+
+            return false;
+
+          // Keyup
+          } else if (type == 'keyup' && node[_type] == _radio) {
+            !node[_checked] && on(self, _checked);
+
+          // Focus/blur
+          } else if (/us|ur/.test(type)) {
+            parent[type == 'blur' ? _remove : _add](focusClass);
+          };
+        });
+
+        // Helper events
+        helper.on(_click + ' mousedown mouseup mouseover mouseout ' + _touch, function(event) {
+          var type = event[_type],
+
+            // mousedown|mouseup
+            toggle = /wn|up/.test(type) ? activeClass : hoverClass;
+
+          // Do nothing if input is disabled
+          if (!node[_disabled]) {
+
+            // Click
+            if (type == _click) {
+              operate(self, false, true);
+
+            // Active and hover states
+            } else {
+
+              // State is on
+              if (/wn|er|in/.test(type)) {
+                // mousedown|mouseover|touchbegin
+                parent[_add](toggle);
+
+              // State is off
+              } else {
+                parent[_remove](toggle + ' ' + activeClass);
+              };
+
+              // Label hover
+              if (label.length && labelHover && toggle == hoverClass) {
+
+                // mouseout|touchend
+                label[/ut|nd/.test(type) ? _remove : _add](labelHoverClass);
+              };
+            };
+
+            if (ios) {
+              event.stopPropagation();
+            } else {
+              return false;
+            };
+          };
         });
       });
     } else {
