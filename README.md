@@ -1,4 +1,4 @@
-# [iCheck plugin](http://damirfoy.com/iCheck/) ![v0.8](http://damirfoy.com/iCheck/0.8.png)
+# [iCheck plugin](http://damirfoy.com/iCheck/) ![v0.9](http://damirfoy.com/iCheck/0.9.png)
 #### Highly customizable checkboxes and radio buttons with jQuery and Zepto.
 
 Refer to the [iCheck website](http://damirfoy.com/iCheck/) for examples.
@@ -48,15 +48,21 @@ With default options you'll get nearly this:
 
 ```html
 <label>
-  <div class="icheckbox disabled"><input type="checkbox" name="quux[1]" disabled></div>
+  <div class="icheckbox disabled">
+    <input type="checkbox" name="quux[1]" disabled>
+  </div>
   Foo
 </label>
 
 <label for="baz[1]">Bar</label>
-<div class="iradio checked"><input type="radio" name="quux[2]" id="baz[1]" checked></div>
+<div class="iradio checked">
+  <input type="radio" name="quux[2]" id="baz[1]" checked>
+</div>
 
 <label for="baz[2]">Bar</label>
-<div class="iradio"><input type="radio" name="quux[2]" id="baz[2]"></div>
+<div class="iradio">
+  <input type="radio" name="quux[2]" id="baz[2]">
+</div>
 ```
 
 **By default, iCheck doesn't provide any CSS styles for wrapper divs** (if you don't use skins).
@@ -106,13 +112,13 @@ These options are default:
     enabledCheckboxClass: '',
     enabledRadioClass: '',
 
-  // class added on hover state (pointer is moved onto an input)
+  // class added on hover state (pointer is moved onto input)
   hoverClass: 'hover',
 
   // class added on focus state (input has gained focus)
   focusClass: 'focus',
 
-  // class added on active state (mouse button is pressed on an input)
+  // class added on active state (mouse button is pressed on input)
   activeClass: 'active',
 
   // adds hoverClass to customized input on label hover and labelHoverClass to label on input hover

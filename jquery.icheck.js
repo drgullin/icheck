@@ -1,5 +1,5 @@
 /*!
- * iCheck v0.8.5, http://git.io/uhUPMA
+ * iCheck v0.9, http://git.io/uhUPMA
  * =================================
  * Powerful jQuery plugin for checkboxes and radio buttons customization
  *
@@ -14,7 +14,7 @@
 
     // Cached vars
     var user = navigator.userAgent,
-      ios = /ipad|iphone|ipod/i.test(user),
+      mobile = /ipad|iphone|ipod|android|blackberry|windows phone|opera mini/i.test(user),
       handle = ':' + _checkbox + ', :' + _radio,
       stack = $(),
       walker = function(object) {
@@ -110,7 +110,7 @@
           },
 
           // Choose how to hide input
-          hide = ios || /android|blackberry|windows phone|opera mini/i.test(user) ? {
+          hide = mobile ? {
             position: 'absolute',
             visibility: 'hidden'
           } : area ? layer : {
@@ -162,7 +162,7 @@
                 };
               };
 
-              if (ios) {
+              if (mobile) {
                 event.stopPropagation();
               } else {
                 return false;
@@ -237,7 +237,7 @@
               };
             };
 
-            if (ios) {
+            if (mobile) {
               event.stopPropagation();
             } else {
               return false;
