@@ -375,7 +375,10 @@
     if (input.data(_iCheck)) {
 
       // Remove everything except input
-      input.parent().html(input.attr('style', input.data(_iCheck).s || '').trigger(callback || ''));
+      input.parent().html(input.attr('style', input.data(_iCheck).s || ''));
+      if(callback) {
+         input.trigger(callback);
+      };
 
       // Unbind events
       input.off('.i').unwrap();
