@@ -376,8 +376,10 @@
 
       // Remove everything except input
       input.parent().html(input.attr('style', input.data(_iCheck).s || ''));
-      if(callback) {
-         input.trigger(callback);
+
+      // Callback
+      if (callback) {
+        input.trigger(callback);
       };
 
       // Unbind events
