@@ -159,7 +159,7 @@ You can choose any class names and slyle them as you want.
 Initialize
 ----------
 
-Just include `jquery.icheck.js` (or `zepto.icheck.js`) after [jQuery v1.7+](http://jquery.com) (or [Zepto](http://zeptojs.com) [polyfill, event, data]).
+Just include `jquery.icheck.js` (or `zepto.icheck.js`) after [jQuery v1.7+](http://jquery.com) (or [Zepto](http://github.com/madrobby/zepto#zepto-modules) [polyfill, event, data]).
 
 iCheck supports any selectors, but handles only checkboxes and radio buttons:
 
