@@ -44,12 +44,20 @@ body
 	*background-image url(ie/header-line.png)
 
 a
-	color #333
+	color #222
 	text-decoration none
 	border-bottom 1px solid #bbb
 
 	&:hover
 		color #000
+
+a
+.self
+	-webkit-transition color .1s
+	-moz-transition color .1s
+	-ms-transition color .1s
+	-o-transition color .1s
+	transition color .1s
 
 .self
 	color #333
@@ -566,13 +574,33 @@ td
 		&.selected
 			display block
 
+		a
+			color #444
+
+			&:hover
+				color #111
+
 	&.skin-polaris dd
 		color #7a828b
 		background #2c323c
 
+		a
+			color #7a828b
+			border-bottom-color lighten(#2c323c, 20%)
+
+			&:hover
+				color lighten(#7a828b, 30%)
+
 	&.skin-futurico dd
 		color #888
 		background #2e3035
+
+		a
+			color #888
+			border-bottom-color lighten(#2e3035, 20%)
+
+			&:hover
+				color #aaa
 
 .skin-section
 	float left
@@ -603,6 +631,7 @@ td
 		padding-left 42px
 
 	.skin-flat & .list li
+	.skin-line & label
 		padding-left 40px
 
 	.skin-line & h4
@@ -642,6 +671,12 @@ td
 .iradio_minimal-purple
 	position absolute
 	top 1px
+	left 0
+
+.skin input[type=checkbox]
+.skin input[type=radio]
+	position absolute
+	top 2px
 	left 0
 
 .icheckbox_square
@@ -907,7 +942,7 @@ td
 	padding 43px 60px 0
 
 .skin-usage
-	padding 25px 60px 22px
+	padding 19px 60px 8px
 	list-style decimal outside
 
 	li
@@ -951,6 +986,9 @@ td
 	h4
 		margin 26px 0 10px
 
+		&.indeterminate
+			margin-top 28px
+
 	p
 		margin-bottom 5px
 
@@ -966,13 +1004,16 @@ td
 		&.methods-callback
 			margin-top 10px
 
+		&.issue-tracker
+			margin-top 31px
+
 	.markup
 		margin 9px 0 16px
 
 	.usage-inner
 		font-size 15px
 		line-height 23px
-		padding 41px 60px 34px
+		padding 41px 60px 39px
 
 .markup
 	margin 10px 0 18px
@@ -985,16 +1026,22 @@ td
 	.comment
 		color lighten(#555, 40%)
 
+		.self
+			color #555
+
+			&:hover
+				color #333
+
 	.skin-polaris &
 		background darken(#2C323C, 20%)
 		border-left-color darken(#2C323C, 30%)
 
-		.comment
-			color #555
-
 	.skin-futurico &
 		background darken(#2E3035, 20%)
 		border-left-color darken(#2E3035, 30%)
+
+	.skin-polaris &
+	.skin-futurico &
 
 		.comment
 			color #555

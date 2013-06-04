@@ -1,4 +1,4 @@
-# [iCheck plugin](http://damirfoy.com/iCheck/) ![v0.9](http://damirfoy.com/iCheck/0.9.png)
+# [iCheck plugin](http://damirfoy.com/iCheck/) ![v0.9.1](http://damirfoy.com/iCheck/0.9.1.png)
 #### Highly customizable checkboxes and radio buttons with jQuery and Zepto.
 
 Refer to the [iCheck website](http://damirfoy.com/iCheck/) for examples.
@@ -18,16 +18,16 @@ Features
 
 -----
 
-* [25 options](#options) to customize checkboxes and radio buttons
-* [8 callbacks](#callbacks) to handle changes
-* [7 methods](#methods) to make changes programmatically
+* [31 options](#options) to customize checkboxes and radio buttons
+* [11 callbacks](#callbacks) to handle changes
+* [9 methods](#methods) to make changes programmatically
 * Saves changes to original inputs, [works carefully](#initialize) with any selectors
 
 
 How it works
 ------------
 
-iCheck works with checkboxes and radio buttons like a constructor. **It wraps each input with a div**, which you may customize yourself or use one of the [available skins](http://damirfoy.com/iCheck/). You may also place inside that div some HTML code or text using `insert` option.
+iCheck works with checkboxes and radio buttons like a constructor. **It wraps each input with a div**, which you may customize yourself or by using one of the [available skins](http://damirfoy.com/iCheck/). You may also place inside that div some HTML code or text using `insert` option.
 
 For this HTML:
 
@@ -65,7 +65,7 @@ With default options you'll get nearly this:
 </div>
 ```
 
-**By default, iCheck doesn't provide any CSS styles for wrapper divs** (if you don't use skins).
+**By default, iCheck doesn't provide any CSS styles for wrapper divs** (if you don't use [skins](http://damirfoy.com/iCheck/)).
 
 
 Options
@@ -111,6 +111,20 @@ These options are default:
     // if not empty, used instead of 'enabledClass' option (input type specific)
     enabledCheckboxClass: '',
     enabledRadioClass: '',
+
+  // class added on [9 methods](#indeterminate state) (input.indeterminate = true)
+  indeterminateClass: 'indeterminate',
+
+    // if not empty, used instead of 'indeterminateClass' option (input type specific)
+    indeterminateCheckboxClass: '',
+    indeterminateRadioClass: '',
+
+  // if not empty, added as class name on determinate state (input.indeterminate = false)
+  determinateClass: '',
+
+    // if not empty, used instead of 'determinateClass' option (input type specific)
+    determinateCheckboxClass: '',
+    determinateRadioClass: '',
 
   // class added on hover state (pointer is moved onto input)
   hoverClass: 'hover',
@@ -184,6 +198,25 @@ $('input.some').iCheck({
 });
 ```
 
+Indeterminate
+---------
+
+HTML5 allows specifying [indeterminate](http://css-tricks.com/indeterminate-checkboxes/) ("partially" checked) state for checkboxes. iCheck supports this for both checkboxes and radio buttons.
+
+You can make an input indeterminate through HTML using additional attributes. Both do the same job, but `indeterminate="true"` may not work in some browsers (like IE7):
+
+```html
+<!-- indeterminate="true" -->
+<input type="checkbox" indeterminate="true">
+<input type="radio" indeterminate="true">
+
+<!-- determinate="false" -->
+<input type="checkbox" determinate="false">
+<input type="radio" determinate="false">
+```
+
+`indeterminate` and `determinate` [methods](#methods) can be used to toggle indeterminate state.
+
 Callbacks
 ---------
 
@@ -203,7 +236,7 @@ iCheck provides plenty callbacks, which may be used to handle changes.
     </tr>
     <tr>
       <td>ifChanged</td>
-      <td>input's "checked" or "disabled" state is changed</td>
+      <td>input's "checked", "disabled" or "indeterminate" state is changed</td>
     </tr>
     <tr>
       <td>ifChecked</td>
@@ -214,12 +247,24 @@ iCheck provides plenty callbacks, which may be used to handle changes.
       <td>"checked" state is removed</td>
     </tr>
     <tr>
+      <td>ifToggled</td>
+      <td>input's "checked" state is changed</td>
+    </tr>
+    <tr>
       <td>ifDisabled</td>
       <td>input's state is changed to "disabled"</td>
     </tr>
     <tr>
       <td>ifEnabled</td>
       <td>"disabled" state is removed</td>
+    </tr>
+    <tr>
+      <td>ifIndeterminate</td>
+      <td>input's state is changed to "indeterminate"</td>
+    </tr>
+    <tr>
+      <td>ifDeterminate</td>
+      <td>"indeterminate" state is removed</td>
     </tr>
     <tr>
       <td>ifCreated</td>
@@ -264,6 +309,12 @@ $('input').iCheck('disable');
 // remove 'disabled' state
 $('input').iCheck('enable');
 
+// change input's state to 'indeterminate'
+$('input').iCheck('indeterminate');
+
+// remove 'indeterminate' state
+$('input').iCheck('determinate');
+
 // apply input changes, which were done outside the plugin
 $('input').iCheck('update');
 
@@ -278,6 +329,8 @@ $('input').iCheck('check', function(){
   alert('Well done, Sir');
 });
 ```
+
+Feel free to fork and submit pull-request or submit an issue if you find something not working.
 
 
 Comparison

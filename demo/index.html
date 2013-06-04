@@ -4,10 +4,10 @@
   <title>Customize checkboxes and radio buttons with iCheck (jQuery and Zepto) plugin</title>
   <meta charset="utf-8">
   <meta content="width=device-width" name="viewport">
-  <link href="./css/custom.css?v=0.9" rel="stylesheet">
-  <link href="../skins/all.css?v=0.9" rel="stylesheet">
+  <link href="./css/custom.css?v=0.9.1" rel="stylesheet">
+  <link href="../skins/all.css?v=0.9.1" rel="stylesheet">
   <script src="./js/jquery.js"></script>
-  <script src="../jquery.icheck.min.js?v=0.9"></script>
+  <script src="../jquery.icheck.min.js?v=0.9.1"></script>
 </head>
 <body>
   <div class="layout clear">
@@ -41,13 +41,13 @@
           <strong>Lightweight size</strong> &mdash; 1 kb gzipped
         </li>
         <li class="offset">
-          <strong class="self" data-to="options">25 options</strong> to customize checkboxes and radio buttons
+          <strong class="self" data-to="options">31 options</strong> to customize checkboxes and radio buttons
         </li>
         <li>
-          <strong class="self" data-to="callbacks">8 callbacks</strong> to handle changes
+          <strong class="self" data-to="callbacks">11 callbacks</strong> to handle changes
         </li>
         <li>
-          <strong class="self" data-to="methods">7 methods</strong> to make changes programmatically
+          <strong class="self" data-to="methods">9 methods</strong> to make changes programmatically
         </li>
         <li>
           Saves changes to original inputs, <span class="self" data-to="init">works carefully</span> with any selectors
@@ -103,11 +103,8 @@
           <script>
           $(document).ready(function(){
             var callbacks_list = $('.demo-callbacks ul');
-            function callback_log(id, type) {
-              callbacks_list.prepend('<li><span>#' + id + '</span> is ' + type.replace('if', '').toLowerCase() + '</li>');
-            };
             $('.demo-list input').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function(event){
-              callback_log(this.id, event.type);
+              callbacks_list.prepend('<li><span>#' + this.id + '</span> is ' + event.type.replace('if', '').toLowerCase() + '</li>');
             }).iCheck({
               checkboxClass: 'icheckbox_square-blue',
               radioClass: 'iradio_square-blue',
@@ -291,6 +288,9 @@ $('input').iCheck('destroy');
               </p>
               <p>
                 If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
+              </p>
+              <p>
+                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the iCheck.
               </p>
             </div>
             <ol class="skin-usage">
@@ -480,6 +480,9 @@ $(document).ready(function(){
               <p>
                 If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
               </p>
+              <p>
+                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the iCheck.
+              </p>
             </div>
             <ol class="skin-usage">
               <li>
@@ -661,6 +664,9 @@ $(document).ready(function(){
               </p>
               <p>
                 If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
+              </p>
+              <p>
+                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the iCheck.
               </p>
             </div>
             <ol class="skin-usage">
@@ -860,6 +866,9 @@ $(document).ready(function(){
               <p>
                 If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
               </p>
+              <p>
+                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the iCheck.
+              </p>
             </div>
             <ol class="skin-usage">
               <li>
@@ -1040,7 +1049,7 @@ $(document).ready(function(){
               $('.skin-polaris input').iCheck({
                 checkboxClass: 'icheckbox_polaris',
                 radioClass: 'iradio_polaris',
-                increaseArea: '-10'
+                increaseArea: '-10%'
               });
             });
             </script>
@@ -1053,6 +1062,9 @@ $(document).ready(function(){
               </p>
               <p>
                 If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
+              </p>
+              <p>
+                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the iCheck.
               </p>
             </div>
             <ol class="skin-usage">
@@ -1083,7 +1095,7 @@ $(document).ready(function(){
   $('input').iCheck({
     checkboxClass: 'icheckbox_polaris',
     radioClass: 'iradio_polaris',
-    increaseArea: '-10' <span class="comment">// optional</span>
+    increaseArea: '-10%' <span class="comment">// optional</span>
   });
 });
 &lt;/script>
@@ -1186,6 +1198,9 @@ $(document).ready(function(){
               <p>
                 If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
               </p>
+              <p>
+                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the iCheck.
+              </p>
             </div>
             <ol class="skin-usage">
               <li>
@@ -1241,7 +1256,7 @@ $(document).ready(function(){
       <div class="usage-inner">
         <p>
           iCheck plugin works with checkboxes and radio buttons like a constructor.
-          <br><strong>It wraps each input with a div</strong>, which you may customize yourself or use one of the <span class="self" data-to="skins">available skins</span>.
+          <br><strong>It wraps each input with a div</strong>, which you may customize yourself or by using one of the <span class="self" data-to="skins">available skins</span>.
           <br>You may also place inside that div some HTML code or text using <span class="mark">insert</span> option.
         </p>
         <p class="offset">For this HTML:</p>
@@ -1276,7 +1291,7 @@ $(document).ready(function(){
   &lt;input type="radio" name="quux[2]" id="baz[2]">
 &lt;/div>
 </pre>
-        <p><strong>By default, iCheck doesn't provide any CSS styles for wrapper divs</strong> (if you don't use skins).</p>
+        <p><strong>By default, iCheck doesn't provide any CSS styles for wrapper divs</strong> (if you don't use <span class="self" data-to="skins">skins</span>).</p>
         <h4 class="options">Options</h4>
         <p>These options are default:</p>
 <pre class="markup">
@@ -1317,6 +1332,20 @@ $(document).ready(function(){
     <span class="comment">// if not empty, used instead of 'enabledClass' option (input type specific)</span>
     enabledCheckboxClass: '',
     enabledRadioClass: '',
+
+  <span class="comment">// class added on <span class="self" data-to="indeterminate">indeterminate state</span> (input.indeterminate = true)</span>
+  indeterminateClass: 'indeterminate',
+
+    <span class="comment">// if not empty, used instead of 'indeterminateClass' option (input type specific)</span>
+    indeterminateCheckboxClass: '',
+    indeterminateRadioClass: '',
+
+  <span class="comment">// if not empty, added as class name on determinate state (input.indeterminate = false)</span>
+  determinateClass: '',
+
+    <span class="comment">// if not empty, used instead of 'determinateClass' option (input type specific)</span>
+    determinateCheckboxClass: '',
+    determinateRadioClass: '',
 
   <span class="comment">// class added on hover state (pointer is moved onto input)</span>
   hoverClass: 'hover',
@@ -1380,6 +1409,19 @@ $('input.some').iCheck({
   <span class="comment">// different options</span>
 });
 </pre>
+        <h4 class="indeterminate">Indeterminate</h4>
+        <p>HTML5 allows specifying <a href="http://css-tricks.com/indeterminate-checkboxes/" target="blank">indeterminate</a> ("partially" checked) state for checkboxes. iCheck supports it for both checkboxes and radio buttons.</p>
+        <p>You can make an input indeterminate through HTML using additional attributes. Both do the same job, but <span class="mark">indeterminate="true"</span> may not work in some browsers (like IE7):</p>
+<pre class="markup">
+<span class="comment">&lt;!-- indeterminate="true" --></span>
+&lt;input type="checkbox" indeterminate="true">
+&lt;input type="radio" indeterminate="true">
+
+<span class="comment">&lt;!-- determinate="false" --></span>
+&lt;input type="checkbox" determinate="false">
+&lt;input type="radio" determinate="false">
+</pre>
+        <p><span class="mark">indeterminate</span> and <span class="mark">determinate</span> <span class="self" data-to="methods">methods</span> can be used to toggle indeterminate state.</p>
         <h4 class="callbacks">Callbacks</h4>
         <p class="callbacks-info">iCheck provides plenty callbacks, which may be used to handle changes.</p>
         <table>
@@ -1396,7 +1438,7 @@ $('input.some').iCheck({
             </tr>
             <tr>
               <th>ifChanged</th>
-              <td>input's <span class="mark">checked</span> or <span class="mark">disabled</span> state is changed</td>
+              <td>input's <span class="mark">checked</span>, <span class="mark">disabled</span> or <span class="mark">indeterminate</span> state is changed</td>
             </tr>
             <tr>
               <th>ifChecked</th>
@@ -1407,12 +1449,24 @@ $('input.some').iCheck({
               <td><span class="mark">checked</span> state is removed</td>
             </tr>
             <tr>
+              <th>ifToggled</th>
+              <td>input's <span class="mark">checked</span> state is changed</td>
+            </tr>
+            <tr>
               <th>ifDisabled</th>
               <td>input's state is changed to <span class="mark">disabled</span></td>
             </tr>
             <tr>
               <th>ifEnabled</th>
               <td><span class="mark">disabled</span> state is removed</td>
+            </tr>
+            <tr>
+              <th>ifIndeterminate</th>
+              <td>input's state is changed to <span class="mark">indeterminate</span></td>
+            </tr>
+            <tr>
+              <th>ifDeterminate</th>
+              <td><span class="mark">indeterminate</span> state is removed</td>
             </tr>
             <tr>
               <th>ifCreated</th>
@@ -1438,6 +1492,8 @@ $('input').on('ifChecked', function(event){
         <p><span class="mark">$('input').iCheck('toggle');</span> &mdash; toggle <span class="mark">checked</span> state</p>
         <p><span class="mark">$('input').iCheck('disable');</span> &mdash; change input's state to <span class="mark">disabled</span></p>
         <p><span class="mark">$('input').iCheck('enable');</span> &mdash; remove <span class="mark">disabled</span> state</p>
+        <p><span class="mark">$('input').iCheck('indeterminate');</span> &mdash; change input's state to <span class="mark">indeterminate</span></p>
+        <p><span class="mark">$('input').iCheck('determinate');</span> &mdash; remove <span class="mark">indeterminate</span> state</p>
         <p><span class="mark">$('input').iCheck('update');</span> &mdash; apply input changes, which were done outside the plugin</p>
         <p><span class="mark">$('input').iCheck('destroy');</span> &mdash; remove all traces of iCheck</p>
         <p class="methods-callback">You may also specify some function, that will be executed on each method call:</p>
@@ -1446,6 +1502,7 @@ $('input').iCheck('check', function(){
   alert('Well done, Sir');
 });
 </pre>
+        <p class="issue-tracker">Feel free to <a href="http://github.com/damirfoy/iCheck/">fork and submit pull-request</a> or <a href="https://github.com/damirfoy/iCheck/issues">submit an issue</a> if you find something not working.</p>
       </div>
     </div>
     <div class="benefits comparison">
@@ -1508,6 +1565,6 @@ $('input').iCheck('check', function(){
     </div>
   </div>
   <a href="http://github.com/damirfoy/iCheck/" class="fork-me">Fork me on GitHub</a>
-  <script src="./js/custom.js?v=0.9"></script>
+  <script src="./js/custom.js?v=0.9.1"></script>
 </body>
 </html>
