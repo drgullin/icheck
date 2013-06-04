@@ -277,7 +277,7 @@ iCheck provides plenty callbacks, which may be used to handle changes.
   </tbody>
 </table>
 
-Use `on()` method to bind them:
+Use `on()` method to bind them to inputs:
 
 ```js
 $('input').on('ifChecked', function(event){
