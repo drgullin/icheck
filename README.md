@@ -27,7 +27,7 @@ Features
 How it works
 ------------
 
-iCheck works with checkboxes and radio buttons like a constructor. **It wraps each input with a div**, which you may customize yourself or by using one of the [available skins](http://damirfoy.com/iCheck/). You may also place inside that div some HTML code or text using `insert` option.
+iCheck works with checkboxes and radio buttons like a constructor. **It wraps each input with a div**, which you may be customized by you or using one of the [available skins](http://damirfoy.com/iCheck/). You may also place inside that div some HTML code or text using `insert` option.
 
 For this HTML:
 
