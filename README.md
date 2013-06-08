@@ -1,5 +1,5 @@
 # [iCheck plugin](http://damirfoy.com/iCheck/) ![v0.9.1](http://damirfoy.com/iCheck/0.9.1.png)
-#### Highly customizable checkboxes and radio buttons with jQuery and Zepto.
+#### Highly customizable checkboxes and radio buttons for jQuery and Zepto.
 
 Refer to the [iCheck website](http://damirfoy.com/iCheck/) for examples.
 
@@ -112,7 +112,7 @@ These options are default:
     enabledCheckboxClass: '',
     enabledRadioClass: '',
 
-  // class added on [9 methods](#indeterminate state) (input.indeterminate = true)
+  // class added on indeterminate state (input.indeterminate = true)
   indeterminateClass: 'indeterminate',
 
     // if not empty, used instead of 'indeterminateClass' option (input type specific)
@@ -203,14 +203,14 @@ Indeterminate
 
 HTML5 allows specifying [indeterminate](http://css-tricks.com/indeterminate-checkboxes/) ("partially" checked) state for checkboxes. iCheck supports this for both checkboxes and radio buttons.
 
-You can make an input indeterminate through HTML using additional attributes. Both do the same job, but `indeterminate="true"` may not work in some browsers (like IE7):
+You can make an input indeterminate through HTML using additional attributes (supported by iCheck). Both do the same job, but `indeterminate="true"` may not work in some browsers (like IE7):
 
 ```html
-<!-- indeterminate="true" -->
+indeterminate="true"
 <input type="checkbox" indeterminate="true">
 <input type="radio" indeterminate="true">
 
-<!-- determinate="false" -->
+determinate="false"
 <input type="checkbox" determinate="false">
 <input type="radio" determinate="false">
 ```
@@ -354,7 +354,7 @@ Browser support
 
 iCheck is verified to work in Internet Explorer 6+, Firefox 2+, Opera 9+, Google Chrome and Safari browsers. Should also work in many others.
 
-Mobile browsers (like Opera mini, Chrome mobile, Safari mobile and others) are also supported. Tested on iOS (iPad, iPhone, iPod), Android, BlackBerry and Windows Phone devices.
+Mobile browsers (like Opera mini, Chrome mobile, Safari mobile, Android browser and others) are also supported. Tested on iOS (iPad, iPhone, iPod), Android, BlackBerry and Windows Phone devices.
 
 
 License
