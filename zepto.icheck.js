@@ -144,6 +144,9 @@
           // Get proper class
           className = node[_type] == _checkbox ? settings.checkboxClass || 'i' + _checkbox : settings.radioClass || 'i' + _radio,
 
+          // Get ARIA role
+          ariaRole = node[_type] == _checkbox ? 'checkbox' : 'radio',
+
           // Find assigned labels
           label = $(_label + '[for="' + id + '"]').add(self.closest(_label));
 
