@@ -28,7 +28,7 @@
     _callback = 'trigger',
     _label = 'label',
     _cursor = 'cursor',
-    _mobile = /ipad|iphone|ipod|android|blackberry|windows phone|opera mini/i.test(navigator.userAgent);
+    _mobile = /ipad|iphone|ipod|android|blackberry|windows phone|opera mini|silk/i.test(navigator.userAgent);
 
   // Plugin init
   $.fn[_iCheck] = function(options, fire) {
