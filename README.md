@@ -167,7 +167,7 @@ $('input').iCheck({
 });
 ```
 
-You can choose any class names and slyle them as you want.
+You can choose any class names and style them as you want.
 
 
 Initialize
