@@ -223,6 +223,13 @@
             parent[type == 'blur' ? _remove : _add](focusClass);
           };
         });
+        
+        // Focus with TAB key
+        self.focus(function(){
+            parent[_add](hoverClass);
+        }).focusout(function(){
+            parent[_remove](hoverClass);
+        })
 
         // Helper events
         helper.on(_click + ' mousedown mouseup mouseover mouseout ' + _touch, function(event) {
