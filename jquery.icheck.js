@@ -275,7 +275,7 @@
 
   // Do something with inputs
   function operate(input, direct, method) {
-    var node = input[0];
+    var node = input[0],
       state = /er/.test(method) ? _indeterminate : /bl/.test(method) ? _disabled : _checked,
       active = method == _update ? {
         checked: node[_checked],
