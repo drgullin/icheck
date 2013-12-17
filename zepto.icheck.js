@@ -177,6 +177,9 @@
 
               // Click
               if (type == _click) {
+                if ($(event.target).is('a')) {
+                  return;
+                }
                 operate(self, false, true);
 
               // Hover state
