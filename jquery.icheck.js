@@ -193,7 +193,7 @@
               if (_mobile) {
                 event.stopPropagation();
               } else {
-                return false;
+                return true;
               };
             };
           });
@@ -269,7 +269,7 @@
             if (_mobile) {
               event.stopPropagation();
             } else {
-              return false;
+              return true;
             };
           };
         });
