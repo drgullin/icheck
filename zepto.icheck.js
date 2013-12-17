@@ -144,11 +144,17 @@
           // Get proper class
           className = node[_type] == _checkbox ? settings.checkboxClass || 'i' + _checkbox : settings.radioClass || 'i' + _radio,
 
+          // Get ARIA role
+          ariaRole = node[_type] == _checkbox ? 'checkbox' : 'radio',
+
           // Find assigned labels
-          label = $(_label + '[for="' + id + '"]').add(self.closest(_label)),
+          label = $(_label + '[for="' + id + '"]').add(self.closest(_label));
+
+      // Add random id if the label doesn't have an id. Required for ARIA.
+      if (typeof label.attr('id') == 'undefined') label.attr('id', 'i' + Math.random().toString(36));
 
           // Wrap input
-          parent = self.wrap('<div class="' + className + '"/>')[_callback]('ifCreated').parent().append(settings.insert),
+      var parent = self.wrap('<div class="' + className + '"/>')[_callback]('ifCreated').parent().append(settings.insert),
 
           // Layer addition
           helper = $('<ins class="' + _iCheckHelper + '"/>').css(layer).appendTo(parent);
@@ -329,6 +335,7 @@
       parent = input.parent(),
       checked = state == _checked,
       indeterminate = state == _indeterminate,
+      disabled = state == _disabled,
       callback = indeterminate ? _determinate : checked ? _unchecked : 'enabled',
       regular = option(input, callback + capitalize(node[_type])),
       specific = option(input, state + capitalize(node[_type]));
@@ -387,6 +394,9 @@
     // Add state class
     parent[_add](specific || option(input, state) || '');
 
+    // Add state ARIA attribute
+    disabled ? parent.attr('aria-disabled', 'true') : parent.attr('aria-checked', indeterminate ? 'mixed' : 'true');
+
     // Remove regular state class
     parent[_remove](regular || option(input, callback) || '');
   };
@@ -397,6 +407,7 @@
       parent = input.parent(),
       checked = state == _checked,
       indeterminate = state == _indeterminate,
+      disabled = state == _disabled,
       callback = indeterminate ? _determinate : checked ? _unchecked : 'enabled',
       regular = option(input, callback + capitalize(node[_type])),
       specific = option(input, state + capitalize(node[_type]));
@@ -420,6 +431,9 @@
 
     // Remove state class
     parent[_remove](specific || option(input, state) || '');
+
+    // Change state ARIA attribute
+    disabled ? parent.attr('aria-disabled', 'false') : parent.attr('aria-checked', 'false');
 
     // Add regular state class
     parent[_add](regular || option(input, callback) || '');
