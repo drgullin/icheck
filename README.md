@@ -1,6 +1,8 @@
 # [iCheck plugin](http://fronteed.com/iCheck/)
 #### Highly customizable checkboxes and radio buttons for jQuery and Zepto.
 
+Last release - [v1.0](#december-18-2013)
+
 Refer to the [iCheck website](http://fronteed.com/iCheck/) for examples.
 
 ![Skins](http://fronteed.com/iCheck/examples.png)
@@ -364,7 +366,7 @@ Mobile browsers (like Opera mini, Chrome mobile, Safari mobile, Android browser,
 Changelog
 ---------------
 
-### Version 1.0 - December 18, 2013
+### December 18, 2013
 
 * Added ARIA attributes support (for VoiceOver and others) @myfreeweb
 * Added Amazon Kindle support @skinofstars
