@@ -361,6 +361,20 @@ iCheck is verified to work in Internet Explorer 6+, Firefox 2+, Opera 9+, Google
 Mobile browsers (like Opera mini, Chrome mobile, Safari mobile, Android browser, Silk and others) are also supported. Tested on iOS (iPad, iPhone, iPod), Android, BlackBerry and Windows Phone devices.
 
 
+Changelog
+---------------
+
+### Version 1.0 - December 18, 2013
+
+* Added ARIA attributes support (for VoiceOver and others) @myfreeweb
+* Added Amazon Kindle support @skinofstars
+* Fixed clickable links inside labels @LeGaS
+* Fixed lines separation between labels and inputs
+* Merged two versions of the plugin (jQuery and Zepto) into one
+* Fixed demo links
+* Fixed callbacks @PepijnSenders
+
+
 License
 -------
 iCheck plugin is released under the [MIT License](http://en.wikipedia.org/wiki/MIT_License). Feel free to use it in personal and commercial projects.
