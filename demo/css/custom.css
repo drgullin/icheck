@@ -28,6 +28,7 @@ td{width:100%}
 .header h1,.header strong{letter-spacing:-1px;text-transform:uppercase}
 .header h1{padding-bottom:23px;font-size:22px;line-height:28px}
 .header h3{position:relative;padding:35px 0 17px;font-size:120px;line-height:140px;letter-spacing:-5px;}
+.header h3 span{font-size:30px;line-height:40px;letter-spacing:0;margin-left:-10px;vertical-align:baseline;}
 .header h3:before{content:'';display:inline-block;width:72px;height:64px;margin-right:32px;vertical-align:middle;background:url("icheck.png")}
 .header h3:after{content:'';position:absolute;top:0;left:50%;width:100px;margin-left:-50px;border-top:3px solid #fff}
 .header strong{font:24px/30px 'MontserratRegular',Helvetica,Arial,sans-serif;}
@@ -79,6 +80,11 @@ td{width:100%}
 .demo-callbacks{position:absolute;top:0;right:0;bottom:0;width:300px;color:#aaa;background:#232323;border:3px solid #ddd8ce;}
 .demo-callbacks h2{color:#fff;background:#6a5a8c}
 .demo-callbacks ul{position:absolute;top:60px;width:100%;bottom:0;overflow:auto;}
+.demo-callbacks ul::-webkit-scrollbar{width:10px;background:none;}
+.demo-callbacks ul::-webkit-scrollbar-track{background:none;border:none;}
+.demo-callbacks ul::-webkit-scrollbar-track-piece:disabled{display:none !important;}
+.demo-callbacks ul::-webkit-scrollbar-thumb{background:rgba(255,255,255,.25);border:none;}
+.demo-callbacks ul::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.3);}
 .demo-callbacks ul li{margin-top:-1px;padding:13px 20px 15px;border-top:1px solid #2e2e2e;}
 .demo-callbacks ul li span{color:#888}
 .skins{position:relative;*zoom:1;}
@@ -190,6 +196,9 @@ td{width:100%}
 .skin-line .colors li.yellow{background:#ffc414}
 .skins-info{padding:13px 0 57px;font-size:16px;line-height:22px;text-align:center;}
 .skins-info p{margin-bottom:17px}
+.skins-info .skins-banner{margin:34px 0 3px;}
+.skins-info .skins-banner a{display:block;width:728px;height:90px;margin:0 auto;overflow:hidden;text-indent:100%;white-space:nowrap;background:url(banner.jpg);-webkit-transition:opacity 0.4s ease;-moz-transition:opacity 0.4s ease;-o-transition:opacity 0.4s ease;transition:opacity 0.4s ease;border:none;}
+.skins-info .skins-banner a:hover{opacity:.8;}
 .skin-pre{padding:43px 60px 0}
 .skin-usage{padding:19px 60px 8px;list-style:decimal outside;}
 .skin-usage li{margin-bottom:23px}

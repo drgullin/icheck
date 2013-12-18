@@ -2,7 +2,9 @@
 ----------------------------------- */
 .icheckbox_minimal,
 .iradio_minimal {
-    display: block;
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
     margin: 0;
     padding: 0;
     width: 18px;
@@ -62,7 +64,9 @@
 /* red */
 .icheckbox_minimal-red,
 .iradio_minimal-red {
-    display: block;
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
     margin: 0;
     padding: 0;
     width: 18px;
@@ -122,7 +126,9 @@
 /* green */
 .icheckbox_minimal-green,
 .iradio_minimal-green {
-    display: block;
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
     margin: 0;
     padding: 0;
     width: 18px;
@@ -182,7 +188,9 @@
 /* blue */
 .icheckbox_minimal-blue,
 .iradio_minimal-blue {
-    display: block;
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
     margin: 0;
     padding: 0;
     width: 18px;
@@ -242,7 +250,9 @@
 /* aero */
 .icheckbox_minimal-aero,
 .iradio_minimal-aero {
-    display: block;
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
     margin: 0;
     padding: 0;
     width: 18px;
@@ -302,7 +312,9 @@
 /* grey */
 .icheckbox_minimal-grey,
 .iradio_minimal-grey {
-    display: block;
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
     margin: 0;
     padding: 0;
     width: 18px;
@@ -362,7 +374,9 @@
 /* orange */
 .icheckbox_minimal-orange,
 .iradio_minimal-orange {
-    display: block;
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
     margin: 0;
     padding: 0;
     width: 18px;
@@ -422,7 +436,9 @@
 /* yellow */
 .icheckbox_minimal-yellow,
 .iradio_minimal-yellow {
-    display: block;
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
     margin: 0;
     padding: 0;
     width: 18px;
@@ -482,7 +498,9 @@
 /* pink */
 .icheckbox_minimal-pink,
 .iradio_minimal-pink {
-    display: block;
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
     margin: 0;
     padding: 0;
     width: 18px;
@@ -542,7 +560,9 @@
 /* purple */
 .icheckbox_minimal-purple,
 .iradio_minimal-purple {
-    display: block;
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
     margin: 0;
     padding: 0;
     width: 18px;

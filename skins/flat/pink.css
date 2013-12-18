@@ -2,7 +2,9 @@
 ----------------------------------- */
 .icheckbox_flat-pink,
 .iradio_flat-pink {
-    display: block;
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
     margin: 0;
     padding: 0;
     width: 20px;

@@ -2,7 +2,9 @@
 ----------------------------------- */
 .icheckbox_square-orange,
 .iradio_square-orange {
-    display: block;
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
     margin: 0;
     padding: 0;
     width: 22px;

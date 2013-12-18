@@ -1,9 +1,9 @@
 /*!
- * iCheck v0.9.1, http://git.io/uhUPMA
+ * iCheck v1.0, http://git.io/arlzeA
  * =================================
- * Powerful Zepto plugin for checkboxes and radio buttons customization
+ * Powerful jQuery and Zepto plugin for checkboxes and radio buttons customization
  *
- * (c) 2013 Damir Foy, http://damirfoy.com
+ * (c) 2013 Damir Sultanov, http://fronteed.com
  * MIT Licensed
  */
 
@@ -75,12 +75,13 @@
     // Customization
     } else if (typeof options == 'object' || !options) {
 
-      //  Check if any options were passed
+      // Check if any options were passed
       var settings = $.extend({
           checkedClass: _checked,
           disabledClass: _disabled,
           indeterminateClass: _indeterminate,
-          labelHover: true
+          labelHover: true,
+          aria: false
         }, options),
 
         selector = settings.handle,
@@ -144,20 +145,40 @@
           // Get proper class
           className = node[_type] == _checkbox ? settings.checkboxClass || 'i' + _checkbox : settings.radioClass || 'i' + _radio,
 
-          // Get ARIA role
-          ariaRole = node[_type] == _checkbox ? 'checkbox' : 'radio',
-
           // Find assigned labels
-          label = $(_label + '[for="' + id + '"]').add(self.closest(_label));
+          label = $(_label + '[for="' + id + '"]').add(self.closest(_label)),
 
-      // Add random id if the label doesn't have an id. Required for ARIA.
-      if (typeof label.attr('id') == 'undefined') label.attr('id', 'i' + Math.random().toString(36));
+          // Check ARIA option
+          aria = !!settings.aria,
 
-          // Wrap input
-      var parent = self.wrap('<div class="' + className + '"/>')[_callback]('ifCreated').parent().append(settings.insert),
+          // Set ARIA placeholder
+          ariaID = _iCheck + '-' + Math.random().toString(36).replace('0.', ''),
 
-          // Layer addition
-          helper = $('<ins class="' + _iCheckHelper + '"/>').css(layer).appendTo(parent);
+          // Parent & helper
+          parent = '<div class="' + className + '" ' + (aria ? 'role="' + node[_type] + '" ' : ''),
+          helper;
+
+        // Set ARIA "labelledby"
+        if (label.length && aria) {
+          label.each(function() {
+            parent += 'aria-labelledby="';
+
+            if (this.id) {
+              parent += this.id;
+            } else {
+              this.id = ariaID;
+              parent += ariaID;
+            }
+
+            parent += '"';
+          });
+        };
+
+        // Wrap input
+        parent = self.wrap(parent + '/>')[_callback]('ifCreated').parent().append(settings.insert);
+
+        // Layer addition
+        helper = $('<ins class="' + _iCheckHelper + '"/>').css(layer).appendTo(parent);
 
         // Finalize customization
         self.data(_iCheck, {o: settings, s: self.attr('style')}).css(hide);
@@ -286,7 +307,7 @@
 
   // Do something with inputs
   function operate(input, direct, method) {
-    var node = input[0];
+    var node = input[0],
       state = /er/.test(method) ? _indeterminate : /bl/.test(method) ? _disabled : _checked,
       active = method == _update ? {
         checked: node[_checked],
@@ -397,7 +418,7 @@
     // Add state class
     parent[_add](specific || option(input, state) || '');
 
-    // Add state ARIA attribute
+    // Set ARIA attribute
     disabled ? parent.attr('aria-disabled', 'true') : parent.attr('aria-checked', indeterminate ? 'mixed' : 'true');
 
     // Remove regular state class
@@ -435,7 +456,7 @@
     // Remove state class
     parent[_remove](specific || option(input, state) || '');
 
-    // Change state ARIA attribute
+    // Set ARIA attribute
     disabled ? parent.attr('aria-disabled', 'false') : parent.attr('aria-checked', 'false');
 
     // Add regular state class
@@ -482,4 +503,4 @@
       input[_callback]('ifChanged')[_callback]('if' + capitalize(callback));
     };
   };
-})(Zepto);
+})(window.jQuery || window.Zepto);

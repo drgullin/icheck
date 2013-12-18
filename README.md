@@ -1,24 +1,25 @@
-# [iCheck plugin](http://damirfoy.com/iCheck/) ![v0.9.1](http://damirfoy.com/iCheck/0.9.1.png)
+# [iCheck plugin](http://fronteed.com/iCheck/)
 #### Highly customizable checkboxes and radio buttons for jQuery and Zepto.
 
-Refer to the [iCheck website](http://damirfoy.com/iCheck/) for examples.
+Refer to the [iCheck website](http://fronteed.com/iCheck/) for examples.
 
-![Skins](http://damirfoy.com/iCheck/examples.png)
+![Skins](http://fronteed.com/iCheck/examples.png)
 
 
 Features
 --------
 
 * **Identical inputs across different browsers and devices** — both [desktop and mobile](#browser-support)
-* **Touch devices support** — iOS, Android, BlackBerry, Windows Phone
+* **Touch devices support** — iOS, Android, BlackBerry, Windows Phone, Amazon Kindle
 * **Keyboard accessible inputs** — `Tab`, `Spacebar`, `Arrow up/down` and other shortcuts
-* **Customization freedom** — use any HTML and CSS to style inputs (try [6 Retina-ready skins](http://damirfoy.com/iCheck/))
-* **jQuery and Zepto** JavaScript libraries support
+* **Customization freedom** — use any HTML and CSS to style inputs (try [6 Retina-ready skins](http://fronteed.com/iCheck/))
+* **jQuery and Zepto** JavaScript libraries support from single file
+* **Screenreader accessible inputs** &mdash; [ARIA](https://developer.mozilla.org/en-US/docs/Accessibility/ARIA) attributes for VoiceOver and others
 * **Lightweight size** — 1 kb gzipped
 
 -----
 
-* [31 options](#options) to customize checkboxes and radio buttons
+* [32 options](#options) to customize checkboxes and radio buttons
 * [11 callbacks](#callbacks) to handle changes
 * [9 methods](#methods) to make changes programmatically
 * Saves changes to original inputs, [works carefully](#initialize) with any selectors
@@ -27,7 +28,7 @@ Features
 How it works
 ------------
 
-iCheck works with checkboxes and radio buttons like a constructor. **It wraps each input with a div**, which may be customized by you or using one of the [available skins](http://damirfoy.com/iCheck/). You may also place inside that div some HTML code or text using `insert` option.
+iCheck works with checkboxes and radio buttons like a constructor. **It wraps each input with a div**, which may be customized by you or using one of the [available skins](http://fronteed.com/iCheck/). You may also place inside that div some HTML code or text using `insert` option.
 
 For this HTML:
 
@@ -65,7 +66,7 @@ With default options you'll get nearly this:
 </div>
 ```
 
-**By default, iCheck doesn't provide any CSS styles for wrapper divs** (if you don't use [skins](http://damirfoy.com/iCheck/)).
+**By default, iCheck doesn't provide any CSS styles for wrapper divs** (if you don't use [skins](http://fronteed.com/iCheck/)).
 
 
 Options
@@ -153,6 +154,9 @@ These options are default:
   // if set to true, input's id is prefixed with 'iCheck-' and attached
   inheritID: false,
 
+  // set true to activate ARIA support
+  aria: false,
+
   // add HTML code or text inside customized input
   insert: ''
 }
@@ -173,7 +177,7 @@ You can choose any class names and style them as you want.
 Initialize
 ----------
 
-Just include `jquery.icheck.js` (or `zepto.icheck.js`) after [jQuery v1.7+](http://jquery.com) (or [Zepto](http://github.com/madrobby/zepto#zepto-modules) [polyfill, event, data]).
+Just include `icheck.js` after [jQuery v1.7+](http://jquery.com) (or [Zepto](http://github.com/madrobby/zepto#zepto-modules) [polyfill, event, data]).
 
 iCheck supports any selectors, but handles only checkboxes and radio buttons:
 
@@ -354,7 +358,7 @@ Browser support
 
 iCheck is verified to work in Internet Explorer 6+, Firefox 2+, Opera 9+, Google Chrome and Safari browsers. Should also work in many others.
 
-Mobile browsers (like Opera mini, Chrome mobile, Safari mobile, Android browser and others) are also supported. Tested on iOS (iPad, iPhone, iPod), Android, BlackBerry and Windows Phone devices.
+Mobile browsers (like Opera mini, Chrome mobile, Safari mobile, Android browser, Silk and others) are also supported. Tested on iOS (iPad, iPhone, iPod), Android, BlackBerry and Windows Phone devices.
 
 
 License

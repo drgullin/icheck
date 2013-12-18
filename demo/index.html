@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Customize checkboxes and radio buttons with iCheck (jQuery and Zepto) plugin</title>
+  <title>Checkboxes and radio buttons customization (jQuery and Zepto) plugin</title>
   <meta charset="utf-8">
   <meta content="width=device-width" name="viewport">
-  <link href="./css/custom.css?v=0.9.1" rel="stylesheet">
-  <link href="../skins/all.css?v=0.9.1" rel="stylesheet">
+  <link href="./css/custom.css?v=1.0" rel="stylesheet">
+  <link href="../skins/all.css?v=1.0" rel="stylesheet">
   <script src="./js/jquery.js"></script>
-  <script src="../jquery.icheck.min.js?v=0.9.1"></script>
+  <script src="../icheck.js?v=1.0"></script>
+  <script src="./js/custom.min.js?v=1.0"></script>
 </head>
 <body>
   <div class="layout clear">
     <div class="header">
       <h1>super customized checkboxes and radio buttons for jQuery &amp; Zepto</h1>
-      <h3>iCheck</h3>
-      <strong>@<a href="http://twitter.com/damirfoy/">Damir Foy</a></strong>
+      <h3>iCheck <span>v1.0</span></h3>
+      <strong>@<a href="http://twitter.com/fronteed/">Fronteed</a></strong>
     </div>
     <div class="features">
       <div class="arrows">
@@ -26,25 +27,25 @@
           <strong>Identical inputs across different browsers and devices</strong> &mdash; both <span class="self" data-to="download">desktop and mobile</span>
         </li>
         <li>
-          <strong>Touch devices support</strong> &mdash; iOS, Android, BlackBerry, Windows Phone
+          <strong>Touch devices support</strong> &mdash; iOS, Android, BlackBerry, Windows Phone, Amazon Kindle
         </li>
         <li>
           <strong>Keyboard accessible inputs</strong> &mdash; <span class="mark">Tab</span>, <span class="mark">Spacebar</span>, <span class="mark">Arrow up/down</span> and other shortcuts
         </li>
         <li>
-          <strong>Screenreader accessible inputs</strong> &mdash; <a href="https://developer.mozilla.org/en-US/docs/Accessibility/ARIA">ARIA</a> attributes for VoiceOver and others
+          <strong>Screenreader accessible inputs</strong> &mdash; <a href="https://developer.mozilla.org/en-US/docs/Accessibility/ARIA" target="blank">ARIA</a> attributes for VoiceOver and others
         </li>
         <li>
           <strong>Customization freedom</strong> &mdash; use any HTML and CSS to style inputs (try <span class="self" data-to="skins">6 Retina-ready skins</span>)
         </li>
         <li>
-          <strong>jQuery and Zepto</strong> JavaScript libraries support
+          <strong>jQuery and Zepto</strong> JavaScript libraries support from single file
         </li>
         <li>
           <strong>Lightweight size</strong> &mdash; 1 kb gzipped
         </li>
         <li class="offset">
-          <strong class="self" data-to="options">31 options</strong> to customize checkboxes and radio buttons
+          <strong class="self" data-to="options">32 options</strong> to customize checkboxes and radio buttons
         </li>
         <li>
           <strong class="self" data-to="callbacks">11 callbacks</strong> to handle changes
@@ -60,18 +61,18 @@
     <div class="social clear">
       <ul class="left">
         <li>
-          <a href="http://github.com/damirfoy/iCheck/">Download latest version</a>
+          <a href="http://github.com/fronteed/iCheck/">Download latest version</a>
         </li>
       </ul>
       <ul class="right local">
         <li>
-          <a href="http://twitter.com/damirfoy/">Follow @damirfoy</a>
+          <a href="http://twitter.com/fronteed/">Follow @fronteed</a>
         </li>
         <li>
-          <a href="https://twitter.com/intent/tweet?text=Super customized checkboxes and radio buttons&amp;url=http://damirfoy.com/iCheck/&amp;via=damirfoy&amp;hashtags=jQuery,Zepto">Share to Twitter</a>
+          <a href="https://twitter.com/intent/tweet?text=Super customized checkboxes and radio buttons&amp;url=http://fronteed.com/iCheck/&amp;via=fronteed&amp;hashtags=jQuery,Zepto">Share to Twitter</a>
         </li>
         <li>
-          <a href="https://github.com/damirfoy/iCheck">Star on GitHub</a>
+          <a href="https://github.com/fronteed/iCheck">Star on GitHub</a>
         </li>
       </ul>
     </div>
@@ -287,13 +288,7 @@ $('input').iCheck('destroy');
           <dd>
             <div class="skin-pre">
               <p>
-                For Zepto library, instead of <span class="mark">jquery.icheck.js</span> use <span class="mark">zepto.icheck.js</span>.
-              </p>
-              <p>
-                If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
-              </p>
-              <p>
-                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the iCheck.
+                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the <span class="mark">icheck.js</span>.
               </p>
             </div>
             <ol class="skin-usage">
@@ -317,18 +312,18 @@ $('input').iCheck('destroy');
                 </div>
               </li>
               <li>
-                Copy <span class="mark">/skins/minimal/</span> folder and <span class="mark">jquery.icheck.js</span>  file to your site.
+                Copy <span class="mark">/skins/minimal/</span> folder and <span class="mark">icheck.js</span>  file to your site.
               </li>
               <li>
                 <p>Insert before <span class="mark">&lt;/head></span> in your HTML (replace <span class="mark">your-path</span> and <span class="mark">color-scheme</span>):</p>
 <pre class="markup">
 &lt;link href="your-path/minimal/color-scheme.css" rel="stylesheet">
-&lt;script src="your-path/jquery.icheck.js">&lt;/script>
+&lt;script src="your-path/icheck.js">&lt;/script>
 </pre>
                 <p>Example for a <strong>Red</strong> color scheme:</p>
 <pre class="markup">
 &lt;link href="your-path/minimal/red.css" rel="stylesheet">
-&lt;script src="your-path/jquery.icheck.js">&lt;/script>
+&lt;script src="your-path/icheck.js">&lt;/script>
 </pre>
               </li>
               <li>
@@ -478,13 +473,7 @@ $(document).ready(function(){
           <dd>
             <div class="skin-pre">
               <p>
-                For Zepto library, instead of <span class="mark">jquery.icheck.js</span> use <span class="mark">zepto.icheck.js</span>.
-              </p>
-              <p>
-                If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
-              </p>
-              <p>
-                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the iCheck.
+                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the <span class="mark">icheck.js</span>.
               </p>
             </div>
             <ol class="skin-usage">
@@ -508,18 +497,18 @@ $(document).ready(function(){
                 </div>
               </li>
               <li>
-                Copy <span class="mark">/skins/square/</span> folder and <span class="mark">jquery.icheck.js</span> file to your site.
+                Copy <span class="mark">/skins/square/</span> folder and <span class="mark">icheck.js</span> file to your site.
               </li>
               <li>
                 <p>Insert before <span class="mark">&lt;/head></span> in your HTML (replace <span class="mark">your-path</span> and <span class="mark">color-scheme</span>):</p>
 <pre class="markup">
 &lt;link href="your-path/square/color-scheme.css" rel="stylesheet">
-&lt;script src="your-path/jquery.icheck.js">&lt;/script>
+&lt;script src="your-path/icheck.js">&lt;/script>
 </pre>
                 <p>Example for a <strong>Red</strong> color scheme:</p>
 <pre class="markup">
 &lt;link href="your-path/square/red.css" rel="stylesheet">
-&lt;script src="your-path/jquery.icheck.js">&lt;/script>
+&lt;script src="your-path/icheck.js">&lt;/script>
 </pre>
               </li>
               <li>
@@ -663,13 +652,7 @@ $(document).ready(function(){
           <dd>
             <div class="skin-pre">
               <p>
-                For Zepto library, instead of <span class="mark">jquery.icheck.js</span> use <span class="mark">zepto.icheck.js</span>.
-              </p>
-              <p>
-                If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
-              </p>
-              <p>
-                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the iCheck.
+                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the <span class="mark">icheck.js</span>.
               </p>
             </div>
             <ol class="skin-usage">
@@ -693,18 +676,18 @@ $(document).ready(function(){
                 </div>
               </li>
               <li>
-                Copy <span class="mark">/skins/flat/</span> folder and <span class="mark">jquery.icheck.js</span> file to your site.
+                Copy <span class="mark">/skins/flat/</span> folder and <span class="mark">icheck.js</span> file to your site.
               </li>
               <li>
                 <p>Insert before <span class="mark">&lt;/head></span> in your HTML (replace <span class="mark">your-path</span> and <span class="mark">color-scheme</span>):</p>
 <pre class="markup">
 &lt;link href="your-path/flat/color-scheme.css" rel="stylesheet">
-&lt;script src="your-path/jquery.icheck.js">&lt;/script>
+&lt;script src="your-path/icheck.js">&lt;/script>
 </pre>
                 <p>Example for a <strong>Red</strong> color scheme:</p>
 <pre class="markup">
 &lt;link href="your-path/flat/red.css" rel="stylesheet">
-&lt;script src="your-path/jquery.icheck.js">&lt;/script>
+&lt;script src="your-path/icheck.js">&lt;/script>
 </pre>
               </li>
               <li>
@@ -864,13 +847,7 @@ $(document).ready(function(){
           <dd>
             <div class="skin-pre">
               <p>
-                For Zepto library, instead of <span class="mark">jquery.icheck.js</span> use <span class="mark">zepto.icheck.js</span>.
-              </p>
-              <p>
-                If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
-              </p>
-              <p>
-                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the iCheck.
+                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the <span class="mark">icheck.js</span>.
               </p>
             </div>
             <ol class="skin-usage">
@@ -894,18 +871,18 @@ $(document).ready(function(){
                 </div>
               </li>
               <li>
-                Copy <span class="mark">/skins/line/</span> folder and <span class="mark">jquery.icheck.js</span> file to your site.
+                Copy <span class="mark">/skins/line/</span> folder and <span class="mark">icheck.js</span> file to your site.
               </li>
               <li>
                 <p>Insert before <span class="mark">&lt;/head></span> in your HTML (replace <span class="mark">your-path</span> and <span class="mark">color-scheme</span>):</p>
 <pre class="markup">
 &lt;link href="your-path/line/color-scheme.css" rel="stylesheet">
-&lt;script src="your-path/jquery.icheck.js">&lt;/script>
+&lt;script src="your-path/icheck.js">&lt;/script>
 </pre>
                   <p>Example for a <strong>Red</strong> color scheme:</p>
 <pre class="markup">
 &lt;link href="your-path/line/red.css" rel="stylesheet">
-&lt;script src="your-path/jquery.icheck.js">&lt;/script>
+&lt;script src="your-path/icheck.js">&lt;/script>
 </pre>
               </li>
               <li>
@@ -1061,24 +1038,18 @@ $(document).ready(function(){
           <dd>
             <div class="skin-pre">
               <p>
-                For Zepto library, instead of <span class="mark">jquery.icheck.js</span> use <span class="mark">zepto.icheck.js</span>.
-              </p>
-              <p>
-                If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
-              </p>
-              <p>
-                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the iCheck.
+                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the <span class="mark">icheck.js</span>.
               </p>
             </div>
             <ol class="skin-usage">
               <li>
-                Copy <span class="mark">/skins/polaris/</span> folder and <span class="mark">jquery.icheck.js</span> file to your site.
+                Copy <span class="mark">/skins/polaris/</span> folder and <span class="mark">icheck.js</span> file to your site.
               </li>
               <li>
                 <p>Insert before <span class="mark">&lt;/head></span> in your HTML (replace <span class="mark">your-path</span> and <span class="mark">color-scheme</span>):</p>
 <pre class="markup">
 &lt;link href="your-path/polaris/polaris.css" rel="stylesheet">
-&lt;script src="your-path/jquery.icheck.js">&lt;/script>
+&lt;script src="your-path/icheck.js">&lt;/script>
 </pre>
               </li>
               <li>
@@ -1196,24 +1167,18 @@ $(document).ready(function(){
           <dd>
             <div class="skin-pre">
               <p>
-                For Zepto library, instead of <span class="mark">jquery.icheck.js</span> use <span class="mark">zepto.icheck.js</span>.
-              </p>
-              <p>
-                If you need a minified version, use <span class="mark">jquery.icheck.min.js</span> or <span class="mark">zepto.icheck.min.js</span>.
-              </p>
-              <p>
-                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the iCheck.
+                Make sure <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]) is loaded before the <span class="mark">icheck.js</span>.
               </p>
             </div>
             <ol class="skin-usage">
               <li>
-                Copy <span class="mark">/skins/futurico/</span> folder and <span class="mark">jquery.icheck.js</span> file to your site.
+                Copy <span class="mark">/skins/futurico/</span> folder and <span class="mark">icheck.js</span> file to your site.
               </li>
               <li>
                 <p>Insert before <span class="mark">&lt;/head></span> in your HTML (replace <span class="mark">your-path</span> and <span class="mark">color-scheme</span>):</p>
 <pre class="markup">
 &lt;link href="your-path/futurico/futurico.css" rel="stylesheet">
-&lt;script src="your-path/jquery.icheck.js">&lt;/script>
+&lt;script src="your-path/icheck.js">&lt;/script>
 </pre>
               </li>
               <li>
@@ -1247,7 +1212,10 @@ $(document).ready(function(){
       </div>
       <div class="skins-info">
         <p>All skins (except Line) are transparent, you may use them on any background.</p>
-        <p>Square, Flat, Polaris and Futurico skins are based on <a href="http://designmodo.com/freebies/" target="blank">Designmodo's UI packs</a>.</p>
+        <p><a href="http://designmodo.com/square/?u=718" target="blank">Square</a>, <a href="http://designmodo.com/flat/?u=718" target="blank">Flat</a>, <a href="http://designmodo.com/?u=718" target="blank">Polaris</a> and <a href="http://designmodo.com/futuricopro/?u=718" target="blank">Futurico</a> skins are based on <a href="http://designmodo.com/shop/?u=718" target="blank">Designmodo's UI packs</a>.</p>
+        <p class="skins-banner">
+          <a href="http://designmodo.com/shop/?u=718" target="blank">Awesome UI packs</a>
+        </p>
       </div>
     </div>
     <div class="usage">
@@ -1377,6 +1345,9 @@ $(document).ready(function(){
   <span class="comment">// if set to true, input's id is prefixed with 'iCheck-' and attached</span>
   inheritID: false,
 
+  <span class="comment">// set true to activate ARIA support</span>
+  aria: false,
+
   <span class="comment">// add HTML code or text inside customized input</span>
   insert: ''
 }
@@ -1390,7 +1361,7 @@ $('input').iCheck({
 </pre>
         <p>You can choose any class names and slyle them as you want.</p>
         <h4 class="init">Initialize</h4>
-        <p>Just include <span class="mark">jquery.icheck.js</span> (or <span class="mark">zepto.icheck.js</span>) after <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]).</p>
+        <p>Just include <span class="mark">icheck.js</span> after <a href="http://jquery.com" target="blank">jQuery v1.7+</a> (or <a href="http://github.com/madrobby/zepto#zepto-modules" target="blank">Zepto</a> [polyfill, event, data]).</p>
         <p>iCheck supports any selectors, but handles only checkboxes and radio buttons:</p>
 <pre class="markup">
 <span class="comment">// customize all inputs (will search for checkboxes and radio buttons)</span>
@@ -1505,7 +1476,7 @@ $('input').iCheck('check', function(){
   alert('Well done, Sir');
 });
 </pre>
-        <p class="issue-tracker">Feel free to <a href="http://github.com/damirfoy/iCheck/">fork and submit pull-request</a> or <a href="https://github.com/damirfoy/iCheck/issues">submit an issue</a> if you find something not working.</p>
+        <p class="issue-tracker">Feel free to <a href="http://github.com/fronteed/iCheck/">fork and submit pull-request</a> or <a href="http://github.com/fronteed/iCheck/issues">submit an issue</a> if you find something not working.</p>
       </div>
     </div>
     <div class="benefits comparison">
@@ -1541,11 +1512,11 @@ $('input').iCheck('check', function(){
       <h2>Browser support</h2>
       <div class="browsers-inner">
         <p>iCheck is verified to work in Internet Explorer 6+, Firefox 2+, Opera 9+, Google Chrome and Safari browsers. Should also work in many others.</p>
-        <p>Mobile browsers (like Opera mini, Chrome mobile, Safari mobile, Android browser and others) are also supported. Tested on iOS (iPad, iPhone, iPod), Android, BlackBerry and Windows Phone devices.</p>
+        <p>Mobile browsers (like Opera mini, Chrome mobile, Safari mobile, Android browser, Silk and others) are also supported. Tested on iOS (iPad, iPhone, iPod), Android, BlackBerry and Windows Phone devices.</p>
       </div>
     </div>
     <div class="download">
-      <a href="http://github.com/damirfoy/iCheck/">Download plugin</a>
+      <a href="http://github.com/fronteed/iCheck/">Download plugin</a>
     </div>
     <div class="license">iCheck plugin is released under the <a href="http://en.wikipedia.org/wiki/MIT_License" target="blank">MIT License</a>. Feel free to use it in personal and commercial projects.</div>
   </div>
@@ -1553,21 +1524,20 @@ $('input').iCheck('check', function(){
     <div class="footer-inner clear">
       <ul class="local">
         <li>
-          <a href="https://github.com/damirfoy/iCheck">Star on Github</a>
+          <a href="https://github.com/fronteed/iCheck">Star on Github</a>
         </li>
         <li>
-          <a href="https://twitter.com/intent/tweet?text=Super customized checkboxes and radio buttons&amp;url=http://damirfoy.com/iCheck/&amp;via=damirfoy&amp;hashtags=jQuery,Zepto">Share to Twitter</a>
+          <a href="https://twitter.com/intent/tweet?text=Super customized checkboxes and radio buttons&amp;url=http://fronteed.com/iCheck/&amp;via=fronteed&amp;hashtags=jQuery,Zepto">Share to Twitter</a>
         </li>
         <li>
-          <a href="http://twitter.com/damirfoy/">Follow @damirfoy</a>
+          <a href="http://twitter.com/fronteed/">Follow @fronteed</a>
         </li>
       </ul>
       <div class="code">
-        Created by <a href="http://damirfoy.com/">Damir Foy</a>
+        Created by <a href="http://fronteed.com/">Damir Sultanov</a>
       </div>
     </div>
   </div>
-  <a href="http://github.com/damirfoy/iCheck/" class="fork-me">Fork me on GitHub</a>
-  <script src="./js/custom.js?v=0.9.1"></script>
+  <a href="http://github.com/fronteed/iCheck/" class="fork-me">Fork me on GitHub</a>
 </body>
 </html>
