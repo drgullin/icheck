@@ -1,0 +1,25 @@
+{
+  "name": "bower-icheck",
+  "main": "iCheck.js",
+  "version": "1.0.0",
+  "homepage": "http://fronteed.com/iCheck/",
+  "authors": [
+    "Damir Sultanov <info@fronteed.com>"
+  ],
+  "description": "Highly customizable checkboxes and radio buttons for jQuery and Zepto.",
+  "keywords": [
+    "icheck",
+    "checkboxes",
+    "check",
+    "radio"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "demo"
+  ]
+}
