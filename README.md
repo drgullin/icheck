@@ -1,7 +1,7 @@
 # [iCheck plugin](http://fronteed.com/iCheck/)
 #### Highly customizable checkboxes and radio buttons for jQuery and Zepto.
 
-Last release - [v1.0](#december-18-2013)
+Current version - [1.0](#december-18-2013)
 
 Refer to the [iCheck website](http://fronteed.com/iCheck/) for examples.
 
