@@ -2,7 +2,6 @@
 
 * Added Bower support
 * Added to jQuery plugin registry
-* Added to CDNJS
 
 ### Version 1.0.0 - December 18, 2013
 

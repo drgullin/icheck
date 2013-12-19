@@ -368,7 +368,6 @@ Changelog
 
 * Added Bower support
 * Added to jQuery plugin registry
-* Added to CDNJS
 
 ### December 18, 2013
 
