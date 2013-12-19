@@ -1,4 +1,4 @@
-# [iCheck plugin](http://fronteed.com/iCheck/) <sup>[1.0](#december-18-2013)</sup>
+# [iCheck plugin](http://fronteed.com/iCheck/) <sup>[1.0.1](#december-19-2013)</sup>
 #### Highly customizable checkboxes and radio buttons for jQuery and Zepto.
 
 Refer to the [iCheck website](http://fronteed.com/iCheck/) for examples.
@@ -363,6 +363,13 @@ Mobile browsers (like Opera mini, Chrome mobile, Safari mobile, Android browser,
 
 Changelog
 ---------------
+
+### December 19, 2013
+
+* Added Bower support
+* Added NuGet support
+* Added to jQuery plugin registry
+* Added to CDNJS
 
 ### December 18, 2013
 
