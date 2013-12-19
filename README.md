@@ -367,7 +367,6 @@ Changelog
 ### December 19, 2013
 
 * Added Bower support
-* Added NuGet support
 * Added to jQuery plugin registry
 * Added to CDNJS
 
