@@ -152,14 +152,14 @@
           aria = !!settings.aria,
 
           // Set ARIA placeholder
-          ariaID = _iCheck + '-' + Math.random().toString(36).replace('0.', ''),
+          ariaID = _iCheck + '-' + Math.random().toString(36).substr(2,6),
 
           // Parent & helper
           parent = '<div class="' + className + '" ' + (aria ? 'role="' + node[_type] + '" ' : ''),
           helper;
 
         // Set ARIA "labelledby"
-        if (label.length && aria) {
+        if (aria) {
           label.each(function() {
             parent += 'aria-labelledby="';
 
