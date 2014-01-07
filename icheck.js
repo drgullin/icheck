@@ -7,7 +7,7 @@
  * MIT Licensed
  */
 
-(function(_win, _doc, _checkbox, _radio, _checked, _disabled, _determinate, _add, _remove, _class, _style, _length, $) {
+(function(_win, _doc, _checkbox, _radio, _input, _label, _checked, _disabled, _determinate, _add, _remove, _append, _replace, _class, _style, _length, _type, _position, $) {
   $ = _win.jQuery || _win.Zepto;
 
   // prevent multiple includes
@@ -40,14 +40,14 @@
       // default classes
       className: {
         div: '#-item', // {prefix}-item
-        input: '#-node', // {prefix}-node
-        label: '#-label' // {prefix}-label
+        input: '#-' + _input, // {prefix}-node
+        label: '#-' + _label // {prefix}-label
       },
 
       // default styles
       style: {
-        input: 'position:absolute!;display:block!;opacity:0!;z-index:-1!;', // input
-        area: 'position:absolute;display:block;content:"";top:#;bottom:#;left:#;right:#;' // clickable area
+        input: _position + ':absolute!;display:block!;opacity:0!;z-index:-1!;', // input
+        area: _position + ':absolute;display:block;content:"";top:#;bottom:#;left:#;right:#;' // clickable area
       }
     }, _win.icheck); // extend global options
 
@@ -56,12 +56,12 @@
 
     // classes cache
     var prefix = base[_class].prefix || 'icheck';
-    var divClass = base[_class].div.replace('#', prefix);
-    var nodeClass = base[_class].input.replace('#', prefix);
-    var labelClass = base[_class].label.replace('#', prefix);
+    var divClass = base[_class].div[_replace]('#', prefix);
+    var nodeClass = base[_class][_input][_replace]('#', prefix);
+    var labelClass = base[_class][_label][_replace]('#', prefix);
 
     // default filter
-    var filter = 'input[type=' + _checkbox + '], input[type=' + _radio + ']';
+    var filter = _input + '[type=' + _checkbox + '], input[type=' + _radio + ']';
 
     // clickable areas container
     var areas = {};
@@ -91,7 +91,7 @@
     // styles options
     var styleTag;
     var styleList;
-    var styleInput = base[_style].input;
+    var styleInput = base[_style][_input];
     var styleArea = base[_style].area;
 
     // styles addition
@@ -102,11 +102,11 @@
         styleTag = _doc.createElement(_style);
 
         // append to header
-        (_doc.head || _doc.getElementsByTagName('head')[0]).appendChild(styleTag);
+        (_doc.head || _doc.getElementsByTagName('head')[0])[_append](styleTag);
 
         // webkit hack
         if (!_win.createPopup) {
-          styleTag.appendChild(_doc.createTextNode(''));
+          styleTag[_append](_doc.createTextNode(''));
         }
 
         styleList = styleTag.sheet ? styleTag.sheet : styleTag.styleSheet;
@@ -131,7 +131,7 @@
         styleInput += 'visibility:hidden!;'
       }
 
-      style(styleInput.replace(/!/g, ' !important'));
+      style(styleInput[_replace](/!/g, ' !important'));
     }
 
     // remove init options
@@ -179,7 +179,7 @@
         if (parent) {
           input[_remove](nodeClass + ' ' + className).attr(_style, hashes[key][_style] || ''); // input
           parent.replaceWith(input); // styler
-          $('label.' + className)[_remove](labelClass + ' ' + className); // label
+          $(_label + '.' + className)[_remove](labelClass + ' ' + className); // label
 
           // callback
           if (trigger) {
@@ -195,7 +195,7 @@
     // nodes inspector
     var inspect = function(object) {
       var stack = [];
-      var direct = object.length;
+      var direct = object[_length];
       var indirect;
 
       // inspect object
@@ -203,17 +203,17 @@
         var node = object[direct];
 
         // direct input
-        if (node.type) {
+        if (node[_type]) {
 
           // checkbox or radio button
-          if (~filter.indexOf(node.type)) {
+          if (~filter.indexOf(node[_type])) {
             stack.push(node);
           }
 
         // indirect input
         } else {
           node = $(node).find(filter);
-          indirect = node.length;
+          indirect = node[_length];
 
           while (indirect--) {
             stack.push(node[indirect]);
@@ -243,7 +243,7 @@
 
       // get inputs
       var elements = inspect(data);
-      var element = elements.length;
+      var element = elements[_length];
 
       // loop through inputs
       while (element--) {
@@ -252,10 +252,10 @@
         var nodeID = node.id;
         var nodeStyle = node.getAttribute(_style);
         var nodeTitle = node.title;
-        var nodeType = node.type;
+        var nodeType = node[_type];
         var nodeAttr = node.attributes;
+        var nodeAttrLength = nodeAttr[_length];
         var nodeAttrName;
-        var nodeAttrLength = nodeAttr.length;
         var nodeAttrValue;
         var nodeData = {};
         var queryData = $.cache[node[$.expando]]; // jQuery cache
@@ -287,7 +287,7 @@
               nodeAttrValue = nodeAttrValue == 'true';
             }
 
-            nodeData[nodeAttrName.substr(5).replace(converter, capitalize)] = nodeAttrValue;
+            nodeData[nodeAttrName.substr(5)[_replace](converter, capitalize)] = nodeAttrValue;
           }
         }
 
@@ -297,7 +297,7 @@
         // handle option
         handle = settings.handle;
 
-        if (handle !== 'checkbox' || handle !== 'radio') {
+        if (handle !== _checkbox && handle !== _radio) {
           handle = filter;
         }
 
@@ -320,20 +320,20 @@
           }
 
           // save settings
-          settings[_style] = node.getAttribute(_style) || '';
+          settings[_style] = nodeStyle || '';
           settings[_class] = keyClass;
           hashes[key] = settings;
 
           // prepare labels
-          labelDirect = closest(node, 'label', '');
-          labelIndirect = $('label[for="' + nodeID + '"]');
+          labelDirect = closest(node, _label, '');
+          labelIndirect = $(_label + '[for="' + nodeID + '"]');
 
           if (labelDirect) {
             labels.push(labelDirect);
           }
 
-          while (labelIndirect.length--) {
-            label = labelIndirect[labelIndirect.length];
+          while (labelIndirect[_length]--) {
+            label = labelIndirect[labelIndirect[_length]];
 
             if (label !== labelDirect) {
               labels.push(label);
@@ -341,7 +341,7 @@
           }
 
           // loop through labels
-          labelsLength = labels.length;
+          labelsLength = labels[_length];
 
           while (labelsLength--) {
             label = labels[labelsLength];
@@ -350,7 +350,7 @@
 
             // remove previous key
             if (labelKey) {
-              labelString = labelString.replace(prefix + '[' + labelKey + ']', '');
+              labelString = labelString[_replace](prefix + '[' + labelKey + ']', '');
             } else {
               labelString = labelClass + ' ' + labelString;
             }
@@ -361,16 +361,16 @@
 
           // prepare styler
           styler = _doc.createElement('div');
-          stylerClass = nodeType == 'radio' ? settings.radioClass : settings.checkboxClass;
+          stylerClass = nodeType == _radio ? settings.radioClass : settings.checkboxClass;
 
           // set styler's key
           stylerClass += ' ' + divClass + ' ' + keyClass;
 
           // append area styles
-          area = ('' + settings.area).replace(/%|px|em|\+|-/g, '') | 0;
+          area = ('' + settings.area)[_replace](/%|px|em|\+|-/g, '') | 0;
 
           if (!!area && !!styleArea && !areas[area]) {
-            style(styleArea.replace(/#/g, '-' + area + '%'), area);
+            style(styleArea[_replace](/#/g, '-' + area + '%'), area);
 
             stylerClass += ' ' + prefix + '-area-' + area;
             areas[area] = true;
@@ -401,11 +401,11 @@
           node.parentNode.replaceChild(styler, node);
 
           // append node
-          styler.appendChild(node);
+          styler[_append](node);
 
           // append additions
           if (!!settings.insert) {
-            styler.appendChild(settings.insert);
+            styler[_append](settings.insert);
           }
 
           // set relative position
@@ -413,14 +413,14 @@
 
             // get styler's position
             if (computed) {
-              stylerStyle = _win.getComputedStyle(styler, null).getPropertyValue('position');
+              stylerStyle = _win.getComputedStyle(styler, null).getPropertyValue(_position);
             } else {
-              stylerStyle = styler.currentStyle.position;
+              stylerStyle = styler.currentStyle[_position];
             }
 
             // set styler's position
             if (stylerStyle == 'static') {
-              styler[_style].position = 'relative';
+              styler[_style][_position] = 'relative';
             }
           }
 
@@ -454,15 +454,15 @@
     };
 
     // bind label and styler
-    $(_doc).on('click.i ' + hover + tap, 'label.' + labelClass + ', div.' + divClass, function(event) {
+    $(_doc).on('click.i ' + hover + tap, _label + '.' + labelClass + ', div.' + divClass, function(event) {
       var key = extract(this[_class]);
 
       if (key) {
-        var emitter = event.type;
+        var emitter = event[_type];
         var div = this.tagName == 'DIV';
         var className = hashes[key][_class];
         var states = [
-          ['label', hashes[key].activeLabelClass, hashes[key].hoverLabelClass],
+          [_label, hashes[key].activeLabelClass, hashes[key].hoverLabelClass],
           ['div', hashes[key].activeClass, hashes[key].hoverClass]
         ];
 
@@ -501,16 +501,16 @@
         } else if (div) {
 
           // trigger input's click
-          $(this).find('input.' + className).click();
+          $(this).find(_input + '.' + className).click();
         }
       }
 
     // bind input
-    }).on('click.i change.i focusin.i focusout.i keyup.i keydown.i', 'input.' + nodeClass, function(event) {
+    }).on('click.i change.i focusin.i focusout.i keyup.i keydown.i', _input + '.' + nodeClass, function(event) {
       var key = extract(item[_class]);
 
       if (key) {
-        var emitter = event.type;
+        var emitter = event[_type];
         var className = hashes[key][_class];
 
         // click
@@ -523,7 +523,7 @@
         } else if (emitter == 'change') {
 
           // don't update state on active radio
-          if (!(this.checked && this.type == 'radio')) {
+          if (!(this[_checked] && this[_type] == _radio)) {
             // update state after
             // update(data, this.type)
           }
@@ -539,20 +539,20 @@
 
           // toggle label's focus class
           if (!!hashes[key].mirror && !!states[1]) {
-            $('label.' + className)[emitter == 'focusin' ? _add : _remove](states[1]);
+            $(_label + '.' + className)[emitter == 'focusin' ? _add : _remove](states[1]);
           }
 
         // keyup or keydown
         } else {
 
           // spacebar
-          if (this.type == 'checkbox' && emitter == 'keydown' && event.keyCode == 32) {
+          if (this[_type] == _checkbox && emitter == 'keydown' && event.keyCode == 32) {
             // update, event fired before state is changed
 
           };
 
           // arrow
-          if (this.type == 'radio' && emitter == 'keyup') {
+          if (this[_type] == _radio && emitter == 'keyup') {
             // update, will be checked
           }
         }
@@ -571,7 +571,7 @@
       // methods
       if (/^(check|uncheck|toggle|indeterminate|determinate|disable|enable|update|refresh|destroy)$/.test(options)) {
         var elements = inspect(this);
-        var element = elements.length;
+        var element = elements[_length];
 
         // loop through inputs
         while (element--) {
@@ -601,4 +601,4 @@
       return this;
     };
   }
-})(window, document, 'checkbox', 'radio', 'checked', 'disabled', 'determinate', 'addClass', 'removeClass', 'className', 'style', 'length');
+})(window, document, 'checkbox', 'radio', 'input', 'label', 'checked', 'disabled', 'determinate', 'addClass', 'removeClass', 'appendChild', 'replace', 'className', 'style', 'length', 'type', 'position');
