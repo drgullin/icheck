@@ -34,8 +34,11 @@
       // input and label relation
       mirror: true,
 
-      // closest parent iterations
-      closest: 10,
+      // parent's depth
+      closest: {
+        min: 3,
+        max: 10
+      },
 
       // default classes
       className: {
@@ -59,6 +62,10 @@
     var divClass = base[_class].div[_replace]('#', prefix);
     var nodeClass = base[_class][_input][_replace]('#', prefix);
     var labelClass = base[_class][_label][_replace]('#', prefix);
+
+    // parent's selector iterations
+    var closestMin = base.closest.min;
+    var closestMax = base.closest.max;
 
     // default filter
     var filter = _input + '[type=' + _checkbox + '], input[type=' + _radio + ']';
@@ -172,7 +179,7 @@
     var tidy = function(input, key, trigger, className, parent) {
       if (hashes[key]) {
         className = hashes[key][_class];
-        parent = closest(input, 'div', className, true);
+        parent = closest(input, 'div', className, closestMin);
         input = $(input);
 
         // prevent overlapping
@@ -325,7 +332,7 @@
           hashes[key] = settings;
 
           // prepare labels
-          labelDirect = closest(node, _label, '');
+          labelDirect = closest(node, _label, '', closestMax);
           labelIndirect = $(_label + '[for="' + nodeID + '"]');
 
           if (labelDirect) {
@@ -438,9 +445,7 @@
     };
 
     // parent searcher
-    var closest = function(node, tag, className, direct, count, parent) {
-      count = direct ? 1 : base.closest;
-
+    var closest = function(node, tag, className, count, parent) {
       while (count-- && node.nodeType !== 9) {
         node = node.parentNode;
 
@@ -534,7 +539,7 @@
 
           // toggle parent's focus class
           if (!!states[0]) {
-            $(closest(this, 'div', className, true))[emitter == 'focusin' ? _add : _remove](states[0]);
+            $(closest(this, 'div', className, closestMin))[emitter == 'focusin' ? _add : _remove](states[0]);
           }
 
           // toggle label's focus class
