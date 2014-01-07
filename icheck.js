@@ -507,7 +507,7 @@
 
     // bind input
     }).on('click.i change.i focusin.i focusout.i keyup.i keydown.i', _input + '.' + nodeClass, function(event) {
-      var key = extract(item[_class]);
+      var key = extract(this[_class]);
 
       if (key) {
         var emitter = event[_type];
@@ -534,7 +534,7 @@
 
           // toggle parent's focus class
           if (!!states[0]) {
-            $(this).closest('div.' + className)[emitter == 'focusin' ? _add : _remove](states[0]);
+            $(closest(this, 'div', className, true))[emitter == 'focusin' ? _add : _remove](states[0]);
           }
 
           // toggle label's focus class
