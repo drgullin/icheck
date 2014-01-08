@@ -7,12 +7,23 @@
  * MIT Licensed
  */
 
-(function(_win, _doc, _checkbox, _radio, _input, _label, _checked, _disabled, _determinate, _add, _remove, _append, _replace, _class, _style, _length, _type, _position, $) {
+(function(_win, _doc, _checkbox, _radio, _input, _label, _checked, _disabled, _determinate, _add, _remove, _attr, _append, _replace, _closest, _class, _style, _length, _type, _position, $) {
   $ = _win.jQuery || _win.Zepto;
 
   // prevent multiple includes
   if (!_win['i' + _checked]) {
     _win['i' + _checked] = true;
+
+    // methods cache
+    var methods = [
+      'un' + _checked, // 0
+      'in' + _determinate, // 1
+      'enabled', // 2
+      'toggle', // 3
+      'update', // 4
+      'refresh', // 5
+      'destroy' // 6
+    ];
 
     // basic options
     var base = $.extend({
@@ -20,11 +31,11 @@
       ajax: false, // auto handle ajax loaded inputs
 
       // customization
-      checkboxClass: 'i' + _checkbox,
-      radioClass: 'i' + _radio,
-      checkedClass: _checked,
-      disabledClass: _disabled,
-      indeterminateClass: 'in' + _determinate,
+      checkboxClass: 'i' + _checkbox, // 'icheckbox'
+      radioClass: 'i' + _radio, // 'iradio'
+      checkedClass: _checked, // 'checked'
+      disabledClass: _disabled, // 'disabled'
+      indeterminateClass: methods[1], // 'indeterminate'
       hoverClass: 'hover',
       cursor: true,
       callbacks: {
@@ -92,8 +103,12 @@
       return value;
     }
 
-    // data converter
+    // data attributes converter
     var converter = new RegExp(_checkbox + '|' + _radio + '|label|class|id', 'g');
+
+    // methods parser
+    var parser = new RegExp('^(' + _checked + '|' + methods[0] + '|' + methods[1] + '|' + _determinate + '|' + _disabled + '|' + methods[2] + '|' + methods[3] + '|' + methods[4] + '|' + methods[5] + '|' + methods[6] + ')$');
+    // ^(checked|unchecked|indeterminate|determinate|disabled|enabled|toggle|update|refresh|destroy)$
 
     // styles options
     var styleTag;
@@ -142,7 +157,7 @@
     }
 
     // remove init options
-    base[_class] = base[_style] = false;
+    base[_class] = base[_style] = base.closest = false;
 
     // detect computed style support
     var computed = _win.getComputedStyle;
@@ -185,7 +200,7 @@
         // prevent overlapping
         if (parent) {
           input[_remove](nodeClass + ' ' + className).attr(_style, hashes[key][_style] || ''); // input
-          parent.replaceWith(input); // styler
+          parent[_replace + 'With'](input); // styler
           $(_label + '.' + className)[_remove](labelClass + ' ' + className); // label
 
           // callback
@@ -246,7 +261,7 @@
     };
 
     // selection processor
-    var process = function(data, options, ajax) {
+    var process = function(data, options, ajax, silent) {
 
       // get inputs
       var elements = inspect(data);
@@ -257,7 +272,7 @@
         var node = elements[element];
         var nodeString = node[_class];
         var nodeID = node.id;
-        var nodeStyle = node.getAttribute(_style);
+        var nodeStyle = node[_attr](_style);
         var nodeTitle = node.title;
         var nodeType = node[_type];
         var nodeAttr = node.attributes;
@@ -269,7 +284,6 @@
         var settings;
         var key = extract(nodeString);
         var keyClass;
-        var input = $(node);
         var handle;
         var styler;
         var stylerClass;
@@ -301,7 +315,7 @@
         // merge options
         settings = $.extend({}, base, nodeData, queryData ? queryData.data : false, options);
 
-        // handle option
+        // handle filter
         handle = settings.handle;
 
         if (handle !== _checkbox && handle !== _radio) {
@@ -432,16 +446,14 @@
           }
 
           // operate
+          operate(node, styler, key, methods[4], true); // {update}
 
           // ifCreated callback
-          callback(input, key, 'ifCreated');
+          if (!silent) {
+            callback($(node), key, 'ifCreated');
+          }
         }
       }
-    };
-
-    // operations center
-    var operate = function() {
-
     };
 
     // parent searcher
@@ -456,6 +468,76 @@
       }
 
       return parent;
+    };
+
+    // operations center
+    var operate = function(node, parent, key, method, silent) {
+      var settings = hashes[key];
+      var type = node[_type];
+      var typeCap = capitalize(type);
+      var states = {};
+      var change = {};
+      var value;
+
+      // current states
+      states[_checked] = node[_checked];
+      states[_disabled] = node[_disabled];
+      states[methods[1]] = node[_attr](methods[1]) == 'true' || !!node[methods[1]];
+
+      // parent searching
+      if (!parent) {
+        parent = closest(node, 'div', hashes[key][_class], closestMin);
+      }
+
+      // processed
+      if (settings && parent) {
+
+        // {update} method
+        if (method == methods[4]) {
+          change[_checked] = states[_checked];
+          change[_disabled] = states[_disabled];
+          change[methods[1]] = states[methods[1]];
+
+        // {checked} or {unchecked} method
+        } else if (method == _checked || method == methods[0]) {
+          change[_checked] = method == _checked
+
+        // {disabled} or {enabled} method
+        } else if (method == _disabled || method == methods[2]) {
+          change[_disabled] = method == _disabled
+
+        // {indeterminate} or {determinate} method
+        } else if (method == methods[1] || method == _determinate) {
+          change[methods[1]] = method == methods[1];
+
+        // {toggle} method
+        } else {
+          change[_checked] = !checked;
+        }
+
+        // detect changes
+        for (var property in change) {
+          value = change[property];
+
+          // update node's property
+          if (states[property] !== value) {
+            node[property] = value;
+          }
+
+          // update key's property
+          if (settings[property] !== value) {
+            settings[property] = value;
+
+            // callback
+            if (!silent) {
+
+            }
+          }
+        }
+
+        // update settings
+        hashes[key] = settings;
+      }
     };
 
     // bind label and styler
@@ -573,8 +655,8 @@
     // plugin definition
     $.fn.icheck = function(options, fire) {
 
-      // methods
-      if (/^(check|uncheck|toggle|indeterminate|determinate|disable|enable|update|refresh|destroy)$/.test(options)) {
+      // detect methods
+      if (parser.test(options)) {
         var elements = inspect(this);
         var element = elements[_length];
 
@@ -584,10 +666,18 @@
           var key = extract(item[_class]);
 
           if (key) {
-            if (options == 'destroy') {
+
+            // {refresh} method
+            if (options == methods[5]) {
+              process(item, typeof fire == 'object' ? fire : {}, false, true);
+
+            // {destroy} method
+            } else if (options == methods[6]) {
               tidy(item, key, 'ifDestroyed');
+
+            // some other method
             } else {
-              operate(item, key, true, options);
+              operate(item, false, key, options);
             }
 
             // callback
@@ -606,4 +696,4 @@
       return this;
     };
   }
-})(window, document, 'checkbox', 'radio', 'input', 'label', 'checked', 'disabled', 'determinate', 'addClass', 'removeClass', 'appendChild', 'replace', 'className', 'style', 'length', 'type', 'position');
+})(window, document, 'checkbox', 'radio', 'input', 'label', 'checked', 'disabled', 'determinate', 'addClass', 'removeClass', 'getAttribute', 'appendChild', 'replace', 'closest', 'className', 'style', 'length', 'type', 'position');
