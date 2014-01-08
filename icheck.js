@@ -75,8 +75,8 @@
     var labelClass = base[_class][_label][_replace]('#', prefix);
 
     // parent's selector iterations
-    var closestMin = base.closest.min;
-    var closestMax = base.closest.max;
+    var closestMin = base[_closest].min;
+    var closestMax = base[_closest].max;
 
     // default filter
     var filter = _input + '[type=' + _checkbox + '], input[type=' + _radio + ']';
@@ -157,7 +157,7 @@
     }
 
     // remove init options
-    base[_class] = base[_style] = base.closest = false;
+    base[_class] = base[_style] = base[_closest] = false;
 
     // detect computed style support
     var computed = _win.getComputedStyle;
@@ -473,16 +473,19 @@
     // operations center
     var operate = function(node, parent, key, method, silent) {
       var settings = hashes[key];
+      var input = $(node);
       var type = node[_type];
       var typeCap = capitalize(type);
       var states = {};
       var change = {};
       var value;
+      var inputClass = 'Class';
+      var labelClass = capitalize(_label) + inputClass;
 
       // current states
-      states[_checked] = node[_checked];
-      states[_disabled] = node[_disabled];
-      states[methods[1]] = node[_attr](methods[1]) == 'true' || !!node[methods[1]];
+      states[_checked] = [node[_checked], methods[0]];
+      states[_disabled] = [node[_disabled], methods[2]];
+      states[methods[1]] = [node[_attr](methods[1]) == 'true' || !!node[methods[1]], _determinate];
 
       // parent searching
       if (!parent) {
@@ -494,9 +497,9 @@
 
         // {update} method
         if (method == methods[4]) {
-          change[_checked] = states[_checked];
-          change[_disabled] = states[_disabled];
-          change[methods[1]] = states[methods[1]];
+          change[_checked] = states[_checked][0];
+          change[_disabled] = states[_disabled][0];
+          change[methods[1]] = states[methods[1]][0];
 
         // {checked} or {unchecked} method
         } else if (method == _checked || method == methods[0]) {
@@ -520,13 +523,32 @@
           value = change[property];
 
           // update node's property
-          if (states[property] !== value) {
+          if (states[property][0] !== value) {
             node[property] = value;
           }
 
           // update key's property
           if (settings[property] !== value) {
             settings[property] = value;
+
+            // cache classes
+            inputClass = [
+              property + inputClass, // 0, checkedClass
+              property + typeCap + inputClass, // 1, checkedCheckboxClass
+              states[property][1] + inputClass, // 2, uncheckedClass
+              states[property][1] + typeCap + inputClass, // 3, uncheckedCheckboxClass
+              property + labelClass // 4, checkedLabelClass
+            ];
+
+            // active
+            if (value) {
+              console.log(inputClass[1] );
+              input[_add](inputClass[1] || inputClass[0] || '')[_remove](inputClass[3] || inputClass[2] || '');
+
+            // inactive
+            } else {
+              input[_remove](inputClass[3] || inputClass[2] || '')[_add](inputClass[1] || inputClass[0] || '');
+            }
 
             // callback
             if (!silent) {
