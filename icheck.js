@@ -68,8 +68,8 @@
 
       // default styles
       base[_style] = {
-        // input: _position + ':absolute!;display:block!;opacity:0!;z-index:-1!;', // hidden input
-        input: _position + ':absolute!;display:block!;', // hidden input
+        input: _position + ':absolute!;display:block!;outline:none!;opacity:0!;z-index:-99!;', // hidden input
+        // input: _position + ':absolute!;display:block!;outline:none!;', // hidden input
         area: _position + ':absolute;display:block;content:"";top:#;bottom:#;left:#;right:#;' // clickable area
       };
 
@@ -80,6 +80,8 @@
 
       // userAgent cache
       var ua = _win.navigator.userAgent;
+      var ie8 = /MSIE 8/.test(ua);
+      var ie7 = /MSIE [5-7]/.test(ua);
 
       // classes cache
       var prefix = base[_className].prefix || _icheck;
@@ -188,20 +190,18 @@
         }
       };
 
-      // append input styles
+      // append input's styles
       if (!!styleInput) {
 
         // legacy support for IE <= 7 (opacity replacement)
-        if (/MSIE [5-7]/.test(ua)) {
-          // styleInput += 'visibility:hidden!;'
-          styleInput += 'display:none!;'
+        if (ie8 || ie7) {
+          styleInput += 'clip:rect(' + (ie8 ? '0,0,0,0' : '0 0 0 0') + ')!;';
         }
 
         style(styleInput[_replace](/!/g, ' !important'));
-
       }
 
-      // append pointer cursor for mobile
+      // append styler's styles
       if (isMobile && isTouch) {
         style(_cursor + ':' + _pointer + ' !important;', true);
       }
@@ -468,6 +468,10 @@
             labelIndirect = $(_label + '[for="' + nodeID + '"]');
 
             if (labelDirect) {
+              if (!!labelDirect.htmlFor == false && !!nodeID) {
+                labelDirect.htmlFor = nodeID;
+              }
+
               labels.push(labelDirect);
             }
 
@@ -671,7 +675,6 @@
 
               // update labels's class
               if (!!settings[_mirror] && !!classes[4]) {
-                console.log(settings);
                 label = $(_label + '.' + settings[_replace]);
 
                 while (label[_length]--) {
@@ -727,6 +730,7 @@
           var div = self[_tag] == 'DIV';
           var className = hashes[key][_replace]; // escaped class name
           var target;
+          var input;
           var partner;
           var activate;
           var states = [
@@ -806,7 +810,12 @@
               target = event.currentTarget || {};
 
               if (target[_tag] !== 'LABEL') {
-                $(self).find(_input + '.' + className)[_click]();
+                input = $(self).find(_input + '.' + className)[_click]();
+
+                // IE hack
+                if (ie8 || ie7) {
+                  input.change();
+                }
               }
             }, 2);
           }
