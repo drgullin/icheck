@@ -730,7 +730,6 @@
           var div = self[_tag] == 'DIV';
           var className = hashes[key][_replace]; // escaped class name
           var target;
-          var input;
           var partner;
           var activate;
           var states = [
@@ -810,12 +809,7 @@
               target = event.currentTarget || {};
 
               if (target[_tag] !== 'LABEL') {
-                input = $(self).find(_input + '.' + className)[_click]();
-
-                // IE hack
-                if (ie8 || ie7) {
-                  input.change();
-                }
+                $(self).find(_input + '.' + className)[_click]().change();
               }
             }, 2);
           }
