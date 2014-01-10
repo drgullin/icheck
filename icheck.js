@@ -426,7 +426,13 @@
 
           // standardize merged data attributes
           for (nodeDataProperty in nodeData) {
-            data[nodeDataProperty[_replace](converter, capitalize)] = nodeData[nodeDataProperty];
+            nodeAttrValue = nodeData[nodeDataProperty];
+
+            if (nodeAttrValue == 'true' || nodeAttrValue == 'false') {
+              nodeAttrValue = nodeAttrValue == 'true';
+            }
+
+            data[nodeDataProperty[_replace](converter, capitalize)] = nodeAttrValue;
           }
 
           // merge options
@@ -440,7 +446,7 @@
           }
 
           // prevent unwanted init
-          if ((settings.init !== false || (ajax == true && settings.ajax == false) !== true) && ~handle[_index](nodeType)) {
+          if (settings.init !== false && ((ajax == true && settings.ajax == false) !== true) && ~handle[_index](nodeType)) {
 
             // tidy before processing
             if (key) {
