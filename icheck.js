@@ -39,6 +39,7 @@
     base[_disabled + _class] = _disabled; // disabledClass = 'disabled'
     base[methods[1] + _class] = methods[1]; // indeterminateClass = 'indeterminate'
     base[_hover + _class] = _hover; // hoverClass = 'hover'
+    base[_focus + _class] = _focus; // focusClass = 'focus'
 
     // cursor addition
     base[_cursor] = true;
@@ -67,8 +68,8 @@
 
     // default styles
     base[_style] = {
-      // input: _position + ':absolute!;display:block!;opacity:0!;z-index:-1!;', // hidden input
-      input: _position + ':absolute!;display:block!;', // hidden input
+      input: _position + ':absolute!;display:block!;opacity:0!;z-index:-1!;', // hidden input
+      // input: _position + ':absolute!;display:block!;', // hidden input
       area: _position + ':absolute;display:block;content:"";top:#;bottom:#;left:#;right:#;' // clickable area
     };
 
