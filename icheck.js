@@ -355,7 +355,7 @@
         if (hashes[key][_callbacks] !== false) {
 
           // direct callback
-          if (typeof hashes[key][_callbacks][name] === _function) {
+          if (typeof hashes[key][_callbacks][name] == _function) {
             hashes[key][_callbacks][name](node);
           }
 
@@ -881,7 +881,7 @@
 
               // 'refresh' method
               if (options == methods[5]) {
-                process(item, typeof fire === 'object' ? fire : {}, false, true);
+                process(item, typeof fire == 'object' ? fire : {}, false, true);
 
               // 'data' method
               } else if (options == _data) {
@@ -899,7 +899,7 @@
                 }
 
                 // callback
-                if (typeof fire === _function) {
+                if (typeof fire == _function) {
                   fire(item);
                 }
               }
@@ -907,20 +907,20 @@
           }
 
         // basic setup
-        } else if (typeof options === 'object' || !options) {
+        } else if (typeof options == 'object' || !options) {
           process(this, options || {});
         }
 
         // chain
         return this;
       };
-    }
+    };
 
     // expose iCheck as an AMD module
-    if (typeof define === _function && define.amd) {
+    if (typeof define == _function && define.amd) {
       define(_icheck, ['jquery'], _win['i' + _checked]);
     } else {
       _win['i' + _checked]();
     }
-  };
+  }
 }(window, document, 'icheck', 'checkbox', 'radio', 'input', 'label', 'checked', 'disabled', 'determinate', 'active', 'focus', 'hover', 'appendChild', 'etAttribute', 'callbacks', 'Class', 'className', 'click', 'closest', 'cursor', 'data', 'function', 'getElementsByTagName', 'indexOf', 'length', 'mirror', 'PointerEvent', 'position', 'replace', 'style', 'tagName', 'type'));
