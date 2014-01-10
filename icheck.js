@@ -915,12 +915,12 @@
         return this;
       };
     }
-  };
 
-  // expose iCheck as an AMD module
-  if (typeof define === _function && define.amd) {
-    define(_icheck, ['jquery'], _win['i' + _checked]);
-  } else {
-    _win['i' + _checked]();
-  }
+    // expose iCheck as an AMD module
+    if (typeof define === _function && define.amd) {
+      define(_icheck, ['jquery'], _win['i' + _checked]);
+    } else {
+      _win['i' + _checked]();
+    }
+  };
 }(window, document, 'icheck', 'checkbox', 'radio', 'input', 'label', 'checked', 'disabled', 'determinate', 'active', 'focus', 'hover', 'appendChild', 'etAttribute', 'callbacks', 'Class', 'className', 'click', 'closest', 'cursor', 'data', 'function', 'getElementsByTagName', 'indexOf', 'length', 'mirror', 'PointerEvent', 'position', 'replace', 'style', 'tagName', 'type'));
