@@ -7,7 +7,7 @@
  * MIT Licensed
  */
 
-(function(_win, _doc, _icheck, _checkbox, _radio, _input, _label, _checked, _disabled, _determinate, _active, _focus, _hover, _append, _attr, _callbacks, _class, _className, _click, _closest, _cursor, _data, _getByTag, _index, _length, _mirror, _pointerEvent, _position, _replace, _style, _tag, _type, $) {
+(function(_win, _doc, _icheck, _checkbox, _radio, _input, _label, _checked, _disabled, _determinate, _active, _focus, _hover, _append, _attr, _callbacks, _class, _className, _click, _closest, _cursor, _data, _function, _getByTag, _index, _length, _mirror, _pointerEvent, _position, _replace, _style, _tag, _type, $) {
   $ = _win.jQuery || _win.Zepto;
 
   // prevent multiple includes
@@ -355,7 +355,7 @@
         if (hashes[key][_callbacks] !== false) {
 
           // direct callback
-          if (typeof hashes[key][_callbacks][name] == 'function') {
+          if (typeof hashes[key][_callbacks][name] === _function) {
             hashes[key][_callbacks][name](node);
           }
 
@@ -881,7 +881,7 @@
 
               // 'refresh' method
               if (options == methods[5]) {
-                process(item, typeof fire == 'object' ? fire : {}, false, true);
+                process(item, typeof fire === 'object' ? fire : {}, false, true);
 
               // 'data' method
               } else if (options == _data) {
@@ -899,7 +899,7 @@
                 }
 
                 // callback
-                if (typeof fire == 'function') {
+                if (typeof fire === _function) {
                   fire(item);
                 }
               }
@@ -907,7 +907,7 @@
           }
 
         // basic setup
-        } else if (typeof options == 'object' || !options) {
+        } else if (typeof options === 'object' || !options) {
           process(this, options || {});
         }
 
@@ -918,9 +918,9 @@
   };
 
   // expose iCheck as an AMD module
-  if (typeof define == 'function' && define.amd) {
+  if (typeof define === _function && define.amd) {
     define(_icheck, ['jquery'], _win['i' + _checked]);
   } else {
     _win['i' + _checked]();
   }
-}(window, document, 'icheck', 'checkbox', 'radio', 'input', 'label', 'checked', 'disabled', 'determinate', 'active', 'focus', 'hover', 'appendChild', 'etAttribute', 'callbacks', 'Class', 'className', 'click', 'closest', 'cursor', 'data', 'getElementsByTagName', 'indexOf', 'length', 'mirror', 'PointerEvent', 'position', 'replace', 'style', 'tagName', 'type'));
+}(window, document, 'icheck', 'checkbox', 'radio', 'input', 'label', 'checked', 'disabled', 'determinate', 'active', 'focus', 'hover', 'appendChild', 'etAttribute', 'callbacks', 'Class', 'className', 'click', 'closest', 'cursor', 'data', 'function', 'getElementsByTagName', 'indexOf', 'length', 'mirror', 'PointerEvent', 'position', 'replace', 'style', 'tagName', 'type'));
