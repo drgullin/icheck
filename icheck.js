@@ -68,8 +68,8 @@
 
     // default styles
     base[_style] = {
-      input: _position + ':absolute!;display:block!;opacity:0!;z-index:-1!;', // hidden input
-      // input: _position + ':absolute!;display:block!;', // hidden input
+      // input: _position + ':absolute!;display:block!;opacity:0!;z-index:-1!;', // hidden input
+      input: _position + ':absolute!;display:block!;', // hidden input
       area: _position + ':absolute;display:block;content:"";top:#;bottom:#;left:#;right:#;' // clickable area
     };
 
@@ -514,7 +514,7 @@
           }
 
           // update styler's class
-          styler[_className] = stylerClass;
+          styler[_className] = stylerClass + (!!FastClick ? ' needsclick' : '');
 
           // update node's class
           node[_className] = (!!nodeString ? nodeString + ' ' : '') + nodeClass + ' ' + keyClass;
@@ -568,7 +568,7 @@
     };
 
     // operations center
-    var operate = function(node, parent, key, method, silent, prepare) {
+    var operate = function(node, parent, key, method, silent, before) {
       var settings = hashes[key];
       var type = node[_type];
       var typeCapital = type == _radio ? capitalized[1] : capitalized[0];
@@ -586,7 +586,7 @@
       // current states
       states[_checked] = [node[_checked], capitalized[3], capitalized[4]];
 
-      if (!prepare) {
+      if (!before) {
         states[_disabled] = [node[_disabled], capitalized[5], capitalized[6]];
         states[methods[1]] = [node['g' + _attr](methods[1]) == 'true' || !!node[methods[1]], capitalized[7], capitalized[8]];
       }
@@ -600,12 +600,9 @@
 
         // 'update' method
         if (method == methods[4]) {
-          changes[_checked] = prepare ? !settings[_checked] : states[_checked][0];
-
-          if (!prepare) {
-            changes[_disabled] = states[_disabled][0];
-            changes[methods[1]] = states[methods[1]][0];
-          }
+          changes[_checked] = states[_checked][0];
+          changes[_disabled] = states[_disabled][0];
+          changes[methods[1]] = states[methods[1]][0];
 
         // 'checked' or 'unchecked' method
         } else if (method == _checked || method == methods[0]) {
@@ -621,7 +618,7 @@
 
         // 'toggle' method
         } else {
-          changes[_checked] = !states[_checked][0];
+          changes[_checked] = before ? !settings[_checked] : !states[_checked][0];
         }
 
         // detect changes
@@ -629,7 +626,7 @@
           value = changes[property];
 
           // update node's property
-          if (states[property][0] !== value && !prepare) {
+          if (states[property][0] !== value && method !== methods[4] && !before) {
             node[property] = value;
           }
 
@@ -763,7 +760,7 @@
         } else if (div) {
 
           // timeout hack
-          setTimeout(function(){
+          setTimeout(function() {
             target = event.currentTarget || {};
 
             // trigger input's click
@@ -828,14 +825,14 @@
           if (self[_type] == _checkbox && emitter == 'keydown' && event.keyCode == 32) {
 
             // event fired before state is changed
-            operate(self, parent, key, methods[4], false, true); // 'update' method
+            operate(self, parent, key, methods[3], false, true); // 'toggle' method
           };
 
           // arrow
           if (self[_type] == _radio && emitter == 'keyup' && !self[_checked]) {
 
             // event fired before state is changed (except Opera 9-12)
-            operate(self, parent, key, methods[4], false, true); // 'update' method
+            operate(self, parent, key, methods[3], false, true); // 'toggle' method
           }
         }
       }
