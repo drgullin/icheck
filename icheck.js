@@ -7,7 +7,7 @@
  * MIT Licensed
  */
 
-(function(_win, _doc, _icheck, _checkbox, _radio, _input, _label, _checked, _disabled, _determinate, _active, _focus, _hover, _append, _attr, _callbacks, _class, _className, _click, _closest, _cursor, _data, _function, _getByTag, _index, _length, _mirror, _pointerEvent, _position, _replace, _style, _tag, _type, $) {
+(function(_win, _doc, _icheck, _checkbox, _radio, _input, _label, _checked, _disabled, _determinate, _active, _focus, _hover, _append, _attr, _callbacks, _class, _className, _click, _closest, _cursor, _data, _function, _getByTag, _index, _length, _mirror, _pointer, _pointerEvent, _position, _replace, _style, _tag, _type, $) {
   $ = _win.jQuery || _win.Zepto;
 
   // prevent multiple includes
@@ -36,14 +36,13 @@
       base[_checkbox + _class] = 'i' + _checkbox; // checkboxClass = 'icheckbox'
       base[_radio + _class] = 'i' + _radio; // radioClass = 'iradio'
       base[_checked + _class] = _checked; // checkedClass = 'checked'
-      base[_checked + 'Label' + _class] = _checked; // checkedClass = 'checked'
       base[_disabled + _class] = _disabled; // disabledClass = 'disabled'
       base[methods[1] + _class] = methods[1]; // indeterminateClass = 'indeterminate'
       base[_hover + _class] = _hover; // hoverClass = 'hover'
       base[_focus + _class] = _focus; // focusClass = 'focus'
 
       // cursor addition
-      base[_cursor] = true;
+      base[_cursor] = false;
 
       // ignored callbacks
       base[_callbacks] = {
@@ -51,7 +50,7 @@
       };
 
       // relation between input and label
-      base[_mirror] = true;
+      base[_mirror] = false;
 
       // depth-limited search
       base[_closest] = {
@@ -69,8 +68,8 @@
 
       // default styles
       base[_style] = {
-        input: _position + ':absolute!;display:block!;opacity:0!;z-index:-1!;', // hidden input
-        // input: _position + ':absolute!;display:block!;', // hidden input
+        // input: _position + ':absolute!;display:block!;opacity:0!;z-index:-1!;', // hidden input
+        input: _position + ':absolute!;display:block!;', // hidden input
         area: _position + ':absolute;display:block;content:"";top:#;bottom:#;left:#;right:#;' // clickable area
       };
 
@@ -131,47 +130,6 @@
       var styleInput = base[_style][_input];
       var styleArea = base[_style].area;
 
-      // styles addition
-      var style = function(rules, area, selector) {
-        if (!styleTag) {
-
-          // create container
-          styleTag = _doc.createElement(_style);
-
-          // append to header
-          (_doc.head || _doc[_getByTag]('head')[0])[_append](styleTag);
-
-          // webkit hack
-          if (!_win.createPopup) {
-            styleTag[_append](_doc.createTextNode(''));
-          }
-
-          styleList = styleTag.sheet || styleTag.styleSheet;
-        }
-
-        // choose selector
-        selector = 'div.' + (area ? areaClass + area + ':after' : divClass + ' input.' + nodeClass);
-
-        // append styles
-        if (styleList.addRule) {
-          styleList.addRule(selector, rules, 0);
-        } else {
-          styleList.insertRule(selector + '{' + rules + '}', 0);
-        }
-      };
-
-      // append input styles
-      if (!!styleInput) {
-
-        // legacy support for IE <= 7 (opacity replacement)
-        if (/MSIE [5-7]/.test(ua)) {
-          // styleInput += 'visibility:hidden!;'
-          styleInput += 'display:none!;'
-        }
-
-        style(styleInput[_replace](/!/g, ' !important'));
-      }
-
       // remove init options
       base[_className] = base[_style] = base[_closest] = false;
 
@@ -200,6 +158,53 @@
       var tapStart = noMouse ? (isTouch ? false : pointer[0] + pointer[1]) : mouse[0] + mouse[1];
       var tapEnd = noMouse ? (isTouch ? false : pointer[0] + pointer[2]) : mouse[0] + mouse[2];
       var tap = tapStart ? (tapStart + '.i ' + tapEnd + '.i') : '';
+
+      // styles addition
+      var style = function(rules, styler, area, selector) {
+        if (!styleTag) {
+
+          // create container
+          styleTag = _doc.createElement(_style);
+
+          // append to header
+          (_doc.head || _doc[_getByTag]('head')[0])[_append](styleTag);
+
+          // webkit hack
+          if (!_win.createPopup) {
+            styleTag[_append](_doc.createTextNode(''));
+          }
+
+          styleList = styleTag.sheet || styleTag.styleSheet;
+        }
+
+        // choose selector
+        selector = 'div.' + (area ? areaClass + area + ':after' : divClass + (styler ? '' : ' input.' + nodeClass));
+
+        // append styles
+        if (styleList.addRule) {
+          styleList.addRule(selector, rules, 0);
+        } else {
+          styleList.insertRule(selector + '{' + rules + '}', 0);
+        }
+      };
+
+      // append input styles
+      if (!!styleInput) {
+
+        // legacy support for IE <= 7 (opacity replacement)
+        if (/MSIE [5-7]/.test(ua)) {
+          // styleInput += 'visibility:hidden!;'
+          styleInput += 'display:none!;'
+        }
+
+        style(styleInput[_replace](/!/g, ' !important'));
+
+      }
+
+      // append pointer cursor for mobile
+      if (isMobile && isTouch) {
+        style(_cursor + ':' + _pointer + ' !important;', true);
+      }
 
       // capitalizer
       var capitalize = function(string, position) {
@@ -505,7 +510,7 @@
             area = ('' + settings.area)[_replace](/%|px|em|\+|-/g, '') | 0;
 
             if (area && !!styleArea && !areas[area]) {
-              style(styleArea[_replace](/#/g, '-' + area + '%'), area);
+              style(styleArea[_replace](/#/g, '-' + area + '%'), false, area);
 
               stylerClass += ' ' + areaClass + area;
               areas[area] = true;
@@ -666,6 +671,7 @@
 
               // update labels's class
               if (!!settings[_mirror] && !!classes[4]) {
+                console.log(settings);
                 label = $(_label + '.' + settings[_replace]);
 
                 while (label[_length]--) {
@@ -688,6 +694,21 @@
 
             if (toggled) {
               callback(node, key, 'ifToggled');
+            }
+          }
+
+          // cursor addition
+          if (!!settings[_cursor] && !isMobile) {
+
+            // 'pointer' for enabled
+            if (!settings[_disabled] && !settings[_pointer]) {
+              parent[_style][_cursor] = _pointer;
+              settings[_pointer] = true;
+
+            // 'default' for disabled
+            } else if (settings[_disabled] && settings[_pointer]) {
+              parent[_style][_cursor] = 'default';
+              settings[_pointer] = false;
             }
           }
 
@@ -923,4 +944,4 @@
       _win['i' + _checked]();
     }
   }
-}(window, document, 'icheck', 'checkbox', 'radio', 'input', 'label', 'checked', 'disabled', 'determinate', 'active', 'focus', 'hover', 'appendChild', 'etAttribute', 'callbacks', 'Class', 'className', 'click', 'closest', 'cursor', 'data', 'function', 'getElementsByTagName', 'indexOf', 'length', 'mirror', 'PointerEvent', 'position', 'replace', 'style', 'tagName', 'type'));
+}(window, document, 'icheck', 'checkbox', 'radio', 'input', 'label', 'checked', 'disabled', 'determinate', 'active', 'focus', 'hover', 'appendChild', 'etAttribute', 'callbacks', 'Class', 'className', 'click', 'closest', 'cursor', 'data', 'function', 'getElementsByTagName', 'indexOf', 'length', 'mirror', 'pointer', 'PointerEvent', 'position', 'replace', 'style', 'tagName', 'type'));
