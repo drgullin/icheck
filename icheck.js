@@ -1,6 +1,6 @@
 /*!
- * iCheck v2.0.0, http://git.io/arlzeA
- * ===================================
+ * iCheck v2.0.0 beta, http://git.io/arlzeA
+ * ========================================
  * Cross-platform checkboxes and radio buttons customization
  *
  * (c) Damir Sultanov - http://fronteed.com
@@ -68,8 +68,8 @@
 
       // default styles
       base[_style] = {
-        input: _position + ':absolute!;display:block!;outline:none!;opacity:0!;z-index:-99!;', // hidden input
-        // input: _position + ':absolute!;display:block!;outline:none!;', // hidden input
+        // input: _position + ':absolute!;display:block!;outline:none!;opacity:0!;z-index:-99!;', // hidden input
+        input: _position + ':absolute!;display:block!;outline:none!;', // hidden input
         area: _position + ':absolute;display:block;content:"";top:#;bottom:#;left:#;right:#;' // clickable area
       };
 
