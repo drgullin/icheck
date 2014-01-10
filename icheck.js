@@ -28,7 +28,8 @@
     // default options
     var base = {
       init: true, // auto init on domready
-      ajax: false // auto handle ajax loaded inputs
+      ajax: false, // auto handle ajax loaded inputs
+      uber: true // fastclick replacement
     };
 
     // customization class names
@@ -68,8 +69,8 @@
 
     // default styles
     base[_style] = {
-      // input: _position + ':absolute!;display:block!;opacity:0!;z-index:-1!;', // hidden input
-      input: _position + ':absolute!;display:block!;', // hidden input
+      input: _position + ':absolute!;display:block!;opacity:0!;z-index:-1!;', // hidden input
+      // input: _position + ':absolute!;display:block!;', // hidden input
       area: _position + ':absolute;display:block;content:"";top:#;bottom:#;left:#;right:#;' // clickable area
     };
 
@@ -87,6 +88,7 @@
     var areaClass = base[_className].area[_replace]('#', prefix);
     var nodeClass = base[_className][_input][_replace]('#', prefix);
     var labelClass = base[_className][_label][_replace]('#', prefix);
+    var uberClass = !!FastClick ? ' needs' + _click : '';
 
     // parent's selector iterations
     var closestMin = base[_closest].min;
@@ -163,7 +165,8 @@
 
       // legacy support for IE <= 7 (opacity replacement)
       if (/MSIE [5-7]/.test(ua)) {
-        styleInput += 'visibility:hidden!;'
+        // styleInput += 'visibility:hidden!;'
+        styleInput += 'display:none!;'
       }
 
       style(styleInput[_replace](/!/g, ' !important'));
@@ -488,7 +491,7 @@
             }
 
             // update label's class
-            label[_className] = labelString + ' ' + keyClass;
+            label[_className] = labelString + ' ' + keyClass + uberClass;
           }
 
           // prepare styler
@@ -514,7 +517,7 @@
           }
 
           // update styler's class
-          styler[_className] = stylerClass + (!!FastClick ? ' needsclick' : '');
+          styler[_className] = stylerClass + uberClass;
 
           // update node's class
           node[_className] = (!!nodeString ? nodeString + ' ' : '') + nodeClass + ' ' + keyClass;
@@ -704,6 +707,7 @@
         var className = hashes[key][_replace]; // escaped class name
         var target;
         var partner;
+        var activate;
         var states = [
           [
             _label,
@@ -739,6 +743,11 @@
             }
           }
 
+          // fastclick
+          if (div && emitter == tapEnd && isPointer && !!hashes[key].uber) {
+            activate = true;
+          }
+
         // hover state
         } else if (emitter == hoverStart || emitter == hoverEnd) {
 
@@ -756,14 +765,25 @@
             }
           }
 
+          // fastclick
+          if (div && emitter == hoverEnd && isTouch && isMobile && !!hashes[key].uber) {
+            activate = true;
+          }
+
         // click
         } else if (div) {
+          if (!noMouse || !hashes[key].uber) {
+            activate = true;
+          }
+        }
 
-          // timeout hack
+        // trigger input's click
+        if (activate && div) {
+
+          // currentTarget hack
           setTimeout(function() {
             target = event.currentTarget || {};
 
-            // trigger input's click
             if (target[_tag] !== 'LABEL') {
               $(self).find(_input + '.' + className)[_click]();
             }
