@@ -124,8 +124,8 @@
       // data attributes converter
       var converter = new RegExp(_checkbox + '|' + _radio + '|class|id|' + _label, 'g');
 
-      // methods parser /^(checked|unchecked|indeterminate|determinate|disabled|enabled|toggle|update|refresh|destroy|data)$/
-      var parser = new RegExp('^(' + _checked + '|' + methods[0] + '|' + methods[1] + '|' + _determinate + '|' + _disabled + '|' + methods[2] + '|' + methods[3] + '|' + methods[4] + '|' + methods[5] + '|' + methods[6] + '|' + _data + ')$');
+      // methods parser /^(checked|unchecked|indeterminate|determinate|disabled|enabled|toggle|update|refresh|destroy|data|styler)$/
+      var parser = new RegExp('^(' + _checked + '|' + methods[0] + '|' + methods[1] + '|' + _determinate + '|' + _disabled + '|' + methods[2] + '|' + methods[3] + '|' + methods[4] + '|' + methods[5] + '|' + methods[6] + '|' + _data + '|' + _style + 'r)$');
 
       // styles options
       var styleTag;
@@ -998,6 +998,10 @@
               // 'data' method
               } else if (options == _data) {
                 return hashes[key];
+
+              // 'styler' method
+              } else if (options == _style + 'r') {
+                return closest(item, _div, hashes[key][_className]);
 
               } else {
 
