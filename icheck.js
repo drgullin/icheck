@@ -357,7 +357,7 @@
           }
 
           // indirect callback
-          if (!!hashes[key][_callbacks][name] !== false) {
+          if (hashes[key][_callbacks][name] !== false) {
             $(node).trigger(name);
           }
         }
