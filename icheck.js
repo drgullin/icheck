@@ -7,12 +7,19 @@
  * MIT Licensed
  */
 
-(function(_win, _doc, _icheck, _checkbox, _radio, _input, _label, _checked, _disabled, _determinate, _active, _focus, _hover, _append, _attr, _body, _callbacks, _class, _className, _click, _content, _create, _cursor, _data, _display, _div, _function, _getByTag, _iframe, _index, _length, _mirror, _pointer, _pointerEvent, _position, _remove, _replace, _style, _tag, _type, $) {
-  $ = _win.jQuery || _win.Zepto;
+(function(_win, _doc, _icheck, _checkbox, _radio, _input, _label, _checked, _disabled, _determinate, _active, _focus, _hover, _absolute, _append, _attr, _body, _callbacks, _class, _className, _click, _content, _create, _cursor, _data, _display, _div, _document, _extend, _function, _getByTag, _iframe, _index, _length, _mirror, _parent, _pointer, _pointerEvent, _position, _remove, _replace, _style, _tag, _toUp, _type, $) {
 
   // prevent multiple includes
   if (!_win['i' + _checked]) {
     _win['i' + _checked] = function() {
+
+      // capitalizer
+      var capitalize = function(string, position) {
+        return position == 0 ? string : string.charAt(0)[_toUp]() + string.slice(1);
+      };
+
+      // choose library
+      $ = _win.jQuery || _win.Zepto;
 
       // methods cache
       var methods = [
@@ -25,11 +32,24 @@
         'destroy' // 6
       ];
 
+      // capitalized strings cache
+      var capitalized = [
+        capitalize(_checkbox), // 0, Checkbox
+        capitalize(_radio), // 1, Radio
+        capitalize(_label), // 2, Label
+        capitalize(_checked), // 3, Checked
+        capitalize(methods[0]), // 4, Unchecked
+        capitalize(_disabled), // 5, Disabled
+        capitalize(methods[2]), // 6, Enabled
+        capitalize(methods[1]), // 7, Indeterminate
+        capitalize(_determinate) // 8, Determinate
+      ];
+
       // default options
       var base = {
         init: true, // auto init on domready
         ajax: true, // auto handle ajax loaded inputs
-        fast: true // fastclick replacement
+        uber: true // fastclick replacement
       };
 
       // customization class names
@@ -41,16 +61,10 @@
       base[_hover + _class] = _hover; // hoverClass = 'hover'
       base[_focus + _class] = _focus; // focusClass = 'focus'
 
-      // cursor addition
-      base[_cursor] = false;
-
       // ignored callbacks
       base[_callbacks] = {
         ifCreated: false
       };
-
-      // relation between input and label
-      base[_mirror] = false;
 
       // directive class names
       base[_className] = {
@@ -62,31 +76,30 @@
 
       // default styles
       base[_style] = {
-        input: _position + ':absolute!;display:block!;outline:none!;opacity:0!;z-index:-99!;', // hidden input
-        // input: _position + ':absolute!;' + _display + 'block!;outline:none!;', // hidden input
-        area: _position + ':absolute;' + _display + 'block;' + _content + ':"";top:#;bottom:#;left:#;right:#;' // clickable area
+        // input: _position + ':absolute!;' + _display + 'block!;outline:none!;opacity:0!;z-index:-99!;', // hidden input
+        input: _position + _absolute + _display + 'block!;outline:none!;', // hidden input
+        area: _position + _absolute + _display + 'block;' + _content + ':"";top:#;bottom:#;left:#;right:#;' // clickable area
       };
 
       // extend global options
       if (_win[_icheck]) {
-        base = $.extend(base, _win[_icheck]);
+        base = $[_extend](base, _win[_icheck]);
       }
 
       // userAgent cache
       var ua = _win.navigator.userAgent;
-      var ie8 = /MSIE 8/.test(ua);
-      var ie7 = /MSIE [5-7]/.test(ua);
+      var ie = /MSIE [5-8]/.test(ua);
 
       // classes cache
-      var prefix = base[_className].prefix || _icheck;
+      var prefix = base[_className].base || _icheck;
       var divClass = base[_className].div[_replace]('#', prefix);
       var areaClass = base[_className].area[_replace]('#', prefix);
       var nodeClass = base[_className][_input][_replace]('#', prefix);
       var labelClass = base[_className][_label][_replace]('#', prefix);
-      var fastClass = !!_win.FastClick ? ' needs' + _click : '';
+      var fastClass = _win.FastClick ? ' needs' + _click : '';
 
       // default filter
-      var filter = _input + '[type=' + _checkbox + '], input[type=' + _radio + ']';
+      var filter = _input + '[type=' + _checkbox + '],' + _input + '[type=' + _radio + ']';
 
       // clickable areas container
       var areas = {};
@@ -113,7 +126,7 @@
       // data attributes converter
       var converter = new RegExp(_checkbox + '|' + _radio + '|class|id|' + _label, 'g');
 
-      // methods parser = ^(checked|unchecked|indeterminate|determinate|disabled|enabled|toggle|update|refresh|destroy|data)$
+      // methods parser /^(checked|unchecked|indeterminate|determinate|disabled|enabled|toggle|update|refresh|destroy|data)$/
       var parser = new RegExp('^(' + _checked + '|' + methods[0] + '|' + methods[1] + '|' + _determinate + '|' + _disabled + '|' + methods[2] + '|' + methods[3] + '|' + methods[4] + '|' + methods[5] + '|' + methods[6] + '|' + _data + ')$');
 
       // styles options
@@ -122,7 +135,7 @@
       var styleInput = base[_style][_input];
       var styleArea = base[_style].area;
 
-      // remove init options
+      // global options removal
       base[_className] = base[_style] = false;
 
       // detect computed style support
@@ -139,7 +152,7 @@
 
       // setup events
       var mouse = ['mouse', 'down', 'up', 'over', 'out']; // bubbling hover
-      var pointer = _win[_pointerEvent] ? ['pointer', mouse[1], mouse[2], mouse[3], mouse[4]] : ['MSPointer', 'Down', 'Up', 'Over', 'Out'];
+      var pointer = _win[_pointerEvent] ? [_pointer, mouse[1], mouse[2], mouse[3], mouse[4]] : ['MS' + capitalize(_pointer), 'Down', 'Up', 'Over', 'Out'];
       var touch = ['touch', 'begin', 'end'];
       var noMouse = (isTouch && isMobile) || isPointer;
 
@@ -171,7 +184,7 @@
 
         // choose selector
         if (!selector) {
-          selector = _div + '.' + (area ? areaClass + area + ':after' : divClass + ' input.' + nodeClass);
+          selector = _div + '.' + (area ? areaClass + area + ':after' : divClass + ' ' + _input + '.' + nodeClass);
         }
 
         // replace shorthand rules
@@ -189,8 +202,8 @@
       if (!!styleInput) {
 
         // opacity replacement for IE <= 8
-        if (ie8 || ie7) {
-          styleInput += 'clip:rect(' + (ie8 ? '0,0,0,0' : '0 0 0 0') + ')!;';
+        if (ie) {
+          styleInput += 'clip:rect(0 0 0 0)!;';
         }
 
         style(styleInput);
@@ -203,24 +216,6 @@
 
       // append iframe's styles
       style(_display + 'none!;', _iframe + '.' + _icheck + '-' + _iframe);
-
-      // capitalizer
-      var capitalize = function(string, position) {
-        return position == 0 ? string : string.charAt(0).toUpperCase() + string.slice(1);
-      };
-
-      // capitalized strings
-      var capitalized = [
-        capitalize(_checkbox), // 0, Checkbox
-        capitalize(_radio), // 1, Radio
-        capitalize(_label), // 2, Label
-        capitalize(_checked), // 3, Checked
-        capitalize(methods[0]), // 4, Unchecked
-        capitalize(_disabled), // 5, Disabled
-        capitalize(methods[2]), // 6, Enabled
-        capitalize(methods[1]), // 7, Indeterminate
-        capitalize(_determinate) // 8, Determinate
-      ];
 
       // class toggler
       var toggle = function(node, className, status, currentClass, addClass, removeClass) {
@@ -237,7 +232,7 @@
           } else if (status == 1) {
             removeClass = className;
 
-          // add and remove classes
+          // add and remove class
           } else {
             addClass = className[0];
             removeClass = className[1];
@@ -265,9 +260,10 @@
       };
 
       // traces remover
-      var tidy = function(node, key, trigger, className, parent, label, input) {
+      var tidy = function(node, key, trigger, settings, className, parent, label, input) {
         if (hashes[key]) {
-          className = hashes[key][_className];
+          settings = hashes[key];
+          className = settings[_className];
           parent = closest(node, _div, className);
 
           // prevent overlapping
@@ -278,10 +274,10 @@
             toggle(node, className, 1);
 
             // revert style attribute
-            node['set' + _attr](_style, hashes[key][_style]);
+            node['set' + _attr](_style, settings[_style]);
 
             // find labels
-            label = $(_label + '.' + hashes[key][_replace]);
+            label = $(_label + '.' + settings[_replace]);
 
             // loop through labels
             while (label[_length]--) {
@@ -306,14 +302,13 @@
       };
 
       // nodes inspector
-      var inspect = function(object) {
-        var stack = [];
-        var direct = object[_length];
-        var indirect;
+      var inspect = function(object, node, stack, direct, indirect) {
+        stack = [];
+        direct = object[_length];
 
         // inspect object
         while (direct--) {
-          var node = object[direct];
+          node = object[direct];
 
           // direct input
           if (node[_type]) {
@@ -340,9 +335,9 @@
       // parent searcher
       var closest = function(node, tag, className, parent) {
         while (node.nodeType !== 9) {
-          node = node.parentNode;
+          node = node[_parent];
 
-          if (node[_tag] == tag.toUpperCase() && ~node[_className][_index](className)) {
+          if (node[_tag] == tag[_toUp]() && ~node[_className][_index](className)) {
             parent = node;
             break;
           }
@@ -353,6 +348,7 @@
 
       // callbacks farm
       var callback = function(node, key, name) {
+        name = 'if' + name;
 
         // callbacks are allowed
         if (hashes[key][_callbacks] !== false) {
@@ -419,7 +415,7 @@
 
           // merge cached data attributes
           if (queryData && queryData[_data]) {
-            nodeData = $.extend(nodeData, queryData[_data]);
+            nodeData = $[_extend](nodeData, queryData[_data]);
           }
 
           // standardize merged data attributes
@@ -434,7 +430,7 @@
           }
 
           // merge options
-          settings = $.extend(settings, base, data, options);
+          settings = $[_extend](settings, base, data, options);
 
           // handle filter
           handle = settings.handle;
@@ -472,7 +468,7 @@
             labelIndirect = $(_label + '[for="' + nodeID + '"]');
 
             if (labelDirect) {
-              if (!!labelDirect.htmlFor == false && !!nodeID) {
+              if (!!!labelDirect.htmlFor && !!nodeID) {
                 labelDirect.htmlFor = nodeID;
               }
 
@@ -546,18 +542,18 @@
             }
 
             // replace node
-            node.parentNode[_replace + 'Child'](styler, node);
+            node[_parent][_replace + 'Child'](styler, node);
 
             // append node
             styler[_append](node);
 
             // append additions
             if (!!settings.insert) {
-              styler[_append](settings.insert);
+              $(styler).append(settings.insert);
             }
 
             // set relative position
-            if (!!area && !!styleArea) {
+            if (area && !!styleArea) {
 
               // get styler's position
               if (computed) {
@@ -574,13 +570,11 @@
 
             // operate
             operate(node, styler, key, methods[4], true, false, true); // 'update' method
-
-            // unset init option
             hashes[key].done = true;
 
             // ifCreated callback
             if (!silent) {
-              callback(node, key, 'ifCreated');
+              callback(node, key, 'Created');
             }
           }
         }
@@ -589,28 +583,8 @@
       // operations center
       var operate = function(node, parent, key, method, silent, before, ajax) {
         var settings = hashes[key];
-        var type = node[_type];
-        var typeCapital = type == _radio ? capitalized[1] : capitalized[0];
         var states = {};
         var changes = {};
-        var property;
-        var value;
-        var classes;
-        var inputClass;
-        var label;
-        var labelClass = capitalized[2] + _class;
-        var changed;
-        var toggled;
-        var form;
-        var radios;
-        var radiosLength;
-        var radioSettings;
-        var radioClasses;
-        var radio;
-        var radioKey;
-        var radioClass;
-        var radioParent;
-        var radioLabel;
 
         // current states
         states[_checked] = [node[_checked], capitalized[3], capitalized[4]];
@@ -620,42 +594,61 @@
           states[methods[1]] = [node['get' + _attr](methods[1]) == 'true' || !!node[methods[1]], capitalized[7], capitalized[8]];
         }
 
+        // 'update' method
+        if (method == methods[4]) {
+          changes[_checked] = states[_checked][0];
+          changes[_disabled] = states[_disabled][0];
+          changes[methods[1]] = states[methods[1]][0];
+
+        // 'checked' or 'unchecked' method
+        } else if (method == _checked || method == methods[0]) {
+          changes[_checked] = method == _checked
+
+        // 'disabled' or 'enabled' method
+        } else if (method == _disabled || method == methods[2]) {
+          changes[_disabled] = method == _disabled
+
+        // 'indeterminate' or 'determinate' method
+        } else if (method == methods[1] || method == _determinate) {
+          changes[methods[1]] = method == methods[1];
+
+        // 'toggle' method
+        } else {
+          changes[_checked] = before ? !settings[_checked] : !states[_checked][0];
+        }
+
+        // apply changes
+        change(node, parent, states, changes, key, settings, method, silent, before, ajax);
+      };
+
+      // state changer
+      var change = function(node, parent, states, changes, key, settings, method, silent, before, ajax, loop) {
+        var type = node[_type];
+        var typeCapital = type == _radio ? capitalized[1] : capitalized[0];
+        var property;
+        var value;
+        var classes;
+        var inputClass;
+        var label;
+        var labelClass = capitalized[2] + _class;
+        var form;
+        var radios;
+        var radiosLength;
+
         // check parent
         if (!parent) {
           parent = closest(node, _div, settings[_className]);
         }
 
-        if (settings && parent) {
-
-          // 'update' method
-          if (method == methods[4]) {
-            changes[_checked] = states[_checked][0];
-            changes[_disabled] = states[_disabled][0];
-            changes[methods[1]] = states[methods[1]][0];
-
-          // 'checked' or 'unchecked' method
-          } else if (method == _checked || method == methods[0]) {
-            changes[_checked] = method == _checked
-
-          // 'disabled' or 'enabled' method
-          } else if (method == _disabled || method == methods[2]) {
-            changes[_disabled] = method == _disabled
-
-          // 'indeterminate' or 'determinate' method
-          } else if (method == methods[1] || method == _determinate) {
-            changes[methods[1]] = method == methods[1];
-
-          // 'toggle' method
-          } else {
-            changes[_checked] = before ? !settings[_checked] : !states[_checked][0];
-          }
+        // continue if parent exists
+        if (parent) {
 
           // detect changes
           for (property in changes) {
             value = changes[property];
 
             // update node's property
-            if (states[property][0] !== value && method !== methods[4] && !before) {
+            if (states[property][0] !== value && method !== methods[4] && !before && !ajax) {
               node[property] = value;
             }
 
@@ -676,64 +669,26 @@
               if (property == _checked) {
                 toggled = true;
 
-                // checked radio
-                if (value && (!!hashes[key].done || ajax) && type == _radio && !!node.name) {
+                // find assigned radios
+                if (!loop && value && (!!hashes[key].done || ajax) && type == _radio && !!node.name) {
                   form = closest(node, 'form', '');
                   radios = _input + '[name="' + node.name + '"]';
-                  radios = form && !ajax ? $(form).find(radios) : $(radios);
+                  radios = form ? $(form).find(radios) : $(radios);
                   radiosLength = radios[_length];
 
                   while (radiosLength--) {
-                    radio = radios[radiosLength];
-                    radioKey = extract(radio[_className]);
-                    radioSettings = hashes[radioKey];
+                    var radio = radios[radiosLength];
+                    var radioKey = extract(radio[_className]);
+                    var radioState = radio[_checked];
+                    var radioStates = {};
+                    var radioChanges = {};
 
                     // toggle radios
-                    if (node !== radio && radioSettings) {
-                      if (radio[_checked]) {
-                        radio[_checked] = false;
-                        radioSettings[_checked] = false;
-                      }
+                    if (node !== radio && radioKey && radioState) {
+                      radioStates[_checked] = radioState;
+                      radioChanges[_checked] = false;
 
-                      // cache radio classes
-                      radioClasses = [
-                        radioSettings[property + _class], // 0, checkedClass
-                        radioSettings[property + typeCapital + _class], // 1, checkedRadioClass
-
-                        radioSettings[states[property][1] + _class], // 2, uncheckedClass
-                        radioSettings[states[property][1] + typeCapital + _class], // 3, uncheckedRadioClass
-
-                        radioSettings[property + labelClass] // 4, checkedLabelClass
-                      ];
-
-                      // false = [addClass, removeClass]
-                      radioClass = [radioClasses[3] || radioClasses[2], radioClasses[1] || radioClasses[0]];
-
-                      // update radio parent's class
-                      radioParent = closest(radio, _div, radioSettings[_className]);
-
-                      if (radioParent) {
-                        toggle(radioParent, radioClass);
-                      }
-
-                      // update radio labels's class
-                      if (!!radioSettings[_mirror] && !!radioClasses[4]) {
-                        radioLabel = $(_label + '.' + radioSettings[_replace]);
-
-                        while (radioLabel[_length]--) {
-                          toggle(radioLabel[radioLabel[_length]], radioClasses[4], 1);
-                        }
-                      }
-
-                      // radio callbacks
-                      if (!silent) {
-                        callback(radio, radioKey, 'if' + states[property][2]);
-                        callback(radio, radioKey, 'ifChanged');
-                        callback(radio, radioKey, 'ifToggled');
-                      }
-
-                      // update settings
-                      hashes[radioKey] = radioSettings;
+                      change(radio, false, radioStates, radioChanges, radioKey, hashes[radioKey], methods[4], silent, before, ajax, true);
                     }
                   }
                 }
@@ -750,10 +705,10 @@
                 settings[property + labelClass] // 4, checkedLabelClass
               ];
 
-              // false = [addClass, removeClass]
+              // value == false
               inputClass = [classes[3] || classes[2], classes[1] || classes[0]];
 
-              // true = [addClass, removeClass]
+              // value == true
               if (value) {
                 inputClass.reverse();
               }
@@ -771,20 +726,20 @@
               }
 
               // callback
-              if (!silent) {
-                callback(node, key, 'if' + states[property][value ? 1 : 2]);
+              if (!silent || loop) {
+                callback(node, key, states[property][value ? 1 : 2]); // ifChecked or ifUnchecked
               }
             }
           }
 
           // additional callbacks
-          if (!silent) {
+          if (!silent || loop) {
             if (changed) {
-              callback(node, key, 'ifChanged');
+              callback(node, key, 'Changed'); // ifChanged
             }
 
             if (toggled) {
-              callback(node, key, 'ifToggled');
+              callback(node, key, 'Toggled'); // ifToggled
             }
           }
 
@@ -809,27 +764,28 @@
       };
 
       // bind label and styler
-      $(_doc).on(_click + '.i ' + hover + tap, _label + '.' + labelClass + ', div.' + divClass, function(event) {
+      $(_doc).on(_click + '.i ' + hover + tap, _label + '.' + labelClass + ',div.' + divClass, function(event) {
         var self = this;
         var key = extract(self[_className]);
 
         if (key) {
           var emitter = event[_type];
+          var settings = hashes[key];
+          var className = settings[_replace]; // escaped class name
           var div = self[_tag] == 'DIV';
-          var className = hashes[key][_replace]; // escaped class name
           var target;
           var partner;
           var activate;
           var states = [
             [
               _label,
-              hashes[key][_active + capitalized[2] + _class], // activeLabelClass
-              hashes[key][_hover + capitalized[2] + _class] // hoverLabelClass
+              settings[_active + capitalized[2] + _class], // activeLabelClass
+              settings[_hover + capitalized[2] + _class] // hoverLabelClass
             ],
             [
               _div,
-              hashes[key][_active + _class], // activeClass
-              hashes[key][_hover + _class] // hoverClass
+              settings[_active + _class], // activeClass
+              settings[_hover + _class] // hoverClass
             ]
           ];
 
@@ -847,7 +803,7 @@
             }
 
             // toggle partner's active class
-            if (!!hashes[key][_mirror] && !!states[1][1]) {
+            if (!!settings[_mirror] && !!states[1][1]) {
               partner = $(states[1][0] + '.' + className);
 
               while (partner[_length]--) {
@@ -856,7 +812,7 @@
             }
 
             // fastclick
-            if (div && emitter == tapEnd && isPointer && !!hashes[key].uber) {
+            if (div && emitter == tapEnd && isPointer && !!settings.uber) {
               activate = true;
             }
 
@@ -869,7 +825,7 @@
             }
 
             // toggle partner's hover class
-            if (!!hashes[key][_mirror] && !!states[1][2]) {
+            if (!!settings[_mirror] && !!states[1][2]) {
               partner = $(states[1][0] + '.' + className);
 
               while (partner[_length]--) {
@@ -878,13 +834,13 @@
             }
 
             // fastclick
-            if (div && emitter == hoverEnd && isTouch && isMobile && !!hashes[key].uber) {
+            if (div && emitter == hoverEnd && isTouch && isMobile && !!settings.uber) {
               activate = true;
             }
 
           // click
           } else if (div) {
-            if (!noMouse || !hashes[key].uber) {
+            if (!noMouse || !settings.uber) {
               activate = true;
             }
           }
@@ -896,7 +852,7 @@
             setTimeout(function() {
               target = event.currentTarget || {};
 
-              if (target[_tag] !== 'LABEL') {
+              if (target[_tag] !== _label[_toUp]) {
                 $(self).find(_input + '.' + className)[_click]();
               }
             }, 2);
@@ -910,8 +866,9 @@
 
         if (key) {
           var emitter = event[_type];
-          var className = hashes[key][_replace]; // escaped class name
-          var parent = closest(self, _div, hashes[key][_className]);
+          var settings = hashes[key];
+          var className = settings[_replace]; // escaped class name
+          var parent = closest(self, _div, settings[_className]);
           var label;
           var states;
 
@@ -931,8 +888,8 @@
           // focus state
           } else if (~emitter[_index](_focus)) {
             states = [
-              hashes[key][_focus + _class], // focusClass,
-              hashes[key][_focus + capitalized[2] + _class] // focusLabelClass
+              settings[_focus + _class], // focusClass,
+              settings[_focus + capitalized[2] + _class] // focusLabelClass
             ];
 
             // toggle parent's focus class
@@ -941,7 +898,7 @@
             }
 
             // toggle label's focus class
-            if (!!hashes[key][_mirror] && !!states[1]) {
+            if (!!settings[_mirror] && !!states[1]) {
               label = $(_label + '.' + className);
 
               while (label[_length]--) {
@@ -983,7 +940,7 @@
               'text html': function(data) {
                 var frame = _doc[_create](_iframe); // create container
                 var frameData;
-                var body = _doc.body || _doc[_getByTag]('body')[0];
+                var body = _doc[_body] || _doc[_getByTag](_body)[0];
 
                 // set container's attributes
                 frame[_className] = _iframe + '.' + _icheck + '-' + _iframe;
@@ -993,7 +950,7 @@
                 body[_append](frame);
 
                 // save container's content
-                frameData = frame[_content + 'Document'] ? frame[_content + 'Document'] : frame[_content + 'Window'].document;
+                frameData = frame[_content + capitalize(_document)] ? frame[_content + capitalize(_document)] : frame[_content + 'Window'][_document];
 
                 // append data to content
                 frameData.open();
@@ -1075,9 +1032,9 @@
 
     // expose iCheck as an AMD module
     if (typeof define == _function && define.amd) {
-      define(_icheck, ['jquery'], _win['i' + _checked]);
+      define(_icheck, [_win.jQuery ? 'jquery' : 'zepto'], _win['i' + _checked]);
     } else {
       _win['i' + _checked]();
     }
   }
-}(window, document, 'icheck', 'checkbox', 'radio', 'input', 'label', 'checked', 'disabled', 'determinate', 'active', 'focus', 'hover', 'appendChild', 'Attribute', 'body', 'callbacks', 'Class', 'className', 'click', 'content', 'createElement', 'cursor', 'data', 'display:', 'div', 'function', 'getElementsByTagName', 'iframe', 'indexOf', 'length', 'mirror', 'pointer', 'PointerEvent', 'position', 'remove', 'replace', 'style', 'tagName', 'type'));
+}(window, document, 'icheck', 'checkbox', 'radio', 'input', 'label', 'checked', 'disabled', 'determinate', 'active', 'focus', 'hover', ':absolute!;', 'appendChild', 'Attribute', 'body', 'callbacks', 'Class', 'className', 'click', 'content', 'createElement', 'cursor', 'data', 'display:', 'div', 'document', 'extend', 'function', 'getElementsByTagName', 'iframe', 'indexOf', 'length', 'mirror', 'parentNode', 'pointer', 'PointerEvent', 'position', 'remove', 'replace', 'style', 'tagName', 'toUpperCase', 'type'));

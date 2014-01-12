@@ -76,7 +76,7 @@
 ```
 {
   className: {
-    prefix: 'icheck',
+    base: 'icheck',
     div: '#-item',
     area: '#-area-',
     input: '#-input',
