@@ -55,7 +55,7 @@
       // depth-limited search
       base[_closest] = {
         min: 3, // used to find input's styler
-        max: 10 // used to find input's parent label
+        max: 15 // used to find input's parent label and form
       };
 
       // directive class names
