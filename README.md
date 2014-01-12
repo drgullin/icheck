@@ -3,6 +3,8 @@
 
 Refer to the [iCheck website](http://fronteed.com/iCheck/) for examples.
 
+**Note:** iCheck v2.0 is on the way, it got a huge performance boost, manu new options and methods. It's in a release candidate state, so you may try to use it. Feel free to submit an issue if you find something not working.
+
 ![Skins](http://fronteed.com/iCheck/examples.png)
 
 
