@@ -75,11 +75,6 @@
 
 ```
 {
-  closest: {
-    min: 3,
-    max: 10
-  },
-
   className: {
     prefix: 'icheck',
     div: '#-item',

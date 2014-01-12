@@ -583,7 +583,7 @@
             }
 
             // operate
-            operate(node, styler, key, methods[4], true); // 'update' method
+            operate(node, styler, key, methods[4], true, false, true); // 'update' method
 
             // unset init option
             hashes[key].done = true;
@@ -597,7 +597,7 @@
       };
 
       // operations center
-      var operate = function(node, parent, key, method, silent, before) {
+      var operate = function(node, parent, key, method, silent, before, ajax) {
         var settings = hashes[key];
         var type = node[_type];
         var typeCapital = type == _radio ? capitalized[1] : capitalized[0];
@@ -669,6 +669,15 @@
               node[property] = value;
             }
 
+            // update ajax attributes
+            if (ajax) {
+              if (value) {
+                node['set' + _attr](property, property == methods[1] ? 'true' : property);
+              } else {
+                node[_remove + _attr](property);
+              }
+            }
+
             // update key's property
             if (settings[property] !== value) {
               settings[property] = value;
@@ -678,10 +687,10 @@
                 toggled = true;
 
                 // checked radio
-                if (value && !!hashes[key].done && type == _radio && !!node.name) {
+                if (value && (!!hashes[key].done || ajax) && type == _radio && !!node.name) {
                   form = closest(node, 'form', '', closestMax);
                   radios = _input + '[name="' + node.name + '"]';
-                  radios = form ? $(form).find(radios) : $(radios);
+                  radios = form && !ajax ? $(form).find(radios) : $(radios);
                   radiosLength = radios[_length];
 
                   while (radiosLength--) {
@@ -985,9 +994,6 @@
                 var frame = _doc[_create](_iframe); // create container
                 var frameData;
                 var body = _doc.body || _doc[_getByTag]('body')[0];
-                var inputs;
-                var inputsLength;
-                var input;
 
                 // set container's attributes
                 frame[_className] = _iframe + '.' + _icheck + '-' + _iframe;
@@ -1011,27 +1017,7 @@
                 frameData = $(frameData);
 
                 // customize inputs
-                inputs = frameData.find('.' + prefix)[_icheck]();
-                inputsLength = inputs[_length];
-
-                // loop through inputs
-                while (inputsLength--) {
-                  input = inputs[inputsLength];
-
-                  // update 'checked' attribute
-                  if (input[_checked]) {
-                    input['set' + _attr](_checked, _checked);
-                  } else {
-                    input[_remove + _attr](_checked);
-                  }
-
-                  // update 'disabled' attribute
-                  if (input[_disabled]) {
-                    input['set' + _attr](_disabled, _disabled);
-                  } else {
-                    input[_remove + _attr](_disabled);
-                  }
-                }
+                process(frameData.find('.' + prefix), {}, true);
 
                 // extract HTML
                 frameData = frameData[0];
