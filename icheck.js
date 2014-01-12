@@ -898,21 +898,21 @@
               target = event.currentTarget || {};
 
               if (target[_tag] !== 'LABEL') {
-                $(self).find(_input + '.' + className)[_click]().change();
+                $(self).find(_input + '.' + className)[_click]();
               }
             }, 2);
           }
         }
 
       // bind input
-      }).on(_click + '.i change.i focusin.i focusout.i keyup.i keydown.i', _input + '.' + nodeClass, function(event) {
+      }).on(_click + '.i focusin.i focusout.i keyup.i keydown.i', _input + '.' + nodeClass, function(event) {
         var self = this;
         var key = extract(self[_className]);
 
         if (key) {
           var emitter = event[_type];
           var className = hashes[key][_replace]; // escaped class name
-          var parent = emitter == _click ? false : closest(self, _div, hashes[key][_className], closestMin);
+          var parent = closest(self, _div, hashes[key][_className], closestMin);
           var label;
           var states;
 
@@ -922,10 +922,11 @@
             // prevent event bubbling to parent
             event.stopPropagation();
 
-          // change
-          } else if (emitter == 'change') {
-            if (parent) {
-              operate(self, parent, key, methods[4]); // 'update' method
+            // detect changes
+            if (parent && !self[_disabled] && !(self[_checked] && self[_type] == _radio)) {
+
+              // event fired before state is changed
+              operate(self, parent, key, methods[3], false, true); // 'toggle' method
             }
 
           // focus state
