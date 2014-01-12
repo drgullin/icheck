@@ -1,6 +1,8 @@
-# iCheck plugin v2.0 beta
+# iCheck plugin v2.0 rc1
 
-#### This is a beta version, it's not ready for a production usage.
+#### This is a release candidate version, you may try to use it.
+
+Docs will be updated later, here's a short intro:
 
 ## Options (default)
 
@@ -53,13 +55,13 @@
   focusLabelClass: '',
   activeLabelClass: '',
 
-  cursor: true,
+  cursor: false,
 
   callbacks: {
     ifCreated: false
   },
 
-  mirror: true,
+  mirror: false,
 
   inheritClass: false,
   inheritID: false,
