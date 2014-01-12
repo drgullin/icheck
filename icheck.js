@@ -48,7 +48,7 @@
       // default options
       var base = {
         init: true, // auto init on domready
-        ajax: true, // auto handle ajax loaded inputs
+        // ajax: true, // auto handle ajax loaded inputs
         uber: true // fastclick replacement
       };
 
@@ -76,8 +76,8 @@
 
       // default styles
       base[_style] = {
-        // input: _position + ':absolute!;' + _display + 'block!;outline:none!;opacity:0!;z-index:-99!;', // hidden input
-        input: _position + _absolute + _display + 'block!;outline:none!;', // hidden input
+        input: _position + ':absolute!;' + _display + 'block!;outline:none!;opacity:0!;z-index:-99!;', // hidden input
+        // input: _position + _absolute + _display + 'block!;outline:none!;', // hidden input
         area: _position + _absolute + _display + 'block;' + _content + ':"";top:#;bottom:#;left:#;right:#;' // clickable area
       };
 
