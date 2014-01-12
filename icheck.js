@@ -7,7 +7,7 @@
  * MIT Licensed
  */
 
-(function(_win, _doc, _icheck, _checkbox, _radio, _input, _label, _checked, _disabled, _determinate, _active, _focus, _hover, _append, _attr, _body, _callbacks, _class, _className, _click, _closest, _content, _create, _cursor, _data, _display, _div, _function, _getByTag, _iframe, _index, _length, _mirror, _pointer, _pointerEvent, _position, _remove, _replace, _style, _tag, _type, $) {
+(function(_win, _doc, _icheck, _checkbox, _radio, _input, _label, _checked, _disabled, _determinate, _active, _focus, _hover, _append, _attr, _body, _callbacks, _class, _className, _click, _content, _create, _cursor, _data, _display, _div, _function, _getByTag, _iframe, _index, _length, _mirror, _pointer, _pointerEvent, _position, _remove, _replace, _style, _tag, _type, $) {
   $ = _win.jQuery || _win.Zepto;
 
   // prevent multiple includes
@@ -52,12 +52,6 @@
       // relation between input and label
       base[_mirror] = false;
 
-      // depth-limited search
-      base[_closest] = {
-        min: 3, // used to find input's styler
-        max: 15 // used to find input's parent label and form
-      };
-
       // directive class names
       base[_className] = {
         div: '#-item', // {prefix}-item
@@ -90,10 +84,6 @@
       var nodeClass = base[_className][_input][_replace]('#', prefix);
       var labelClass = base[_className][_label][_replace]('#', prefix);
       var fastClass = !!_win.FastClick ? ' needs' + _click : '';
-
-      // parent's selector iterations
-      var closestMin = base[_closest].min;
-      var closestMax = base[_closest].max;
 
       // default filter
       var filter = _input + '[type=' + _checkbox + '], input[type=' + _radio + ']';
@@ -133,7 +123,7 @@
       var styleArea = base[_style].area;
 
       // remove init options
-      base[_className] = base[_style] = base[_closest] = false;
+      base[_className] = base[_style] = false;
 
       // detect computed style support
       var computed = _win.getComputedStyle;
@@ -278,7 +268,7 @@
       var tidy = function(node, key, trigger, className, parent, label, input) {
         if (hashes[key]) {
           className = hashes[key][_className];
-          parent = closest(node, _div, className, closestMin);
+          parent = closest(node, _div, className);
 
           // prevent overlapping
           if (parent) {
@@ -348,8 +338,8 @@
       };
 
       // parent searcher
-      var closest = function(node, tag, className, count, parent) {
-        while (count-- && node.nodeType !== 9) {
+      var closest = function(node, tag, className, parent) {
+        while (node.nodeType !== 9) {
           node = node.parentNode;
 
           if (node[_tag] == tag.toUpperCase() && ~node[_className][_index](className)) {
@@ -478,7 +468,7 @@
             hashes[key] = settings;
 
             // find labels
-            labelDirect = closest(node, _label, '', closestMax);
+            labelDirect = closest(node, _label, '');
             labelIndirect = $(_label + '[for="' + nodeID + '"]');
 
             if (labelDirect) {
@@ -632,7 +622,7 @@
 
         // check parent
         if (!parent) {
-          parent = closest(node, _div, settings[_className], closestMin);
+          parent = closest(node, _div, settings[_className]);
         }
 
         if (settings && parent) {
@@ -688,7 +678,7 @@
 
                 // checked radio
                 if (value && (!!hashes[key].done || ajax) && type == _radio && !!node.name) {
-                  form = closest(node, 'form', '', closestMax);
+                  form = closest(node, 'form', '');
                   radios = _input + '[name="' + node.name + '"]';
                   radios = form && !ajax ? $(form).find(radios) : $(radios);
                   radiosLength = radios[_length];
@@ -720,7 +710,7 @@
                       radioClass = [radioClasses[3] || radioClasses[2], radioClasses[1] || radioClasses[0]];
 
                       // update radio parent's class
-                      radioParent = closest(radio, _div, radioSettings[_className], closestMin);
+                      radioParent = closest(radio, _div, radioSettings[_className]);
 
                       if (radioParent) {
                         toggle(radioParent, radioClass);
@@ -921,7 +911,7 @@
         if (key) {
           var emitter = event[_type];
           var className = hashes[key][_replace]; // escaped class name
-          var parent = closest(self, _div, hashes[key][_className], closestMin);
+          var parent = closest(self, _div, hashes[key][_className]);
           var label;
           var states;
 
@@ -1090,4 +1080,4 @@
       _win['i' + _checked]();
     }
   }
-}(window, document, 'icheck', 'checkbox', 'radio', 'input', 'label', 'checked', 'disabled', 'determinate', 'active', 'focus', 'hover', 'appendChild', 'Attribute', 'body', 'callbacks', 'Class', 'className', 'click', 'closest', 'content', 'createElement', 'cursor', 'data', 'display:', 'div', 'function', 'getElementsByTagName', 'iframe', 'indexOf', 'length', 'mirror', 'pointer', 'PointerEvent', 'position', 'remove', 'replace', 'style', 'tagName', 'type'));
+}(window, document, 'icheck', 'checkbox', 'radio', 'input', 'label', 'checked', 'disabled', 'determinate', 'active', 'focus', 'hover', 'appendChild', 'Attribute', 'body', 'callbacks', 'Class', 'className', 'click', 'content', 'createElement', 'cursor', 'data', 'display:', 'div', 'function', 'getElementsByTagName', 'iframe', 'indexOf', 'length', 'mirror', 'pointer', 'PointerEvent', 'position', 'remove', 'replace', 'style', 'tagName', 'type'));
