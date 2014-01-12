@@ -1,6 +1,6 @@
 /*!
- * iCheck v2.0.0 beta, http://git.io/arlzeA
- * ========================================
+ * iCheck v2.0.0 rc1, http://git.io/arlzeA
+ * =======================================
  * Cross-platform checkboxes and radio buttons customization
  *
  * (c) Damir Sultanov - http://fronteed.com
@@ -12,13 +12,6 @@
   // prevent multiple includes
   if (!_win['i' + _checked]) {
     _win['i' + _checked] = function() {
-
-      // capitalizer
-      var capitalize = function(string, position) {
-        return position == 0 ? string : string.charAt(0)[_toUp]() + string.slice(1);
-      };
-
-      // choose library
       $ = _win.jQuery || _win.Zepto;
 
       // methods cache
@@ -31,6 +24,11 @@
         'refresh', // 5
         'destroy' // 6
       ];
+
+      // capitalizer
+      var capitalize = function(string, position) {
+        return position == 0 ? string : string.charAt(0)[_toUp]() + string.slice(1);
+      };
 
       // capitalized strings cache
       var capitalized = [
@@ -1005,7 +1003,7 @@
 
                 // 'destroy' method
                 if (options == methods[6]) {
-                  tidy(item, key, 'ifDestroyed');
+                  tidy(item, key, 'Destroyed');
 
                 // some other method
                 } else {
