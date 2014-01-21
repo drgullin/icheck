@@ -18,36 +18,32 @@ Docs will be updated later, here's a short intro:
 
 ```
 {
-  // auto init on domready 
-  init: true, 
-  
+  // auto init on domready
+  init: true,
+
   // auto handle ajax loaded inputs (any inputs inside the HTML ajax-requests will be customized automatically)
-  ajax: false, 
-  
+  ajax: false,
+
   // fastclick plugin replacement, works without dependencies (removes a 300ms delay between a physical tap and the firing the changes on mobile browsers). Compatible with but doesn't require http://github.com/ftlabs/fastclick
-  uber: true, 
-  
+  tap: true,
+
   // these are a default classnames used by ichech (# are replaced with className.base)
   className: {
     base: 'icheck', // classname to search for and customize
-    div: '#-item', // classname to add for a styler div 
+    div: '#-item', // classname to add for a styler div
     area: '#-area-', // classname to add to styler, when "area" option is used
     input: '#-input', // classname to add to original input
     label: '#-label' // classname to add to assigned labels
   },
-  
-  // global styles appended to <head> for a classnames 
-  style: {
-    // styles that are used to hide original inputs (! are replaced with ' !important')
-    input: 'position:absolute!;display:block!;outline:none!;opacity:0!;z-index:-99!;', 
-    
-    // styles that are used to increase a clickable area (# are replaced with the actual value)
-    area: 'position:absolute;display:block;content:"";top:#;bottom:#;left:#;right:#;' 
-  },
-  
-  // default callbacks (if set to false, callback won't be fired)
+
+  // styles appended to <head> for increasing a clickable area (# are replaced with the actual value) for className.area:after
+  areaStyle: 'position:absolute;display:block;content:"";top:#;bottom:#;left:#;right:#;',
+
+  // global callbacks (if set to false, callback will never be fired)
   callbacks: {
-    ifCreated: false
+    ifCreated: function() {
+      // this is just an example
+    }
   },
 }
 ```
@@ -57,82 +53,82 @@ Docs will be updated later, here's a short intro:
 ```
 {
   // icheck won't customize the input, if it has init set to false
-  init: true, 
-  
+  init: true,
+
   // don't customize selected inputs (data attributes only, data-ajax)
-  ajax: false, 
-  
+  ajax: false,
+
   // fastclick (http://github.com/ftlabs/fastclick) replacement, works without dependencies (removes a 300ms delay between a physical tap and the firing of a click event on mobile browsers)
-  uber: true, 
-  
+  tap: true,
+
   // 'checkbox' or 'radio' to style only checkboxes or radio buttons, both by default
   handle: '',
-  
+
   // base class added to customized checkboxes
   checkboxClass: 'icheckbox',
-  
+
   // base class added to customized radio buttons
   radioClass: 'iradio',
-  
+
   // class added on checked state (input.checked = true)
   checkedClass: 'checked',
-  
+
     // if not empty, used instead of 'checkedClass' option (input type specific)
     checkedCheckboxClass: '',
     checkedRadioClass: '',
-  
+
   // if not empty, added as class name on unchecked state (input.checked = false)
   uncheckedClass: '',
-  
+
     // if not empty, used instead of 'uncheckedClass' option (input type specific)
     uncheckedCheckboxClass: '',
     uncheckedRadioClass: '',
-  
+
   // class added on disabled state (input.disabled = true)
   disabledClass: 'disabled',
-  
+
     // if not empty, used instead of 'disabledClass' option (input type specific)
     disabledCheckboxClass: '',
     disabledRadioClass: '',
-  
+
   // if not empty, added as class name on enabled state (input.disabled = false)
   enabledClass: '',
-  
+
     // if not empty, used instead of 'enabledClass' option (input type specific)
     enabledCheckboxClass: '',
     enabledRadioClass: '',
-  
+
   // class added on indeterminate state (input.indeterminate = true)
   indeterminateClass: 'indeterminate',
-  
+
     // if not empty, used instead of 'indeterminateClass' option (input type specific)
     indeterminateCheckboxClass: '',
     indeterminateRadioClass: '',
-  
+
   // if not empty, added as class name on determinate state (input.indeterminate = false)
   determinateClass: '',
-  
+
     // if not empty, used instead of 'determinateClass' option (input type specific)
     determinateCheckboxClass: '',
     determinateRadioClass: '',
-  
+
   // class added on hover state (pointer is moved onto input)
   hoverClass: 'hover',
-  
+
   // class added on focus state (input has gained focus)
   focusClass: 'focus',
-  
+
   // class added on active state (pointer is pressed on input)
   activeClass: '',
-  
-  // if true, a mirror classes will be toggled between label and input tags (i.e. input is checked => checkedClass is added to input, checkedLabelClass is added to label) 
+
+  // if true, a mirror classes will be toggled between label and input tags (i.e. input is checked => checkedClass is added to input, checkedLabelClass is added to label)
   mirror: false,
-  
+
   // classes to append to labels if "mirror" option is true
   checkedLabelClass: '',
   disabledLabelClass: '',
   indeterminateLabelClass: '',
- 
+
   // same here
   hoverLabelClass: '',
   focusLabelClass: '',
@@ -140,26 +136,26 @@ Docs will be updated later, here's a short intro:
 
   // true to set 'pointer' CSS cursor over enabled inputs and 'default' over disabled
   cursor: false,
-  
+
   // callbacks
   callbacks: {
-    ifCreated: function() {
+    ifCreated: function(node, settings) {
       // your code
     }
   },
-  
+
   // set true to inherit original input's class name
   inheritClass: false,
-  
+
   // if set to true, input's id is prefixed with 'icheck-' (or a window.className.base) and attached
   inheritID: false,
-  
+
   // set true to inherit original input's title
   inheritTitle: false,
-  
+
   // increase clickable area by given %
   area: 0,
-  
+
   // add HTML code or text inside customized input
   insert: ''
 }
@@ -217,11 +213,6 @@ $('input').icheck('update', function(node) {
   // node is the HTML node of the current input (can be used as $(node))
 });
 
-// refresh = refresh input's customization with a new options
-$('input').icheck('refresh', {
-  // new options
-});
-
 // destroy = remove all traces of iCheck
 $('input').icheck('destroy', function(node) {
   // callbackfunction will be fired for each input
@@ -237,12 +228,12 @@ var parent = $('input').icheck('styler');
 // see http://git.io/cdYpdA for more info
 ```
 
-## Callbacks 
+## Callbacks
 
 Note: callbacks are fired for each input. Unchecked radio buttons also receive a callbacks.
 
 ```
-ifChecked = input's state is changed to "checked" 
+ifChecked = input's state is changed to "checked"
 $('input').on('ifChecked', function(event) {
   // your code
 });
@@ -282,7 +273,7 @@ $('input').on('ifToggled', function(event) {
   // your code
 });
 
-ifCreated = input is just customized 
+ifCreated = input is just customized
 $('input').on('ifCreated', function(event) {
   // your code
 });
