@@ -45,7 +45,7 @@
       // default options
       var defaults = {
         init: true, // auto init on domready
-        // ajax: true // auto handle ajax loaded inputs
+        // ajax: true, // auto handle ajax loaded inputs
         tap: true // remove a 300ms click delay on touch devices
       };
 
@@ -152,8 +152,8 @@
       // styles options
       var styleTag;
       var styleList;
-      var styleInput = _position + ':absolute!;' + _display + 'block!;outline:none!;opacity:0!;z-index:-99!;clip:rect(0 0 0 0)!;';
-      // var styleInput = _position + _absolute + _display + 'block!;outline:none!;'; // debug
+      // var styleInput = _position + ':absolute!;' + _display + 'block!;outline:none!;opacity:0!;z-index:-99!;clip:rect(0 0 0 0)!;';
+      var styleInput = _position + _absolute + _display + 'block!;outline:none!;'; // debug
       var styleArea = defaults[_area + capitalize(_style)];
 
       // styles addition
@@ -849,7 +849,7 @@
 
           // click
           } else if (div) {
-            if (!noMouse || !activate) {
+            if (!noMouse && (!!!settings.tap || operaMini || !(isTouch && isMobile))) {
               activate = true;
             }
           }
@@ -864,7 +864,7 @@
               if (target[_tag] !== _label[_toUp]()) {
                 input = $(self).find(_input + '.' + className)[_click]();
 
-                if (ie) {
+                if (ie || operaMini) {
                   input.change();
                 }
               }
