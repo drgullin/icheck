@@ -130,7 +130,7 @@
       var isPointer = _win[_pointerEvent] || _win['MS' + _pointerEvent];
 
       // detect touch events support
-      var isTouch = 'ontouchstart' in _win;
+      var isTouch = 'ontouchend' in _win;
 
       // detect mobile users
       var isMobile = /mobile|tablet|phone|ip(ad|od)|android|silk|webos/i.test(ua);
@@ -249,7 +249,7 @@
       };
 
       // traces remover
-      var tidy = function(node, key, trigger, input, settings, className, parent, label) {
+      var tidy = function(node, key, trigger, input, settings, className, parent) {
         if (hashes[key]) {
           input = $(node);
           settings = hashes[key];
@@ -263,7 +263,7 @@
             input.removeClass(nodeClass + ' ' + className).attr(_style, settings[_style]);
 
             // label
-            label = $(_label + '.' + settings[_replace]).removeClass(labelClass + ' ' + className);
+            $(_label + '.' + settings[_replace]).removeClass(labelClass + ' ' + className);
 
             // parent
             $(parent)[_replace + 'With'](input);
