@@ -45,8 +45,8 @@
       // default options
       var defaults = {
         init: true, // auto init on domready
-        ajax: true // auto handle ajax loaded inputs
-        // tap: true // remove a 300ms click delay on touch devices
+        // ajax: true // auto handle ajax loaded inputs
+        tap: true // remove a 300ms click delay on touch devices
       };
 
       // customization class names
