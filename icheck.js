@@ -152,8 +152,8 @@
       // styles options
       var styleTag;
       var styleList;
-      // var styleInput = _position + ':absolute!;' + _display + 'block!;outline:none!;opacity:0!;z-index:-99!;clip:rect(0 0 0 0)!;';
-      var styleInput = _position + _absolute + _display + 'block!;outline:none!;'; // debug
+      var styleInput = _position + ':absolute!;' + _display + 'block!;outline:none!;opacity:0!;z-index:-99!;clip:rect(0 0 0 0)!;';
+      // var styleInput = _position + _absolute + _display + 'block!;outline:none!;'; // debug
       var styleArea = defaults[_area + capitalize(_style)];
 
       // styles addition
