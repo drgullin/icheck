@@ -144,14 +144,8 @@ Docs will be updated later, here's a short intro:
     }
   },
 
-  // set true to inherit original input's class name
-  inheritClass: false,
-
-  // if set to true, input's id is prefixed with 'icheck-' (or a window.className.base) and attached
-  inheritID: false,
-
-  // set true to inherit original input's title
-  inheritTitle: false,
+  // comma separated attributes to inherit from the input to the wrapper div (note: input's id is prefixed with 'icheck-' (or a window.className.base))
+  inherit: '',
 
   // increase clickable area by given %
   area: 0,
