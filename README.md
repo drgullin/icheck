@@ -366,6 +366,7 @@ Mobile browsers (like Opera mini, Chrome mobile, Safari mobile, Android browser,
 Changelog
 ---------------
 
+https://github.com/fronteed/iCheck/tree/2.x-beta
 ### December 19, 2013
 
 * Added Bower support
