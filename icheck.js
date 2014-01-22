@@ -995,6 +995,8 @@
             }
           });
         }
+
+        defaults.init = defaults.ajax = true;
       });
 
       // plugin definition
