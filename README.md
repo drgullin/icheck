@@ -19,10 +19,10 @@ Docs will be updated later, here's a short intro:
 ```
 {
   // auto init on domready
-  init: true,
+  autoInit: true,
 
   // auto handle ajax loaded inputs (any inputs inside the HTML ajax-requests will be customized automatically)
-  ajax: false,
+  autoAjax: false,
 
   // fastclick plugin replacement, works without dependencies (removes a 300ms delay between a physical tap and the firing the changes on mobile browsers). Compatible with but doesn't require http://github.com/ftlabs/fastclick
   tap: true,
@@ -35,9 +35,6 @@ Docs will be updated later, here's a short intro:
     input: '#-input', // classname to add to original input
     label: '#-label' // classname to add to assigned labels
   },
-
-  // styles appended to <head> for increasing a clickable area (# are replaced with the actual value) for className.area:after
-  areaStyle: 'position:absolute;display:block;content:"";top:#;bottom:#;left:#;right:#;',
 
   // global callbacks (if set to false, callback will never be fired)
   callbacks: {
@@ -52,12 +49,6 @@ Docs will be updated later, here's a short intro:
 
 ```
 {
-  // icheck won't customize the input, if it has init set to false
-  init: true,
-
-  // don't customize selected inputs (data attributes only, data-ajax)
-  ajax: false,
-
   // fastclick (http://github.com/ftlabs/fastclick) replacement, works without dependencies (removes a 300ms delay between a physical tap and the firing of a click event on mobile browsers)
   tap: true,
 
@@ -137,7 +128,7 @@ Docs will be updated later, here's a short intro:
   // true to set 'pointer' CSS cursor over enabled inputs and 'default' over disabled
   cursor: false,
 
-  // callbacks
+  // callbacks (can't be stored in data attributes)
   callbacks: {
     ifCreated: function(node, settings) {
       // your code
@@ -171,12 +162,6 @@ $('input').icheck('unchecked', function(node) {
   // node is the HTML node of the current input (can be used as $(node))
 });
 
-// toggle = toggle 'checked' state
-$('input').icheck('toggle', function(node) {
-  // callbackfunction will be fired for each input
-  // node is the HTML node of the current input (can be used as $(node))
-});
-
 // disabled = change input's state to 'disabled'
 $('input').icheck('disabled', function(node) {
   // callbackfunction will be fired for each input
@@ -202,7 +187,13 @@ $('input').icheck('determinate', function(node) {
 });
 
 // update = apply input changes, which were made outside the iCheck plugin
-$('input').icheck('update', function(node) {
+$('input').icheck('updated', function(node) {
+  // callbackfunction will be fired for each input
+  // node is the HTML node of the current input (can be used as $(node))
+});
+
+// toggle = toggle 'checked' state
+$('input').icheck('toggle', function(node) {
   // callbackfunction will be fired for each input
   // node is the HTML node of the current input (can be used as $(node))
 });
@@ -213,9 +204,9 @@ $('input').icheck('destroy', function(node) {
   // node is the HTML node of the current input (can be used as $(node))
 });
 
-// data = return an object with the init settings and current states of the input
+// data = returns an object with the init settings and current states of the input
 var data = $('input').icheck('data');
-// data.checked, data.disabled, data.indeterminate will return a current input's states values (and so on)
+// data.checked, data.disabled, data.indeterminat are a cached states valuese
 
 // styler = returns a wrapper div of the current input
 var parent = $('input').icheck('styler');
