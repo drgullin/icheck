@@ -1,99 +1,75 @@
 /*!
- * iCheck v2.0.0 rc1, http://git.io/arlzeA
- * =======================================
+ * iCheck v2.0.0, http://git.io/arlzeA
+ * ===================================
  * Cross-platform checkboxes and radio buttons customization
  *
  * (c) Damir Sultanov - http://fronteed.com
  * MIT Licensed
  */
 
-(function(_win, _doc, _icheck, _checkbox, _radio, _input, _label, _checked, _disabled, _determinate, _active, _focus, _hover, _absolute, _append, _area, _attr, _body, _callbacks, _class, _className, _click, _content, _create, _cursor, _data, _display, _div, _document, _extend, _function, _getByTag, _iframe, _index, _length, _mirror, _parent, _pointer, _pointerEvent, _position, _remove, _replace, _style, _tag, _toUp, _type, $) {
+(function(win, doc, $) {
 
   // prevent multiple includes
-  if (!_win['i' + _checked]) {
-    _win['i' + _checked] = function() {
-      $ = _win.jQuery || _win.Zepto;
-
-      // capitalizer
-      var capitalize = function(string, position) {
-        return position === 0 ? string : string.charAt(0)[_toUp]() + string.slice(1);
-      };
-
-      // methods cache
-      var methods = [
-        'un' + _checked, // 0, unchecked
-        'in' + _determinate, // 1, indeterminate
-        'enabled', // 2
-        'toggle', // 3
-        'update', // 4
-        'destroy' // 5
-      ];
-
-      // capitalized strings cache
-      var capitalized = [
-        capitalize(_checkbox), // 0, Checkbox
-        capitalize(_radio), // 1, Radio
-        capitalize(_label), // 2, Label
-        capitalize(_checked), // 3, Checked
-        capitalize(methods[0]), // 4, Unchecked
-        capitalize(_disabled), // 5, Disabled
-        capitalize(methods[2]), // 6, Enabled
-        capitalize(methods[1]), // 7, Indeterminate
-        capitalize(_determinate) // 8, Determinate
-      ];
+  if (!win.ichecked) {
+    win.ichecked = function() {
+      $ = win.jQuery || win.Zepto;
 
       // default options
       var defaults = {
-        init: true, // auto init on domready
-        // ajax: true, // auto handle ajax loaded inputs
-        tap: true // remove a 300ms click delay on touch devices
+
+        // auto init on domready
+        autoInit: true,
+
+        // auto handle ajax loaded inputs
+        autoAjax: true,
+
+        // remove a 300ms click delay on touch devices
+        tap: true,
+
+        // customization class names
+        checkboxClass: 'icheckbox',
+        radioClass: 'iradio',
+
+        checkedClass: 'checked',
+        disabledClass: 'disabled',
+        indeterminateClass: 'indeterminate',
+
+        hoverClass: 'hover',
+        // focusClass: 'focus',
+        // activeClass: 'active',
+
+        // default callbacks
+        callbacks: {
+          ifCreated: false
+        },
+
+        // appended class names
+        classes: {
+          base: 'icheck',
+          div: '#-item', // {base}-item
+          area: '#-area-', // {base}-area-{value}
+          input: '#-input', // {base}-input
+          label: '#-label' // {base}-label
+        }
       };
 
-      // customization class names
-      defaults[_checkbox + _class] = 'i' + _checkbox; // checkboxClass = 'icheckbox'
-      defaults[_radio + _class] = 'i' + _radio; // radioClass = 'iradio'
-      defaults[_checked + _class] = _checked; // checkedClass = 'checked'
-      defaults[_disabled + _class] = _disabled; // disabledClass = 'disabled'
-      defaults[methods[1] + _class] = methods[1]; // indeterminateClass = 'indeterminate'
-      defaults[_hover + _class] = _hover; // hoverClass = 'hover'
-      // defaults[_focus + _class] = _focus; // focusClass = 'focus'
-      // defaults[_active + _class] = _active; // activeClass = 'active'
-
-      // callbacks container
-      defaults[_callbacks] = {
-        ifCreated: false
-      };
-
-      // appended class names
-      defaults[_className] = {
-        // base: _icheck,
-        div: '#-item', // {prefix}-item
-        area: '#-area-', // {prefix}-area-{value}
-        input: '#-' + _input, // {prefix}-input
-        label: '#-' + _label // {prefix}-label
-      };
-
-      // styles appended for increasing clickable area (areaStyle)
-      defaults[_area + capitalize(_style)] = _position + _absolute + _display + 'block;' + _content + ':"";top:#;bottom:#;left:#;right:#;';
-
-      // save global options to window.icheck
-      _win[_icheck] = $[_extend](defaults, _win[_icheck]);
+      // extend default options
+      win.icheck = $.extend(defaults, win.icheck);
 
       // useragent sniffing
-      var ua = _win.navigator.userAgent;
+      var ua = win.navigator.userAgent;
       var ie = /MSIE [5-8]/.test(ua);
       var operaMini = /Opera Mini/.test(ua);
 
       // classes cache
-      var prefix = defaults[_className].base || _icheck;
-      var divClass = defaults[_className][_div][_replace]('#', prefix);
-      var areaClass = defaults[_className][_area][_replace]('#', prefix);
-      var nodeClass = defaults[_className][_input][_replace]('#', prefix);
-      var labelClass = defaults[_className][_label][_replace]('#', prefix);
-      var fastClass = _win.FastClick ? ' needs' + _click : '';
+      var baseClass = defaults.classes.base;
+      var divClass = defaults.classes.div.replace('#', baseClass);
+      var areaClass = defaults.classes.area.replace('#', baseClass);
+      var nodeClass = defaults.classes.input.replace('#', baseClass);
+      var labelClass = defaults.classes.label.replace('#', baseClass);
 
       // default filter
-      var filter = _input + '[type=' + _checkbox + '],' + _input + '[type=' + _radio + ']';
+      var filter = 'input[type=checkbox],input[type=radio]';
 
       // clickable areas container
       var areas = {};
@@ -102,7 +78,7 @@
       var hashes = {};
 
       // hash recognizer
-      var recognizer = new RegExp(prefix + '\\[(.*?)\\]');
+      var recognizer = new RegExp(baseClass + '\\[(.*?)\\]');
 
       // hash extractor
       var extract = function(className, matches, value) {
@@ -117,27 +93,21 @@
         return value;
       };
 
-      // data attributes converter
-      var converter = new RegExp(_checkbox + '|' + _radio + '|class|id|' + _label, 'g');
-
-      // methods parser /^(checked|unchecked|indeterminate|determinate|disabled|enabled|toggle|update|destroy|data|styler)$/
-      var parser = new RegExp('^(' + _checked + '|' + methods[0] + '|' + methods[1] + '|' + _determinate + '|' + _disabled + '|' + methods[2] + '|' + methods[3] + '|' + methods[4] + '|' + methods[5] + '|' + _data + '|' + _style + 'r)$');
-
       // detect computed style support
-      var computed = _win.getComputedStyle;
+      var computed = win.getComputedStyle;
 
       // detect pointer events support
-      var isPointer = _win[_pointerEvent] || _win['MS' + _pointerEvent];
+      var isPointer = win.PointerEvent || win.MSPointerEvent;
 
       // detect touch events support
-      var isTouch = 'ontouchend' in _win;
+      var isTouch = 'ontouchend' in win;
 
       // detect mobile users
       var isMobile = /mobile|tablet|phone|ip(ad|od)|android|silk|webos/i.test(ua);
 
       // setup events
       var mouse = ['mouse', 'down', 'up', 'over', 'out']; // bubbling hover
-      var pointer = _win[_pointerEvent] ? [_pointer, mouse[1], mouse[2], mouse[3], mouse[4]] : ['MS' + capitalize(_pointer), 'Down', 'Up', 'Over', 'Out'];
+      var pointer = win.PointerEvent ? ['pointer', mouse[1], mouse[2], mouse[3], mouse[4]] : ['MSPointer', 'Down', 'Up', 'Over', 'Out'];
       var touch = ['touch', 'start', 'end'];
       var noMouse = (isTouch && isMobile) || isPointer;
 
@@ -152,23 +122,23 @@
       // styles options
       var styleTag;
       var styleList;
-      var styleInput = _position + ':absolute!;' + _display + 'block!;outline:none!;opacity:0!;z-index:-99!;clip:rect(0 0 0 0)!;';
-      // var styleInput = _position + _absolute + _display + 'block!;outline:none!;'; // debug
-      var styleArea = defaults[_area + capitalize(_style)];
+      var styleInput = 'position:absolute!;display:block!;outline:none!;opacity:0!;z-index:-99!;clip:rect(0 0 0 0)!;';
+      // var styleInput = 'position:absolute!;display:block!;outline:none!;'; // debug
+      var styleArea = defaults.areaStyle !== false ? 'position:absolute;display:block;content:"";top:#;bottom:#;left:#;right:#;' : false;
 
       // styles addition
       var style = function(rules, selector, area) {
         if (!styleTag) {
 
           // create container
-          styleTag = _doc[_create](_style);
+          styleTag = doc.createElement('style');
 
           // append to header
-          (_doc.head || _doc[_getByTag]('head')[0])[_append](styleTag);
+          (doc.head || doc.getElementsByTagName('head')[0]).appendChild(styleTag);
 
           // webkit hack
-          if (!_win.createPopup) {
-            styleTag[_append](_doc.createTextNode(''));
+          if (!win.createPopup) {
+            styleTag.appendChild(doc.createTextNode(''));
           }
 
           styleList = styleTag.sheet || styleTag.styleSheet;
@@ -176,11 +146,11 @@
 
         // choose selector
         if (!selector) {
-          selector = _div + '.' + (area ? areaClass + area + ':after' : divClass + ' ' + _input + '.' + nodeClass);
+          selector = 'div.' + (area ? areaClass + area + ':after' : divClass + ' input.' + nodeClass);
         }
 
         // replace shorthand rules
-        rules = rules[_replace](/!/g, ' !important');
+        rules = rules.replace(/!/g, ' !important');
 
         // append styles
         if (styleList.addRule) {
@@ -197,28 +167,25 @@
       if ((isTouch && isMobile) || operaMini) {
 
         // force custor:pointer for mobile devices
-        style(_cursor + ':' + _pointer + '!;', _label + '.' + labelClass + ',div.' + divClass);
+        style('cursor:pointer!;', 'label.' + labelClass + ',div.' + divClass);
       }
 
       // append iframe's styles
-      style(_display + 'none!;', _iframe + '.' + _icheck + '-' + _iframe); // used to handle ajax-loaded inputs
-
-      // unset selected options
-      defaults[_className] = defaults[_area + capitalize(_style)] = false; // prevent unwanted duplicates
+      style('display:none!;', 'iframe.icheck-frame'); // used to handle ajax-loaded inputs
 
       // class toggler
       var toggle = function(node, className, status, currentClass, addClass, removeClass) {
-        currentClass = node[_className];
+        currentClass = node.className;
 
         if (!!currentClass) {
           currentClass = ' ' + currentClass + ' ';
 
           // add class
-          if (status == 1) {
+          if (status === 1) {
             addClass = className;
 
           // remove class
-          } else if (status == 0) {
+          } else if (status === 0) {
             removeClass = className;
 
           // add and remove class
@@ -228,20 +195,20 @@
           }
 
           // add class
-          if (!!addClass && currentClass[_index](' ' + addClass + ' ') < 0) {
+          if (!!addClass && currentClass.indexOf(' ' + addClass + ' ') < 0) {
             currentClass += addClass + ' ';
           }
 
           // remove class
-          if (!!removeClass && ~currentClass[_index](' ' + removeClass + ' ')) {
-            currentClass = currentClass[_replace](' ' + removeClass + ' ', ' ');
+          if (!!removeClass && ~currentClass.indexOf(' ' + removeClass + ' ')) {
+            currentClass = currentClass.replace(' ' + removeClass + ' ', ' ');
           }
 
           // trim class
-          currentClass = currentClass[_replace](/^\s+|\s+$/g, '');
+          currentClass = currentClass.replace(/^\s+|\s+$/g, '');
 
           // update class
-          node[_className] = currentClass;
+          node.className = currentClass;
 
           // return updated class
           return currentClass;
@@ -249,24 +216,23 @@
       };
 
       // traces remover
-      var tidy = function(node, key, trigger, input, settings, className, parent) {
+      var tidy = function(node, key, trigger, settings, className, parent) {
         if (hashes[key]) {
-          input = $(node);
           settings = hashes[key];
-          className = settings[_className];
-          parent = $(closest(node, _div, className));
+          className = settings.className;
+          parent = $(closest(node, 'div', className));
 
           // prevent overlapping
-          if (parent[_length]) {
+          if (parent.length) {
 
             // input
-            input.removeClass(nodeClass + ' ' + className).attr(_style, settings[_style]);
+            $(node).removeClass(nodeClass + ' ' + className).attr('style', settings.style);
 
             // label
-            $(_label + '.' + settings[_replace]).removeClass(labelClass + ' ' + className);
+            $('label.' + settings.esc).removeClass(labelClass + ' ' + className);
 
             // parent
-            $(parent)[_replace + 'With'](input);
+            $(parent).replaceWith($(node));
 
             // callback
             if (trigger) {
@@ -282,24 +248,24 @@
       // nodes inspector
       var inspect = function(object, node, stack, direct, indirect) {
         stack = [];
-        direct = object[_length];
+        direct = object.length;
 
         // inspect object
         while (direct--) {
           node = object[direct];
 
           // direct input
-          if (node[_type]) {
+          if (node.type) {
 
             // checkbox or radio button
-            if (~filter[_index](node[_type])) {
+            if (~filter.indexOf(node.type)) {
               stack.push(node);
             }
 
           // indirect input
           } else {
             node = $(node).find(filter);
-            indirect = node[_length];
+            indirect = node.length;
 
             while (indirect--) {
               stack.push(node[indirect]);
@@ -313,9 +279,9 @@
       // parent searcher
       var closest = function(node, tag, className, parent) {
         while (node.nodeType !== 9) {
-          node = node[_parent];
+          node = node.parentNode;
 
-          if (node[_tag] == tag[_toUp]() && ~node[_className][_index](className)) {
+          if (node.tagName == tag.toUpperCase() && ~node.className.indexOf(className)) {
             parent = node;
             break;
           }
@@ -329,15 +295,15 @@
         name = 'if' + name;
 
         // callbacks are allowed
-        if (hashes[key][_callbacks] !== false) {
+        if (hashes[key].callbacks !== false) {
 
           // direct callback
-          if (typeof hashes[key][_callbacks][name] == _function) {
-            hashes[key][_callbacks][name](node, hashes[key]);
+          if (typeof hashes[key].callbacks[name] == 'function') {
+            hashes[key].callbacks[name](node, hashes[key]);
           }
 
           // indirect callback
-          if (hashes[key][_callbacks][name] !== false) {
+          if (hashes[key].callbacks[name] !== false) {
             $(node).trigger(name);
           }
         }
@@ -348,14 +314,14 @@
 
         // get inputs
         var elements = inspect(data);
-        var element = elements[_length];
+        var element = elements.length;
 
         // loop through inputs
         while (element--) {
           var node = elements[element];
           var nodeAttr = node.attributes;
           var nodeAttrCache = {};
-          var nodeAttrLength = nodeAttr[_length];
+          var nodeAttrLength = nodeAttr.length;
           var nodeAttrName;
           var nodeAttrValue;
           var nodeData = {};
@@ -365,11 +331,11 @@
           var nodeInherit;
           var nodeInheritItem;
           var nodeInheritLength;
-          var nodeString = node[_className];
-          var nodeStyle = node['get' + _attr](_style);
-          var nodeType = node[_type];
+          var nodeString = node.className;
+          var nodeStyle;
+          var nodeType = node.type;
           var queryData = $.cache[node[$.expando]]; // cached data
-          var settings = {};
+          var settings;
           var key = extract(nodeString);
           var keyClass;
           var handle;
@@ -384,22 +350,27 @@
           var labelString;
           var labels = [];
           var labelsLength;
+          var fastClass = win.FastClick ? ' needsclick' : '';
 
           // parse options from HTML attributes
           while (nodeAttrLength--) {
             nodeAttrName = nodeAttr[nodeAttrLength].name;
             nodeAttrValue = nodeAttr[nodeAttrLength].value;
 
-            if (~nodeAttrName[_index](_data + '-')) {
+            if (~nodeAttrName.indexOf('data-')) {
               nodeData[nodeAttrName.substr(5)] = nodeAttrValue;
+            }
+
+            if (nodeAttrName == 'style') {
+              nodeStyle = nodeAttrValue;
             }
 
             nodeAttrCache[nodeAttrName] = nodeAttrValue;
           }
 
           // parse options from jQuery or Zepto cache
-          if (queryData && queryData[_data]) {
-            nodeData = $[_extend](nodeData, queryData[_data]);
+          if (queryData && queryData.data) {
+            nodeData = $.extend(nodeData, queryData.data);
           }
 
           // parse merged options
@@ -410,21 +381,23 @@
               nodeAttrValue = nodeAttrValue == 'true';
             }
 
-            nodeDataCache[nodeDataProperty[_replace](converter, capitalize)] = nodeAttrValue;
+            nodeDataCache[nodeDataProperty.replace(/checkbox|radio|class|id|label/g, function(string, position) {
+              return position === 0 ? string : string.charAt(0).toUpperCase() + string.slice(1);
+            })] = nodeAttrValue;
           }
 
           // merge options
-          settings = $[_extend](settings, defaults, nodeDataCache, options);
+          settings = $.extend({}, win.icheck, nodeDataCache, options);
 
           // input type filter
           handle = settings.handle;
 
-          if (handle !== _checkbox && handle !== _radio) {
+          if (handle !== 'checkbox' && handle !== 'radio') {
             handle = filter;
           }
 
           // prevent unwanted init
-          if (settings.init !== false && ((ajax == true && settings.ajax == false) !== true) && ~handle[_index](nodeType)) {
+          if (settings.init !== false && ~handle.indexOf(nodeType)) {
 
             // tidy before processing
             if (key) {
@@ -436,19 +409,20 @@
               key = Math.random().toString(36).substr(2, 5); // 5 symbols
 
               if (!hashes[key]) {
-                keyClass = prefix + '[' + key + ']';
+                keyClass = baseClass + '[' + key + ']';
                 break;
               }
             }
 
             // save settings
-            settings[_style] = nodeStyle || '';
-            settings[_className] = keyClass;
-            settings[_replace] = keyClass[_replace](/(\[|\])/g, '\\$1');
+            settings.style = nodeStyle || '';
+            settings.className = keyClass;
+            settings.esc = keyClass.replace(/(\[|\])/g, '\\$1');
+            settings.classes = false; // prevent unwanted duplicates
             hashes[key] = settings;
 
             // find direct label
-            labelDirect = closest(node, _label, '');
+            labelDirect = closest(node, 'label', '');
 
             if (labelDirect) {
 
@@ -462,11 +436,11 @@
 
             // find indirect label
             if (!!nodeId) {
-              labelIndirect = $(_label + '[for="' + nodeId + '"]');
+              labelIndirect = $('label[for="' + nodeId + '"]');
 
               // merge labels
-              while (labelIndirect[_length]--) {
-                label = labelIndirect[labelIndirect[_length]];
+              while (labelIndirect.length--) {
+                label = labelIndirect[labelIndirect.length];
 
                 if (label !== labelDirect) {
                   labels.push(label);
@@ -475,31 +449,31 @@
             }
 
             // loop through labels
-            labelsLength = labels[_length];
+            labelsLength = labels.length;
 
             while (labelsLength--) {
               label = labels[labelsLength];
-              labelString = label[_className];
+              labelString = label.className;
               labelKey = extract(labelString);
 
               // remove previous key
               if (labelKey) {
-                labelString = toggle(label, prefix + '[' + labelKey + ']', 0);
+                labelString = toggle(label, baseClass + '[' + labelKey + ']', 0);
               } else {
                 labelString += ' ' + labelClass;
               }
 
               // update label's class
-              label[_className] = labelString + ' ' + keyClass + fastClass;
+              label.className = labelString + ' ' + keyClass + fastClass;
             }
 
             // prepare styler
-            styler = _doc[_create](_div);
+            styler = doc.createElement('div');
 
             // parse inherited options
             if (!!settings.inherit) {
               nodeInherit = settings.inherit.split(/\s*,\s*/);
-              nodeInheritLength = nodeInherit[_length];
+              nodeInheritLength = nodeInherit.length;
 
               while (nodeInheritLength--) {
                 nodeInheritItem = nodeInherit[nodeInheritLength];
@@ -508,27 +482,27 @@
                   if (nodeInheritItem == 'class') {
                     stylerClass += nodeAttrCache[nodeInheritItem] + ' ';
                   } else {
-                    styler['set' + _attr](nodeInheritItem, nodeInheritItem == 'id' ? prefix + '-' + nodeAttrCache[nodeInheritItem] : nodeAttrCache[nodeInheritItem]);
+                    styler.setAttribute(nodeInheritItem, nodeInheritItem == 'id' ? baseClass + '-' + nodeAttrCache[nodeInheritItem] : nodeAttrCache[nodeInheritItem]);
                   }
                 }
               }
             }
 
             // set input's type class
-            stylerClass += settings[nodeType + _class];
+            stylerClass += settings[nodeType + 'Class'];
 
             // set styler's key
             stylerClass += ' ' + divClass + ' ' + keyClass;
 
             // append area styles
-            if (settings[_area] && !!styleArea) {
-              area = ('' + settings[_area])[_replace](/%|px|em|\+|-/g, '') | 0;
+            if (settings.area && styleArea) {
+              area = ('' + settings.area).replace(/%|px|em|\+|-/g, '') | 0;
 
               if (area) {
 
                 // append area's styles
                 if (!areas[area]) {
-                  style(styleArea[_replace](/#/g, '-' + area + '%'), false, area);
+                  style(styleArea.replace(/#/g, '-' + area + '%'), false, area);
                   areas[area] = true;
                 }
 
@@ -537,16 +511,16 @@
             }
 
             // update styler's class
-            styler[_className] = stylerClass + fastClass;
+            styler.className = stylerClass + fastClass;
 
             // update node's class
-            node[_className] = (!!nodeString ? nodeString + ' ' : '') + nodeClass + ' ' + keyClass;
+            node.className = (!!nodeString ? nodeString + ' ' : '') + nodeClass + ' ' + keyClass;
 
             // replace node
-            node[_parent][_replace + 'Child'](styler, node);
+            node.parentNode.replaceChild(styler, node);
 
             // append node
-            styler[_append](node);
+            styler.appendChild(node);
 
             // append additions
             if (!!settings.insert) {
@@ -558,19 +532,19 @@
 
               // get styler's position
               if (computed) {
-                stylerStyle = computed(styler, null).getPropertyValue(_position);
+                stylerStyle = computed(styler, null).getPropertyValue('position');
               } else {
-                stylerStyle = styler.currentStyle[_position];
+                stylerStyle = styler.currentStyle.position;
               }
 
               // update styler's position
               if (stylerStyle == 'static') {
-                styler[_style][_position] = 'relative';
+                styler.style.position = 'relative';
               }
             }
 
             // operate
-            operate(node, styler, key, methods[4], true, false, ajax); // 'update' method
+            operate(node, styler, key, 'updated', true, false, ajax);
             hashes[key].done = true;
 
             // ifCreated callback
@@ -588,41 +562,34 @@
         var changes = {};
 
         // current states
-        states[_checked] = [node[_checked], capitalized[3], capitalized[4]]; // ?, 'Checked', 'Unchecked'
+        states.checked = [node.checked, 'Checked', 'Unchecked'];
 
-        if ((!before || ajax) && method !== _click) {
-
-          // ?, 'Disabled', 'Enabled'
-          states[_disabled] = [node[_disabled], capitalized[5], capitalized[6]];
-
-          // ?, 'Indeterminate', 'Determinate'
-          states[methods[1]] = [node['get' + _attr](methods[1]) == 'true' || !!node[methods[1]], capitalized[7], capitalized[8]];
+        if ((!before || ajax) && method !== 'click') {
+          states.disabled = [node.disabled, 'Disabled', 'Enabled'];
+          states.indeterminate = [node.getAttribute('indeterminate') == 'true' || !!node.indeterminate, 'Indeterminate', 'Determinate'];
         }
 
-        // 'update' or 'click' method
-        if (method == methods[4] || method == _click) {
-          changes[_checked] = before ? !states[_checked][0] : states[_checked][0];
+        // methods
+        if (method == 'updated' || method == 'click') {
+          changes.checked = before ? !states.checked[0] : states.checked[0];
 
-          if ((!before || ajax) && method !== _click) {
-            changes[_disabled] = states[_disabled][0];
-            changes[methods[1]] = states[methods[1]][0];
+          if ((!before || ajax) && method !== 'click') {
+            changes.disabled = states.disabled[0];
+            changes.indeterminate = states.indeterminate[0];
           }
 
-        // 'checked' or 'unchecked' method
-        } else if (method == _checked || method == methods[0]) {
-          changes[_checked] = method == _checked;
+        } else if (method == 'checked' || method == 'unchecked') {
+          changes.checked = method == 'checked';
 
-        // 'disabled' or 'enabled' method
-        } else if (method == _disabled || method == methods[2]) {
-          changes[_disabled] = method == _disabled;
+        } else if (method == 'disabled' || method == 'enabled') {
+          changes.disabled = method == 'disabled';
 
-        // 'indeterminate' or 'determinate' method
-        } else if (method == methods[1] || method == _determinate) {
-          changes[methods[1]] = method == methods[1];
+        } else if (method == 'indeterminate' || method == 'determinate') {
+          changes.indeterminate = method !== 'determinate';
 
-        // 'toggle' method
+        // "toggle" method
         } else {
-          changes[_checked] = !states[_checked][0];
+          changes.checked = !states.checked[0];
         }
 
         // apply changes
@@ -631,14 +598,14 @@
 
       // state changer
       var change = function(node, parent, states, changes, key, settings, method, silent, before, ajax, loop) {
-        var type = node[_type];
-        var typeCapital = type == _radio ? capitalized[1] : capitalized[0];
+        var type = node.type;
+        var typeCapital = type == 'radio' ? 'Radio' : 'Checkbox';
         var property;
         var value;
         var classes;
         var inputClass;
         var label;
-        var labelClass = capitalized[2] + _class;
+        var labelClass = 'LabelClass';
         var form;
         var radios;
         var radiosLength;
@@ -651,7 +618,7 @@
 
         // check parent
         if (!parent) {
-          parent = closest(node, _div, settings[_className]);
+          parent = closest(node, 'div', settings.className);
         }
 
         // continue if parent exists
@@ -662,16 +629,16 @@
             value = changes[property];
 
             // update node's property
-            if (states[property][0] !== value && method !== methods[4] && method !== _click) {
+            if (states[property][0] !== value && method !== 'updated' && method !== 'click') {
               node[property] = value;
             }
 
             // update ajax attributes
             if (ajax) {
               if (value) {
-                node['set' + _attr](property, property == methods[1] ? 'true' : property);
+                node.setAttribute(property, property);
               } else {
-                node[_remove + _attr](property);
+                node.removeAttribute(property);
               }
             }
 
@@ -680,28 +647,26 @@
               settings[property] = value;
               changed = true;
 
-              if (property == _checked) {
+              if (property == 'checked') {
                 toggled = true;
 
                 // find assigned radios
-                if (!loop && value && (!!hashes[key].done || ajax) && type == _radio && !!node.name) {
+                if (!loop && value && (!!hashes[key].done || ajax) && type == 'radio' && !!node.name) {
                   form = closest(node, 'form', '');
-                  radios = _input + '[name="' + node.name + '"]';
+                  radios = 'input[name="' + node.name + '"]';
                   radios = form && !ajax ? $(form).find(radios) : $(radios);
-                  radiosLength = radios[_length];
+                  radiosLength = radios.length;
 
                   while (radiosLength--) {
                     radio = radios[radiosLength];
-                    radioKey = extract(radio[_className]);
-                    radioStates = {};
-                    radioChanges = {};
+                    radioKey = extract(radio.className);
 
                     // toggle radios
-                    if (node !== radio && hashes[radioKey] && hashes[radioKey][_checked]) {
-                      radioStates[_checked] = [true, capitalized[3], capitalized[4]];
-                      radioChanges[_checked] = false;
+                    if (node !== radio && hashes[radioKey] && hashes[radioKey].checked) {
+                      radioStates = {checked: [true, 'Checked', 'Unchecked']};
+                      radioChanges = {checked: false};
 
-                      change(radio, false, radioStates, radioChanges, radioKey, hashes[radioKey], methods[4], silent, before, ajax, true);
+                      change(radio, false, radioStates, radioChanges, radioKey, hashes[radioKey], 'updated', silent, before, ajax, true);
                     }
                   }
                 }
@@ -709,13 +674,11 @@
 
               // cache classes
               classes = [
-                settings[property + _class], // 0, checkedClass
-                settings[property + typeCapital + _class], // 1, checkedCheckboxClass
-
-                settings[states[property][1] + _class], // 2, uncheckedClass
-                settings[states[property][1] + typeCapital + _class], // 3, uncheckedCheckboxClass
-
-                settings[property + labelClass] // 4, checkedLabelClass
+                settings[property + 'Class'], // 0, example: checkedClass
+                settings[property + typeCapital + 'Class'], // 1, example: checkedCheckboxClass
+                settings[states[property][1] + 'Class'], // 2, example: uncheckedClass
+                settings[states[property][1] + typeCapital + 'Class'], // 3, example: uncheckedCheckboxClass
+                settings[property + labelClass] // 4, example: checkedLabelClass
               ];
 
               // value == false
@@ -730,11 +693,11 @@
               toggle(parent, inputClass);
 
               // update labels's class
-              if (!!settings[_mirror] && !!classes[4]) {
-                label = $(_label + '.' + settings[_replace]);
+              if (!!settings.mirror && !!classes[4]) {
+                label = $('label.' + settings.esc);
 
-                while (label[_length]--) {
-                  toggle(label[label[_length]], classes[4], value ? 1 : 0);
+                while (label.length--) {
+                  toggle(label[label.length], classes[4], value ? 1 : 0);
                 }
               }
 
@@ -757,17 +720,17 @@
           }
 
           // cursor addition
-          if (!!settings[_cursor] && !isMobile) {
+          if (!!settings.cursor && !isMobile) {
 
             // 'pointer' for enabled
-            if (!settings[_disabled] && !settings[_pointer]) {
-              parent[_style][_cursor] = _pointer;
-              settings[_pointer] = true;
+            if (!settings.disabled && !settings.pointer) {
+              parent.style.cursor = 'pointer';
+              settings.pointer = true;
 
             // 'default' for disabled
-            } else if (settings[_disabled] && settings[_pointer]) {
-              parent[_style][_cursor] = 'default';
-              settings[_pointer] = false;
+            } else if (settings.disabled && settings.pointer) {
+              parent.style.cursor = 'default';
+              settings.pointer = false;
             }
           }
 
@@ -776,31 +739,70 @@
         }
       };
 
+      // plugin definition
+      $.fn.icheck = function(options, fire) {
+
+        // detect methods
+        if (/^(checked|unchecked|indeterminate|determinate|disabled|enabled|updated|toggle|destroy|data|styler)$/.test(options)) {
+          var elements = inspect(this);
+          var element = elements.length;
+
+          // loop through inputs
+          while (element--) {
+            var item = elements[element];
+            var key = extract(item.className);
+
+            if (key) {
+
+              // 'data' method
+              if (options == 'data') {
+                return hashes[key];
+
+              // 'styler' method
+              } else if (options == 'styler') {
+                return closest(item, 'div', hashes[key].className);
+
+              } else {
+                if (options == 'destroy') {
+                  tidy(item, key, 'Destroyed');
+                } else {
+                  operate(item, false, key, options);
+                }
+
+                // callback
+                if (typeof fire == 'function') {
+                  fire(item);
+                }
+              }
+            }
+          }
+
+        // basic setup
+        } else if (typeof options == 'object' || !options) {
+          process(this, options || {});
+        }
+
+        // chain
+        return this;
+      };
+
       // bind label and styler
-      $(_doc).on(_click + '.i ' + hover + tap, _label + '.' + labelClass + ',div.' + divClass, function(event) {
+      $(doc).on('click.i ' + hover + tap, 'label.' + labelClass + ',div.' + divClass, function(event) {
         var self = this;
-        var key = extract(self[_className]);
+        var key = extract(self.className);
 
         if (key) {
-          var emitter = event[_type];
+          var emitter = event.type;
           var settings = hashes[key];
-          var className = settings[_replace]; // escaped class name
-          var div = self[_tag] == 'DIV';
+          var className = settings.esc; // escaped class name
+          var div = self.tagName == 'DIV';
           var input;
           var target;
           var partner;
           var activate;
           var states = [
-            [
-              _label,
-              settings[_active + capitalized[2] + _class], // activeLabelClass
-              settings[_hover + capitalized[2] + _class] // hoverLabelClass
-            ],
-            [
-              _div,
-              settings[_active + _class], // activeClass
-              settings[_hover + _class] // hoverClass
-            ]
+            ['label', settings.activeLabelClass, settings.hoverLabelClass],
+            ['div', settings.activeClass, settings.hoverClass]
           ];
 
           // reverse array
@@ -817,11 +819,11 @@
             }
 
             // toggle partner's active class
-            if (!!settings[_mirror] && !!states[1][1]) {
+            if (!!settings.mirror && !!states[1][1]) {
               partner = $(states[1][0] + '.' + className);
 
-              while (partner[_length]--) {
-                toggle(partner[partner[_length]], states[1][1], emitter == tapStart ? 1 : 0);
+              while (partner.length--) {
+                toggle(partner[partner.length], states[1][1], emitter == tapStart ? 1 : 0);
               }
             }
 
@@ -834,11 +836,11 @@
             }
 
             // toggle partner's hover class
-            if (!!settings[_mirror] && !!states[1][2]) {
+            if (!!settings.mirror && !!states[1][2]) {
               partner = $(states[1][0] + '.' + className);
 
-              while (partner[_length]--) {
-                toggle(partner[partner[_length]], states[1][2], emitter == hoverStart ? 1 : 0);
+              while (partner.length--) {
+                toggle(partner[partner.length], states[1][2], emitter == hoverStart ? 1 : 0);
               }
             }
 
@@ -861,8 +863,8 @@
             setTimeout(function() {
               target = event.currentTarget || {};
 
-              if (target[_tag] !== _label[_toUp]()) {
-                input = $(self).find(_input + '.' + className)[_click]();
+              if (target.tagName !== 'LABEL') {
+                input = $(self).find('input.' + className).click();
 
                 if (ie || operaMini) {
                   input.change();
@@ -873,20 +875,20 @@
         }
 
       // bind input
-      }).on(_click + '.i change.i focusin.i focusout.i keyup.i keydown.i', _input + '.' + nodeClass, function(event) {
+      }).on('click.i change.i focusin.i focusout.i keyup.i keydown.i', 'input.' + nodeClass, function(event) {
         var self = this;
-        var key = extract(self[_className]);
+        var key = extract(self.className);
 
         if (key) {
-          var emitter = event[_type];
+          var emitter = event.type;
           var settings = hashes[key];
-          var className = settings[_replace]; // escaped class name
-          var parent = emitter == _click ? false : closest(self, _div, settings[_className]);
+          var className = settings.esc; // escaped class name
+          var parent = emitter == 'click' ? false : closest(self, 'div', settings.className);
           var label;
           var states;
 
           // click
-          if (emitter == _click) {
+          if (emitter == 'click') {
 
             // prevent event bubbling to parent
             event.stopPropagation();
@@ -894,46 +896,43 @@
           // change
           } else if (emitter == 'change') {
 
-            if (parent && !self[_disabled]) {
-              operate(self, parent, key, _click); // 'click' method
+            if (parent && !self.disabled) {
+              operate(self, parent, key, 'click'); // 'click' method
             }
 
           // focus state
-          } else if (~emitter[_index](_focus)) {
-            states = [
-              settings[_focus + _class], // focusClass,
-              settings[_focus + capitalized[2] + _class] // focusLabelClass
-            ];
+          } else if (~emitter.indexOf('focus')) {
+            states = [settings.focusClass, settings.focusLabelClass];
 
             // toggle parent's focus class
             if (!!states[0] && parent) {
-              toggle(parent, states[0], emitter == _focus + 'in' ? 1 : 0);
+              toggle(parent, states[0], emitter == 'focusin' ? 1 : 0);
             }
 
             // toggle label's focus class
-            if (!!settings[_mirror] && !!states[1]) {
-              label = $(_label + '.' + className);
+            if (!!settings.mirror && !!states[1]) {
+              label = $('label.' + className);
 
-              while (label[_length]--) {
-                toggle(label[label[_length]], states[1], emitter == _focus + 'in' ? 1 : 0);
+              while (label.length--) {
+                toggle(label[label.length], states[1], emitter == 'focusin' ? 1 : 0);
               }
             }
 
           // keyup or keydown
-          } else if (parent && !self[_disabled]) {
+          } else if (parent && !self.disabled) {
 
             // spacebar
-            if (self[_type] == _checkbox && emitter == 'keydown' && event.keyCode == 32) {
+            if (self.type == 'checkbox' && emitter == 'keydown' && event.keyCode == 32) {
 
               // event fired before state is changed
-              operate(self, parent, key, _click, false, true); // 'toggle' method
+              operate(self, parent, key, 'click', false, true); // 'toggle' method
             }
 
             // arrow
-            if (self[_type] == _radio && emitter == 'keyup' && !self[_checked]) {
+            if (self.type == 'radio' && emitter == 'keyup' && !self.checked) {
 
               // event fired before state is changed (except Opera 9-12)
-              operate(self, parent, key, _click, false, true); // 'toggle' method
+              operate(self, parent, key, 'click', false, true); // 'toggle' method
             }
           }
         }
@@ -942,120 +941,72 @@
       }).ready(function() {
 
         // init
-        if (!!defaults.init) {
-          $('.' + prefix)[_icheck]();
+        if (win.icheck.autoInit) {
+          $('.' + baseClass).icheck();
         }
 
         // ajax
-        if (!!defaults.ajax) {
+        if (win.jQuery) {
+
+          // body selector cache
+          var body = doc.body || doc.getElementsByTagName('body')[0];
+
+          // apply converter
           $.ajaxSetup({
             converters: {
               'text html': function(data) {
-                var frame = _doc[_create](_iframe); // create container
-                var frameData;
-                var frameHTML;
-                var body = _doc[_body] || _doc[_getByTag](_body)[0];
+                if (win.icheck.autoAjax && body) {
+                  console.log(1);
+                  var frame = doc.createElement('iframe'); // create container
+                  var frameData;
 
-                // set attributes
-                if (!ie) {
-                  frame[_style] = _display + 'none';
+                  // set attributes
+                  if (!ie) {
+                    frame.style = 'display:none';
+                  }
+
+                  frame.className = 'iframe.icheck-frame';
+                  frame.src ='about:blank';
+
+                  // append container to document
+                  body.appendChild(frame);
+
+                  // save container's content
+                  frameData = frame.contentDocument ? frame.contentDocument : frame.contentWindow.document;
+
+                  // append data to content
+                  frameData.open();
+                  frameData.write(data);
+                  frameData.close();
+
+                  // remove container from document
+                  body.removeChild(frame);
+
+                  // setup object
+                  frameData = $(frameData);
+
+                  // customize inputs
+                  process(frameData.find('.' + baseClass), {}, true);
+
+                  // extract HTML
+                  frameData = frameData[0];
+                  data = (frameData.body || frameData.getElementsByTagName('body')[0]).innerHTML;
+                  frameData = null; // prevent memory leaks
                 }
 
-                frame[_className] = _iframe + '.' + _icheck + '-' + _iframe;
-                frame.src ='about:blank';
-
-                // append container to document
-                body[_append](frame);
-
-                // save container's content
-                frameData = frame[_content + capitalize(_document)] ? frame[_content + capitalize(_document)] : frame[_content + 'Window'][_document];
-
-                // append data to content
-                frameData.open();
-                frameData.write(data);
-                frameData.close();
-
-                // remove container from document
-                body[_remove + 'Child'](frame);
-
-                // setup object
-                frameData = $(frameData);
-
-                // customize inputs
-                process(frameData.find('.' + prefix), {}, true);
-
-                // extract HTML
-                frameData = frameData[0];
-                frameHTML = (frameData[_body] || frameData[_getByTag](_body)[0]).innerHTML;
-                frameData = null; // prevent memory leaks
-
-                // return updated data
-                return frameHTML;
+                return data;
               }
             }
           });
         }
-
-        defaults.init = defaults.ajax = true;
       });
-
-      // plugin definition
-      $.fn[_icheck] = function(options, fire) {
-
-        // detect methods
-        if (parser.test(options)) {
-          var elements = inspect(this);
-          var element = elements[_length];
-
-          // loop through inputs
-          while (element--) {
-            var item = elements[element];
-            var key = extract(item[_className]);
-
-            if (key) {
-
-              // 'data' method
-              if (options == _data) {
-                return hashes[key];
-
-              // 'styler' method
-              } else if (options == _style + 'r') {
-                return closest(item, _div, hashes[key][_className]);
-
-              } else {
-
-                // 'destroy' method
-                if (options == methods[5]) {
-                  tidy(item, key, 'Destroyed');
-
-                // some other method
-                } else {
-                  operate(item, false, key, options);
-                }
-
-                // callback
-                if (typeof fire == _function) {
-                  fire(item);
-                }
-              }
-            }
-          }
-
-        // basic setup
-        } else if (typeof options == 'object' || !options) {
-          process(this, options || {});
-        }
-
-        // chain
-        return this;
-      };
     };
 
     // expose iCheck as an AMD module
-    if (typeof define == _function && define.amd) {
-      define(_icheck, [_win.jQuery ? 'jquery' : 'zepto'], _win['i' + _checked]);
+    if (typeof define == 'function' && define.amd) {
+      define('icheck', [win.jQuery ? 'jquery' : 'zepto'], win.ichecked);
     } else {
-      _win['i' + _checked]();
+      win.ichecked();
     }
   }
-}(window, document, 'icheck', 'checkbox', 'radio', 'input', 'label', 'checked', 'disabled', 'determinate', 'active', 'focus', 'hover', ':absolute!;', 'appendChild', 'area', 'Attribute', 'body', 'callbacks', 'Class', 'className', 'click', 'content', 'createElement', 'cursor', 'data', 'display:', 'div', 'document', 'extend', 'function', 'getElementsByTagName', 'iframe', 'indexOf', 'length', 'mirror', 'parentNode', 'pointer', 'PointerEvent', 'position', 'remove', 'replace', 'style', 'tagName', 'toUpperCase', 'type'));
+}(window, document));
