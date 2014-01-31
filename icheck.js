@@ -467,7 +467,7 @@
               if (labelKey) {
                 labelString = toggle(label, baseClass + '[' + labelKey + ']', 0);
               } else {
-                labelString += ' ' + labelClass;
+                labelString = (!!labelString ? labelString + ' ' : '') + labelClass;
               }
 
               // update label's class
