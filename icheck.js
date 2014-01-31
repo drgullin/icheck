@@ -793,6 +793,9 @@
         return this;
       };
 
+      // cached last key
+      var lastKey;
+
       // bind label and styler
       $(doc).on('click.i ' + hover + tap, 'label.' + labelClass + ',div.' + divClass, function(event) {
         var self = this;
@@ -925,21 +928,23 @@
               }
             }
 
-          // keyup or keydown
+          // keyup or keydown (event fired before state is changed, except Opera 9-12)
           } else if (parent && !self.disabled) {
 
-            // spacebar
-            if (self.type == 'checkbox' && emitter == 'keydown' && event.keyCode == 32) {
+            // keyup
+            if (emitter == 'keyup') {
 
-              // event fired before state is changed
-              operate(self, parent, key, 'click', false, true); // 'toggle' method
-            }
+              // spacebar or arrow
+              if (self.type == 'checkbox' && event.keyCode == 32 && settings.keydown || self.type == 'radio' && !self.checked) {
+                operate(self, parent, key, 'click', false, true); // 'toggle' method
+              }
 
-            // arrow
-            if (self.type == 'radio' && emitter == 'keyup' && !self.checked) {
+              hashes[key].keydown = hashes[lastKey].keydown = false;
 
-              // event fired before state is changed (except Opera 9-12)
-              operate(self, parent, key, 'click', false, true); // 'toggle' method
+            // keydown
+            } else {
+              lastKey = key;
+              hashes[key].keydown = true;
             }
           }
         }
