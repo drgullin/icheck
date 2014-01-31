@@ -58,7 +58,7 @@
 
       // useragent sniffing
       var ua = win.navigator.userAgent;
-      var ie = /MSIE [5-8]/.test(ua);
+      var ie = /MSIE [5-8]/.test(ua) || doc.documentMode < 9;
       var operaMini = /Opera Mini/.test(ua);
 
       // classes cache
@@ -124,7 +124,7 @@
       var styleList;
       var styleInput = 'position:absolute!;display:block!;outline:none!;opacity:0!;z-index:-99!;clip:rect(0 0 0 0)!;';
       // var styleInput = 'position:absolute!;display:block!;outline:none!;'; // debug
-      var styleArea = defaults.areaStyle !== false ? 'position:absolute;display:block;content:"";top:#;bottom:#;left:#;right:#;' : false;
+      var styleArea = defaults.areaStyle !== false ? 'position:absolute;display:block;content:"";top:#;bottom:#;left:#;right:#;' : 0;
 
       // styles addition
       var style = function(rules, selector, area) {
@@ -174,11 +174,11 @@
       style('display:none!;', 'iframe.icheck-frame'); // used to handle ajax-loaded inputs
 
       // class toggler
-      var toggle = function(node, className, status, currentClass, addClass, removeClass) {
+      var toggle = function(node, className, status, currentClass, updatedClass, addClass, removeClass) {
         currentClass = node.className;
 
         if (!!currentClass) {
-          currentClass = ' ' + currentClass + ' ';
+          updatedClass = ' ' + currentClass + ' ';
 
           // add class
           if (status === 1) {
@@ -195,23 +195,25 @@
           }
 
           // add class
-          if (!!addClass && currentClass.indexOf(' ' + addClass + ' ') < 0) {
-            currentClass += addClass + ' ';
+          if (!!addClass && updatedClass.indexOf(' ' + addClass + ' ') < 0) {
+            updatedClass += addClass + ' ';
           }
 
           // remove class
-          if (!!removeClass && ~currentClass.indexOf(' ' + removeClass + ' ')) {
-            currentClass = currentClass.replace(' ' + removeClass + ' ', ' ');
+          if (!!removeClass && ~updatedClass.indexOf(' ' + removeClass + ' ')) {
+            updatedClass = updatedClass.replace(' ' + removeClass + ' ', ' ');
           }
 
           // trim class
-          currentClass = currentClass.replace(/^\s+|\s+$/g, '');
+          updatedClass = updatedClass.replace(/^\s+|\s+$/g, '');
 
           // update class
-          node.className = currentClass;
+          if (updatedClass !== currentClass) {
+            node.className = updatedClass;
+          }
 
           // return updated class
-          return currentClass;
+          return updatedClass;
         }
       };
 
