@@ -27,8 +27,8 @@ Docs will be updated later, here's a short intro:
   // fastclick plugin replacement, works without dependencies (removes a 300ms delay between a physical tap and the firing the changes on mobile browsers). Compatible with but doesn't require http://github.com/ftlabs/fastclick
   tap: true,
 
-  // these are a default classnames used by ichech (# are replaced with className.base)
-  className: {
+  // these are a default classnames used by ichech (# are replaced with classes.base)
+  classes: {
     base: 'icheck', // classname to search for and customize
     div: '#-item', // classname to add for a styler div
     area: '#-area-', // classname to add to styler, when "area" option is used
@@ -135,7 +135,7 @@ Docs will be updated later, here's a short intro:
     }
   },
 
-  // comma separated attributes to inherit from the input to the wrapper div (note: input's id is prefixed with 'icheck-' (or a window.className.base))
+  // comma separated attributes to inherit from the input to the wrapper div (note: input's id is prefixed with 'icheck-' (or a window.classes.base))
   inherit: '',
 
   // increase clickable area by given %
