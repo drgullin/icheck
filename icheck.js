@@ -68,6 +68,9 @@
       var nodeClass = defaults.classes.input.replace('#', baseClass);
       var labelClass = defaults.classes.label.replace('#', baseClass);
 
+      // unset init classes
+      delete win.icheck.classes;
+
       // default filter
       var filter = 'input[type=checkbox],input[type=radio]';
 
@@ -122,9 +125,8 @@
       // styles options
       var styleTag;
       var styleList;
-      var styleInput = 'position:absolute!;display:block!;outline:none!;opacity:0!;z-index:-99!;clip:rect(0 0 0 0)!;';
-      // var styleInput = 'position:absolute!;display:block!;outline:none!;'; // debug
       var styleArea = defaults.areaStyle !== false ? 'position:absolute;display:block;content:"";top:#;bottom:#;left:#;right:#;' : 0;
+      var styleInput = 'position:absolute!;display:block!;outline:none!;' + (defaults.debug ? '' : 'opacity:0!;z-index:-99!;clip:rect(0 0 0 0)!;');
 
       // styles addition
       var style = function(rules, selector, area) {
@@ -416,11 +418,14 @@
               }
             }
 
+            // prevent unwanted duplicates
+            delete settings.autoInit;
+            delete settings.autoAjax;
+
             // save settings
             settings.style = nodeStyle || '';
             settings.className = keyClass;
             settings.esc = keyClass.replace(/(\[|\])/g, '\\$1');
-            settings.classes = false; // prevent unwanted duplicates
             hashes[key] = settings;
 
             // find direct label
@@ -939,15 +944,15 @@
           }
         }
 
-      // init on domready
+      // domready
       }).ready(function() {
 
-        // init
+        // auto init
         if (win.icheck.autoInit) {
           $('.' + baseClass).icheck();
         }
 
-        // ajax
+        // auto ajax
         if (win.jQuery) {
 
           // body selector cache
@@ -958,7 +963,6 @@
             converters: {
               'text html': function(data) {
                 if (win.icheck.autoAjax && body) {
-                  console.log(1);
                   var frame = doc.createElement('iframe'); // create container
                   var frameData;
 
