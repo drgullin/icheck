@@ -44,7 +44,7 @@
             stack = stack.add(self);
           } else {
             stack = stack.add(self.find(handle));
-          };
+          }
         });
       };
 
@@ -64,12 +64,12 @@
           tidy(self, 'ifDestroyed');
         } else {
           operate(self, true, options);
-        };
+        }
 
         // Fire method's callback
         if ($.isFunction(fire)) {
           fire();
-        };
+        }
       });
 
     // Customization
@@ -81,7 +81,7 @@
           disabledClass: _disabled,
           indeterminateClass: _indeterminate,
           labelHover: true,
-          aria: false
+          aria: true
         }, options),
 
         selector = settings.handle,
@@ -97,12 +97,12 @@
       // Selector limit
       if (selector == _checkbox || selector == _radio) {
         handle = 'input[type="' + selector + '"]';
-      };
+      }
 
       // Clickable area limit
       if (area < -50) {
         area = -50;
-      };
+      }
 
       // Walk around the selector
       walker(this);
@@ -172,7 +172,7 @@
 
             parent += '"';
           });
-        };
+        }
 
         // Wrap input
         parent = self.wrap(parent + '/>')[_callback]('ifCreated').parent().append(settings.insert);
@@ -213,17 +213,17 @@
                 } else {
                   parent[_add](hoverClass);
                   item[_add](labelHoverClass);
-                };
-              };
+                }
+              }
 
               if (_mobile) {
                 event.stopPropagation();
               } else {
                 return false;
-              };
-            };
+              }
+            }
           });
-        };
+        }
 
         // Input events
         self.on(_click + '.i focus.i blur.i keyup.i keydown.i keypress.i', function(event) {
@@ -241,8 +241,8 @@
                 off(self, _checked);
               } else {
                 on(self, _checked);
-              };
-            };
+              }
+            }
 
             return false;
 
@@ -253,7 +253,7 @@
           // Focus/blur
           } else if (/us|ur/.test(type)) {
             parent[type == 'blur' ? _remove : _add](focusClass);
-          };
+          }
         });
 
         // Helper events
@@ -282,27 +282,27 @@
               // State is off
               } else {
                 parent[_remove](toggle + ' ' + activeClass);
-              };
+              }
 
               // Label hover
               if (label.length && labelHover && toggle == hoverClass) {
 
                 // mouseout|touchend
                 label[/ut|nd/.test(type) ? _remove : _add](labelHoverClass);
-              };
-            };
+              }
+            }
 
             if (_mobile) {
               event.stopPropagation();
             } else {
               return false;
-            };
-          };
+            }
+          }
         });
       });
     } else {
       return this;
-    };
+    }
   };
 
   // Do something with inputs
@@ -327,31 +327,31 @@
     } else if (method == _update) {
 
       // Handle states
-      for (var state in active) {
-        if (active[state]) {
-          on(input, state, true);
+      for (var each in active) {
+        if (active[each]) {
+          on(input, each, true);
         } else {
-          off(input, state, true);
-        };
-      };
+          off(input, each, true);
+        }
+      }
 
     } else if (!direct || method == 'toggle') {
 
       // Helper or label was clicked
       if (!direct) {
         input[_callback]('ifClicked');
-      };
+      }
 
       // Toggle checked state
       if (active) {
         if (node[_type] !== _radio) {
           off(input, state);
-        };
+        }
       } else {
         on(input, state);
-      };
-    };
-  };
+      }
+    }
+  }
 
   // Add checked, disabled or indeterminate state
   function on(input, state, keep) {
@@ -377,9 +377,9 @@
         inputs.each(function() {
           if (this !== node && $(this).data(_iCheck)) {
             off($(this), state);
-          };
+          }
         });
-      };
+      }
 
       // Indeterminate state
       if (indeterminate) {
@@ -390,7 +390,7 @@
         // Remove checked state
         if (node[_checked]) {
           off(input, _checked, 'force');
-        };
+        }
 
       // Checked or disabled state
       } else {
@@ -398,32 +398,34 @@
         // Add checked or disabled state
         if (!keep) {
           node[state] = true;
-        };
+        }
 
         // Remove indeterminate state
         if (checked && node[_indeterminate]) {
           off(input, _indeterminate, false);
-        };
-      };
+        }
+      }
 
       // Trigger callbacks
       callbacks(input, checked, state, keep);
-    };
+    }
 
     // Add proper cursor
     if (node[_disabled] && !!option(input, _cursor, true)) {
       parent.find('.' + _iCheckHelper).css(_cursor, 'default');
-    };
+    }
 
     // Add state class
     parent[_add](specific || option(input, state) || '');
 
     // Set ARIA attribute
-    disabled ? parent.attr('aria-disabled', 'true') : parent.attr('aria-checked', indeterminate ? 'mixed' : 'true');
+    if (!!parent.attr('role') && !indeterminate) {
+      parent.attr('aria-' + (disabled ? _disabled : _checked), 'true');
+    }
 
     // Remove regular state class
     parent[_remove](regular || option(input, callback) || '');
-  };
+  }
 
   // Remove checked, disabled or indeterminate state
   function off(input, state, keep) {
@@ -442,26 +444,28 @@
       // Toggle state
       if (indeterminate || !keep || keep == 'force') {
         node[state] = false;
-      };
+      }
 
       // Trigger callbacks
       callbacks(input, checked, callback, keep);
-    };
+    }
 
     // Add proper cursor
     if (!node[_disabled] && !!option(input, _cursor, true)) {
       parent.find('.' + _iCheckHelper).css(_cursor, 'pointer');
-    };
+    }
 
     // Remove state class
     parent[_remove](specific || option(input, state) || '');
 
     // Set ARIA attribute
-    disabled ? parent.attr('aria-disabled', 'false') : parent.attr('aria-checked', 'false');
+    if (!!parent.attr('role') && !indeterminate) {
+      parent.attr('aria-' + (disabled ? _disabled : _checked), 'false');
+    }
 
     // Add regular state class
     parent[_add](regular || option(input, callback) || '');
-  };
+  }
 
   // Remove all traces
   function tidy(input, callback) {
@@ -473,34 +477,34 @@
       // Callback
       if (callback) {
         input[_callback](callback);
-      };
+      }
 
       // Unbind events
       input.off('.i').unwrap();
       $(_label + '[for="' + input[0].id + '"]').add(input.closest(_label)).off('.i');
-    };
-  };
+    }
+  }
 
   // Get some option
   function option(input, state, regular) {
     if (input.data(_iCheck)) {
       return input.data(_iCheck).o[state + (regular ? '' : 'Class')];
-    };
-  };
+    }
+  }
 
   // Capitalize some string
   function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  };
+  }
 
   // Executable handlers
   function callbacks(input, checked, callback, keep) {
     if (!keep) {
       if (checked) {
         input[_callback]('ifToggled');
-      };
+      }
 
       input[_callback]('ifChanged')[_callback]('if' + capitalize(callback));
-    };
-  };
+    }
+  }
 })(window.jQuery || window.Zepto);
