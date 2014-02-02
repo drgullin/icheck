@@ -23,7 +23,7 @@
         // auto handle ajax loaded inputs
         autoAjax: true,
 
-        // remove a 300ms click delay on touch devices
+        // remove 300ms click delay on touch devices
         tap: true,
 
         // customization class names
@@ -173,7 +173,7 @@
       }
 
       // append iframe's styles
-      style('display:none!;', 'iframe.icheck-frame'); // used to handle ajax-loaded inputs
+      style('display:none!', 'iframe.icheck-frame'); // used to handle ajax-loaded inputs
 
       // class toggler
       var toggle = function(node, className, status, currentClass, updatedClass, addClass, removeClass) {
@@ -751,12 +751,12 @@
 
         // detect methods
         if (/^(checked|unchecked|indeterminate|determinate|disabled|enabled|updated|toggle|destroy|data|styler)$/.test(options)) {
-          var elements = inspect(this);
-          var element = elements.length;
+          var items = inspect(this);
+          var itemsLength = items.length;
 
           // loop through inputs
-          while (element--) {
-            var item = elements[element];
+          while (itemsLength--) {
+            var item = items[itemsLength];
             var key = extract(item.className);
 
             if (key) {
@@ -837,6 +837,11 @@
               }
             }
 
+            // fast click
+            if (div && emitter == tapEnd && !!settings.tap && isMobile && isPointer && !operaMini) {
+              activate = true;
+            }
+
           // hover state
           } else if (emitter == hoverStart || emitter == hoverEnd) {
 
@@ -854,14 +859,14 @@
               }
             }
 
-            // fastclick
-            if (div && noMouse && emitter == hoverEnd && !!settings.tap) {
+            // fast click
+            if (div && emitter == hoverEnd && !!settings.tap && isMobile && isTouch && !operaMini) {
               activate = true;
             }
 
           // click
           } else if (div) {
-            if (!noMouse && (!!!settings.tap || operaMini || !(isTouch && isMobile))) {
+            if (!(isMobile && (isTouch || isPointer)) || !!!settings.tap || operaMini) {
               activate = true;
             }
           }
