@@ -338,7 +338,7 @@
           var nodeString = node.className;
           var nodeStyle;
           var nodeType = node.type;
-          var queryData = $.cache[node[$.expando]]; // cached data
+          var queryData = $.cache ? $.cache[node[$.expando]] : 0; // cached data
           var settings;
           var key = extract(nodeString);
           var keyClass;
@@ -391,7 +391,7 @@
           }
 
           // merge options
-          settings = $.extend({}, win.icheck, nodeDataCache, options);
+          settings = $.extend({}, defaults, win.icheck, nodeDataCache, options);
 
           // input type filter
           handle = settings.handle;
