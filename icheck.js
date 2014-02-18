@@ -282,10 +282,10 @@
 
       // parent searcher
       var closest = function(node, tag, className, parent) {
-        while (node.nodeType !== 9) {
+        while (node && node.nodeType !== 9) {
           node = node.parentNode;
 
-          if (node.tagName == tag.toUpperCase() && ~node.className.indexOf(className)) {
+          if (node && node.tagName == tag.toUpperCase() && ~node.className.indexOf(className)) {
             parent = node;
             break;
           }
