@@ -54,7 +54,7 @@
       };
 
       // extend default options
-      win.icheck = $.extend(defaults, win.icheck);
+      // win.icheck = $.extend(defaults, win.icheck);
 
       // useragent sniffing
       var ua = win.navigator.userAgent;
@@ -69,7 +69,7 @@
       var labelClass = defaults.classes.label.replace('#', baseClass);
 
       // unset init classes
-      delete win.icheck.classes;
+      delete defaults.classes;
 
       // default filter
       var filter = 'input[type=checkbox],input[type=radio]';
