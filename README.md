@@ -366,6 +366,10 @@ Mobile browsers (like Opera mini, Chrome mobile, Safari mobile, Android browser,
 Changelog
 ---------------
 
+### March 03, 2014
+
+* Better HiDPI screens support @ddctd143
+
 ### January 23, 2014 ([v2.0 release candidate](https://github.com/fronteed/iCheck/tree/2.x-beta))
 
 * Three ways to set an options: global object (`window.icheck`), data attributes (`<input data-checkedClass="checked"`) and direct JavaScript object (`$(input).icheck({ options })`)
