@@ -54,7 +54,7 @@
       };
 
       // extend default options
-      // win.icheck = $.extend(defaults, win.icheck);
+      win.icheck = $.extend(defaults, win.icheck);
 
       // useragent sniffing
       var ua = win.navigator.userAgent;
