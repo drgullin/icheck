@@ -879,10 +879,12 @@
               target = event.currentTarget || {};
 
               if (target.tagName !== 'LABEL') {
-                input = $(self).find('input.' + className).click();
+                if (!settings.change || (+new Date() - settings.change > 100)) {
+                  input = $(self).find('input.' + className).click();
 
-                if (ie || operaMini) {
-                  input.change();
+                  if (ie || operaMini) {
+                    input.change();
+                  }
                 }
               }
             }, 2);
@@ -904,6 +906,7 @@
 
           // click
           if (emitter == 'click') {
+            hashes[key].change = +new Date();
 
             // prevent event bubbling to parent
             event.stopPropagation();
