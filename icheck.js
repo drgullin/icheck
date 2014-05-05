@@ -247,7 +247,9 @@
 
           // Keyup
           } else if (type == 'keyup' && node[_type] == _radio) {
-            !node[_checked] && on(self, _checked);
+            if(key != 9 && key != 16 && key != 17 && key != 18 && key != 91) {
+              !node[_checked] && on(self, _checked);
+            }
 
           // Focus/blur
           } else if (/us|ur/.test(type)) {
