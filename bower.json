@@ -19,7 +19,8 @@
     "indeterminate"
   ],
   "main": [
-    "./icheck.min.js"
+    "./icheck.min.js",
+    "./skins/all.css"
   ],
   "dependencies": {
     "jquery": ">=1.7"
