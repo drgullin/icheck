@@ -35,7 +35,7 @@
         indeterminateClass: 'indeterminate',
 
         hoverClass: 'hover',
-        // focusClass: 'focus',
+        focusClass: 'focus',
         // activeClass: 'active',
 
         // default callbacks
