@@ -156,6 +156,15 @@
           // Parent & helper
           parent = '<div class="' + className + '" ' + (aria ? 'role="' + node[_type] + '" ' : ''),
           helper;
+          
+          // Align the input button
+          $.extend(hide, {
+            left: 0,
+            top: 0,
+            width: '100%',
+            height: '100%',
+            zIndex:-1
+          });
 
         // Set ARIA "labelledby"
         if (aria) {
