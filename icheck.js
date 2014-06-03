@@ -37,15 +37,19 @@
     var handle = 'input[type="' + _checkbox + '"], input[type="' + _radio + '"]',
       stack = $(),
       walker = function(object) {
+        var tmp_stack = [];
         object.each(function() {
           var self = $(this);
 
           if (self.is(handle)) {
-            stack = stack.add(self);
+            tmp_stack.push(this);
           } else {
-            stack = stack.add(self.find(handle));
+            self.find(handle).each(function(){
+              tmp_stack.push(this);
+            });
           }
         });
+        stack = stack.add(tmp_stack);
       };
 
     // Check if we should operate with some method
