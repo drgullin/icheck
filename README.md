@@ -144,6 +144,9 @@ These options are default:
     // class added to label if labelHover set to true
     labelHoverClass: 'hover',
 
+  // clicking a customized input label behaves as if the input itself were clicked
+  labelClick: true,
+
   // increase clickable area by given % (negative number to decrease)
   increaseArea: '',
 
@@ -385,12 +388,12 @@ Changelog
 * Ability to switch off some of the callbacks when you don't need them (global or per input)
 * Inline styles dropped - iCheck won't add any inline styles to the elements until it's highly needed (`cursor` or `area` option)
 * Fast click support - removes a 300ms click delay on mobile devices without any dependencies (iCheck compatible with the `fastclick` plugin), see the `tap` option
-* Ability to ignore customization for the selected inputs using `init` option (if set to `false`) 
+* Ability to ignore customization for the selected inputs using `init` option (if set to `false`)
 * Optimized event bindings - iCheck binds only a few global events for the all inputs (doesn't increase on elements addition), instead of a couple for the each customized element
-* Doesn't store tons of arbitrary data (event in jQuery or Zepto cache), defines customized elements by specific classnames 
+* Doesn't store tons of arbitrary data (event in jQuery or Zepto cache), defines customized elements by specific classnames
 * Extra `ins` tag is dropped (less DOM modifications), iCheck wraps each input with a single `div` and doesn't use any extra markup for the any option
-* Optimized reflows and repaints on init and state changes 
-* Better options handling - iCheck will never run a single line of JS to process an options that are off or empty 
+* Optimized reflows and repaints on init and state changes
+* Better options handling - iCheck will never run a single line of JS to process an options that are off or empty
 * Ability to auto customize the ajax loaded inputs without using any extra code (`autoAjax` option, on by default)
 * Auto inits on domready using the specified selector (`autoInit` option) - searches for `.icheck` by default. Classnames can be changed using the `window.classes` object
 * Memory usage optimization - uses only a few amount of memory (works well on low-memory devices)

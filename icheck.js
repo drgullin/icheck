@@ -80,7 +80,8 @@
           checkedClass: _checked,
           disabledClass: _disabled,
           indeterminateClass: _indeterminate,
-          labelHover: true
+          labelHover: true,
+          labelClick: true,
         }, options),
 
         selector = settings.handle,
@@ -89,6 +90,7 @@
         activeClass = settings.activeClass || 'active',
         labelHover = !!settings.labelHover,
         labelHoverClass = settings.labelHoverClass || 'hover',
+        labelClick = !!settings.labelClick
 
         // Setup clickable area
         area = ('' + settings.increaseArea).replace('%', '') | 0;
@@ -197,7 +199,9 @@
 
               // Click
               if (type == _click) {
-                if ($(event.target).is('a')) {
+                if (!labelClick) {
+                  return;
+                } else if ($(event.target).is('a')) {
                   return;
                 }
                 operate(self, false, true);
