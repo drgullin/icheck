@@ -947,7 +947,11 @@
                 operate(self, parent, key, 'click', false, true); // 'toggle' method
               }
 
-              hashes[key].keydown = hashes[lastKey].keydown = false;
+              hashes[key].keydown = false;
+
+              if (lastKey && hashes[lastKey]) {
+                  hashes[lastKey].keydown = false;
+              }
 
             // keydown
             } else {
