@@ -299,16 +299,16 @@
         name = 'if' + name;
 
         // callbacks are allowed
-        if (hashes[key].callbacks !== false) {
-
-          // direct callback
-          if (typeof hashes[key].callbacks[name] == 'function') {
-            hashes[key].callbacks[name](node, hashes[key]);
-          }
+        if (!!hashes[key].callbacks) {
 
           // indirect callback
           if (hashes[key].callbacks[name] !== false) {
             $(node).trigger(name);
+
+            // direct callback
+            if (typeof hashes[key].callbacks[name] == 'function') {
+              hashes[key].callbacks[name](node, hashes[key]);
+            }
           }
         }
       };
