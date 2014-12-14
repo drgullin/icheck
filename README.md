@@ -3,7 +3,7 @@
 
 Refer to the [iCheck website](http://fronteed.com/iCheck/) for examples.
 
-**Note: [iCheck v2.0](https://github.com/fronteed/iCheck/tree/2.x-beta) is on the way**, it got a huge performance boost, many new options and methods. It's in a release candidate state, so you may try to use it. Feel free to submit an issue if you find something not working.
+**Note: [iCheck v2.0](https://github.com/fronteed/icheck/tree/2.x) is on the way**, it got a huge performance boost, many new options and methods. It's in a release candidate state, so you may try to use it. Feel free to submit an issue if you find something not working.
 
 ![Skins](http://fronteed.com/iCheck/examples.png)
 
@@ -370,7 +370,7 @@ Changelog
 
 * Better HiDPI screens support @ddctd143
 
-### January 23, 2014 ([v2.0 release candidate](https://github.com/fronteed/iCheck/tree/2.x-beta))
+### January 23, 2014 ([v2.0 release candidate](https://github.com/fronteed/icheck/tree/2.x))
 
 * Three ways to set an options: global object (`window.icheck`), data attributes (`<input data-checkedClass="checked"`) and direct JavaScript object (`$(input).icheck({ options })`)
 * Huge performance boost (takes less than 1s to customize 1000 inputs)
