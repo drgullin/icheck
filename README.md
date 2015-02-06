@@ -21,11 +21,13 @@ Docs will be updated later, here's a short intro:
   // auto init on domready
   autoInit: true,
 
-  // auto handle ajax loaded inputs (any inputs inside the HTML ajax-requests will be customized automatically)
+  // auto handle ajax loaded inputs (any inputs inside the HTML ajax-requests will be
+  // customized automatically)
   autoAjax: true,
 
-  // fastclick plugin replacement, works without dependencies (removes a 300ms delay between a physical tap and
-  // the firing the changes on mobile browsers). Compatible with but doesn't require http://github.com/ftlabs/fastclick
+  // fastclick plugin replacement, works without dependencies
+  // (removes a 300ms delay between a physical tap and the firing the changes
+  // on mobile browsers). Compatible with but doesn't require http://github.com/ftlabs/fastclick
   tap: true,
 
   // these are a default classnames used by ichech (# are replaced with classes.base)
