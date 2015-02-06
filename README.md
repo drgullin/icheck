@@ -16,7 +16,7 @@ Docs will be updated later, here's a short intro:
 
 #### These are global object options:
 
-```
+```js
 {
   // auto init on domready
   autoInit: true,
@@ -47,7 +47,7 @@ Docs will be updated later, here's a short intro:
 
 #### These options can be stored in data attributes and init object:
 
-```
+```js
 {
   // fastclick (http://github.com/ftlabs/fastclick) replacement, works without dependencies (removes a 300ms delay between a physical tap and the firing of a click event on mobile browsers)
   tap: true,
@@ -149,7 +149,7 @@ Docs will be updated later, here's a short intro:
 
 ## Methods
 
-```
+```js
 // checked = change input's state to 'checked'
 $('input').icheck('checked', function(node) {
   // callback function will be fired for each input
@@ -217,7 +217,7 @@ var parent = $('input').icheck('styler');
 
 Note: callbacks are fired for each input. Unchecked radio buttons also receive a callbacks.
 
-```
+```js
 ifChecked = input's state is changed to "checked"
 $('input').on('ifChecked', function(event) {
   // your code
