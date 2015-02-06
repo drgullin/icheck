@@ -24,7 +24,8 @@ Docs will be updated later, here's a short intro:
   // auto handle ajax loaded inputs (any inputs inside the HTML ajax-requests will be customized automatically)
   autoAjax: true,
 
-  // fastclick plugin replacement, works without dependencies (removes a 300ms delay between a physical tap and the firing the changes on mobile browsers). Compatible with but doesn't require http://github.com/ftlabs/fastclick
+  // fastclick plugin replacement, works without dependencies (removes a 300ms delay between a physical tap and
+  // the firing the changes on mobile browsers). Compatible with but doesn't require http://github.com/ftlabs/fastclick
   tap: true,
 
   // these are a default classnames used by ichech (# are replaced with classes.base)
@@ -49,7 +50,8 @@ Docs will be updated later, here's a short intro:
 
 ```js
 {
-  // fastclick (http://github.com/ftlabs/fastclick) replacement, works without dependencies (removes a 300ms delay between a physical tap and the firing of a click event on mobile browsers)
+  // fastclick (http://github.com/ftlabs/fastclick) replacement, works without dependencies
+  // (removes a 300ms delay between a physical tap and the firing of a click event on mobile browsers)
   tap: true,
 
   // 'checkbox' or 'radio' to style only checkboxes or radio buttons, both by default
@@ -112,7 +114,8 @@ Docs will be updated later, here's a short intro:
   // class added on active state (pointer is pressed on input)
   activeClass: '',
 
-  // if true, a mirror classes will be toggled between label and input tags (i.e. input is checked => checkedClass is added to input, checkedLabelClass is added to label)
+  // if true, a mirror classes will be toggled between label and input tags
+  // (i.e. input is checked => checkedClass is added to input, checkedLabelClass is added to label)
   mirror: false,
 
   // classes to append to labels if "mirror" option is true
@@ -135,7 +138,8 @@ Docs will be updated later, here's a short intro:
     }
   },
 
-  // comma separated attributes to inherit from the input to the wrapper div (note: input's id is prefixed with 'icheck-' (or a window.classes.base))
+  // comma separated attributes to inherit from the input to the wrapper div
+  // (note: input's id is prefixed with 'icheck-' (or a window.classes.base))
   inherit: '',
 
   // increase clickable area by given %
@@ -218,58 +222,58 @@ var parent = $('input').icheck('styler');
 Note: callbacks are fired for each input. Unchecked radio buttons also receive a callbacks.
 
 ```js
-ifChecked = input's state is changed to "checked"
+// ifChecked = input's state is changed to "checked"
 $('input').on('ifChecked', function(event) {
   // your code
 });
 
-ifUnchecked = "checked" state is removed
+// ifUnchecked = "checked" state is removed
 $('input').on('ifUnchecked', function(event) {
   // your code
 });
 
-ifDisabled = input's state is changed to "disabled"
+// ifDisabled = input's state is changed to "disabled"
 $('input').on('ifDisabled', function(event) {
   // your code
 });
 
-ifEnabled = "disabled" state is removed
+// ifEnabled = "disabled" state is removed
 $('input').on('ifEnabled', function(event) {
   // your code
 });
 
-ifIndeterminate = input's state is changed to "indeterminate"
+// ifIndeterminate = input's state is changed to "indeterminate"
 $('input').on('ifIndeterminate', function(event) {
   // your code
 });
 
-ifDeterminate = "indeterminate" state is removed
+// ifDeterminate = "indeterminate" state is removed
 $('input').on('ifDeterminate', function(event) {
   // your code
 });
 
-ifChanged = input's "checked", "disabled" or "indeterminate" state is changed
+// ifChanged = input's "checked", "disabled" or "indeterminate" state is changed
 $('input').on('ifChanged', function(event) {
   // your code
 });
 
-ifToggled = input's "checked" state is changed
+// ifToggled = input's "checked" state is changed
 $('input').on('ifToggled', function(event) {
   // your code
 });
 
-ifCreated = input is just customized
+// ifCreated = input is just customized
 $('input').on('ifCreated', function(event) {
   // your code
 });
-Note: this callback is switched off by default, use the options like these to switch it on:
+// Note: this callback is switched off by default, use the options like these to switch it on:
 {
  callbacks: {
    ifCreated: true
  }
 }
 
-ifDestroyed = customization is just removed
+// ifDestroyed = customization is just removed
 $('input').on('ifDestroyed', function(event) {
   // your code
 });
