@@ -27,7 +27,7 @@ Docs will be updated later, here's a short intro:
   // fastclick plugin replacement, works without dependencies (removes a 300ms delay between a physical tap and the firing the changes on mobile browsers). Compatible with but doesn't require http://github.com/ftlabs/fastclick
   tap: true,
 
-  // these are a default classnames used by ichech (# are replaced with classes.base)
+  // these are a default classnames used by icheck (# are replaced with classes.base)
   classes: {
     base: 'icheck', // classname to search for and customize
     div: '#-item', // classname to add for a styler div
