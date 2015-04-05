@@ -499,6 +499,8 @@
   // Executable handlers
   function callbacks(input, checked, callback, keep) {
     if (!keep) {
+      $(input).change();
+
       if (checked) {
         input[_callback]('ifToggled');
       }
