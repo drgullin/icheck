@@ -21,7 +21,7 @@
         autoInit: true,
 
         // auto handle ajax loaded inputs
-        autoAjax: true,
+        autoAjax: false,
 
         // remove 300ms click delay on touch devices
         tap: true,
