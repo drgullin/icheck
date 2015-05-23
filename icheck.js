@@ -80,7 +80,8 @@
           checkedClass: _checked,
           disabledClass: _disabled,
           indeterminateClass: _indeterminate,
-          labelHover: true
+          labelHover: true,
+          
         }, options),
 
         selector = settings.handle,
@@ -89,6 +90,7 @@
         activeClass = settings.activeClass || 'active',
         labelHover = !!settings.labelHover,
         labelHoverClass = settings.labelHoverClass || 'hover',
+        checkboxProprties = settings.checkboxProprties || 'title="test"',
 
         // Setup clickable area
         area = ('' + settings.increaseArea).replace('%', '') | 0;
@@ -154,8 +156,9 @@
           ariaID = _iCheck + '-' + Math.random().toString(36).substr(2,6),
 
           // Parent & helper
-          parent = '<div class="' + className + '" ' + (aria ? 'role="' + node[_type] + '" ' : ''),
+          parent = '<div class="' + className + '"  '+checkboxProprties+' ' + (aria ? 'role="' + node[_type] + '" ' : ''),
           helper;
+
 
         // Set ARIA "labelledby"
         if (aria) {
