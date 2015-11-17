@@ -120,9 +120,6 @@
 }
 
 .icheck-flat-hd(@img : 'flat') {
-    .@{icheck-checkbox-class}-flat-blue,
-    .@{icheck-radio-class}-flat-blue {
-        background-image: url("@{icheck-img-path}/flat/blue@2x.png");
-        .background-size(176px, 22px);
-    }
+    background-image: url("@{icheck-img-path}/flat/@{img}@2x.png");
+    .background-size(176px, 22px);
 }
