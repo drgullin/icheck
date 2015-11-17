@@ -1,0 +1,93 @@
+// Square Mixin
+//==========================================>
+
+.icheck-square(@name: ~'') {
+    & when (@name = ~'') {
+        .icheckbox_square, .iradio_square {
+            .icheckbox-square-base();
+        }
+
+        .icheckbox_square {
+            .icheckbox-square-checkbox();
+        }
+
+        .iradio_square {
+            .icheckbox-square-radio();
+        }
+
+        /* HiDPI support */
+        @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+            .icheckbox_square, .iradio_square {
+                .icheckbox-square-hd();
+            }
+        }
+    }
+    & when not (@name = ~'') {
+        .icheckbox_square-@{name}, .iradio_square-@{name} {
+            .icheckbox-square-base(@name);
+        }
+
+        .icheckbox_square-@{name} {
+            .icheckbox-square-checkbox();
+        }
+
+        .iradio_square-@{name} {
+            .icheckbox-square-radio();
+        }
+
+        /* HiDPI support */
+        @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+            .icheckbox_square-@{name}, .iradio_square-@{name} {
+                .icheckbox-square-hd(@name);
+            }
+        }
+    }
+}
+
+.icheckbox-square-base(@img : 'square') {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 22px;
+    height: 22px;
+    background: url("@{icheck-img-path}/square/@{img}.png") no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.icheckbox-square-checkbox() {
+    background-position: 0 0;
+
+    &.hover { background-position: -24px 0; }
+
+    &.checked { background-position: -48px 0; }
+
+    &.disabled {
+        background-position: -72px 0;
+        cursor: default;
+    }
+
+    &.checked.disabled { background-position: -96px 0; }
+}
+
+.icheckbox-square-radio() {
+    background-position: -120px 0;
+
+    &.hover { background-position: -144px 0; }
+
+    &.checked { background-position: -168px 0; }
+
+    &.disabled {
+        background-position: -192px 0;
+        cursor: default;
+    }
+
+    &.checked.disabled { background-position: -216px 0; }
+}
+
+.icheckbox-square-hd(@img : 'square') {
+    background-image: url("@{icheck-img-path}/square/@{img}@2x.png");
+    .background-size(240px, 24px);
+}

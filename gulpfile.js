@@ -4,12 +4,14 @@
  *  Gulp libs
  * --------------------------------------------------------------------------
  */
-var gulp       = require('gulp'),
-    concat     = require('gulp-concat'),
-    less       = require('gulp-less'),
-    minifyCss  = require('gulp-minify-css'),
-    rename     = require('gulp-rename'),
-    uglify     = require('gulp-uglify');
+var gulp      = require('gulp'),
+    batch     = require('gulp-batch'),
+    concat    = require('gulp-concat'),
+    less      = require('gulp-less'),
+    minifyCss = require('gulp-minify-css'),
+    rename    = require('gulp-rename'),
+    uglify    = require('gulp-uglify'),
+    watch     = require('gulp-watch');
 
 /* --------------------------------------------------------------------------
  *  Directories
@@ -26,6 +28,15 @@ var dirs       = {
  * --------------------------------------------------------------------------
  */
 gulp.task('default', ['less', 'js']);
+
+gulp.task('watch', function () {
+  watch(dirs.src + '/js/**/*.js', batch(function (events, done) {
+    gulp.start('js', done);
+  }));
+  watch(dirs.src + '/less/**/*.less', batch(function (events, done) {
+    gulp.start('less', done);
+  }));
+});
 
 gulp.task('less', function () {
   return gulp.src(dirs.src + '/less/icheck.less')
