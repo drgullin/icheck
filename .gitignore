@@ -1,3 +1,4 @@
-old/
-*.html
-.editorconfig
+/.idea/
+/bower_components/
+/node_modules/
+/old/

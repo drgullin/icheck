@@ -1,0 +1,125 @@
+// Flat Mixin
+//==========================================>
+
+.icheck-flat(@name: ~'') {
+    & when (@name = ~'') {
+        .@{icheck-checkbox-class}-flat,
+        .@{icheck-radio-class}-flat {
+            .icheck-flat-base();
+        }
+
+        .@{icheck-checkbox-class}-flat {
+            .icheck-flat-checkbox();
+        }
+
+        .@{icheck-radio-class}-flat {
+            .icheck-flat-radio();
+        }
+
+        /* HiDPI support */
+        @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+            .@{icheck-checkbox-class}-flat,
+            .@{icheck-radio-class}-flat {
+                .icheck-flat-hd();
+            }
+        }
+    }
+    & when not (@name = ~'') {
+        .@{icheck-checkbox-class}-flat-@{name},
+        .@{icheck-radio-class}-flat-@{name} {
+            .icheck-flat-base(@name);
+        }
+
+        .@{icheck-checkbox-class}-flat-@{name} {
+            .icheck-flat-checkbox();
+        }
+
+        .@{icheck-radio-class}-flat-@{name} {
+            .icheck-flat-radio();
+        }
+
+        /* HiDPI support */
+        @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+            .@{icheck-checkbox-class}-flat-@{name},
+            .@{icheck-radio-class}-flat-@{name} {
+                .icheck-flat-hd(@name);
+            }
+        }
+    }
+}
+
+.icheck-flat-base(@img : 'flat') {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    background: url("@{icheck-img-path}/flat/@{img}.png") no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.icheck-flat-checkbox() {
+    background-position: 0 0;
+
+    &.checked { background-position: -22px 0; }
+
+    &.disabled {
+        background-position: -44px 0;
+        cursor: default;
+    }
+
+    &.checked.disabled { background-position: -66px 0; }
+
+    &.hover {
+        //
+
+        &.checked {
+            //
+        }
+
+        &.disabled {
+            //
+        }
+
+        &.checked.disabled {
+            //
+        }
+    }
+}
+
+.icheck-flat-radio() {
+    background-position: -88px 0;
+
+    &.checked { background-position: -110px 0; }
+
+    &.disabled {
+        background-position: -132px 0;
+        cursor: default;
+    }
+
+    &.checked.disabled { background-position: -154px 0; }
+
+    &.hover {
+        //
+
+        &.checked {
+            //
+        }
+
+        &.disabled {
+            //
+        }
+
+        &.checked.disabled {
+            //
+        }
+    }
+}
+
+.icheck-flat-hd(@img : 'flat') {
+    background-image: url("@{icheck-img-path}/flat/@{img}@2x.png");
+    .background-size(176px, 22px);
+}

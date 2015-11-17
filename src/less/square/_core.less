@@ -1,0 +1,97 @@
+// Square Mixin
+//==========================================>
+
+.icheck-square(@name: ~'') {
+    & when (@name = ~'') {
+        .@{icheck-checkbox-class}-square,
+        .@{icheck-radio-class}-square {
+            .icheck-square-base();
+        }
+
+        .@{icheck-checkbox-class}-square {
+            .icheck-square-checkbox();
+        }
+
+        .@{icheck-radio-class}-square {
+            .icheck-square-radio();
+        }
+
+        /* HiDPI support */
+        @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+            .@{icheck-checkbox-class}-square,
+            .@{icheck-radio-class}-square {
+                .icheck-square-hd();
+            }
+        }
+    }
+    & when not (@name = ~'') {
+        .@{icheck-checkbox-class}-square-@{name},
+        .@{icheck-radio-class}-square-@{name} {
+            .icheck-square-base(@name);
+        }
+
+        .@{icheck-checkbox-class}-square-@{name} {
+            .icheck-square-checkbox();
+        }
+
+        .@{icheck-radio-class}-square-@{name} {
+            .icheck-square-radio();
+        }
+
+        /* HiDPI support */
+        @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+            .@{icheck-checkbox-class}-square-@{name},
+            .@{icheck-radio-class}-square-@{name} {
+                .icheck-square-hd(@name);
+            }
+        }
+    }
+}
+
+.icheck-square-base(@img : 'square') {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 22px;
+    height: 22px;
+    background: url("@{icheck-img-path}/square/@{img}.png") no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.icheck-square-checkbox() {
+    background-position: 0 0;
+
+    &.hover { background-position: -24px 0; }
+
+    &.checked { background-position: -48px 0; }
+
+    &.disabled {
+        background-position: -72px 0;
+        cursor: default;
+    }
+
+    &.checked.disabled { background-position: -96px 0; }
+}
+
+.icheck-square-radio() {
+    background-position: -120px 0;
+
+    &.hover { background-position: -144px 0; }
+
+    &.checked { background-position: -168px 0; }
+
+    &.disabled {
+        background-position: -192px 0;
+        cursor: default;
+    }
+
+    &.checked.disabled { background-position: -216px 0; }
+}
+
+.icheck-square-hd(@img : 'square') {
+    background-image: url("@{icheck-img-path}/square/@{img}@2x.png");
+    .background-size(240px, 24px);
+}

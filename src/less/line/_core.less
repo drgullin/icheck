@@ -1,0 +1,102 @@
+// Minimal Mixin
+//==========================================>
+
+.icheck-line(@name: ~'', @base-color, @disabled-color, @hover-color) {
+    & when (@name = ~'') {
+        .@{icheck-checkbox-class}-line,
+        .@{icheck-radio-class}-line {
+            .icheck-line-base(@base-color, @disabled-color);
+        }
+
+        .@{icheck-checkbox-class}-line,
+        .@{icheck-checkbox-class}-line.checked,
+        .@{icheck-radio-class}-line {
+            .icheck-line-hover(@hover-color);
+        }
+
+        /* HiDPI support */
+        @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+            .@{icheck-checkbox-class}-line,
+            .@{icheck-radio-class}-line {
+                .icheck-line-hd();
+            }
+        }
+    }
+    & when not (@name = ~'') {
+        .@{icheck-checkbox-class}-line-@{name},
+        .@{icheck-radio-class}-line-@{name} {
+            .icheck-line-base(@base-color, @disabled-color);
+        }
+
+        .@{icheck-checkbox-class}-line-@{name},
+        .@{icheck-checkbox-class}-line-@{name}.checked,
+        .@{icheck-radio-class}-line-@{name} {
+            .icheck-line-hover(@hover-color);
+        }
+
+        /* HiDPI support */
+        @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+            .@{icheck-checkbox-class}-line-@{name},
+            .@{icheck-radio-class}-line-@{name} {
+                .icheck-line-hd();
+            }
+        }
+    }
+}
+
+.icheck-line-base(@base-color, @disabled-color) {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 5px 15px 5px 38px;
+    font-size: 13px;
+    line-height: 17px;
+    color: #fff;
+    background: @base-color;
+    border: none;
+    cursor: pointer;
+    .border-radius(3px);
+
+    .icheck-line-icon {
+        position: absolute;
+        top: 50%;
+        left: 13px;
+        width: 13px;
+        height: 11px;
+        margin: -5px 0 0;
+        padding: 0;
+        overflow: hidden;
+        background: url("@{icheck-img-path}/line/line.png") no-repeat;
+        border: none;
+    }
+
+    &.checked {
+        background: @base-color;
+
+        .icheck-line-icon { background-position: -15px 0; }
+    }
+
+    &.disabled {
+        background: @disabled-color;
+        cursor: default;
+
+        .icheck-line-icon { background-position: -30px 0; }
+    }
+
+    &.checked.disabled {
+        background: @disabled-color;
+
+        .icheck-line-icon { background-position: -45px 0; }
+    }
+}
+
+.icheck-line-hover(@hover-color) {
+    &.hover { background: @hover-color; }
+}
+
+.icheck-line-hd() {
+    .icheck-line-icon {
+        background-image: url("@{icheck-img-path}/line/line@2x.png");
+        .background-size(60px, 13px);
+    }
+}
