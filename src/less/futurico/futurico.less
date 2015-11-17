@@ -1,0 +1,87 @@
+// iCheck plugin Futurico skin
+//==========================================>
+
+.@{icheck-checkbox-class}-futurico,
+.@{icheck-radio-class}-futurico {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 16px;
+    height: 17px;
+    background: url("@{icheck-img-path}/futurico/futurico.png") no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.@{icheck-checkbox-class}-futurico {
+    background-position: 0 0;
+
+    &.checked {
+        background-position: -18px 0;
+
+        &.disabled { background-position: -54px 0; }
+    }
+
+    &.disabled {
+        background-position: -36px 0;
+        cursor: default;
+    }
+
+    &.hover {
+        //
+
+        &.checked {
+            //
+        }
+
+        &.disabled {
+            //
+        }
+
+        &.checked.disabled {
+            //
+        }
+    }
+}
+
+.@{icheck-radio-class}-futurico {
+    background-position: -72px 0;
+
+    &.checked {
+        background-position: -90px 0;
+
+        &.disabled { background-position: -126px 0; }
+    }
+
+    &.disabled {
+        background-position: -108px 0;
+        cursor: default;
+    }
+
+    &.hover {
+        //
+
+        &.checked {
+            //
+        }
+
+        &.disabled {
+            //
+        }
+
+        &.checked.disabled {
+            //
+        }
+    }
+}
+
+/* HiDPI support */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+    .@{icheck-checkbox-class}-futurico,
+    .@{icheck-radio-class}-futurico {
+        background-image: url("@{icheck-img-path}/futurico/futurico@2x.png");
+        .background-size(144px, 19px);
+    }
+}
