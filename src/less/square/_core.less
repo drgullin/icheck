@@ -3,41 +3,45 @@
 
 .icheck-square(@name: ~'') {
     & when (@name = ~'') {
-        .icheckbox_square, .iradio_square {
+        .@{icheck-checkbox-class}-square,
+        .@{icheck-radio-class}-square {
             .icheckbox-square-base();
         }
 
-        .icheckbox_square {
+        .@{icheck-checkbox-class}-square {
             .icheckbox-square-checkbox();
         }
 
-        .iradio_square {
+        .@{icheck-radio-class}-square {
             .icheckbox-square-radio();
         }
 
         /* HiDPI support */
         @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-            .icheckbox_square, .iradio_square {
+            .@{icheck-checkbox-class}-square,
+            .@{icheck-radio-class}-square {
                 .icheckbox-square-hd();
             }
         }
     }
     & when not (@name = ~'') {
-        .icheckbox_square-@{name}, .iradio_square-@{name} {
+        .@{icheck-checkbox-class}-square-@{name},
+        .@{icheck-radio-class}-square-@{name} {
             .icheckbox-square-base(@name);
         }
 
-        .icheckbox_square-@{name} {
+        .@{icheck-checkbox-class}-square-@{name} {
             .icheckbox-square-checkbox();
         }
 
-        .iradio_square-@{name} {
+        .@{icheck-radio-class}-square-@{name} {
             .icheckbox-square-radio();
         }
 
         /* HiDPI support */
         @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-            .icheckbox_square-@{name}, .iradio_square-@{name} {
+            .@{icheck-checkbox-class}-square-@{name},
+            .@{icheck-radio-class}-square-@{name} {
                 .icheckbox-square-hd(@name);
             }
         }
