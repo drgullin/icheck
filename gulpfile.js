@@ -51,7 +51,6 @@ gulp.task('less', function () {
 
 gulp.task('js', function () {
   return gulp.src(dirs.src + '/js/icheck.js')
-    // .pipe(gulp.dest(dirs.dist + '/js'))
     .pipe(uglify({
       preserveComments: 'license'
     }))
