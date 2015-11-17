@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>iCheck - Polaris Skin</title>
+  <link rel="stylesheet" href="css/demo.css">
+  <link rel="stylesheet" href="../dist/css/icheck.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<main class="container">
+  <h1>iCheck - Polaris Skin</h1>
+  <section id="default">
+    <label>
+      <input type="checkbox" name="default[1]"> Foo
+    </label>
+
+    <label>
+      <input type="checkbox" name="default[1]" checked> Foo
+    </label>
+
+    <label>
+      <input type="checkbox" name="default[1]" disabled> Foo
+    </label>
+
+    <label>
+      <input type="checkbox" name="default[1]" disabled checked> Foo
+    </label>
+
+    <label for="default[1]">
+      <input type="radio" name="default[2]" id="default[1]" checked> Bar
+    </label>
+
+    <label for="default[2]">
+      <input type="radio" name="default[2]" id="default[2]"> Bar
+    </label>
+
+    <label for="default[3]">
+      <input type="radio" name="default[3]" id="default[3]" disabled> Bar
+    </label>
+  </section>
+</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="../dist/js/icheck.min.js"></script>
+<script>
+  $(function () {
+    // Default polaris
+    //============================>
+    $('section#default input').icheck({
+      labelHover: false,
+      cursor: true,
+      checkboxClass:'icheckbox-polaris',
+      radioClass:'iradio-polaris'
+    });
+  })
+</script>
+</body>
+</html>
