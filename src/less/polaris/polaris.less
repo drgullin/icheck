@@ -1,0 +1,83 @@
+// iCheck : Polaris skin
+//==========================================>
+
+.@{icheck-checkbox-class}-polaris,
+.@{icheck-radio-class}-polaris {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 29px;
+    height: 29px;
+    background: url("@{icheck-img-path}/polaris/polaris.png") no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.@{icheck-checkbox-class}-polaris {
+    background-position: 0 0;
+
+    &.checked { background-position: -62px 0; }
+
+    &.disabled {
+        background-position: -93px 0;
+        cursor: default;
+    }
+
+    &.checked.disabled { background-position: -124px 0; }
+
+    &.hover {
+        background-position: -31px 0;
+
+        &.checked {
+            //
+        }
+
+        &.disabled {
+            //
+        }
+
+        &.checked.disabled {
+            //
+        }
+    }
+}
+
+.@{icheck-radio-class}-polaris {
+    background-position: -155px 0;
+
+    &.checked { background-position: -217px 0; }
+
+    &.disabled {
+        background-position: -248px 0;
+        cursor: default;
+    }
+
+    &.checked.disabled { background-position: -279px 0; }
+
+    &.hover {
+        background-position: -186px 0;
+
+        &.checked {
+            //
+        }
+
+        &.disabled {
+            //
+        }
+
+        &.checked.disabled {
+            //
+        }
+    }
+}
+
+/* HiDPI support */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+    .@{icheck-checkbox-class}-polaris,
+    .@{icheck-radio-class}-polaris {
+        background-image: url("@{icheck-img-path}/polaris/polaris@2x.png");
+        .background-size(310px, 31px);
+    }
+}
