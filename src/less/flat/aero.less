@@ -1,0 +1,83 @@
+// iCheck plugin Flat skin, aero
+//==========================================>
+
+.@{icheck-checkbox-class}-flat-aero,
+.@{icheck-radio-class}-flat-aero {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    background: url("@{icheck-img-path}/flat/aero.png") no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.@{icheck-checkbox-class}-flat-aero {
+    background-position: 0 0;
+
+    &.checked { background-position: -22px 0; }
+
+    &.disabled {
+        background-position: -44px 0;
+        cursor: default;
+    }
+
+    &.checked.disabled { background-position: -66px 0; }
+
+    &.hover {
+        //
+
+        &.checked {
+            //
+        }
+
+        &.disabled {
+            //
+        }
+
+        &.checked.disabled {
+            //
+        }
+    }
+}
+
+.@{icheck-radio-class}-flat-aero {
+    background-position: -88px 0;
+
+    &.checked { background-position: -110px 0; }
+
+    &.disabled {
+        background-position: -132px 0;
+        cursor: default;
+    }
+
+    &.checked.disabled { background-position: -154px 0; }
+
+    &.hover {
+        //
+
+        &.checked {
+            //
+        }
+
+        &.disabled {
+            //
+        }
+
+        &.checked.disabled {
+            //
+        }
+    }
+}
+
+/* HiDPI support */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+    .@{icheck-checkbox-class}-flat-aero,
+    .@{icheck-radio-class}-flat-aero {
+        background-image: url("@{icheck-img-path}/flat/aero@2x.png");
+        .background-size(176px, 22px);
+    }
+}
