@@ -1,6 +1,6 @@
 {
-  "name": "iCheck",
-  "version": "1.0.2",
+  "name": "iCheckCustom",
+  "version": "2.1",
   "description": "Highly customizable checkboxes and radio buttons (jQuery & Zepto)",
   "keywords": [
     "icheck",
@@ -19,7 +19,7 @@
     "indeterminate"
   ],
   "main": [
-    "./icheck.min.js"
+    "icheck.min.js"
   ],
   "dependencies": {
     "jquery": ">=1.7"
@@ -38,5 +38,8 @@
       "homepage": "http://fronteed.com/"
     }
   ],
-  "homepage": "http://fronteed.com/iCheck/"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Donny5300/icheck"
+  },
 }
