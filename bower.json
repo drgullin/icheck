@@ -19,7 +19,7 @@
     "indeterminate"
   ],
   "main": [
-    "./icheck.min.js"
+    "icheck.min.js"
   ],
   "dependencies": {
     "jquery": ">=1.7"
@@ -41,6 +41,6 @@
   "homepage": "http://fronteed.com/iCheck/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Donny5300/jQuery-slimScroll.git"
+    "url": "https://github.com/Donny5300/icheck"
   },
 }
