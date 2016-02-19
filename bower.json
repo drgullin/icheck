@@ -38,5 +38,9 @@
       "homepage": "http://fronteed.com/"
     }
   ],
-  "homepage": "http://fronteed.com/iCheck/"
+  "homepage": "http://fronteed.com/iCheck/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Donny5300/jQuery-slimScroll.git"
+  },
 }
