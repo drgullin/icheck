@@ -28,7 +28,8 @@
     _callback = 'trigger',
     _label = 'label',
     _cursor = 'cursor',
-    _mobile = /ipad|iphone|ipod|android|blackberry|windows phone|opera mini|silk/i.test(navigator.userAgent);
+    _mobile = /ipad|iphone|ipod|android|blackberry|windows phone|opera mini|silk/i.test(navigator.userAgent),
+    settings = undefined;
 
   // Plugin init
   $.fn[_iCheck] = function(options, fire) {
@@ -76,11 +77,12 @@
     } else if (typeof options == 'object' || !options) {
 
       // Check if any options were passed
-      var settings = $.extend({
+      settings = $.extend({
           checkedClass: _checked,
           disabledClass: _disabled,
           indeterminateClass: _indeterminate,
-          labelHover: true
+          labelHover: true,
+          fireChange: false
         }, options),
 
         selector = settings.handle,
@@ -237,9 +239,9 @@
           } else if (type == 'keydown' && key == 32) {
             if (!(node[_type] == _radio && node[_checked])) {
               if (node[_checked]) {
-                off(self, _checked);
+                off(self, _checked, undefined, settings.fireChange);
               } else {
-                on(self, _checked);
+                on(self, _checked, undefined, settings.fireChange);
               }
             }
 
@@ -247,7 +249,7 @@
 
           // Keyup
           } else if (type == 'keyup' && node[_type] == _radio) {
-            !node[_checked] && on(self, _checked);
+            !node[_checked] && on(self, _checked, undefined, settings.fireChange);
 
           // Focus/blur
           } else if (/us|ur/.test(type)) {
@@ -267,7 +269,7 @@
 
             // Click
             if (type == _click) {
-              operate(self, false, true);
+              operate(self, false, true, settings.fireChange);
 
             // Active and hover states
             } else {
@@ -316,11 +318,11 @@
 
     // Check, disable or indeterminate
     if (/^(ch|di|in)/.test(method) && !active) {
-      on(input, state);
+      on(input, state, undefined, settings.fireChange);
 
     // Uncheck, enable or determinate
     } else if (/^(un|en|de)/.test(method) && active) {
-      off(input, state);
+      off(input, state, undefined, settings.fireChange);
 
     // Update
     } else if (method == _update) {
@@ -344,16 +346,16 @@
       // Toggle checked state
       if (active) {
         if (node[_type] !== _radio) {
-          off(input, state);
+          off(input, state, undefined, settings.fireChange);
         }
       } else {
-        on(input, state);
+        on(input, state, undefined, settings.fireChange);
       }
     }
   }
 
   // Add checked, disabled or indeterminate state
-  function on(input, state, keep) {
+  function on(input, state, keep, fire_change) {
     var node = input[0],
       parent = input.parent(),
       checked = state == _checked,
@@ -361,7 +363,8 @@
       disabled = state == _disabled,
       callback = indeterminate ? _determinate : checked ? _unchecked : 'enabled',
       regular = option(input, callback + capitalize(node[_type])),
-      specific = option(input, state + capitalize(node[_type]));
+      specific = option(input, state + capitalize(node[_type])),
+      fire_change = !!fire_change;
 
     // Prevent unnecessary actions
     if (node[state] !== true) {
@@ -388,7 +391,7 @@
 
         // Remove checked state
         if (node[_checked]) {
-          off(input, _checked, 'force');
+          off(input, _checked, 'force', settings.fireChange);
         }
 
       // Checked or disabled state
@@ -401,8 +404,12 @@
 
         // Remove indeterminate state
         if (checked && node[_indeterminate]) {
-          off(input, _indeterminate, false);
+          off(input, _indeterminate, false, settings.fireChange);
         }
+      }
+
+      if (fire_change) {
+        input[_callback]('change');
       }
 
       // Trigger callbacks
@@ -427,7 +434,7 @@
   }
 
   // Remove checked, disabled or indeterminate state
-  function off(input, state, keep) {
+  function off(input, state, keep, fire_change) {
     var node = input[0],
       parent = input.parent(),
       checked = state == _checked,
@@ -435,7 +442,8 @@
       disabled = state == _disabled,
       callback = indeterminate ? _determinate : checked ? _unchecked : 'enabled',
       regular = option(input, callback + capitalize(node[_type])),
-      specific = option(input, state + capitalize(node[_type]));
+      specific = option(input, state + capitalize(node[_type])),
+      fire_change = !!fire_change;
 
     // Prevent unnecessary actions
     if (node[state] !== false) {
@@ -443,6 +451,10 @@
       // Toggle state
       if (indeterminate || !keep || keep == 'force') {
         node[state] = false;
+      }
+
+      if (fire_change) {
+        input[_callback]('change');
       }
 
       // Trigger callbacks
