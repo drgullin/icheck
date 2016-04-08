@@ -1,5 +1,5 @@
 /*!
- * iCheck v1.0.2, http://git.io/arlzeA
+ * iCheck v1.0.3, http://git.io/arlzeA
  * ===================================
  * Powerful jQuery and Zepto plugin for checkboxes and radio buttons customization
  *
@@ -233,7 +233,7 @@
 
           // Click
           if (type == _click) {
-            return false;
+            return;
 
           // Keydown
           } else if (type == 'keydown' && key == 32) {
@@ -269,7 +269,7 @@
 
             // Click
             if (type == _click) {
-              operate(self, false, true, settings.fireChange);
+              operate(self, false, true);
 
             // Active and hover states
             } else {

@@ -14,7 +14,7 @@
   <div class="layout clear">
     <div class="header">
       <h1>super customized checkboxes and radio buttons for jQuery &amp; Zepto</h1>
-      <h3>iCheck <span>v1.0.2</span></h3>
+      <h3>iCheck <span>v1.0.3</span></h3>
       <strong>@<a href="http://twitter.com/fronteed/">Fronteed</a></strong>
     </div>
     <div class="features">
@@ -45,7 +45,7 @@
           <strong>Lightweight size</strong> &mdash; 1 kb gzipped
         </li>
         <li class="offset">
-          <strong class="self" data-to="options">32 options</strong> to customize checkboxes and radio buttons
+          <strong class="self" data-to="options">33 options</strong> to customize checkboxes and radio buttons
         </li>
         <li>
           <strong class="self" data-to="callbacks">11 callbacks</strong> to handle changes
@@ -1349,7 +1349,10 @@ $(document).ready(function(){
   aria: false,
 
   <span class="comment">// add HTML code or text inside customized input</span>
-  insert: ''
+  insert: '',
+
+  <span class="comment">// whether or not to fire the `change` event that is normally fired in browsers</span>
+  fireChange: false
 }
 </pre>
         <p>There's no need to copy and paste all of them, you can just mention the ones you need:</p>

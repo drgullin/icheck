@@ -1,4 +1,4 @@
-# [iCheck plugin](http://fronteed.com/iCheck/) <sup>[1.0.2](#march-03-2014)</sup>
+# [iCheck plugin](http://fronteed.com/iCheck/) <sup>[1.0.3](#april-04-2016)</sup>
 #### Highly customizable checkboxes and radio buttons for jQuery and Zepto.
 
 Refer to the [iCheck website](http://fronteed.com/iCheck/) for examples.
@@ -21,7 +21,7 @@ Features
 
 -----
 
-* [32 options](#options) to customize checkboxes and radio buttons
+* [33 options](#options) to customize checkboxes and radio buttons
 * [11 callbacks](#callbacks) to handle changes
 * [9 methods](#methods) to make changes programmatically
 * Saves changes to original inputs, [works carefully](#initialize) with any selectors
@@ -160,7 +160,10 @@ These options are default:
   aria: false,
 
   // add HTML code or text inside customized input
-  insert: ''
+  insert: '',
+
+  // whether or not to fire the `change` event that is normally fired in browsers
+  fireChange: false
 }
 ```
 
@@ -365,6 +368,10 @@ Mobile browsers (like Opera mini, Chrome mobile, Safari mobile, Android browser,
 
 Changelog
 ---------------
+
+### April 04, 2016
+
+* Added option to fire `change` event to support default behavior @nathanjosiah
 
 ### March 03, 2014
 
