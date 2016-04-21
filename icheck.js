@@ -29,6 +29,7 @@
     _label = 'label',
     _cursor = 'cursor',
     _mobile = /ipad|iphone|ipod|android|blackberry|windows phone|opera mini|silk/i.test(navigator.userAgent),
+    _firingChange = 'firingChange',
     settings = undefined;
 
   // Plugin init
@@ -226,6 +227,12 @@
           });
         }
 
+        self.on('change.i', function(event) {
+          if (!$(this).data(_firingChange)) {
+            syncAppearance(self);
+          }
+        });
+
         // Input events
         self.on(_click + '.i focus.i blur.i keyup.i keydown.i keypress.i', function(event) {
           var type = event[_type],
@@ -409,7 +416,9 @@
       }
 
       if (fire_change) {
+        input.data(_firingChange,true);
         input[_callback]('change');
+        input.data(_firingChange,false);
       }
 
       // Trigger callbacks
@@ -433,6 +442,59 @@
     parent[_remove](regular || option(input, callback) || '');
   }
 
+  function syncAppearance(input) {
+    var node = input[0];
+    if (node[_type] == _radio) {
+      if(!node.name) {
+        return;
+      }
+      var form = input.closest('form'),
+      inputs = 'input[name="' + node.name + '"]';
+
+      inputs = form.length ? form.find(inputs) : $(inputs);
+    }
+    else {
+      inputs = input;
+    }
+
+    inputs.each(function() {
+      var input = $(this);
+      if (!input.data(_iCheck)) {
+        return;
+      }
+      var node = input.get(0);
+
+      parent = input.parent(),
+      checked = node[_checked],
+      indeterminate = node[_indeterminate],
+      disabled = node[_disabled];
+
+      parent[_remove](option(input, _checked));
+      if (checked) {
+        parent[_add](option(input, _checked));
+      }
+
+      parent[_remove](option(input, _disabled));
+      if (disabled) {
+        parent[_add](option(input, _disabled));
+      }
+
+      parent[_remove](option(input, _indeterminate));
+      if (indeterminate) {
+        parent[_add](option(input, _indeterminate));
+      }
+
+      parent.find('.' + _iCheckHelper).css(_cursor, (node[_disabled] && !!option(input, _cursor, true) ? 'default' : ''));
+
+      if (!!parent.attr('role')) {
+        if (!indeterminate) {
+          parent.attr('aria-' + _checked, (checked ? 'true' : 'false'));
+        }
+        parent.attr('aria-' + _disabled, (disabled ? 'true' : 'false'));
+      }
+    });
+  }
+
   // Remove checked, disabled or indeterminate state
   function off(input, state, keep, fire_change) {
     var node = input[0],
@@ -454,7 +516,9 @@
       }
 
       if (fire_change) {
+        input.data(_firingChange,true);
         input[_callback]('change');
+        input.data(_firingChange,false);
       }
 
       // Trigger callbacks
