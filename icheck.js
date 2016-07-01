@@ -172,6 +172,9 @@
             parent += '"';
           });
         }
+        
+        // Cache whether or not the parent is static positioned
+        parentIsStatic = parent.css('position') == 'static'
 
         // Wrap input
         parent = self.wrap(parent + '/>')[_callback]('ifCreated').parent().append(settings.insert);
@@ -183,7 +186,7 @@
         self.data(_iCheck, {o: settings, s: self.attr('style')}).css(hide);
         !!settings.inheritClass && parent[_add](node.className || '');
         !!settings.inheritID && id && parent.attr('id', _iCheck + '-' + id);
-        parent.css('position') == 'static' && parent.css('position', 'relative');
+        parentIsStatic && parent.css('position', 'relative');
         operate(self, true, _update);
 
         // Label events
