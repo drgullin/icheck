@@ -942,8 +942,8 @@
             // keyup
             if (emitter == 'keyup') {
 
-              // spacebar or arrow
-              if (self.type == 'checkbox' && event.keyCode == 32 && settings.keydown || self.type == 'radio' && !self.checked) {
+              // spacebar for checkbox/radio
+              if ((self.type == 'checkbox' || (self.type == 'radio' && !self.checked)) && event.keyCode == 32 && settings.keydown) {
                 operate(self, parent, key, 'click', false, true); // 'toggle' method
               }
 
