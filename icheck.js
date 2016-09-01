@@ -464,7 +464,7 @@
       }
       var node = input.get(0);
 
-      parent = input.parent(),
+      var parent = input.parent(),
       checked = node[_checked],
       indeterminate = node[_indeterminate],
       disabled = node[_disabled];
