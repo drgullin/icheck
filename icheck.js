@@ -8,7 +8,7 @@
  */
 
 (function($) {
-
+var $ = require('jquery'); 
   // Cached vars
   var _iCheck = 'iCheck',
     _iCheckHelper = _iCheck + '-helper',
