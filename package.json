@@ -1,0 +1,23 @@
+{
+  "name": "icheck-browserify",
+  "version": "1.0.0",
+  "description": "Npm package that works with browserify",
+  "main": "icheck.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdmagic21/icheck-browserify.git"
+  },
+  "keywords": [
+    "icheck",
+    "browserify"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdmagic21/icheck-browserify/issues"
+  },
+  "homepage": "https://github.com/jdmagic21/icheck-browserify#readme"
+}
