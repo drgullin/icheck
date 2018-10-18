@@ -186,7 +186,7 @@
 
         // if static or relative, set to relative
         // the second check fixes a bug in chrome where default static postion showed as relative with .css function
-        (parent.css('position') == 'static' || parent.css('position') == 'relative') && parent.css('position', 'relative');
+        (parent.css('position') == 'static' || parent.css('position') == '') && parent.css('position', 'relative');
         operate(self, true, _update);
 
         // Label events
