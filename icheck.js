@@ -9,6 +9,11 @@
 
 (function($) {
 
+  // Make a compatible with webpack frameworks, like Vue, React etc.
+  if($ == undefined) {
+    $ = window.$
+  }
+  
   // Cached vars
   var _iCheck = 'iCheck',
     _iCheckHelper = _iCheck + '-helper',
