@@ -6,7 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-- This changelog
+### Changed
+- Reformatted this changelog
 
 ## [1.0.2] - 2014-03-03
 
@@ -40,6 +41,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Auto inits on domready using the specified selector (`autoInit` option) - searches for `.icheck` by default. Classnames can be changed using the `window.classes` object
 - Memory usage optimization - uses only a few amount of memory (works well on low-memory devices)
 - Betters callbacks architecture - these are fired only after changes are applied to the input
+
+### Fixed
 - Fixes some issues of the mobile devices
 - Fixes the issues of the wrapper labels, that loose a click ability in some browsers (if no `for` attribute is set)
 - Some other options and improvements
@@ -62,9 +65,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Amazon Kindle support @skinofstars
 
 ### Changed
+- Merged two versions of the plugin (jQuery and Zepto) into one
+
+### Fixed
 - Fixed clickable links inside labels @LeGaS
 - Fixed lines separation between labels and inputs
-- Merged two versions of the plugin (jQuery and Zepto) into one
 - Fixed demo links
 - Fixed callbacks @PepijnSenders
 
