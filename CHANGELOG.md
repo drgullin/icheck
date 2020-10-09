@@ -6,8 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.3] - 2020-10-10
 
+### Added
+- iOS 13 support @markusbroman
+
 ### Changed
-- Reformatted changelog
+- Reformatted changelog @lasseeee
 
 ### Fixed
 - Fire change event when toggled @rafatmyo
