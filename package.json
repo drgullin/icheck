@@ -1,0 +1,16 @@
+{
+  "name": "icheck",
+  "version": "1.0.3",
+  "description": "Highly customizable checkboxes and radio buttons (jQuery & Zepto)",
+  "main": "icheck.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dargullin/icheck.git"
+  },
+  "author": "Damir Sultanov <info@fronteed.com> (http://fronteed.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dargullin/icheck/issues"
+  },
+  "homepage": "http://fronteed.com/iCheck/"
+}
